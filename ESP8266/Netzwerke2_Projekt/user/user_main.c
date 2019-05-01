@@ -2,6 +2,8 @@
 #include "ets_sys.h"
 #include "osapi.h"
 
+#include "../BMP280/bmp280.h"
+
 #if ((SPI_FLASH_SIZE_MAP == 0) || (SPI_FLASH_SIZE_MAP == 1))
 #error "The flash map is not supported"
 #elif (SPI_FLASH_SIZE_MAP == 2)
@@ -54,5 +56,9 @@ void ICACHE_FLASH_ATTR user_pre_init(void) {
 void ICACHE_FLASH_ATTR user_init(void) {
     system_update_cpu_freq(160);
     while(system_get_cpu_freq() != 160);
-    os_printf("OVERCLOCKING DONE.\r\n");
+
+    BMP280 bmp280;
+    initBMP280(&bmp280);
+
+    os_printf("GOT BMP280-ID: %d\r\n", bmp280.getID(&bmp280));
 }

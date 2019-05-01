@@ -20,4 +20,7 @@
  /opt/esp/crosstool-NG/builds/xtensa-lx106-elf/xtensa-lx106-elf/include/sys/lock.h \
  /opt/esp/crosstool-NG/builds/xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/4.8.2/include/stddef.h \
  /opt/esp/crosstool-NG/builds/xtensa-lx106-elf/xtensa-lx106-elf/include/sys/cdefs.h \
- /opt/esp/crosstool-NG/builds/xtensa-lx106-elf/xtensa-lx106-elf/include/sys/string.h
+ /opt/esp/crosstool-NG/builds/xtensa-lx106-elf/xtensa-lx106-elf/include/sys/string.h \
+ ../BMP280/bmp280.h \
+ /opt/esp/crosstool-NG/builds/xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/4.8.2/include/stdint.h \
+ /opt/esp/crosstool-NG/builds/xtensa-lx106-elf/xtensa-lx106-elf/include/stdint.h
