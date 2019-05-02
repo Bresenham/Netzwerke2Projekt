@@ -10,11 +10,11 @@
 * `wget https://dl.espressif.com/dl/xtensa-lx106-elf-linux64-1.22.0-92-g8facf4c-5.2.0.tar.gz`
 * `mv xtensa-lx106-elf-linux64-1.22.0-92-g8facf4c-5.2.0.tar.gz xtensa-lx106-elf.tar.gz`
 * `tar -xvzf xtensa-lx106-elf.tar.gz`
-* `PATH=$PWD/xtensa-lx106-elf/bin/:$PATH` **<- Dieser Befehl muss bei jedem Start ausgeführt werden**
+* `PATH=/opt/esp8266/xtensa-lx106-elf/bin/:$PATH` **<- Dieser Befehl muss nach jedem Neustart ausgeführt werden**
 * `git clone https://github.com/espressif/ESP8266_NONOS_SDK.git`
 * `rm xtensa-lx106-elf.tar.gz`
 * `git clone https://github.com/espressif/esptool.git`
-* `PATH=$PWD/esptool/:$PATH` **<- Dieser Befehl muss bei jedem Start ausgeführt werden**
+* `PATH=/opt/esp8266/esptool/:$PATH` **<- Dieser Befehl muss nach jedem Neustart ausgeführt werden**
 
 ## Folgende Befehle unter Windows ausführen
 
