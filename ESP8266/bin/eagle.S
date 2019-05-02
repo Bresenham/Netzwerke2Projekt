@@ -34669,8 +34669,8 @@ void ICACHE_FLASH_ATTR user_pre_init(void) {
 void ICACHE_FLASH_ATTR user_pre_init(void) {
 402258cf:	f0c112        	addi	a1, a1, -16
     if(!system_partition_table_regist(at_partition_table, sizeof(at_partition_table)/sizeof(at_partition_table[0]),SPI_FLASH_SIZE_MAP)) {
-402258d2:	03a032        	movi	a3, 3
-402258d5:	04a042        	movi	a4, 4
+402258d2:	04a042        	movi	a4, 4
+402258d5:	03a032        	movi	a3, 3
     { SYSTEM_PARTITION_RF_CAL,  						SYSTEM_PARTITION_RF_CAL_ADDR, 						0x1000},
     { SYSTEM_PARTITION_PHY_DATA, 						SYSTEM_PARTITION_PHY_DATA_ADDR, 					0x1000},
     { SYSTEM_PARTITION_SYSTEM_PARAMETER, 				SYSTEM_PARTITION_SYSTEM_PARAMETER_ADDR, 			0x3000},
