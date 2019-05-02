@@ -40,3 +40,12 @@
 * `make flash PORT=/dev/ttyS4` - hier `ttyS4` durch die Nummer des virtuellen COM-Ports ersetzen</br>
 Die LED des ESP8266 sollte nun für ein paar Sekunden wild blinken.</br>
 Nach der Ausgabe `Leaving...\nHard resetting via RTS pin...` ist das Programm auf den ESP8266 aufgespielt.
+
+# HowTo - UART-Ausgaben via `os_printf` empfangen
+1. Zuerst die Espressif Toolchain installieren und die entsprechende Firmware auf den ESP8266 flashen.
+1. Generell kann jedes Tool verwendet werden, das von einem COM-Port lesen kann. Ich verwende dafür gerne die Arduino-IDE.
+1. Die [Arduino-IDE](https://www.arduino.cc/en/Main/Software) herunterladen.
+1. Das [ESP-8266 Addon](https://randomnerdtutorials.com/how-to-install-esp8266-board-arduino-ide/) installieren.
+1. Die Arduino-IDE öffnen, `Werkzeuge`-`Port`-entsprechenden COM-Port auswählen.
+1. `Werkzeuge`-`Serieller Monitor`-`74880 Baud` - hier erscheinen nun die Ausgaben, die man mit `os_printf` im Code gemacht hat.
+1. **Achtung:** Während der serielle Monitor geöffnet ist, kann keine neue Firmware geflasht werden, da die Arduino IDE den COM-Port belegt.
