@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.4.21)  2 MAY 2019 12:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.4.21)  5 MAY 2019 16:48
 entering extended mode
 **./document.tex
 (document.tex
@@ -59,12 +59,26 @@ Class scrreprt Info: You've used standard option `openright'.
 (scrreprt)           If you'd like to set the option with \KOMAoptions,
 (scrreprt)           you'd have to use `open=right' there
 (scrreprt)           instead of `openright', too.
-Package scrreprt Info: You've used standard option `10pt'.
-(scrreprt)             This is correct!
-(scrreprt)             Internally I'm using `fontsize=10pt'.
-(scrreprt)             If you'd like to set the option with \KOMAoptions,
-(scrreprt)             you'd have to use `fontsize=10pt' there
-(scrreprt)             instead of `10pt', too.
+
+
+Package scrreprt Warning: You've used obsolete option `8pt'.
+(scrreprt)                Usage of this option indicates an old document
+(scrreprt)                and changes compatibility level using
+(scrreprt)                `fontsize=8pt,version=first,
+(scrreprt)                enabledeprecatedfontcommands' that may result
+(scrreprt)                in further warnings.
+(scrreprt)                If you don't want this, you should simply
+(scrreprt)                replace option `8pt' by `fontsize=8pt'.
+
+Class scrreprt Info: Switching compatibility level to `first'.
+
+Class scrreprt Warning: deprecated option `enabledeprecatedfontcommands'.
+(scrreprt)              Note, that this option was already depreacted when
+(scrreprt)              it has been defined. Support for old font commands
+(scrreprt)              has been removed from KOMA-Script more than one
+(scrreprt)              decade ago. It is not recommended to use them any
+(scrreprt)              longer. Therefore usage of this class option also
+(scrreprt)              is not recommended.
 
 
 Class scrreprt Warning: You've used obsolete option `bibtotoc'.
@@ -86,13 +100,12 @@ Class scrreprt Warning: deprecated option `enabledeprecatedfontcommands'.
 (scrreprt)              longer. Therefore usage of this class option also
 (scrreprt)              is not recommended.
 
-Class scrreprt Info: File `scrsize10pt.clo' used to setup font sizes on input l
-ine 2267.
+Class scrreprt Info: File `size8.clo' used to setup font sizes on input line 22
+67.
 
-(C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex\latex\koma-script\scr
-size10pt.clo
-File: scrsize10pt.clo 2017/01/03 v3.22 KOMA-Script font size class option (10pt
-)
+(C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex\latex\extsizes\size8.
+clo
+File: size8.clo 1999/11/11 v1.4a NON-Standard LaTeX file (size option)
 )
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex\latex\koma-script\typ
 earea.sty
@@ -110,27 +123,27 @@ Package typearea, 2017/01/03 v3.22 KOMA-Script package (type area)
 \footheight=\skip46
 
 Package typearea Warning: Bad type area settings!
-(typearea)                The detected line width is about 24%
+(typearea)                The detected line width is about 66%
 (typearea)                larger than the heuristically detected line width.
 (typearea)                You should e.g. decrease DIV, increase fontsize
 (typearea)                or change papersize.
 
 Package typearea Info: These are the values describing the layout:
 (typearea)             DIV  = 15
-(typearea)             BCOR = 42.67912pt
+(typearea)             BCOR = -28.45274pt
 (typearea)             \paperwidth      = 597.50793pt
-(typearea)              \textwidth      = 443.86305pt
-(typearea)              DIV departure   = -24%
-(typearea)              \evensidemargin = 25.89201pt
-(typearea)              \oddsidemargin  = 25.89201pt
+(typearea)              \textwidth      = 500.76859pt
+(typearea)              DIV departure   = -66%
+(typearea)              \evensidemargin = -38.1267pt
+(typearea)              \oddsidemargin  = -38.1267pt
 (typearea)             \paperheight     = 845.04694pt
-(typearea)              \textheight     = 646.0pt
+(typearea)              \textheight     = 654.0pt
 (typearea)              \topmargin      = -15.93353pt
-(typearea)              \headheight     = 15.0pt
-(typearea)              \headsep        = 18.0pt
-(typearea)              \topskip        = 10.0pt
-(typearea)              \footskip       = 42.0pt
-(typearea)              \baselineskip   = 12.0pt
+(typearea)              \headheight     = 11.875pt
+(typearea)              \headsep        = 14.25pt
+(typearea)              \topskip        = 8.0pt
+(typearea)              \footskip       = 33.25pt
+(typearea)              \baselineskip   = 9.5pt
 (typearea)              on input line 1583.
 )
 \c@part=\count80
@@ -568,7 +581,7 @@ Class scrreprt Warning: Usage of package `titlesec' together
 (scrreprt)              the extended optional argument of the section
 (scrreprt)              commands.
 (scrreprt)              Nevertheless, using requested
-(scrreprt)              package `titlesec' on input line 109.
+(scrreprt)              package `titlesec' on input line 108.
 
 
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex\latex\titlesec\titles
@@ -607,9 +620,24 @@ Package titlesec Warning: Non standard sectioning command detected
 )
 
 Package scrreprt Warning: Activating an ugly workaround for a missing
-(scrreprt)                feature of package `titlesec` on input line 109.
+(scrreprt)                feature of package `titlesec` on input line 108.
 
 
+(C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex\latex\makecell\makece
+ll.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+ (D:\Programme\MiKTeX\tex\latex\tools\array.sty
+Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
+\col@sep=\dimen138
+\extrarowheight=\dimen139
+\NC@list=\toks26
+\extratabsurround=\skip68
+\backup@length=\skip69
+)
+\rotheadsize=\dimen140
+\c@nlinenum=\count130
+\TeXr@lab=\toks27
+)
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstlan
 g1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
@@ -624,21 +652,21 @@ Package: chngcntr 2009/09/02 v1.0a change counter resetting
 ) (document.aux)
 \openout1 = `document.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 204.
-LaTeX Font Info:    ... okay on input line 204.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 204.
-LaTeX Font Info:    ... okay on input line 204.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 204.
-LaTeX Font Info:    ... okay on input line 204.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 204.
-LaTeX Font Info:    ... okay on input line 204.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 204.
-LaTeX Font Info:    ... okay on input line 204.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 204.
-LaTeX Font Info:    ... okay on input line 204.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 204.
-LaTeX Font Info:    ... okay on input line 204.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 204.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 205.
  (D:\Programme\MiKTeX\tex\latex\lm\t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -654,17 +682,17 @@ Package scrpage2 Warning: seems you are using a very small headheight.
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf
 .mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count130
-\scratchdimen=\dimen138
+\scratchcounter=\count131
+\scratchdimen=\dimen141
 \scratchbox=\box35
-\nofMPsegments=\count131
-\nofMParguments=\count132
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count133
-\MPscratchDim=\dimen139
-\MPnumerator=\count134
-\makeMPintoPDFobject=\count135
-\everyMPtoPDFconversion=\toks27
+\nofMPsegments=\count132
+\nofMParguments=\count133
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count134
+\MPscratchDim=\dimen142
+\MPnumerator=\count135
+\makeMPintoPDFobject=\count136
+\everyMPtoPDFconversion=\toks29
 ) (D:\Programme\MiKTeX\tex\latex\oberdiek\epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -679,7 +707,7 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 \AtBeginShipoutBox=\box36
-Package hyperref Info: Link coloring OFF on input line 204.
+Package hyperref Info: Link coloring OFF on input line 205.
 
 (D:\Programme\MiKTeX\tex\latex\hyperref\nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -687,26 +715,26 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (D:\Programme\MiKTeX\tex\generic\oberdiek\gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count136
+\c@section@level=\count137
 )
-LaTeX Info: Redefining \ref on input line 204.
-LaTeX Info: Redefining \pageref on input line 204.
-LaTeX Info: Redefining \nameref on input line 204.
+LaTeX Info: Redefining \ref on input line 205.
+LaTeX Info: Redefining \pageref on input line 205.
+LaTeX Info: Redefining \nameref on input line 205.
  (document.out)
 (document.out)
 \@outlinefile=\write5
 \openout5 = `document.out'.
 
-\c@lstlisting=\count137
+\c@lstlisting=\count138
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
 
 chapter 1.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 215.
+(babel)             in language  on input line 216.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 215.
+(babel)             in language  on input line 216.
 
 Class scrreprt Warning: \float@addtolists detected!
 (scrreprt)              Implementation of \float@addtolist became
@@ -723,89 +751,92 @@ Class scrreprt Warning: \float@addtolists detected!
 (scrreprt)              deprecated \float@addtolist interface .
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 216.
+(babel)             in language  on input line 217.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 216.
-
-Package caption Warning: Unused \captionsetup[lstlisting] on input line 144.
-See the caption package documentation for explanation.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 220.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 220.
+(babel)             in language  on input line 217.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 218.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 218.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 228.
 
 (D:\Programme\MiKTeX\tex\latex\lm\ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 220.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 228.
 
 
 (D:\Programme\MiKTeX\tex\latex\lm\omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 220
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 228
 .
 
 (D:\Programme\MiKTeX\tex\latex\lm\omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 220
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 228
 .
 
 (D:\Programme\MiKTeX\tex\latex\lm\omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 220.
+(Font)              <8> on input line 228.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 220.
+(Font)              <6> on input line 228.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 220.
+(Font)              <5> on input line 228.
 
-Overfull \vbox (2.29988pt too high) has occurred while \output is active []
+Overfull \hbox (53.14468pt too wide) in paragraph at lines 228--247
+[][]  [] 
+ []
+
+
+Package caption Warning: Unused \captionsetup[lstlisting] on input line 145.
+See the caption package documentation for explanation.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 250.
+
+Overfull \vbox (1.79988pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 220.
+(babel)             in language  on input line 250.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 220.
+(babel)             in language  on input line 250.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 220.
+(babel)             in language  on input line 250.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 220.
+(babel)             in language  on input line 250.
 
 [1
 
 
 
 {C:/Users/Standardbenutzer/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 220.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 250.
  (document.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 220.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 220.
-
-
-Package rerunfilecheck Warning: File `document.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `document.out':
-(rerunfilecheck)             Before: 078CE7B251A2AA2BEC2B593D5CAD12B3;151
-(rerunfilecheck)             After:  BB6341684D2E0F85F71001E5CFAE1D55;127.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 220.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 250.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 250.
+Package rerunfilecheck Info: File `document.out' has not changed.
+(rerunfilecheck)             Checksum: 7DA1F7511A80D4968CA7EDD470D796D0;196.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 250.
  ) 
 Here is how much of TeX's memory you used:
- 11982 strings out of 493333
- 190192 string characters out of 3142635
- 405855 words of memory out of 3000000
- 15330 multiletter control sequences out of 15000+200000
- 30441 words of font info for 30 fonts, out of 3000000 for 9000
+ 12202 strings out of 493333
+ 192772 string characters out of 3142635
+ 410850 words of memory out of 3000000
+ 15537 multiletter control sequences out of 15000+200000
+ 37959 words of font info for 33 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,11n,66p,8821b,342s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,13n,66p,8821b,342s stack positions out of 5000i,500n,10000p,200000b,50000s
 {D:/Programme/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}<D:/Programme/MiKTeX/fonts/
-type1/public/lm/lmr10.pfb><D:/Programme/MiKTeX/fonts/type1/public/lm/lmr12.pfb>
-
-Output written on document.pdf (1 page, 49460 bytes).
+type1/public/lm/lmbx8.pfb><D:/Programme/MiKTeX/fonts/type1/public/lm/lmr10.pfb>
+<D:/Programme/MiKTeX/fonts/type1/public/lm/lmr8.pfb><D:/Programme/MiKTeX/fonts/
+type1/public/lm/lmri8.pfb>
+Output written on document.pdf (1 page, 104371 bytes).
 PDF statistics:
- 29 PDF objects out of 1000 (max. 8388607)
- 4 named destinations out of 1000 (max. 500000)
- 17 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 PDF objects out of 1000 (max. 8388607)
+ 5 named destinations out of 1000 (max. 500000)
+ 25 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -22,9 +22,9 @@
 	openright,				%Bindung links, aufgeschlagen von rechts
 	DIV=15,					%Seitenteilung (Anzahl der Teile). Einfach mal damit spielen
 							%8..15
-	BCOR=1.5cm,				%Binderand auf der Innenseite für die Buchbindung
+	BCOR=-1.0cm,				%Binderand auf der Innenseite für die Buchbindung
 % *** Formatierung/Schriftgröße/Kopf/Fußzeilenoptionen
-	10pt,					%Schriftgröße 12pt
+	8pt,					%Schriftgröße 12pt
 	parskip,				%kann mit einer Länge versehen werden um die Absatzgröße
 							%einzustellen	
 	headsepline,			%Kopfzeile über jeder Seite anlegen
@@ -105,6 +105,7 @@
 \usepackage{caption}
 \usepackage{subfig}
 \usepackage{titlesec}
+\usepackage{makecell}
 % ** - **
 
 %******************************
@@ -213,8 +214,37 @@ pdfproducer = {dvips + ps2pdf}	%eigentlich ist es pdflatex
 %******************************************************
 
 \chapter{Zusammenfassung - Netzwerke II}
-\section{Erstes Kapitel}
-blabla...
+\section{Drahtlose Netzwerke}
+\subsection{Grundlagen}
+\textbf{Wireless Host (Drahtloser Teilnehmer):} Endystem auf dem die Applikation läuft (stationär oder mobile), z.B. Smartphone, PC\\
+\textbf{Wireless Link (Drahtlose Verbindung):} Verbindet Teilnehmer direkt oder per Basisstation (Abdeckung, Datenrate)\\
+\textbf{Basisstation (Base Station):} Überträgt Datenpakete zwischen drahtgebundenem zu drahtlosem Netzwerk,\\meist mit drahtgebundenem Netzwerk verbunden (WLAN Access Point, UMTS Basisstation)\\
+\textbf{Drahtloses Infrastruktur Netzwerk:} Netzwerkteilnehmer sind über Basisstation mit dem Netz verbunden\\
+\textbf{Drahtloses Ad-Hoc Netzwerk:} Keine Infrastruktur (Basisstationen), Teilnehme bilden das Netz selbst\\
+\textbf{Single-Hop:} Genau ein wireless Link\\
+\textbf{Multi-Hop:} Übertragung geht über mehrere wireless Links in Folge
+\par
+
+\begin{tabular}{ll}
+	\multicolumn{2}{c}{Übliche Datenraten}\\
+	\hline
+	\textbf{GSM (2G)} & 0.56 Mb/s\\
+	\textbf{UMTS (3G)} & 4 Mb/s\\
+	\textbf{LTE (4G) und 802.11b} & 5 - 11 Mb/s\\
+	\textbf{802.11ag} & 54 Mb/s\\
+	\textbf{802.11n} & 200 Mb/s
+\end{tabular}
+\qquad
+\begin{tabular}{lll}
+	{} & \multicolumn{2}{c}{Beispiele für Single und Multi-Hop}\\
+	\hline
+	{} & Single Hop & Multiple Hops\\
+	\hline
+	Infrastruktur & \makecell[l]{Host verbindet sich mit Basisstation\\(Wifi, zellulare Netzwerke)\\und diese dann mit dem Internet} & \makecell[l]{Host muss möglicherweise durc\\mehrere drahtlose Geräte um sich mit\\dem Internet zu verbinden: \textit{Mesh Net}}\\
+	\hline
+	\makecell[l]{Keine\\Infrastruktur} & \makecell[l]{Keine Basisstation und auch\\keine Verbindung zu weiterem\\Internet (z.B. Bluetooth)} & \makecell[l]{Keine Basisstation und auch\\keine Verbindung zu weiterem\\Internet. Muss durch mehrere\\drahtlose Geräte: \textit{MANET}, \textit{VANET}}  \\
+\end{tabular}
+
 
 
 \end{document}
