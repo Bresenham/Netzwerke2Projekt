@@ -60,5 +60,6 @@ void ICACHE_FLASH_ATTR user_init(void) {
     BMP280 bmp280;
     initBMP280(&bmp280);
 
-    os_printf("GOT BMP280-ID: %d\r\n", bmp280.getID(&bmp280));
+    os_printf("GOT BMP280-ID: %d\r\n", bmp280.getID());
+    os_printf("TEMPERATURE: %d\r\n", bmp280.getTemperature(&bmp280));
 }
