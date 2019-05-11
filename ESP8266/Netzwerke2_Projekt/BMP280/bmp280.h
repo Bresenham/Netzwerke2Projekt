@@ -2,7 +2,12 @@
  * Created @ 01.05.2019
  * 
 */
+#ifndef BMP280_H
+#define BMP280_H
+
 #include "stdint.h"
+
+#define BMP280_EXPECTED_ID  0x58
 
 typedef struct BMP280 {
     uint16_t dig_T1;
@@ -15,3 +20,5 @@ typedef struct BMP280 {
 } BMP280;
 
 void ICACHE_FLASH_ATTR initBMP280();
+
+#endif /* BMP280_H */

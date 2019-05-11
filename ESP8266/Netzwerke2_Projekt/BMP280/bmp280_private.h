@@ -2,6 +2,8 @@
  * Created @ 01.05.2019
  * 
 */
+#ifndef BMP280_PRIVATE_H
+#define BMP280_PRIVATE_H
 
 #define I2C_MASTER_SDA_GPIO         4
 #define I2C_MASTER_SCL_GPIO         5
@@ -41,3 +43,5 @@
 extern uint8_t ICACHE_FLASH_ATTR bmp280GetID();
 
 extern int32_t ICACHE_FLASH_ATTR bmp280GetTemperature(BMP280 *self);
+
+#endif /* BMP280_PRIVATE_H */
