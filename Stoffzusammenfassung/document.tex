@@ -106,6 +106,7 @@
 \usepackage{subfig}
 \usepackage{titlesec}
 \usepackage{makecell}
+\usepackage{enumitem}
 % ** - **
 
 %******************************
@@ -220,7 +221,8 @@ pdfproducer = {dvips + ps2pdf}	%eigentlich ist es pdflatex
 \textbf{Wireless Link (Drahtlose Verbindung):} Verbindet Teilnehmer direkt oder per Basisstation (Abdeckung, Datenrate)\\
 \textbf{Basisstation (Base Station):} Überträgt Datenpakete zwischen drahtgebundenem zu drahtlosem Netzwerk,\\meist mit drahtgebundenem Netzwerk verbunden (WLAN Access Point, UMTS Basisstation)\\
 \textbf{Drahtloses Infrastruktur Netzwerk:} Netzwerkteilnehmer sind über Basisstation mit dem Netz verbunden\\
-\textbf{Drahtloses Ad-Hoc Netzwerk:} Keine Infrastruktur (Basisstationen), Teilnehme bilden das Netz selbst\\
+\textbf{Drahtloses Ad-Hoc Netzwerk:} Keine Infrastruktur (Basisstationen), Teilnehme bilden das Netz selbst.\\
+Nachteile: passive Teilnehmer haben trotzdem Stromverbrauch, eigene Daten landen auf fremden Mobiltelefonen und höhere Latenz\\
 \textbf{Single-Hop:} Genau ein wireless Link\\
 \textbf{Multi-Hop:} Übertragung geht über mehrere wireless Links in Folge
 \par
@@ -245,6 +247,50 @@ pdfproducer = {dvips + ps2pdf}	%eigentlich ist es pdflatex
 	\makecell[l]{Keine\\Infrastruktur} & \makecell[l]{Keine Basisstation und auch\\keine Verbindung zu weiterem\\Internet (z.B. Bluetooth)} & \makecell[l]{Keine Basisstation und auch\\keine Verbindung zu weiterem\\Internet. Muss durch mehrere\\drahtlose Geräte: \textit{MANET}, \textit{VANET}}  \\
 \end{tabular}
 
+\textbf{Herausforderungen bei drahtloser Übertragung}
+\begin{itemize}
+	\setlength\itemsep{-1em}
+	\item Teilnehmer zeitweise nicht erreichbar (Funkloch)
+	\item IP-Adresse ändert sich
+	\item Höhere Anzahl an Übertragungsfehlern durch Inteferenz (Störung durch andere Teilnehmer) oder Dämpfung $\rightarrow$ Bessere Fehlerbehandlung
+	\item Kurzer Paketverlust führt bei TCP zu angeblicher Netzüberlastung (obwohl nur kurzzeitige Störung)
+	\item Medium kann abgehört werden
+	\item Mehrwege-Ausbreitung: Signale werden an unterschiedlichsten Oberflächen reflektiert $\rightarrow$ Am Empfänger sowohl konstruktive als auch destruktive Überlagerung möglich
+\end{itemize}
+$\Rightarrow$ Funkkanal ist zeit- und ortsvariant!
+\par
 
+\textbf{Modulationsarten:} Frequenz-, Amplituden- \& Phasenmodulation, Quadraturamplitudenmodulation (QAM) $\Rightarrow$ Kombination von Amplituden- und Phasenmodulation (\textit{QAM-8:} 3 Bit pro Symbol, \textit{QAM-1024:} 10 Bit pro Symbol).\\
+Höhere Modulationsarten bieten höhere Übertragungsrate sind aber fehleranfälliger. Bei größerem Signal-Rausch-Abstand\\
+(SNR - Stärke des Nutzsignals bezogen auf Störung) kann höhere Modulation eingesetzt werden da Kanal anscheinend nicht so stark gestört (\textit{QAM-16 = 4Mbps}, \textit{QAM-256 = 8Mbps})\\
+\textbf{Bit-Error-Rate (BER):} Wahrscheinlichkeit, dass ein fehlerhaftes Bit übertragen wird.\\
+\textbf{Hidden Terminal Problem:} Teilnehmer A, B \& C. A und B hören sich, B und C hören sich aber A und C hören sich nicht $\rightarrow$ Bei Übertragung $A\rightarrow B$ und $C\rightarrow B$ stören sie sich unbewusst gegenseitig.\\
+TODO: BEHEBUNG / VERMINDERUNG DURCH?\\
+
+\textbf{Aufteilen eines Mediums:}
+\begin{itemize}
+	\setlength\itemsep{-0.5em}
+	\item TDMA (Time Division Multiple Access)
+	\vspace{-1em}
+	\begin{enumerate}[itemsep=-1em]
+		\item synchron: Jeder Teilnehmer hat festen Zeitslot, nur in diesem kann er senden
+		\item asynchron: keine festen Zeitslot, jeder nutzt aktuellen Zeitslot wenn er Daten hat - Absender wird in Header geschrieben
+	\end{enumerate}
+	\newpage
+	
+	\item FDMA (Frequency Division Multiple Access)
+	\vspace{-1em}
+	\begin{enumerate}[itemsep=-1em]
+		\item Teilnehmer nutzen unterschiedliche Frequenzen
+	\end{enumerate}
+	\item CDMA (Code Division Multiple Access)
+	\vspace{-1em}
+	\begin{enumerate}[itemsep=-1em]
+		\item Teilnehmer nutzen unterschiedliche Spreizcodes
+		\item Zu übertragende Daten werden mit Code multipliziert (gespreizt), Ergebnisbits $\Leftrightarrow$ \textbf{Chips}
+		\item Teilnehmer senden zur gleichen Zeit im gleichen Band, Daten werden beim Empfänger durch bitweise Multiplikation mit Code zurückgewonnen
+		\item \text{Andere Teilnehmer wirken als zusätzliches Rauschen ($\Rightarrow$ Umso mehr Teilnehmer umso geringerer SNR $\Rightarrow$ Sendeleistung erhöhen)}
+	\end{enumerate}
+\end{itemize}
 
 \end{document}
