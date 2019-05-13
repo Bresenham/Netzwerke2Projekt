@@ -286,11 +286,20 @@ TODO: BEHEBUNG / VERMINDERUNG DURCH?\\
 	\item CDMA (Code Division Multiple Access)
 	\vspace{-1em}
 	\begin{enumerate}[itemsep=-1em]
-		\item Teilnehmer nutzen unterschiedliche Spreizcodes
-		\item Zu übertragende Daten werden mit Code multipliziert (gespreizt), Ergebnisbits $\Leftrightarrow$ \textbf{Chips}
+		\item Teilnehmer nutzen unterschiedliche Spreizcodes, \textbf{Vorteil:} Störungsunempfindlicher, \textbf{Nachteil:} Mehr Datenübertragung
+		\item Zu übertragende Daten werden vom Sender mit Spreizcode multipliziert, Ergebnisbits $\Leftrightarrow$ \textbf{Chips}
+		\item Empfänger multipliziert empfangende Daten mit Spreizcode des Senders
 		\item Teilnehmer senden zur gleichen Zeit im gleichen Band, Daten werden beim Empfänger durch bitweise Multiplikation mit Code zurückgewonnen
 		\item \text{Andere Teilnehmer wirken als zusätzliches Rauschen ($\Rightarrow$ Umso mehr Teilnehmer umso geringerer SNR $\Rightarrow$ Sendeleistung erhöhen)}
 	\end{enumerate}
 \end{itemize}
+
+\textbf{CDMA - Beispiel zur Kodierung}\\
+Sender hat Spreizcode $(1, 1, 1, -1, 1, -1, -1, -1)$ und versendet Daten $d_1=-1, d_0=1$. Nach Multiplikation der Daten mit Spreizcode:\\
+$Z_{1,m}=(-1, -1, -1, 1, -1, 1, 1, 1)$, $Z_{0,m}=(1, 1, 1, -1, 1, -1, -1, -1)$. Der Empfänger dekodiert folgendermaßen: $\frac{\sum_{m=1}^{M}Z_{i,m}\cdot c_m}{M}$.\\
+Dabei ist $M$ Länge des Spreizcodes (in diesem Beispiel 8), $c_m$ Spreizfaktor an der Stelle $m$, $Z_{i,m}$ die gespreizten Daten, d.h:\\
+$d_1=\frac{(-1)\cdot 1 + (-1)\cdot 1 + (-1)\cdot 1 + 1\cdot (-1) + (-1)\cdot 1 + 1\cdot (-1) + 1\cdot (-1) + 1\cdot (-1)}{M} = \frac{-8}{8} = -1$\\
+$d_0 = \frac{1\cdot 1 + 1\cdot 1 + 1\cdot 1 + (-1)\cdot (-1) + 1\cdot 1 + (-1)\cdot (-1) + (-1)\cdot (-1) + (-1)\cdot (-1)}{M} = \frac{8}{8} = 1$\\
+Bei mehreren Sendern multipliziert der Empfänger das überlagerte Signal mit dem jeweiligen Spreizcode, da diese orthogonal zueinander sind, kommen die richtigen Daten des jeweiligen Senders wieder raus.
 
 \end{document}
