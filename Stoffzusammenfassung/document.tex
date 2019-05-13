@@ -301,5 +301,56 @@ Dabei ist $M$ Länge des Spreizcodes (in diesem Beispiel 8), $c_m$ Spreizfaktor a
 $d_1=\frac{(-1)\cdot 1 + (-1)\cdot 1 + (-1)\cdot 1 + 1\cdot (-1) + (-1)\cdot 1 + 1\cdot (-1) + 1\cdot (-1) + 1\cdot (-1)}{M} = \frac{-8}{8} = -1$\\
 $d_0 = \frac{1\cdot 1 + 1\cdot 1 + 1\cdot 1 + (-1)\cdot (-1) + 1\cdot 1 + (-1)\cdot (-1) + (-1)\cdot (-1) + (-1)\cdot (-1)}{M} = \frac{8}{8} = 1$\\
 Bei mehreren Sendern multipliziert der Empfänger das überlagerte Signal mit dem jeweiligen Spreizcode, da diese orthogonal zueinander sind, kommen die richtigen Daten des jeweiligen Senders wieder raus.
+\par
 
+\subsection{Wireless Local Area Networks}
+\textbf{Protokollstack:}\\
+\vspace{-.5em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.33]{images/wlan_protokollstack.png}} &
+	\makecell[l]{\textbf{802.11:} '97, FHSS/DSSS, 1-2MBit/s, 2.4 GHz\\ \textbf{802.11b:} '99, DSSS, 1 - 11MBit/s, 2.4 GHz\\ \textbf{802.11n:} '09, OFDM/MIMO, 6 - 600MBit/s, 2.4 oder 5 GHz\\ \textbf{802.11ac:} '14, MU-MIMO, bis zu 6.93 GBit/s, 5 GHz\\ \textbf{802.11ay:} '19, 20 - 40 GBit/s, 60GHz}\\
+\end{tabular}
+\par
+
+\textbf{Begriffe:}
+\vspace{-1em}
+\begin{itemize}
+	\setlength\itemsep{-1em}
+	\item \textbf{Basic Service Set (BSS):} Stationen die auf dem gleichen Übertragungskanal Daten austauschen
+	\item \textbf{Extended Service Set (ESS):} Zusammenschluss mehrerer BSS zu Kommunikationsnetz, Roaming zwischen den BSS
+	\item \textbf{Service Service Set ID (SSID):} Name des Netzwerkes
+	\item \textbf{Ad-Hoc Mode / Independent BSS (IBSS):} Alle Stationen gleichberechtigt, kein Access Point
+	\item \textbf{Infrastructure BSS:} Geräte kommunizieren über AP (=Übergang zu drahtgebundenem Netz)
+\end{itemize}
+
+\textbf{Kanäle:}\\
+\vspace{-.5em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.36]{images/wlan_kanal_ueberlappung.png}} &
+	\makecell[l]{$\circ$ Bis zu 13 Kanäle mit je 5 MHz zwischen 2410 MHz - 2483 MHz.\\$\circ$ Bei \textbf{DSSS} Kanalbreite = 22MHz, bei \textbf{OFDM} = 20 MHz / 40 MHz\\ (ohne / mit Kanalbündelung). Störungsfreier Betrieb nur bei passendem\\
+	Abstand (5 Kanäle bei DSSS).\\
+	\textbf{Hierzu bitte auch das erste Übungsblatt vom Praktikum durchlesen!}}\\
+\end{tabular}
+
+Accesspoint sendet regelmäßig \textbf{Beacon Frames} mit SSID und MAC-Adresse. Wireless Stations scannen Kanäle nach diesen Frames,\\
+\text{wählen verfügbaren AP (Einstellungen \& Signalstärke) aus, führt Authentifizierung durch und erhält anschließend IP-Adresse per DHCP.}
+\newpage
+
+\begin{tabular}{ll}
+	\textbf{Passives Scannen} & \textbf{Aktives Scannen}\\
+	PC ist passiv, hört Kanal ab & PC sendet Probe Request\\
+	APs senden \textit{Beacons} & APs senden Probe Response\\
+	PC sendet Association Request an ausgewählten AP & PC sendet Association Request an ausgewählten AP\\
+	AP sendet Association Response an PC & AP sendet Association Response an PC
+\end{tabular}
+
+Keine Kollisionserkennung (Collision Detection (CD)) möglich $\Rightarrow$ ACKs auf Schicht 2\\
+\vspace{-.5em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.33]{images/wlan_layer_2_acks.png}} &
+	\makecell[l]{$\circ$ Sender wartet Zeitspanne \textit{DIFS} (Distributed Coordination Function Interframe Spacing)\\während der Medium frei sein muss\\$\circ$ Sender überträgt Daten (kein Collision Detection)\\$\circ$ Empfänger prüft CRC\\$\circ$ Empfänger sendet ACK falls CRC korrekt nach Wartezeit \textit{SIFS} (Short Interframe Spacing) (SIFS < DIFS)\\um Senden eines normalen Frames dazwischen zu verhindern außerdem Umschalten von \textit{Empfangen} auf \textit{Senden}}\\
+\end{tabular}
+\par
+
+\textbf{Carrier Sense Multiple Access / Collision Avoidance (CSMA/CA):}
 \end{document}
