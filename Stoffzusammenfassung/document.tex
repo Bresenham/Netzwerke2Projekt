@@ -347,10 +347,40 @@ Accesspoint sendet regelmäßig \textbf{Beacon Frames} mit SSID und MAC-Adresse. W
 Keine Kollisionserkennung (Collision Detection (CD)) möglich $\Rightarrow$ ACKs auf Schicht 2\\
 \vspace{-.5em}
 \begin{tabular}{ll}
-	\raisebox{-.5\height}{\includegraphics[scale=0.33]{images/wlan_layer_2_acks.png}} &
+	\raisebox{-.5\height}{\includegraphics[scale=0.3]{images/wlan_layer_2_acks.png}} &
 	\makecell[l]{$\circ$ Sender wartet Zeitspanne \textit{DIFS} (Distributed Coordination Function Interframe Spacing)\\während der Medium frei sein muss\\$\circ$ Sender überträgt Daten (kein Collision Detection)\\$\circ$ Empfänger prüft CRC\\$\circ$ Empfänger sendet ACK falls CRC korrekt nach Wartezeit \textit{SIFS} (Short Interframe Spacing) (SIFS < DIFS)\\um Senden eines normalen Frames dazwischen zu verhindern außerdem Umschalten von \textit{Empfangen} auf \textit{Senden}}\\
 \end{tabular}
-\par
 
 \textbf{Carrier Sense Multiple Access / Collision Avoidance (CSMA/CA):}
+\vspace{-1em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Sender lauscht (\textit{Carrier Sense}) ob Medium frei (Dauer: \textbf{1 DIFS})
+	\item Falls frei: \textit{random backoff} im aktuellen \textit{Contention Window} würfeln wenn mehrere Stationen gleiches DIFS abgewartet haben\\und es sonst zu Kollision käme. Nach Ablauf des random backoffs Daten übertragen
+	\item \text{Falls nicht frei: Warten bis Kanal frei, wenn Kanal länger als 1 DIFS frei, dann \textit{random backoff} verringern \& anschließend Daten senden}
+	\item Falls kein ACK erfolgt: Contention Window verdoppeln und Daten erneut senden
+	\item Empfänger sendet ACK nach Ablauf eines \textbf{SIFS} bei korrekt erhaltenen Daten
+\end{itemize}
+\textbf{Nachteile CSMA/CA:} Senden dauert lange, Kollision wird nicht erkannt - ist sehr zeitaufwändig und sollte daher vermieden werden\\
+Besser eine Kollision bei kurzen Kontrollpaketen als bei langen Datenpaketen $\Rightarrow$ \textbf{RTS/CTS}-Verfahren
+
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.3]{images/wlan_rts_cts_sequence_chart.png}} &
+	\makecell[l]{\textbf{Ablauf:}\\$\circ$ Sender reserviert Kanal mit kurzem \textbf{Request-To-Send (RTS)}-Paket,\\Kollisionen möglich aber weniger schlimm da nur kleines Paket welches\\günstig erneut gesendet werden kann\\$\circ$ Empfänger antwortet mit \textbf{Clear-To-Send (CTS)}\\$\circ$ Sender sendet Datenpaket\\$\Rightarrow$ Andere Stationen empfangen RTS \& CTS und berücksichtigen belegten Kanal\\$\Rightarrow$ Funktioniert auch bei \textit{Hidden Terminal} da CTS empfangen wird}
+\end{tabular}
+
+\textbf{WLAN Rahmenformat}\\
+\begin{tabular}{ll}
+	\raisebox{-.33\height}{\includegraphics[scale=0.33]{images/wlan_rahmen.png}} &
+	\makecell[l]{$\circ$ Max. 2313 Bytes an Nutzdaten\\$\circ$ 3. Adresse erlaubt Umsetzung auf Ethernet-Rahmen\\$\circ$ WLAN-Reichweitenvergrößerung durch\\überlappende BSSs, IP-Adresse bleibt gleich da\\identisches Subnetz - nur AP ändert sich\\$\Rightarrow$ Switch ändert Port$\leftrightarrow$IP-Zuordnung wenn sich\\ Teilnehmer vom neuen AP meldet}
+\end{tabular}
+
+\text{\underline{Unterschied CSMA/CA$\leftrightarrow$CSMA/CD}: CSMA/CD bei Ethernet sendet \textit{JAM}-Signal, CSMA/CA erkennt keine Kollision (versucht nur zu verhindern)}
+\newpage
+
+\subsection{Personal Area Networks}
+
+...
+
+\subsubsection{Bluetooth}
 \end{document}
