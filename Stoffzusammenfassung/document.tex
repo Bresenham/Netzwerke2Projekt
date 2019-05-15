@@ -378,9 +378,32 @@ Besser eine Kollision bei kurzen Kontrollpaketen als bei langen Datenpaketen $\R
 \text{\underline{Unterschied CSMA/CA$\leftrightarrow$CSMA/CD}: CSMA/CD bei Ethernet sendet \textit{JAM}-Signal, CSMA/CA erkennt keine Kollision (versucht nur zu verhindern)}
 \newpage
 
-\subsection{Personal Area Networks}
+\subsection{Personal Area Networks (PAN)}
+\vspace{-1em}
+Drahtlos oder drahtgebundenes (Ad Hoc) Netzwerk von Kleingeräten, oft nur wenige Meter Reichweite.
 
-...
+\textbf{Bluetooth}\\
+\vspace{-0em}
+$\circ$ Mehrfachzugriff mit TDMA, Frequenzsprungverfahren (Kanalwechsel nach jedem Zeitslot $\Rightarrow$ Robustheit gegen Störer)\\
+$\circ$ Class 1: 100mW - 100m Reichweite, $\circ$ Class 2: 2.5mW - 10m Reichweite, $\circ$ Class 3: 1mW - 1m Reichweite\\
+$\circ$ '99: Einführung, 732,2kbit/s $\circ$ '04: v2.0 mit bis 2.1Mbit/s $\circ$ '16: v5.0 mit IoT Erweiterungen\\
+\text{$\circ$ Ad Hoc Netzwerk (keine Infrastruktur nötig) $\circ$ $\leq$ 8 aktive \& $\leq$ 255 geparkte Geräte $\circ$ Master gibt Zeit vor, gewährt Slaves, aktiviert geparkte}
+\par
+Bluetooth Profile\\
+Profil spezifiziert Anwendung von Bluetooth für bestimmten Zweck\\
 
-\subsubsection{Bluetooth}
+\begin{tabular}{ll}
+	\raisebox{-.4\height}{\includegraphics[scale=0.3]{images/bluetooth_stack.png}} &
+	\makecell[l]{$\circ$ \textbf{AT Kommando:} Kommando zur Modemsteuerung\\$\circ$ \textbf{Baseband:} Basisband, Paketformate\\$\circ$ \textbf{L2CAP:} Logical Link Control and Adaptation Protocl:\\Bietet verbindunsorientierte- und lose Dienste zwischen Baseband\\und höheren Schichten\\$\circ$ \textbf{MCAP:} Multi-Channel Adaptation Protocol\\Stellt Kontrollkanal \textit{MCL} und Datenkanäle \textit{MDL} bereit\\$\circ$ \textbf{RFCOMM:} Virtuelle, serielle Verbindungen, Emulation serieller Ports\\$\circ$ Geräte im HealthCare Bereich ursprünglich per RFCOMM angebunden\\$\Rightarrow$'08 Verabschiedung von standardisiertem \textit{Health Device Profile}\\Zwei Rollen: \textbf{Source} = Datenquelle, \textbf{Sink} = Empfänger (Smartphone)\\Verbindungsauf- und abbau, Wiederaufbau abgebrochener Verbindungen}
+\end{tabular}
+\par
+Sensoren (z.B. Pulsmesser, Thermometer) sollen lange Laufzeit ($\Rightarrow$ geringer Stromverbrauch) aufweisen. Bluetooth 4.0 beinhaltet\\ \textit{Bluetooth Smart} (Low-Energy Profil auf Basis von einem \textit{Generic Attribute Profile} (GATT)).
+\par
+
+\textbf{ZigBee}\\
+\vspace{-0em}
+$\circ$ Ziel: Drahtlose Übertragung bei geringem Stromverbrauch (geringe Datenraten: 20 - 250kbit/s, selten aktiv (\textit{low duty-cycle})).\\
+$\circ$ Übertragen von Sensordaten, Heim- und Gebäudeautomatisierung\\
+$\circ$ \textbf{Endgerät:} Reduced Function Device \textit{RFD} - nur Teil des ZigBee Protokolls implementiert (geringere Kosten)\\
+\text{$\circ$ \textbf{Router:} Full Function Device \textit{FDD}, kann Daten weiterleiten $\circ$ \textbf{Koordinator:} Gibt zusätzliche Parameter vor, koordiniert das PAN}
 \end{document}
