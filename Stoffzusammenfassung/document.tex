@@ -411,14 +411,25 @@ $\circ$ \textbf{Endgerät:} Reduced Function Device \textit{RFD} - nur Teil des Z
 \subsection{Zellulare Netzwerke}
 \vspace{-1em}
 \text{$\circ$ \textbf{1G:} Analog (A/B/C-Netz) $\circ$ \textbf{2G:} GSM ab '92, 2.5G = GPRS, 2.75G = EDGE $\circ$ \textbf{3G:} UMTS ab '03 $\circ$ \textbf{4G:} ab '14 LTE $\circ$ \textbf{5G} ab '21, Latent < 1ms}\\
-\text{$\circ$ \textbf{Mobilfunkzelle:} Von Base Transceiver Station(BTS) abgedeckter Bereich $\circ$ \textbf{Air-Interface:} Untere 2 Netzwerkschichten Mobile Station $\Leftrightarrow$ BTS}\\
-$\circ$ \textbf{Mobile Switching Center (MSC):} Anrufauf- und Abbau, Verbindung ins Festnetz, Mobilitätsmanagement
+\text{$\circ$ \textbf{Mobilfunkzelle:} Von Base Transceiver Station(BTS) abgedeckter Bereich $\circ$ \textbf{Air-Interface:} Untere 2 Netzwerkschichten Mobile Station $\Leftrightarrow$ BTS}
 \par
 
 \textbf{Ressourcenzuteilung in der Zelle:}\\
 \text{$\circ$ \textbf{GSM:} Kombination aus FDMA \& TDMA, Spektrum wird in einzelne Frequenzkanäle, jeder Kanal wiederum in Zeitschlitze aufgeteilt}\\
 $\circ$ \textbf{UMTS:} CDMA Verfahren - Unterschiedlicher Code für unterschiedliche Nutzer
-\par
+\newpage
 
-\textbf{2G Netzwerkarchitektur:}\\
+\textbf{2G Netzwerkarchitektur (GSM):}\\
+\begin{tabular}{ll}
+	\raisebox{-.4\height}{\includegraphics[scale=0.15]{images/gsm_netzaufbau.png}} &
+	\makecell[l]{$\circ$ \textbf{Base Station Controller (BSC):} übernimmt Ressourcenzuweisung und\\Mobilitätsmanagement in einem Base Station Subsystem (BSS)\\$\circ$ \textbf{Mobile Switching Center (MSC):} Anrufauf- und Abbau, Verbindung ins\\ Festnetz, Mobilitätsmanagement\\$\circ$ \textbf{Gateway-MSC:} Vermittlungsfunktionen, Verbindung zu anderen Netzen}
+\end{tabular}
+
+\begin{tabular}{ll}
+	\raisebox{-.4\height}{\includegraphics[scale=0.18]{images/gsm_gprs_netzaufbau.png}} &
+	\makecell[l]{$\circ$ Mit GPRS-Komponenten erstmals paketvermittelte Datendienste\\- verwendet bereits bestehende BTS mit\\$\circ$ \textbf{Packet Control Unit (PCU):} Kommuniziert über den BSC mit Endgerät und\\auch mit der SGSN, überwacht und verwaltet Datenpakete, Ressourcenverteilung\\$\circ$ \textbf{Serving GPRS Support Node (SGSN)}: Übernimmt Vermittlung der\\Datenpakete und die Funktion des VLR\\$\circ$ \textbf{Gateway GPRS Support Node (GGSN):} Ist der Router, der das\\Mobilfunknetz mit dem Internet verbindet und die IP-Adresse zur Verfügung stellt\\$\circ$ Sprachdaten laufen über $BTS\Leftrightarrow BSC\Leftrightarrow MSC \Leftrightarrow G-MSC\Leftrightarrow Festnetz$\\$\circ$ Paketdaten laufen über $BTS\Leftrightarrow BSC\Leftrightarrow PCU\Leftrightarrow SGSN\Leftrightarrow GGSN\Leftrightarrow Internet$}
+\end{tabular}
+
+\textbf{Mobilitätsmanagement:}\\
+
 \end{document}
