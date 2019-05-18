@@ -107,6 +107,7 @@
 \usepackage{titlesec}
 \usepackage{makecell}
 \usepackage{enumitem}
+\usepackage{xcolor}
 % ** - **
 
 %******************************
@@ -180,7 +181,7 @@ pdfproducer = {dvips + ps2pdf}	%eigentlich ist es pdflatex
 \titlespacing{\chapter}{0pt}{-125pt}{0pt}
 
 \titleformat{\section}[display]
-{\normalfont\huge}{}{-50pt}{\large}
+{\normalfont\huge}{}{-40pt}{\large}
 
 %*********************************************
 %	Fußnoten durchgehend nummerieren
@@ -217,6 +218,7 @@ pdfproducer = {dvips + ps2pdf}	%eigentlich ist es pdflatex
 \chapter{Zusammenfassung - Netzwerke II}
 \section{Drahtlose Netzwerke}
 \subsection{Grundlagen}
+\vspace{-1.5em}
 \textbf{Wireless Host (Drahtloser Teilnehmer):} Endystem auf dem die Applikation läuft (stationär oder mobile), z.B. Smartphone, PC\\
 \textbf{Wireless Link (Drahtlose Verbindung):} Verbindet Teilnehmer direkt oder per Basisstation (Abdeckung, Datenrate)\\
 \textbf{Basisstation (Base Station):} Überträgt Datenpakete zwischen drahtgebundenem zu drahtlosem Netzwerk,\\meist mit drahtgebundenem Netzwerk verbunden (WLAN Access Point, UMTS Basisstation)\\
@@ -504,4 +506,80 @@ Mobilgerät wechselt bei bestehender Verbindung von einer Basisstation zur andere
 \text{Ersetzen der unteren 2 Schichten (Link- \& Physical-Layer) durch drahtlose Varianten $\Rightarrow$ Auswirkungen auf obere Schichten minimal, aber:}\\
 $\Rightarrow$ Fehlinterpretation von Paketverlusten auf drahtlosem Link von TCP führt zu Congestion Window Veringerrung $\Rightarrow$ Datenrate sinkt\\
 \text{$\Rightarrow$ Verzögerung durch Link-Layer Retransmission (Auswirkungen auf Echtzeitanwendungen), Drahtloser Link meist geringere Datenrate}
+
+\newpage
+
+\section{Security}
+\vspace{-1.5em}
+\subsection{Grundlagen}
+\vspace{-1.5em}
+
+$\circ$ \textbf{Vertraulichkeit:} Nur Sender und rechtmäßige Empfänger sollen die Nachricht verstehen können\\
+$\circ$ \textbf{Integrität:} Sicherstellen, dass Nachricht unverändert ist (ob durch Übertragungsfehler oder Angriff)\\
+$\circ$ \textbf{Authentifizierung:} Sicherstellen, dass Kommunikationspartner derjenige ist, für den er sich ausgibt\\
+$\circ$ \textbf{Authorisierung:} Nachweis von speziellen Rechten\\
+$\circ$ \textbf{Betriebssicherheit:} Absicherung des Firmennetzes gegen Eingriffe von außen
+
+\vspace{-1.5em}
+\subsection{Grundlagen der Kryptographie}
+\vspace{-1.5em}
+
+\textbf{Arten von Verschlüsselung}\\
+\hspace*{5mm}\text{$K_A$: Schlüssel für Verschlüsselung, $K_B$:  Schlüssel für Entschlüsselung, $m$: Klartext, $K_A(m):$ Ciphertext - Klartext verschlüsselt mit $K_A$}\\
+\hspace*{10mm}$m=K_B(K_A(m))$\\
+\vspace{-2.5em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item \textbf{Symmetrisch:} $K_A$ identisch zu $K_B$, Verfahren z.B. \textit{AES}
+	\item \textbf{Public Key:} Paar unterschiedlicher Schlüssel: $K_A = K_B^+$ und $K_B^-$, ein Schlüssel ist beiden bekannt (\textit{public key} - $K_B^+$), der andere nur Empfänger (\textit{private key} - $K_B^-$), Verfahren z.B. \textit{RSA}
+\end{itemize}
+
+\vspace{-1em}
+\textbf{Arten von Angriffen}\\
+\vspace{-2.5em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item \text{\textbf{Cipher-Text only:} Angreifer hat nur Geheimtext, entweder alle möglichen Schlüssel ausprobieren (\textit{brute force}) oder statistische Analyse}
+	\item \textbf{Known-Plaintext:} Angreifer kennt Klar- und zugehörigen Geheimtext, kann Rückschlüsse auf Schlüssel ziehen
+	\item \text{\textbf{Chosen-Plaintext:} Angreifer kann Geheimtext zu selbstgewählten Klartext bekommen, Verschlüsselungsalgorithmus ggf. ausnutzbar}
+\end{itemize}
+
+\vspace{-1em}
+\textbf{Einfache symmetrische Verschlüsselungen}\\
+\vspace{-2.5em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item \textbf{Cesar-Chiffre:} Verschiebung des Alphabets als Schlüssel, Abbildung des Klartextes auf verschobenes Alphabet ergibt Ciphertext
+	\item \textbf{Substitutions-Chiffre:} Schlüssel ist eine Abbildungsvorschrift (Buchstabe $b$ wird abgebildet auf $b'$)
+	\item \textbf{Blockchiffre:} Verarbeitung des Klartextes in $k$-Bit großen Blöcken (d.h. Abbildung eines $k$-Bit Blocks auf $k$-Bit Geheimtext)\\
+	\hspace*{10mm}z.B. $k=3:$ \textcolor{gray!90}{000 $\Rightarrow$ 110}, 001 $\Rightarrow$ 111, \textcolor{gray!90}{010 $\Rightarrow$ 101}, 011 $\Rightarrow$ 100, \textcolor{gray!90}{100 $\Rightarrow$ 011}, 101 $\Rightarrow$ 010, \textcolor{gray!90}{110 $\Rightarrow$ 000}, 111 $\Rightarrow$ 001\\
+	\text{Der Schlüssel ist die Abbildungstabelle, Anzahl möglicher Abbildungen: $(2^k)!$, d.h. für $k=3$ gibt es $8!$, also 40320, Abbildungsmöglichkeiten}\\
+	\text{$\Rightarrow$ Heutige Blockchiffren (\textit{DES}, \textit{3DES}, \textit{AES}) verwenden Funktionen um Abbildungen zu erzeugen da bereits kleine $k$ riesige Tabellen erzeugen}
+\end{itemize}
+
+\vspace{-1em}
+\textbf{Cipher Block Chaining}\\
+\vspace{-2.5em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Identischer Klartext produziert identischen Geheimtext\\
+	\hspace*{5mm} $\Rightarrow$ Rückschlüsse auf Schlüssel möglich, daher bitweise $XOR$-Operation mit 
+	zufälligem Bitmuster auf Klartext
+	\item Identischer Klartext erzeugt nun anderen Geheimtext, Empfänger benötigt zum Entschlüsseln das zufällige Bitmuster
+	\item Um nicht doppelt so viele Daten (Geheimtext + Zufallsmuster) versenden zu müssen wird \textit{Cipher Block Chaining} angewandt\\
+	\hspace*{5mm}$\Rightarrow$ Nur das erste zufällige Bitmuster (\textit{Initialization Vector} \textbf{VI}) wird unverschlüsselt an Empfänger gesendet\\
+	\hspace*{5mm}$\Rightarrow$ Danach ist vorhergehender Geheimtext das zufällige Bitmuster für den nächsten Block Klartext
+	\item Für $c=$ Ausgegebener Geheimtext (\textit{Cipher}) $K=$ Schlüssel, $m=$ Klartext ist der Verlauf dann wie folgt:\\
+	\hspace*{5mm}$c(0)=$ Initialisierungsvektor\\
+	\hspace*{10mm}$c(1)=K(m_1$ $XOR$ $c(0))$ \\
+	\hspace*{15mm}$c(2)=K(m_2$ $XOR$ $c(1))$ \\
+\end{itemize}
+
+\vspace{-2em}
+\textbf{Data Encryption Standard (DES):}\\
+\text{56-Bit symmetrischer Schlüssel, Verarbeitung von 64-Bit Blöcken mit \textit{Cipher Block Chaining}, per \textit{Brute Force} knackbar, \textit{3DES} etwas sicherer}\\
+
+\vspace{-2em}
+\textbf{Adanved Encryption Standard (AES):}\\
+Nachfolger von \textit{DES}, 128/192 oder 256-Bit symmetrischer Schlüssel mit 128-Bit Blöcken, AES-256 kann nicht geknackt werden
 \end{document}

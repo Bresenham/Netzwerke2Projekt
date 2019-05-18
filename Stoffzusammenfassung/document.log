@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.4.21)  18 MAY 2019 11:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.4.21)  18 MAY 2019 21:18
 entering extended mode
 **./document.tex
 (document.tex
@@ -647,6 +647,24 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enit@inbox=\box35
 \enitdp@description=\count131
 )
+(C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex\latex\xcolor\xcolor.s
+ty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+ (D:\Programme\MiKTeX\tex\latex\graphics-cfg\color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+LaTeX Info: Redefining \color on input line 709.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstlan
 g1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
@@ -661,21 +679,21 @@ Package: chngcntr 2009/09/02 v1.0a change counter resetting
 ) (document.aux)
 \openout1 = `document.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 206.
-LaTeX Font Info:    ... okay on input line 206.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 206.
-LaTeX Font Info:    ... okay on input line 206.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 206.
-LaTeX Font Info:    ... okay on input line 206.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 206.
-LaTeX Font Info:    ... okay on input line 206.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 206.
-LaTeX Font Info:    ... okay on input line 206.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 206.
-LaTeX Font Info:    ... okay on input line 206.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 206.
-LaTeX Font Info:    ... okay on input line 206.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 206.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 207.
  (D:\Programme\MiKTeX\tex\latex\lm\t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -716,7 +734,7 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 \AtBeginShipoutBox=\box37
-Package hyperref Info: Link coloring OFF on input line 206.
+Package hyperref Info: Link coloring OFF on input line 207.
 
 (D:\Programme\MiKTeX\tex\latex\hyperref\nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -726,9 +744,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count138
 )
-LaTeX Info: Redefining \ref on input line 206.
-LaTeX Info: Redefining \pageref on input line 206.
-LaTeX Info: Redefining \nameref on input line 206.
+LaTeX Info: Redefining \ref on input line 207.
+LaTeX Info: Redefining \pageref on input line 207.
+LaTeX Info: Redefining \nameref on input line 207.
  (document.out)
 (document.out)
 \@outlinefile=\write5
@@ -741,9 +759,9 @@ Package caption Info: End \AtBeginDocument code.
 
 chapter 1.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 217.
+(babel)             in language  on input line 218.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 217.
+(babel)             in language  on input line 218.
 
 Class scrreprt Warning: \float@addtolists detected!
 (scrreprt)              Implementation of \float@addtolist became
@@ -760,56 +778,56 @@ Class scrreprt Warning: \float@addtolists detected!
 (scrreprt)              deprecated \float@addtolist interface .
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 218.
+(babel)             in language  on input line 219.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 218.
+(babel)             in language  on input line 219.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 219.
+(babel)             in language  on input line 220.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 219.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 230.
+(babel)             in language  on input line 220.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 232.
 
 (D:\Programme\MiKTeX\tex\latex\lm\ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 230.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 232.
 
 
 (D:\Programme\MiKTeX\tex\latex\lm\omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 230
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 232
 .
 
 (D:\Programme\MiKTeX\tex\latex\lm\omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 230
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 232
 .
 
 (D:\Programme\MiKTeX\tex\latex\lm\omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 230.
+(Font)              <8> on input line 232.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 230.
+(Font)              <6> on input line 232.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 230.
+(Font)              <5> on input line 232.
 
-Overfull \hbox (53.14468pt too wide) in paragraph at lines 230--249
+Overfull \hbox (53.14468pt too wide) in paragraph at lines 232--251
 [][]  [] 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 253.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 255.
 
 (D:\Programme\MiKTeX\tex\latex\lm\omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 253.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 255.
 
-Underfull \hbox (badness 10000) in paragraph at lines 263--269
+Underfull \hbox (badness 10000) in paragraph at lines 265--271
 
  []
 
@@ -817,49 +835,49 @@ Underfull \hbox (badness 10000) in paragraph at lines 263--269
 Overfull \vbox (1.79988pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 279.
+(babel)             in language  on input line 281.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 279.
+(babel)             in language  on input line 281.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 279.
+(babel)             in language  on input line 281.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 279.
+(babel)             in language  on input line 281.
 
 [1
 
 
 
 {C:/Users/Standardbenutzer/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Overfull \hbox (21.22226pt too wide) in paragraph at lines 293--294
+Overfull \hbox (21.22226pt too wide) in paragraph at lines 295--296
 [][] 
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 306.
+(babel)             in language  on input line 308.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 306.
-<images/wlan_protokollstack.png, id=52, 635.37375pt x 255.95625pt>
+(babel)             in language  on input line 308.
+<images/wlan_protokollstack.png, id=64, 635.37375pt x 255.95625pt>
 File: images/wlan_protokollstack.png Graphic file (type png)
 
 <use images/wlan_protokollstack.png>
-Package pdftex.def Info: images/wlan_protokollstack.png used on input line 310.
+Package pdftex.def Info: images/wlan_protokollstack.png used on input line 312.
 
 (pdftex.def)             Requested size: 209.67398pt x 84.46582pt.
 
-<images/wlan_kanal_ueberlappung.png, id=54, 532.99126pt x 255.20343pt>
+<images/wlan_kanal_ueberlappung.png, id=66, 532.99126pt x 255.20343pt>
 File: images/wlan_kanal_ueberlappung.png Graphic file (type png)
 
 <use images/wlan_kanal_ueberlappung.png>
 Package pdftex.def Info: images/wlan_kanal_ueberlappung.png used on input line 
-329.
+331.
 (pdftex.def)             Requested size: 191.87671pt x 91.87315pt.
 
-Overfull \hbox (20.7014pt too wide) in paragraph at lines 326--334
+Overfull \hbox (20.7014pt too wide) in paragraph at lines 328--336
  [] 
  []
 
 
-Overfull \hbox (20.03368pt too wide) in paragraph at lines 335--337
+Overfull \hbox (20.03368pt too wide) in paragraph at lines 337--339
 [] 
  []
 
@@ -867,56 +885,56 @@ Overfull \hbox (20.03368pt too wide) in paragraph at lines 335--337
 Overfull \vbox (1.79988pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 337.
+(babel)             in language  on input line 339.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 337.
+(babel)             in language  on input line 339.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 337.
+(babel)             in language  on input line 339.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 337.
+(babel)             in language  on input line 339.
 
 [2 <./images/wlan_protokollstack.png> <./images/wlan_kanal_ueberlappung.png>]
-<images/wlan_layer_2_acks.png, id=75, 320.69812pt x 386.19281pt>
+<images/wlan_layer_2_acks.png, id=87, 320.69812pt x 386.19281pt>
 File: images/wlan_layer_2_acks.png Graphic file (type png)
 
 <use images/wlan_layer_2_acks.png>
-Package pdftex.def Info: images/wlan_layer_2_acks.png used on input line 350.
+Package pdftex.def Info: images/wlan_layer_2_acks.png used on input line 352.
 (pdftex.def)             Requested size: 96.21017pt x 115.85872pt.
 
-Overfull \hbox (47.16223pt too wide) in paragraph at lines 347--353
+Overfull \hbox (47.16223pt too wide) in paragraph at lines 349--355
  [] 
  []
 
 
-Overfull \hbox (29.08842pt too wide) in paragraph at lines 360--361
+Overfull \hbox (29.08842pt too wide) in paragraph at lines 362--363
 [][] 
  []
 
-<images/wlan_rts_cts_sequence_chart.png, id=76, 703.12688pt x 438.13687pt>
+<images/wlan_rts_cts_sequence_chart.png, id=88, 703.12688pt x 438.13687pt>
 File: images/wlan_rts_cts_sequence_chart.png Graphic file (type png)
 
 <use images/wlan_rts_cts_sequence_chart.png>
 Package pdftex.def Info: images/wlan_rts_cts_sequence_chart.png used on input l
-ine 368.
+ine 370.
 (pdftex.def)             Requested size: 210.93968pt x 131.44206pt.
 
-Overfull \hbox (45.76747pt too wide) in paragraph at lines 367--371
+Overfull \hbox (45.76747pt too wide) in paragraph at lines 369--373
 [][] 
  []
 
-<images/wlan_rahmen.png, id=77, 990.70125pt x 377.91188pt>
+<images/wlan_rahmen.png, id=89, 990.70125pt x 377.91188pt>
 File: images/wlan_rahmen.png Graphic file (type png)
 
 <use images/wlan_rahmen.png>
-Package pdftex.def Info: images/wlan_rahmen.png used on input line 374.
+Package pdftex.def Info: images/wlan_rahmen.png used on input line 376.
 (pdftex.def)             Requested size: 326.93242pt x 124.7113pt.
 
-Overfull \hbox (60.68198pt too wide) in paragraph at lines 372--377
+Overfull \hbox (60.68198pt too wide) in paragraph at lines 374--379
 [] 
  []
 
 
-Overfull \hbox (61.09665pt too wide) in paragraph at lines 378--379
+Overfull \hbox (61.09665pt too wide) in paragraph at lines 380--381
 [][] 
  []
 
@@ -924,62 +942,62 @@ Overfull \hbox (61.09665pt too wide) in paragraph at lines 378--379
 Overfull \vbox (1.79988pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 379.
+(babel)             in language  on input line 381.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 379.
+(babel)             in language  on input line 381.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 379.
+(babel)             in language  on input line 381.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 379.
+(babel)             in language  on input line 381.
 
 [3 <./images/wlan_layer_2_acks.png> <./images/wlan_rts_cts_sequence_chart.png> 
 <./images/wlan_rahmen.png>]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 381.
+(babel)             in language  on input line 383.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 381.
+(babel)             in language  on input line 383.
 
-Overfull \hbox (44.89078pt too wide) in paragraph at lines 385--391
+Overfull \hbox (44.89078pt too wide) in paragraph at lines 387--393
 [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 392--394
+Underfull \hbox (badness 10000) in paragraph at lines 394--396
 
  []
 
-<images/bluetooth_stack.png, id=84, 898.10532pt x 565.36218pt>
+<images/bluetooth_stack.png, id=96, 898.10532pt x 565.36218pt>
 File: images/bluetooth_stack.png Graphic file (type png)
 
 <use images/bluetooth_stack.png>
-Package pdftex.def Info: images/bluetooth_stack.png used on input line 396.
+Package pdftex.def Info: images/bluetooth_stack.png used on input line 398.
 (pdftex.def)             Requested size: 269.43367pt x 169.60995pt.
 
-Overfull \hbox (74.81477pt too wide) in paragraph at lines 395--399
+Overfull \hbox (74.81477pt too wide) in paragraph at lines 397--401
 [][] 
  []
 
 
-Overfull \hbox (9.32237pt too wide) in paragraph at lines 403--409
+Overfull \hbox (9.32237pt too wide) in paragraph at lines 405--411
 [] 
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 411.
+(babel)             in language  on input line 413.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 411.
+(babel)             in language  on input line 413.
 
-Overfull \hbox (55.61328pt too wide) in paragraph at lines 413--415
+Overfull \hbox (55.61328pt too wide) in paragraph at lines 415--417
 [] 
  []
 
 
-Overfull \hbox (56.66646pt too wide) in paragraph at lines 413--415
+Overfull \hbox (56.66646pt too wide) in paragraph at lines 415--417
 [] 
  []
 
 
-Overfull \hbox (7.99672pt too wide) in paragraph at lines 417--420
+Overfull \hbox (7.99672pt too wide) in paragraph at lines 419--422
 [] 
  []
 
@@ -987,47 +1005,47 @@ Overfull \hbox (7.99672pt too wide) in paragraph at lines 417--420
 Overfull \vbox (1.79988pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 420.
+(babel)             in language  on input line 422.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 420.
+(babel)             in language  on input line 422.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 420.
+(babel)             in language  on input line 422.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 420.
+(babel)             in language  on input line 422.
 
 [4 <./images/bluetooth_stack.png>]
-<images/gsm_netzaufbau.png, id=90, 1307.88625pt x 721.69624pt>
+<images/gsm_netzaufbau.png, id=102, 1307.88625pt x 721.69624pt>
 File: images/gsm_netzaufbau.png Graphic file (type png)
 
 <use images/gsm_netzaufbau.png>
-Package pdftex.def Info: images/gsm_netzaufbau.png used on input line 424.
+Package pdftex.def Info: images/gsm_netzaufbau.png used on input line 426.
 (pdftex.def)             Requested size: 170.03117pt x 93.8238pt.
 
-Overfull \hbox (38.28073pt too wide) in paragraph at lines 422--427
+Overfull \hbox (38.28073pt too wide) in paragraph at lines 424--429
 [] 
  []
 
-<images/gsm_gprs_netzaufbau.png, id=91, 1270.7475pt x 784.9325pt>
+<images/gsm_gprs_netzaufbau.png, id=103, 1270.7475pt x 784.9325pt>
 File: images/gsm_gprs_netzaufbau.png Graphic file (type png)
 
 <use images/gsm_gprs_netzaufbau.png>
-Package pdftex.def Info: images/gsm_gprs_netzaufbau.png used on input line 429.
+Package pdftex.def Info: images/gsm_gprs_netzaufbau.png used on input line 431.
 
 (pdftex.def)             Requested size: 228.72467pt x 141.28175pt.
 
-Overfull \hbox (70.16579pt too wide) in paragraph at lines 428--432
+Overfull \hbox (70.16579pt too wide) in paragraph at lines 430--434
 [][] 
  []
 
-<images/mobilitaetsmanagement.png, id=92, 554.82281pt x 325.96782pt>
+<images/mobilitaetsmanagement.png, id=104, 554.82281pt x 325.96782pt>
 File: images/mobilitaetsmanagement.png Graphic file (type png)
 
 <use images/mobilitaetsmanagement.png>
 Package pdftex.def Info: images/mobilitaetsmanagement.png used on input line 43
-5.
+7.
 (pdftex.def)             Requested size: 166.44812pt x 97.79109pt.
 
-Overfull \hbox (53.53983pt too wide) in paragraph at lines 433--438
+Overfull \hbox (53.53983pt too wide) in paragraph at lines 435--440
 [] 
  []
 
@@ -1035,90 +1053,85 @@ Overfull \hbox (53.53983pt too wide) in paragraph at lines 433--438
 Overfull \vbox (1.79988pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 466.
+(babel)             in language  on input line 468.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 466.
+(babel)             in language  on input line 468.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 466.
+(babel)             in language  on input line 468.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 466.
+(babel)             in language  on input line 468.
 
 [5 <./images/gsm_netzaufbau.png> <./images/gsm_gprs_netzaufbau.png> <./images/m
 obilitaetsmanagement.png>]
-<images/inter_msc_handover.png, id=100, 408.02437pt x 319.94531pt>
+<images/inter_msc_handover.png, id=112, 408.02437pt x 319.94531pt>
 File: images/inter_msc_handover.png Graphic file (type png)
 
 <use images/inter_msc_handover.png>
-Package pdftex.def Info: images/inter_msc_handover.png used on input line 470.
+Package pdftex.def Info: images/inter_msc_handover.png used on input line 472.
 (pdftex.def)             Requested size: 122.40825pt x 95.98433pt.
 
-<images/3g_netzarchitektur.png, id=101, 730.73pt x 541.02126pt>
+<images/3g_netzarchitektur.png, id=113, 730.73pt x 541.02126pt>
 File: images/3g_netzarchitektur.png Graphic file (type png)
 
 <use images/3g_netzarchitektur.png>
-Package pdftex.def Info: images/3g_netzarchitektur.png used on input line 476.
+Package pdftex.def Info: images/3g_netzarchitektur.png used on input line 478.
 (pdftex.def)             Requested size: 164.4183pt x 121.73277pt.
 
-Overfull \hbox (35.93996pt too wide) in paragraph at lines 468--483
+Overfull \hbox (35.93996pt too wide) in paragraph at lines 470--485
 [] 
  []
 
 
-Overfull \hbox (37.57341pt too wide) in paragraph at lines 468--483
+Overfull \hbox (37.57341pt too wide) in paragraph at lines 470--485
 [] 
  []
 
 
-Overfull \hbox (65.46242pt too wide) in paragraph at lines 468--483
+Overfull \hbox (65.46242pt too wide) in paragraph at lines 470--485
 [] 
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 485.
+(babel)             in language  on input line 487.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 485.
-<images/long_term_evolution.png, id=102, 773.89125pt x 606.265pt>
+(babel)             in language  on input line 487.
+<images/long_term_evolution.png, id=114, 773.89125pt x 606.265pt>
 File: images/long_term_evolution.png Graphic file (type png)
 
 <use images/long_term_evolution.png>
-Package pdftex.def Info: images/long_term_evolution.png used on input line 488.
+Package pdftex.def Info: images/long_term_evolution.png used on input line 490.
 
 (pdftex.def)             Requested size: 154.7755pt x 121.25084pt.
 
-Overfull \hbox (58.70734pt too wide) in paragraph at lines 487--491
+Overfull \hbox (58.70734pt too wide) in paragraph at lines 489--493
 [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 487--491
+Underfull \hbox (badness 10000) in paragraph at lines 489--493
 
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 493.
+(babel)             in language  on input line 495.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 493.
+(babel)             in language  on input line 495.
 
-Overfull \hbox (27.08034pt too wide) in paragraph at lines 495--500
+Overfull \hbox (27.08034pt too wide) in paragraph at lines 497--502
 [] 
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 502.
+(babel)             in language  on input line 504.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 502.
+(babel)             in language  on input line 504.
 
-Package caption Warning: Unused \captionsetup[lstlisting] on input line 146.
-See the caption package documentation for explanation.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 507.
-
-Overfull \hbox (16.07918pt too wide) in paragraph at lines 504--507
+Overfull \hbox (16.07918pt too wide) in paragraph at lines 506--509
 [] 
  []
 
 
-Overfull \hbox (13.92484pt too wide) in paragraph at lines 504--507
+Overfull \hbox (13.92484pt too wide) in paragraph at lines 506--509
 [] 
  []
 
@@ -1126,29 +1139,99 @@ Overfull \hbox (13.92484pt too wide) in paragraph at lines 504--507
 Overfull \vbox (1.79988pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 507.
+(babel)             in language  on input line 510.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 507.
+(babel)             in language  on input line 510.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 507.
+(babel)             in language  on input line 510.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 507.
+(babel)             in language  on input line 510.
 
 [6 <./images/inter_msc_handover.png> <./images/3g_netzarchitektur.png> <./image
 s/long_term_evolution.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 507.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 512.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 512.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 514.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 514.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 524.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 524.
+
+Overfull \hbox (20.86926pt too wide) in paragraph at lines 527--532
+| [] 
+ []
+
+
+Overfull \hbox (34.25354pt too wide) in paragraph at lines 542--543
+[][] 
+ []
+
+
+Overfull \hbox (20.61296pt too wide) in paragraph at lines 544--545
+[][] 
+ []
+
+
+Overfull \hbox (42.98863pt too wide) in paragraph at lines 554--558
+[] 
+ []
+
+
+Overfull \hbox (51.95317pt too wide) in paragraph at lines 554--558
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 572--576
+
+ []
+
+
+Overfull \hbox (28.05878pt too wide) in paragraph at lines 579--581
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 579--581
+
+ []
+
+
+Package caption Warning: Unused \captionsetup[lstlisting] on input line 147.
+See the caption package documentation for explanation.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 585.
+
+Overfull \vbox (1.79988pt too high) has occurred while \output is active []
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 585.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 585.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 585.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 585.
+
+[7]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 585.
  (document.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 507.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 507.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 585.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 585.
 Package rerunfilecheck Info: File `document.out' has not changed.
-(rerunfilecheck)             Checksum: 700B61A1237FD1D407ABA78B36881FEB;668.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 507.
+(rerunfilecheck)             Checksum: F5E3856B3883B4135C392B825ED27DC1;872.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 585.
  ) 
 Here is how much of TeX's memory you used:
- 12596 strings out of 493333
- 200246 string characters out of 3142635
- 421197 words of memory out of 3000000
- 15891 multiletter control sequences out of 15000+200000
+ 13015 strings out of 493333
+ 205141 string characters out of 3142635
+ 430349 words of memory out of 3000000
+ 16300 multiletter control sequences out of 15000+200000
  37959 words of font info for 33 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,14n,66p,8821b,447s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1165,9 +1248,9 @@ ts/type1/public/lm/lmr8.pfb><D:/Programme/MiKTeX/fonts/type1/public/lm/lmri8.pf
 b><D:/Programme/MiKTeX/fonts/type1/public/lm/lmro8.pfb><D:/Programme/MiKTeX/fon
 ts/type1/public/lm/lmsy6.pfb><D:/Programme/MiKTeX/fonts/type1/public/lm/lmsy8.p
 fb>
-Output written on document.pdf (6 pages, 1145316 bytes).
+Output written on document.pdf (7 pages, 1157101 bytes).
 PDF statistics:
- 163 PDF objects out of 1000 (max. 8388607)
- 24 named destinations out of 1000 (max. 500000)
- 133 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 182 PDF objects out of 1000 (max. 8388607)
+ 28 named destinations out of 1000 (max. 500000)
+ 157 words of extra memory for PDF output out of 10000 (max. 10000000)
 
