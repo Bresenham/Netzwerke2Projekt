@@ -483,5 +483,25 @@ Mobilgerät wechselt bei bestehender Verbindung von einer Basisstation zur andere
 
 \vspace{-1em}
 \subsection{Long Term Evolution (LTE, LTE-A)}
+\vspace{-1.5em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.2]{images/long_term_evolution.png}} &
+	\makecell[l]{$\circ$ \textbf{LTE + 2 Releases}: \textit{LTE Advanced} - 3 Gbit/s DL bzw. 1.5 Gbit/s UL, Bündelung bis zu 5 Carrier\\$\circ$ \textbf{LTE + 3/4 Releases:} \textit{LTE Advanced Pro} - Bündelung von bis zu 32 Carriern, QAM-256,\\LTE Narrow Band IoT, \textbf{5G} Standardisierung läuft\\$\circ$ \textbf{Packet Data Network Gateway:} Internetschnittstelle\\$\circ$ \textbf{Mobility Management Entity:} Mobilitätsmanagement\\$\circ$ \textbf{Serving-Gateway:} Weiterleitung von Nutzdaten ins Kernnetz\\$\circ$ \textbf{Home Suscriber Service:} entspricht HLR bei GSM\\$\circ$ \textbf{evolved Node-B (eNode-B):} Basisstation}
+\end{tabular}\\
+
 \vspace{-1em}
+\subsection{5G}
+\vspace{-1.5em}
+\text{\textbf{Enhanced Mobile Broadband (eMBB):} Hohe Datenraten, \textbf{Massive Machine Type Communications (mMTC):} IoT Anwendungen}\\
+\textbf{Ultra-Reliable and Low-Latency Communication (uRLLC):} z.B. drahtlose Vernetzung in der Produktion\\
+\textbf{5G New Radio:} Nutzung mehrerer Antennen (\textit{MIMO}), mmWave-Bänder (24 - 30GHz), flexible und kürzere Slotzeiten (<1ms)\\
+\textbf{Ziele:} E2E Latenz < 1ms, 1000x höheres Datenvolumen, 10-100x mehr Geräte, 10-100x mehr typische Nutzerdatenraten\\
+\textbf{Umsetzung:} 5G Zellen mit LTE-Kernnetz (non-standalone), 2-3Gbit/s $\Rightarrow$ 5G mit 5G-Kernnetz (standalone), mmWave Bänder
+
+\vspace{-1em}
+\subsection{Zusammenfassung Drahtlose Netzwerke}
+\vspace{-1.5em}
+\text{Ersetzen der unteren 2 Schichten (Link- \& Physical-Layer) durch drahtlose Varianten $\Rightarrow$ Auswirkungen auf obere Schichten minimal, aber:}\\
+$\Rightarrow$ Fehlinterpretation von Paketverlusten auf drahtlosem Link von TCP führt zu Congestion Window Veringerrung $\Rightarrow$ Datenrate sinkt\\
+\text{$\Rightarrow$ Verzögerung durch Link-Layer Retransmission (Auswirkungen auf Echtzeitanwendungen), Drahtloser Link meist geringere Datenrate}
 \end{document}
