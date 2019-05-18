@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.4.21)  17 MAY 2019 23:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.4.21)  18 MAY 2019 10:48
 entering extended mode
 **./document.tex
 (document.tex
@@ -838,7 +838,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 306.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 306.
-<images/wlan_protokollstack.png, id=40, 635.37375pt x 255.95625pt>
+<images/wlan_protokollstack.png, id=44, 635.37375pt x 255.95625pt>
 File: images/wlan_protokollstack.png Graphic file (type png)
 
 <use images/wlan_protokollstack.png>
@@ -846,7 +846,7 @@ Package pdftex.def Info: images/wlan_protokollstack.png used on input line 310.
 
 (pdftex.def)             Requested size: 209.67398pt x 84.46582pt.
 
-<images/wlan_kanal_ueberlappung.png, id=42, 532.99126pt x 255.20343pt>
+<images/wlan_kanal_ueberlappung.png, id=46, 532.99126pt x 255.20343pt>
 File: images/wlan_kanal_ueberlappung.png Graphic file (type png)
 
 <use images/wlan_kanal_ueberlappung.png>
@@ -876,7 +876,7 @@ Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 337.
 
 [2 <./images/wlan_protokollstack.png> <./images/wlan_kanal_ueberlappung.png>]
-<images/wlan_layer_2_acks.png, id=63, 320.69812pt x 386.19281pt>
+<images/wlan_layer_2_acks.png, id=67, 320.69812pt x 386.19281pt>
 File: images/wlan_layer_2_acks.png Graphic file (type png)
 
 <use images/wlan_layer_2_acks.png>
@@ -892,7 +892,7 @@ Overfull \hbox (29.08842pt too wide) in paragraph at lines 360--361
 [][] 
  []
 
-<images/wlan_rts_cts_sequence_chart.png, id=64, 703.12688pt x 438.13687pt>
+<images/wlan_rts_cts_sequence_chart.png, id=68, 703.12688pt x 438.13687pt>
 File: images/wlan_rts_cts_sequence_chart.png Graphic file (type png)
 
 <use images/wlan_rts_cts_sequence_chart.png>
@@ -904,7 +904,7 @@ Overfull \hbox (45.76747pt too wide) in paragraph at lines 367--371
 [][] 
  []
 
-<images/wlan_rahmen.png, id=65, 990.70125pt x 377.91188pt>
+<images/wlan_rahmen.png, id=69, 990.70125pt x 377.91188pt>
 File: images/wlan_rahmen.png Graphic file (type png)
 
 <use images/wlan_rahmen.png>
@@ -948,7 +948,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 392--394
 
  []
 
-<images/bluetooth_stack.png, id=72, 898.10532pt x 565.36218pt>
+<images/bluetooth_stack.png, id=76, 898.10532pt x 565.36218pt>
 File: images/bluetooth_stack.png Graphic file (type png)
 
 <use images/bluetooth_stack.png>
@@ -996,18 +996,18 @@ Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 420.
 
 [4 <./images/bluetooth_stack.png>]
-<images/gsm_netzaufbau.png, id=78, 1307.88625pt x 721.69624pt>
+<images/gsm_netzaufbau.png, id=82, 1307.88625pt x 721.69624pt>
 File: images/gsm_netzaufbau.png Graphic file (type png)
 
 <use images/gsm_netzaufbau.png>
 Package pdftex.def Info: images/gsm_netzaufbau.png used on input line 424.
-(pdftex.def)             Requested size: 196.17447pt x 108.24976pt.
+(pdftex.def)             Requested size: 170.03117pt x 93.8238pt.
 
-Overfull \hbox (22.22955pt too wide) in paragraph at lines 422--427
+Overfull \hbox (38.28073pt too wide) in paragraph at lines 422--427
 [] 
  []
 
-<images/gsm_gprs_netzaufbau.png, id=79, 1270.7475pt x 784.9325pt>
+<images/gsm_gprs_netzaufbau.png, id=83, 1270.7475pt x 784.9325pt>
 File: images/gsm_gprs_netzaufbau.png Graphic file (type png)
 
 <use images/gsm_gprs_netzaufbau.png>
@@ -1019,43 +1019,96 @@ Overfull \hbox (70.16579pt too wide) in paragraph at lines 428--432
 [][] 
  []
 
+<images/mobilitaetsmanagement.png, id=84, 554.82281pt x 325.96782pt>
+File: images/mobilitaetsmanagement.png Graphic file (type png)
 
-Underfull \hbox (badness 10000) in paragraph at lines 433--434
+<use images/mobilitaetsmanagement.png>
+Package pdftex.def Info: images/mobilitaetsmanagement.png used on input line 43
+5.
+(pdftex.def)             Requested size: 166.44812pt x 97.79109pt.
 
+Overfull \hbox (53.53983pt too wide) in paragraph at lines 433--438
+[] 
  []
 
-
-Package caption Warning: Unused \captionsetup[lstlisting] on input line 146.
-See the caption package documentation for explanation.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 435.
 
 Overfull \vbox (1.79988pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 435.
+(babel)             in language  on input line 466.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 435.
+(babel)             in language  on input line 466.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 435.
+(babel)             in language  on input line 466.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 435.
+(babel)             in language  on input line 466.
 
-[5 <./images/gsm_netzaufbau.png> <./images/gsm_gprs_netzaufbau.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 435.
+[5 <./images/gsm_netzaufbau.png> <./images/gsm_gprs_netzaufbau.png> <./images/m
+obilitaetsmanagement.png>]
+<images/inter_msc_handover.png, id=92, 408.02437pt x 319.94531pt>
+File: images/inter_msc_handover.png Graphic file (type png)
+
+<use images/inter_msc_handover.png>
+Package pdftex.def Info: images/inter_msc_handover.png used on input line 470.
+(pdftex.def)             Requested size: 122.40825pt x 95.98433pt.
+
+<images/3g_netzarchitektur.png, id=93, 730.73pt x 541.02126pt>
+File: images/3g_netzarchitektur.png Graphic file (type png)
+
+<use images/3g_netzarchitektur.png>
+Package pdftex.def Info: images/3g_netzarchitektur.png used on input line 476.
+(pdftex.def)             Requested size: 164.4183pt x 121.73277pt.
+
+Overfull \hbox (35.93996pt too wide) in paragraph at lines 468--483
+[] 
+ []
+
+
+Overfull \hbox (37.57341pt too wide) in paragraph at lines 468--483
+[] 
+ []
+
+
+Overfull \hbox (65.46242pt too wide) in paragraph at lines 468--483
+[] 
+ []
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 485.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 485.
+
+Package caption Warning: Unused \captionsetup[lstlisting] on input line 146.
+See the caption package documentation for explanation.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 487.
+
+Overfull \vbox (1.79988pt too high) has occurred while \output is active []
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 487.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 487.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 487.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 487.
+
+[6 <./images/inter_msc_handover.png> <./images/3g_netzarchitektur.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 487.
 
 (document.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 435.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 435.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 487.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 487.
 Package rerunfilecheck Info: File `document.out' has not changed.
-(rerunfilecheck)             Checksum: 1D0798AB31D46B73B7FC45D4BC309EDC;435.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 435.
+(rerunfilecheck)             Checksum: BB96112A86C67BB010AF43B360C8DC9F;523.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 487.
  ) 
 Here is how much of TeX's memory you used:
- 12569 strings out of 493333
- 199490 string characters out of 3142635
+ 12587 strings out of 493333
+ 200016 string characters out of 3142635
  421197 words of memory out of 3000000
- 15872 multiletter control sequences out of 15000+200000
+ 15885 multiletter control sequences out of 15000+200000
  37959 words of font info for 33 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,14n,66p,8821b,447s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1072,9 +1125,9 @@ ts/type1/public/lm/lmr8.pfb><D:/Programme/MiKTeX/fonts/type1/public/lm/lmri8.pf
 b><D:/Programme/MiKTeX/fonts/type1/public/lm/lmro8.pfb><D:/Programme/MiKTeX/fon
 ts/type1/public/lm/lmsy6.pfb><D:/Programme/MiKTeX/fonts/type1/public/lm/lmsy8.p
 fb>
-Output written on document.pdf (5 pages, 855506 bytes).
+Output written on document.pdf (6 pages, 1058343 bytes).
 PDF statistics:
- 139 PDF objects out of 1000 (max. 8388607)
- 20 named destinations out of 1000 (max. 500000)
- 89 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 153 PDF objects out of 1000 (max. 8388607)
+ 22 named destinations out of 1000 (max. 500000)
+ 112 words of extra memory for PDF output out of 10000 (max. 10000000)
 

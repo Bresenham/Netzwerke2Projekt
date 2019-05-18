@@ -421,15 +421,67 @@ $\circ$ \textbf{UMTS:} CDMA Verfahren - Unterschiedlicher Code für unterschiedli
 
 \textbf{2G Netzwerkarchitektur (GSM):}\\
 \begin{tabular}{ll}
-	\raisebox{-.4\height}{\includegraphics[scale=0.15]{images/gsm_netzaufbau.png}} &
-	\makecell[l]{$\circ$ \textbf{Base Station Controller (BSC):} übernimmt Ressourcenzuweisung und\\Mobilitätsmanagement in einem Base Station Subsystem (BSS)\\$\circ$ \textbf{Mobile Switching Center (MSC):} Anrufauf- und Abbau, Verbindung ins\\ Festnetz, Mobilitätsmanagement\\$\circ$ \textbf{Gateway-MSC:} Vermittlungsfunktionen, Verbindung zu anderen Netzen}
+	\raisebox{-.5\height}{\includegraphics[scale=0.13]{images/gsm_netzaufbau.png}} &
+	\makecell[l]{$\circ$ \textbf{Base Station Controller (BSC):} übernimmt Ressourcenzuweisung und\\Mobilitätsmanagement in einem Base Station Subsystem (BSS)\\$\circ$ \textbf{Mobile Switching Center (MSC):} Anrufauf- und Abbau, Verbindung ins\\ Festnetz, Mobilitätsmanagement\\$\circ$ \textbf{Gateway-MSC:} Vermittlungsfunktionen, Verbindung zu anderen Netzen bzw. Festnetz\\$\circ$ \textbf{PSTN:} Public Switched Telephone Network}
 \end{tabular}
 
 \begin{tabular}{ll}
-	\raisebox{-.4\height}{\includegraphics[scale=0.18]{images/gsm_gprs_netzaufbau.png}} &
-	\makecell[l]{$\circ$ Mit GPRS-Komponenten erstmals paketvermittelte Datendienste\\- verwendet bereits bestehende BTS mit\\$\circ$ \textbf{Packet Control Unit (PCU):} Kommuniziert über den BSC mit Endgerät und\\auch mit der SGSN, überwacht und verwaltet Datenpakete, Ressourcenverteilung\\$\circ$ \textbf{Serving GPRS Support Node (SGSN)}: Übernimmt Vermittlung der\\Datenpakete und die Funktion des VLR\\$\circ$ \textbf{Gateway GPRS Support Node (GGSN):} Ist der Router, der das\\Mobilfunknetz mit dem Internet verbindet und die IP-Adresse zur Verfügung stellt\\$\circ$ Sprachdaten laufen über $BTS\Leftrightarrow BSC\Leftrightarrow MSC \Leftrightarrow G-MSC\Leftrightarrow Festnetz$\\$\circ$ Paketdaten laufen über $BTS\Leftrightarrow BSC\Leftrightarrow PCU\Leftrightarrow SGSN\Leftrightarrow GGSN\Leftrightarrow Internet$}
+	\raisebox{-.5\height}{\includegraphics[scale=0.18]{images/gsm_gprs_netzaufbau.png}} &
+	\makecell[l]{$\circ$ Mit GPRS-Komponenten erstmals paketvermittelte Datendienste\\- verwendet bereits bestehende BTS mit\\$\circ$ \textbf{Packet Control Unit (PCU):} Kommuniziert über den BSC mit Endgerät und\\auch mit der SGSN, überwacht und verwaltet Datenpakete, Ressourcenverteilung\\$\circ$ \textbf{Serving GPRS Support Node (SGSN)}: Übernimmt Vermittlung der\\Datenpakete und die Funktion des VLR\\$\circ$ \textbf{Gateway GPRS Support Node (GGSN):} Ist der Router, der das\\Mobilfunknetz mit dem Internet verbindet und die IP-Adresse zur Verfügung stellt\\$\circ$ \textbf{Home Location Register (HLR):} Datenbank mit Informationen zum Nutzer,\\enthält Rufnummer und zuletzt bekannten Aufenthaltsort\\$\circ$ \textbf{Visitor Location Register (VLR):} Datenbank mit Informationen zu allen\\Nutzern, die sich im vom MSC bedienten Bereich befinden\\$\circ$ Sprachdaten laufen über $BTS\Leftrightarrow BSC\Leftrightarrow MSC \Leftrightarrow G-MSC\Leftrightarrow Festnetz$\\$\circ$ Paketdaten laufen über $BTS\Leftrightarrow BSC\Leftrightarrow PCU\Leftrightarrow SGSN\Leftrightarrow GGSN\Leftrightarrow Internet$}
 \end{tabular}
 
 \textbf{Mobilitätsmanagement:}\\
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.3]{images/mobilitaetsmanagement.png}} &
+	\makecell[l]{$\circ$ Nutzer kann sich zwischen Zellen verschiedener \textit{MSCs}, auch von anderen Providern, bewegen\\$\circ$ Mobilgerät prüft im eingeschalteten Zustand, ob sich aktuelle Location Area ändert\\$\Rightarrow$ sendet Location Update mit neuer Area $\Rightarrow$ Home Location Register (HLR) wird aktualisiert\\$\circ$ Eingehender Anruf: Befragung von \textit{HLR} nach aktuellem Ort des Angerufenen über dessen\\temporäre \textit{Roaming-Nummer}, anschließend Verbindungsaufbau über das \textit{VLR} des MSC\\$\Rightarrow$ Falls gerade keine Verbindung besteht: Broadcast-Nachricht über alle Basisstationen\\des jeweiligen MSC (\textit{Paging}), Mobile meldet sich ggf., damit genaue Basisstation bekannt}
+\end{tabular}
 
+\textbf{GSM Handover (= MSC/Inter-BSC Handover)}\\
+Mobilgerät wechselt bei bestehender Verbindung von einer Basisstation zur anderen.\\
+\textbf{Ursachen:} Bewegung des Nutzers (stärkeres Signal eines anderen BSS), aktuelle Zelle überlastet\\
+\textbf{Ablauf Inter-BSC Handover:}
+\vspace{-1em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Altes BSS informiert MSC über anstehendes Handover
+	\item MSC reserviert Ressourcen zu neuer BSS
+	\item Neue BSS reserviert Zeitslot (TDMA)
+	\item Neue BSS signalisiert an MSC und alte BSS Bereitschaft zum Handover
+	\item Alte BSS weist Mobilgerät an, Handover zu neuer BSS durchzuführen
+	\item Mobilgerät aktiviert Kanal in neuer BSS
+	\item Mobilgerät bestätigt Handover an MSC, diese leitete Daten um
+	\item MSC weist alte BSS an, Ressourcen des Mobilgeräts freizugeben
+\end{itemize}
+\vspace{-1em}
+\textbf{Arten von Handover:}
+\vspace{-1em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item \textit{Intra BSC:} Aktuelle und neue Zelle gehörten zum selben BSC
+	\item \textit{Inter BSC:} Aktuelle und neue Zelle gehören zu unterschiedlichen BSC aber gleichen MSC
+	\item \textit{Inter MSC:} Aktuelle und neue Zelle gehören zu unterschiedlichen MSC
+	\item \textit{Subsequent Inter MSC:} Teilnehmer wechselt nach \textit{Inter MSC} in Zelle eines dritten MSC
+	\item \textit{Subsequent Handback:} Teilnehmer wechselt nach \textit{Inter MSC} zurück in Gebiet des ersten MSC
+\end{itemize}
+\newpage
+
+\textbf{Ablauf Inter-MSC Handover:}\\
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.3]{images/inter_msc_handover.png}} &
+	\makecell[l]{$\circ$ Anker-MSC = erste MSC während eines Anrufs\\$\circ$ Daten bzw. der Anruf wird zunächst an Anker-MSC geleitet\\$\circ$ Dann Weiterleitung zu aktueller MSC}
+\end{tabular}\\
+\vspace{-0em}
+\textbf{3G Netzarchitektur:}\\
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.225]{images/3g_netzarchitektur.png}} &
+	\makecell[l]{$\circ$ Mit UMTS '99 neues Air-Interface \textit{Universal Terrestrial Radio Access Network} (\textbf{UTRAN})\\$\circ$ basierend auf Wideband-CDMA\\$\circ$ Ab UMTS v4 Umstellung auf IP basierte Kommunikation (Sprache \& Daten)}
+\end{tabular}\\
+\vspace{-0em}
+\textbf{LTE \& LTE Advanced (4G):}\\
+\text{Umstellung auf \textit{Orthogonal Frequency Devision Multiplexing} (\textbf{OFDM}): Übertragungstechnik mit flexibler Bandbreite zwischen 1.25 bis 20 MHz}\\
+\text{LTE-Endgerät muss Mehrantennenverfahren unterstützen (\textit{Multiple Input, Multiple Output} \textbf{MIMO}), LTE-Netz rein paketbasiert (Sprache per VoIP)}
+
+\vspace{-1em}
+\subsection{Long Term Evolution (LTE, LTE-A)}
+\vspace{-1em}
 \end{document}
