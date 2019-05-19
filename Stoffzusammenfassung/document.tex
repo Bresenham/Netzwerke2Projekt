@@ -634,7 +634,7 @@ $\circ$ Unterzeichner sendet eigenen public key und Zertifikat an Empfänger, die
 \vspace{-2.5em}
 \textbf{Authentifizierungsprotokoll mit Shared Secret}\\
 $\circ$ Kommunikationsteilnehmer prüft, ob ein anderer derjenige ist, für den er sich ausgibt\\
-\hspace*{5mm} IP-Adresse kann gefälscht sein oder Angreifer führt Playback-Angriff durch (Kommunikation aufzeichnen \& wieder abspielen)\\
+\hspace*{5mm}IP-Adresse kann gefälscht sein oder Angreifer führt Playback-Angriff durch (Kommunikation aufzeichnen \& wieder abspielen)\\
 \text{Lösungen: \textit{shared secret} oder Verwendung einer nur einmal verwendeten, zufälligen Zahl (\textit{Nonce}) die mit symmetrischem Schlüssel verschlüsselt wird}\\
 \vspace{-2.75em}
 \begin{itemize}
@@ -649,4 +649,42 @@ $\circ$ Kommunikationsteilnehmer prüft, ob ein anderer derjenige ist, für den er
 
 \vspace{-1.5em}
 \subsection{Secure Sockets Layer (SSL)}
+\vspace{-1.5em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.25]{images/ssl_layerstack.png}} &
+	\makecell[l]{$\circ$ Viele TCP-basierte Anwendungen benötigen \textbf{Vertraulichkeit}, \textbf{Integrität}, \textbf{Authentifizierung}\\$\circ$ Keines der Internet-Transportprotokolle unterstützt Verschlüsselung übertragener Informationen\\$\circ$ Auf Anwendungsschicht implementiert (z.b. \textit{java.net.ssl} oder \textit{OpenSSL})\\$\circ$ SSL stellt diese Funktionalitäten durch Verschlüsselung, Message Authentication Code und mit Zertifikaten zur Verfügung\\$\circ$ SSL v3.1 von \textit{IETF} als \textbf{Transport Layer Security TLS 1.0} standardisiert\\$\circ$ Drei Phasen: Handshake, Key Derivation (Herleitung von Schlüsseln), Data Transfer (eigentliche Datenübertragung)}
+\end{tabular}
+
+\newpage
+
+\textbf{SSL Handshake:} Webbrowser als Client, Server besitzt public \& private key sowie Zertifikat für public key zur Identität (Domainname)\\
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.2]{images/ssl_handshake.png}} &
+	\makecell[l]{$\circ$ TCP-Verbindung aufbauen\\$\circ$ Authentifizierung des Server über CA-signiertes Zertifikat\\$\circ$ Austausch \textit{Master Secret} (\textbf{MS}) für diese Sitzung:\\\hspace*{5mm}Empfänger verschlüsselt \textit{MS} mit public key des Servers =\textbf{EMS}\\$\circ$ Austausch von möglichen Verschlüsselungsverfahren}
+\end{tabular}\\
+
+\vspace{-1.5em}
+\textbf{SSL Key Derivation}\\
+$\circ$ Statt \textit{Master Secret} direkt als Schlüssel zu verwenden werden aus Sicherheitsgründen vier unterschiedliche Schlüssel aus einer\\\textit{Key Derivation Function} \textbf{KDF} mit Eingabeparametern Master Secret und Zufallsdaten, abgeleitet (nur für eine Sitzung gültig):\\
+\hspace*{5mm}$E_B$: Verschlüsselung Client $\rightarrow$ Server\\
+\hspace*{5mm}$M_B$: MAC zur Integritätsprüfung der Daten von Client $\rightarrow$ Server\\
+\hspace*{5mm}$E_A$: Verschlüsselung Server $\rightarrow$ Client\\
+\hspace*{5mm}$M_A$: MAC zur Integritätsprüfung der Daten von Server $\rightarrow$ Client\\
+
+\vspace{-2.5em}
+\textbf{SSL Datenübertragung}\\
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.2]{images/ssl_reordering.png}} &
+	\makecell[l]{$\circ$ Aufteilung des TCP-Byte-Stroms in separate Abschnitte (\textit{SSL Records})\\
+		$\circ$ Jeder Record enthält zusätzliche Sequenznummer (beginnend bei 0) um\\\hspace*{5mm}Reordering von Records verhindern\\
+		$\circ$ \textit{MAC} wird berechnet über Daten + MAC-Schlüssel ($M_A$ oder $M_B$) + Sequenznummer\\
+		$\circ$ Nutzung von \textit{Nonces} verhindert Replay-Angriff (Wiederabspielen einer Datenverbindung)}
+\end{tabular}\\
+
+\vspace{-1.5em}
+\textbf{SSL Record}\\
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.075]{images/ssl_record.png}} &
+	\makecell[l]{$\circ$ \textbf{Type:} Unterscheidung von Handshake/Nutzdaten/Beenden\\$\circ$ \textbf{Version:} SSL-Versionsnummer\\$\circ$ \textbf{Length:} Länge der Daten (ohne Header) - Extraktion aus dem TCP-Byte Strom}
+\end{tabular}\\
 \end{document}
