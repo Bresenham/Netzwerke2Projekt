@@ -581,5 +581,72 @@ $\circ$ \textbf{Betriebssicherheit:} Absicherung des Firmennetzes gegen Eingriff
 
 \vspace{-2em}
 \textbf{Adanved Encryption Standard (AES):}\\
-Nachfolger von \textit{DES}, 128/192 oder 256-Bit symmetrischer Schlüssel mit 128-Bit Blöcken, AES-256 kann nicht geknackt werden
+Nachfolger von \textit{DES}, 128/192 oder 256-Bit symmetrischer Schlüssel mit 128-Bit Blöcken, AES-256 kann nicht geknackt werden\\
+
+\vspace{-2em}
+\textbf{Public Key (asymmetrische) Verschlüsselung:}\\
+\vspace{-2.5em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Öffentlicher Schlüssel $K_B^+$ wird zur Verschlüsselung verwendet,  Privater Schlüssel $K_B^-$ zur Entschlüsselung
+	\item Öffentlicher Schlüssel sowohl Empfänger als auch Sender bekannt, privater Schlüssel ist aber nur Empfänger bekannt
+	\item Sender überträgt $K_B^+(m)$, Empfänger entschlüsselt mit $K_B^-(K_B^+(m))$, d.h. es muss gelten $K_B^-(K_B^+(m)) = m$
+	\item Man darf nicht vom öffentlichen auf den privaten Schlüssel schließen können
+\end{itemize}
+\newpage
+
+\textbf{RSA Algorithmus:}\\
+$\circ$ Text wird als Bitmuster angesehen, die Verschlüsselung ergibt wieder ein Bitmuster - den Geheimtext\\
+$\circ$ RSA nutzt modulare Arithmetik und die Tatsache, dass Teilerbestimmung einer gegebenen Zahl sehr rechenaufwändig sind\\
+$\circ$ Verschlüsselung mit public key ist allerdings auch sehr rechenaufwändig, da z.B. $m^e$ berechnet wird (e = öffentlicher Schlüssel)\\
+$\circ$ Symmetrische Verschlüsselung wesentlich schneller $\Rightarrow$ Asymmetrische Verschlüsselung zum Aufbau einer sicheren Verbindung\\
+\hspace*{5mm}$\rightarrow$ danach mit einem zweiten Schlüssel symmetrische Verschlüsselungen austauschen\\
+\text{\hspace*{5mm}$\rightarrow$ Teilnehmer A \& B verwenden RSA um symmetrischen Schlüssel $K_S$ auszutauschen, danach symmetrische Verschlüsselung (\textit{AES}) mit $K_S$}\\
+
+\vspace{-2.5em}
+\textbf{Integrität einer Nachricht sicherstellen}\\
+$\circ$ Berechnen einer Prüfsumme (\textit{Hash}) über Nachricht + gemeinsames Geheimnis (ansonsten könnte Angreifer die Nachricht verändern und dann erneut eine gültige Prüfsumme über die veränderte Nachricht berechnen), Empfänger berechnet Hash selbst und überprüft ihn mit übertragenem Hash\\
+
+\vspace{-2.5em}
+\textbf{Kryptographische Hashfunktionen}\\
+\text{$\circ$ Berechnung eines Strings $H(m)$ fester Größe aus Nachricht $m$, vom Rechenaufwand her nicht möglich, Kollision zu erzeugen, so dass $H(x) = H(y)$}\\
+\text{$\circ$ \textit{MD5} mit 128-Bit Hash (unsicher) $\circ$ \textit{SHA-1} mit 160-Bit Hash (inzwischen auch kritisch) $\circ$ \textit{SHA-2} mit 224/256/384/512-Bit Hash (empfohlen)}\\
+
+\vspace{-2.5em}
+\textbf{Message Authentication Code (MAC)}\\
+$\circ$ Gemeinsames Geheimnis besteht aus \textit{Authentication Code} $s$ und Nachricht $m$, Sender hängt $H(m+s)$ (=MAC) an Nachricht $m$ an\\
+\text{$\circ$ Übertragung von Nachricht + MAC an Empfänger, dieser berechnet ebenfalls Hash aus $m$ + $s$ und prüft, ob gesendeter MAC passt}\\
+
+\vspace{-2.5em}
+\textbf{Digitale Signaturen}\\
+$\circ$ Unterschrift als Bestätigung der Urheberschaft eines Dokuments, MAC mit \textit{shared key} \textbf{s} ungeeignet, da \textbf{s} sowohl Unterzeichner als auch Prüfer bekannt sein muss $\Rightarrow$ Prüfer kann Unterschrift fälschen\\
+$\circ$ Lösung:\\
+\hspace*{5mm} Berechne $H(m)$, $m$ := zu unterschreibende Nachricht\\
+\hspace*{10mm} Unterzeichner nutzt private key zur Berechnung von $K_B^-(H(m))$, wird zusammen mit $m$ versendet\\
+\hspace*{15mm} Prüfer prüft ob $H(m) = K_B^+(K_B^-(H(m)))$ (entschlüsseln mit öffentlichem Schlüssel), falls ja: Unterschrift gültig\\
+
+\vspace{-2.5em}
+\textbf{Zertifizierung von öffentlichen Schlüsseln}\\
+\text{$\circ$ Angreifer kann behaupten, dass dessen public key gleich dem vom Unterzeichner ist $\Rightarrow$ Öffentlicher Schlüssel muss Person zugeordnet werden}\\
+$\circ$ \textit{Certification Authority} (\textbf{CA}) prüft Identität (z.B. Personalausweis) - erstellt Zertifikat, dass public key zur Person gehört (Angabe der Domain) und unterschreibt das Zertifikat per digitale Signatur\\
+$\circ$ Unterzeichner sendet eigenen public key und Zertifikat an Empfänger, dieser prüft mit öffentlichem \textbf{CA}-Schlüssel, ob Zertifikat gültig (d.h. public key richtig) ist\\
+
+\vspace{-2.5em}
+\textbf{Authentifizierungsprotokoll mit Shared Secret}\\
+$\circ$ Kommunikationsteilnehmer prüft, ob ein anderer derjenige ist, für den er sich ausgibt\\
+\hspace*{5mm} IP-Adresse kann gefälscht sein oder Angreifer führt Playback-Angriff durch (Kommunikation aufzeichnen \& wieder abspielen)\\
+\text{Lösungen: \textit{shared secret} oder Verwendung einer nur einmal verwendeten, zufälligen Zahl (\textit{Nonce}) die mit symmetrischem Schlüssel verschlüsselt wird}\\
+\vspace{-2.75em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Sender sendet eigenen Namen an Empfänger
+	\item Empfänger sendet Nonce $R$ zurück
+	\item Sender sendet mit eigenem privaten Schlüssel verschlüsseltes $R$
+	\item Empfänger fordert publick key an
+	\item Sender sendet public key (ggf. mit Zertifikat einer CA) an Empfänger
+	\item Empfänger prüft ob $K_A^+(K_A^-(R)) = R$
+\end{itemize}
+
+\vspace{-1.5em}
+\subsection{Secure Sockets Layer (SSL)}
 \end{document}
