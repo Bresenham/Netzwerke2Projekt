@@ -710,4 +710,33 @@ $\circ$ Enthält Algorithmus für: \textit{Public Key} Verschlüsselung, \textit{sy
 \vspace{-.5em}
 \textbf{Vorzeitiges Schließen einer SSL-Verbindung}\\
 $\circ$ Wird durch zusätzlichen \textit{SSL-Record} zum ordnungsgemäßen Beenden verhindert (Authentifizierung erfolgt über \textit{MAC})
+
+\vspace{-1.5em}
+\subsection{TLS v1.3}
+\vspace{-1.5em}
+
+$\circ$ Ciphersuite-Konzept geändert: MAC berechnen \& Verschlüsselung erfolgt nun in einem Schritt\\
+$\circ$ Verbindungsaufbau (\textit{full handshake}) von 2 RTT auf 1 RTT verringert, \textit{0-RTT}-Mode: Daten bereits in erster Nachricht enthalten\\
+$\circ$ Verhindern von Downgrades durch Signierung der Liste an Verschlüsselungsverfahren, unsichere kryptographische Verfahren entfallen\\
+$\circ$ \textbf{Perfect Forward Secrecy:} Kommunikationspartner generieren nur für diese Verbindung gültige Kurzzeitschlüssel,\\
+\hspace*{2.5mm}die nach Verbindungsende verworfen werden und nicht aus Langzeitgeheimnis rekonstruiert werden können
+
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.33]{images/tls_13_zero_rtt.png}} &
+	\makecell[l]{$\circ$ \textit{0-RTT Mode:}\\\hspace*{2.5mm}Client \& Server teilen \textit{Pre-shared Key}\\\hspace*{2.5mm}z.B. aus vorheriger Verbindung, und können\\\hspace*{2.5mm}diesen gleich zur Authentifizierung und\\\hspace*{2.5mm}Verschlüsselung der \textit{Early Data} verwenden\\\hspace*{2.5mm}\textbf{allerdings:} Kein \textit{Forward Secrecy},\\\hspace*{19mm}anfälliger ggü. Replay-Attacken}
+\end{tabular}\\
+
+\vspace{-1.5em}
+\subsection{Enterprise Transport Security (ETS)}
+\vspace{-1.5em}
+
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.275]{images/ets_middleboxes.png}} &
+	\makecell[l]{$\circ$ Unternehmensnetze setzen viele Middleboxes zur Angriffserkennung\\\hspace*{2.5mm}(\textit{Intrusion Detection}) oder als Application Layer Firewall ein,\\
+		\hspace*{2.5mm}Datenverkehr kann aufgrund von \textit{Perfect Forward Secrecy} nicht\\\hspace*{2.5mm}entschlüsselt werden $\rightarrow$ keine Überwachung durch Middleboxen möglich\\
+		\hspace*{2.5mm}$\Rightarrow$ Verzicht auf \textit{Perfect Forward Secrecy}, TLS 1.3 wird um statisches\\
+		\hspace*{7mm}Diffie-Hellmann Schlüsselpaar zwischen Middlebox und\\
+		\hspace*{7mm}Unternehmensserver erweitert\\}
+\end{tabular}\\
+
 \end{document}
