@@ -657,10 +657,18 @@ $\circ$ Kommunikationsteilnehmer prüft, ob ein anderer derjenige ist, für den er
 
 \newpage
 
-\textbf{SSL Handshake:} Webbrowser als Client, Server besitzt public \& private key sowie Zertifikat für public key zur Identität (Domainname)\\
+\text{\textbf{SSL Handshake:} Webbrowser als Client, Server besitzt public \& private key + Zertifikat für public key zur Identitätsbestätigung (Domainname)}\\
 \begin{tabular}{ll}
-	\raisebox{-.5\height}{\includegraphics[scale=0.2]{images/ssl_handshake.png}} &
-	\makecell[l]{$\circ$ TCP-Verbindung aufbauen\\$\circ$ Authentifizierung des Server über CA-signiertes Zertifikat\\$\circ$ Austausch \textit{Master Secret} (\textbf{MS}) für diese Sitzung:\\\hspace*{5mm}Empfänger verschlüsselt \textit{MS} mit public key des Servers =\textbf{EMS}\\$\circ$ Austausch von möglichen Verschlüsselungsverfahren}
+	\raisebox{-.5\height}{\includegraphics[scale=0.25]{images/ssl_handshake.png}} &
+	\makecell[l]{$\circ$ TCP-Verbindung aufbauen\\$\circ$ Client sendet Liste an unterstützten \textit{SSL  Cipher Suites} + Nonce\\$\circ$ Server sendet Wahl der \textit{Cipher Suite}, CA-Zertifikat und Server-Nonce\\$\circ$ Client:\\
+		\hspace*{5mm}- prüft Server-Zertifikat\\
+		\hspace*{5mm}- generiert \textit{Pre-Master Secret} \textbf{(PMS)}\\
+		\hspace*{5mm}- sendet mit Public Key des Servers verschlüsseltes PMS an den Server\\
+		$\circ$ Client \& Server leiten mit \textit{KDF} aus PMS und Nonces das \textit{Master Secret} (\textbf{MS}) her\\
+		\hspace*{5mm}- Empfänger verschlüsselt \textit{MS} mit public key des Servers =\textbf{EMS}\\
+		$\circ$ Aus \textit{MS} werden die Schlüssel $E_A, E_B, M_A, M_B$ hergeleitet\\\hspace*{5mm}\textbf{$\Rightarrow$ Nun alle Nachrichten verschlüsselt + MAC authentifiziert}\\
+		$\circ$ Client sendet \textit{MAC} aller Handshake-Nachrichten, die vom Server überprüft werden\\
+		$\circ$ Server sendet \textit{MAC} aller Handshake-Nachrichten, die vom Client überprüft werden\\\hspace*{5mm}\textbf{$\Rightarrow$ Verhinderung von z.B. Wahl einer schwächeren Cipher Suite}}
 \end{tabular}\\
 
 \vspace{-1.5em}
@@ -687,4 +695,19 @@ $\circ$ Statt \textit{Master Secret} direkt als Schlüssel zu verwenden werden au
 	\raisebox{-.5\height}{\includegraphics[scale=0.075]{images/ssl_record.png}} &
 	\makecell[l]{$\circ$ \textbf{Type:} Unterscheidung von Handshake/Nutzdaten/Beenden\\$\circ$ \textbf{Version:} SSL-Versionsnummer\\$\circ$ \textbf{Length:} Länge der Daten (ohne Header) - Extraktion aus dem TCP-Byte Strom}
 \end{tabular}\\
+
+\vspace{-1.5em}
+\textbf{SSL Cipher Suites}\\
+$\circ$ Enthält Algorithmus für: \textit{Public Key} Verschlüsselung, \textit{symmetrische} Verschlüsselung und für \textit{Message Authentication Code}\\
+\text{$\circ$ Client bietet Reihe von \textit{SSL Cipher Suite}s an (vom Client favorisierte ganz oben), Server sucht eine aus (unabhängig von Clientpriorität)}\\
+\begin{tabular}{l|l|l}
+	\textbf{Symmetrisch} & \textbf{Public Key} & \textbf{MAC}\\
+	\hline
+	DES, 3DES, AES & RSA, DH (Diffie-Hellmann), ECDH (Elliptic-Curve DH) & SHA-1, SHA-2, MD5
+\end{tabular}
+\par
+
+\vspace{-.5em}
+\textbf{Vorzeitiges Schließen einer SSL-Verbindung}\\
+$\circ$ Wird durch zusätzlichen \textit{SSL-Record} zum ordnungsgemäßen Beenden verhindert (Authentifizierung erfolgt über \textit{MAC})
 \end{document}
