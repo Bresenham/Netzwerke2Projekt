@@ -6,6 +6,7 @@
 #ifndef WIFI_H
 #define WIFI_H
 
+#include "../MQTT/MQTT.h"
 #include "ip_addr.h"
 #include "os_type.h"
 #include "ets_sys.h"
@@ -15,6 +16,7 @@
 #include "user_interface.h"
 #include "gpio.h"
 #include "mem.h"
+#include "espconn.h"
 
 typedef struct Wifi {
     uint8_t *data;
@@ -23,8 +25,7 @@ typedef struct Wifi {
     char *SSID;
     char *PW;
 
-    void (*publishData)(struct Wifi*);
-    void (*setDataToPublish)(struct Wifi*, const uint8_t*, const uint8_t);
+    void (*publishData)(struct Wifi*, MQTT*);
 } Wifi;
 
 extern void ICACHE_FLASH_ATTR initWifi(Wifi *self);

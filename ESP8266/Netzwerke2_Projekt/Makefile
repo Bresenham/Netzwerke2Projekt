@@ -24,7 +24,8 @@ SPECIAL_MKTARGETS=$(APP_MKTARGETS)
 SUBDIRS=    \
 	user    \
 	BMP280   \
-	WIFI
+	WIFI   \
+	MQTT
 
 endif # } PDIR
 

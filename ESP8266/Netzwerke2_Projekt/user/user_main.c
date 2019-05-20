@@ -2,6 +2,7 @@
 #include "ets_sys.h"
 #include "osapi.h"
 
+#include "../MQTT/MQTT.h"
 #include "../BMP280/bmp280.h"
 #include "../WIFI/wifi.h"
 
@@ -72,8 +73,8 @@ void ICACHE_FLASH_ATTR mqtt_publish_data() {
     /*
      TODO: MQTT-Header aufbauen, Laenge berechnen, Payload hinzufuegen...
     */
-   wifi.setDataToPublish(&wifi, data, 8);
-   wifi.publishData(&wifi);
+   MQTT mqtt;
+   wifi.publishData(&wifi, &mqtt);
 }
 
 void ICACHE_FLASH_ATTR user_init(void) {
@@ -87,10 +88,10 @@ void ICACHE_FLASH_ATTR user_init(void) {
         os_printf("Found BMP280\r\n");
         initWifi(&wifi);
 
-        /* Veroeffentliche alle 10s neuen Temperaturwert */
+        /* Veroeffentliche alle 1s neuen Temperaturwert */
         os_timer_disarm(&mqtt_publish_timer);
         os_timer_setfn(&mqtt_publish_timer, (os_timer_func_t*)mqtt_publish_data, NULL);
-        os_timer_arm(&mqtt_publish_timer, 10000, true);
+        os_timer_arm(&mqtt_publish_timer, 1000, true);
     } else {
         os_printf("BMP280-ID GOT %d, expected %d - END.\r\n", bmp280_id, BMP280_EXPECTED_ID);
     }

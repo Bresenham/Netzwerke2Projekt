@@ -4,8 +4,6 @@
 */
 
 #include "wifi.h"
-#include "wifi_private.h"
-#include "espconn.h"
 
 /********************/
 /* PRIVATE FUNCTIONS */
@@ -13,16 +11,6 @@
 LOCAL os_timer_t test_timer;
 LOCAL struct _esp_tcp user_tcp;
 LOCAL struct espconn user_tcp_conn;
-
-void wifiSetDataToPublish(Wifi *self, const uint8_t *data, const uint8_t length) {
-    os_free(self->data);
-
-    self->data = (uint8_t*)os_zalloc(sizeof(uint8_t) * length);
-    for(uint8_t i = 0; i < length; i++) {
-        self->data[i] = data[i];
-    }
-    self->dataLength = length;
-}
 
 void ICACHE_FLASH_ATTR user_tcp_recv_cb(void *arg, char *pusrdata, unsigned short length) {
     os_printf("Received data string\r\n\t");
@@ -123,7 +111,7 @@ void ICACHE_FLASH_ATTR user_check_ip(void) {
     }
 }
 
-void ICACHE_FLASH_ATTR wifiConnect(Wifi *self) {
+void ICACHE_FLASH_ATTR wifiConnect(Wifi *self, MQTT *packet) {
     // Wifi configuration 
     struct station_config stationConf; 
         
@@ -163,6 +151,5 @@ void ICACHE_FLASH_ATTR initWifi(Wifi *self) {
     self->PW = "";
 
     self->publishData = &wifiConnect;
-    self->setDataToPublish = &wifiSetDataToPublish;
     os_printf("Initialized Wifi\r\n");
 }
