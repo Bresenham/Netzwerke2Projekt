@@ -516,7 +516,8 @@ $\Rightarrow$ Fehlinterpretation von Paketverlusten auf drahtlosem Link von TCP 
 
 $\circ$ \textbf{Vertraulichkeit:} Nur Sender und rechtmäßige Empfänger sollen die Nachricht verstehen können\\
 $\circ$ \textbf{Integrität:} Sicherstellen, dass Nachricht unverändert ist (ob durch Übertragungsfehler oder Angriff)\\
-$\circ$ \textbf{Authentifizierung:} Sicherstellen, dass Kommunikationspartner derjenige ist, für den er sich ausgibt\\
+$\circ$ \textbf{Authentisierung:} Nachweis, dass eine Person diejenige ist, die sie vorgibt zu sein\\
+$\circ$ \textbf{Authentifizierung:} Sicherstellen, dass Kommunikationspartner derjenige ist, für den er sich ausgibt (Prüfung der \textit{Authentisierung})\\
 $\circ$ \textbf{Authorisierung:} Nachweis von speziellen Rechten\\
 $\circ$ \textbf{Betriebssicherheit:} Absicherung des Firmennetzes gegen Eingriffe von außen
 
@@ -692,7 +693,7 @@ $\circ$ Statt \textit{Master Secret} direkt als Schlüssel zu verwenden werden au
 \vspace{-1.5em}
 \textbf{SSL Record}\\
 \begin{tabular}{ll}
-	\raisebox{-.5\height}{\includegraphics[scale=0.075]{images/ssl_record.png}} &
+	\raisebox{-.5\height}{\includegraphics[scale=0.11]{images/ssl_record.png}} &
 	\makecell[l]{$\circ$ \textbf{Type:} Unterscheidung von Handshake/Nutzdaten/Beenden\\$\circ$ \textbf{Version:} SSL-Versionsnummer\\$\circ$ \textbf{Length:} Länge der Daten (ohne Header) - Extraktion aus dem TCP-Byte Strom}
 \end{tabular}\\
 
@@ -760,6 +761,73 @@ $\circ$ Implementierung auf verschiedenen Schichten möglich (Transportschicht: \
 
 \subsection{IPSec}
 \vspace{-1.5em}
+$\circ$ Dominierendes Protokoll für \textit{VPN}s auf Netzwerkschicht, verschiedene Verfahren:\\
+\vspace{-2.75em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item \textit{Authentication Header} \textbf{(AH)}\\
+	\hspace*{2.5mm}- Garantiert Integrität der übertragenen Daten, Authentifizierung der Quelle eines Paketes (\textbf{keine} Verschlüsselung)\\
+	\hspace*{2.5mm}\textbf{Header:}\\
+	\hspace*{2.5mm}\hspace*{2.5mm}- \textit{Integrity Check Value} (\textbf{ICV}): \textit{HMAC} (Hash über Nutzdaten + Geheimnis) über IP-Paket\\
+	\hspace*{2.5mm}\hspace*{2.5mm}- \textit{Security Parameter Index} (\textbf{SPI}): Index auf eine \textit{Security Association} (kommt später)\\
+	\hspace*{2.5mm}\hspace*{2.5mm}- \textit{Sequence Number} (\textbf{SN}): Steigende Nummer zum Schutz vor \textit{Replay}-Attacken
+	\item \textit{Encapsulated Security Payload} \textbf{ESP}\\
+	\hspace*{2.5mm}- Vertraulichkeit der Daten durch symmetrische Verschlüsselung + zusätzliche Authentifizierung der Quelle eines Paketes\\
+	\hspace*{2.5mm}\textbf{Header:}\\
+	\hspace*{2.5mm}\hspace*{2.5mm}- Ebenfalls \textit{ICV} (hier wird äußerer IP-Header \textbf{nicht} mit einbezogen), \textit{SPI} und \textit{SN}\\
+	\hspace*{2.5mm}\hspace*{2.5mm}- \textit{Initialization Vector} (\textbf{IV}): Initialisierungsvektor für symmetrische Verschlüsselungsverfahren\\
+	\hspace*{2.5mm}\hspace*{2.5mm}- \textit{Encrypted Payload} (\textbf{Encrypted Payload}): Verschlüsselte Nutzdaten
+\end{itemize}
 
+\vspace{-1em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.35]{images/ipsec_transport_tunnel_mode.png}} &
+	\makecell[l]{$\circ$ \textbf{Transport Mode:} Einfügen des \textit{IPSec}-Headers in original IP-Paket\\\hspace*{2.5mm}$\Rightarrow$ Gesicherte IP-Verbindung zwischen zwei Hosts (\textit{End-to-End})\\$\circ$ \textbf{Tunnel Mode:} Kapselung des Original IP-Paketes (inkl. Header) in\\\hspace*{2.5mm}neues IP-Paket mit IPSec-Header\\\hspace*{2.5mm}$\Rightarrow$ Gesicherte Verbindung zwischen Host/Netz und Netz/Netz\\\hspace*{2.5mm}$\Rightarrow$ Im neuen IP-Header neue Src- bzw. Dest-Adressen (die Tunnelendpunkte)}
+\end{tabular}\\
 
+\vspace{-1em}
+\textbf{Security Association (SA):}\\
+\vspace{-2.5em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item (unidirektionale) Festlegung der für IPSec Kommunikation zwischen zwei IPSec-Hosts verwendeten Parameter:\\Protokoll, Modus, Verschlüsselung
+	\item legen fest, \textbf{was} in \textbf{welcher Art} verschlüsselt wird
+	\item Jede \textit{SA} hat eindeutigen \textit{Security Parameter Index} (\textbf{SPI})
+	\item IPSec Einheit erhält die \textit{SPI}s in \textit{Security Association Database} (\textbf{SPD})
+\end{itemize}
+
+\vspace{-1em}
+\textbf{Problem mit \textit{Network Address Translation} (NAT):}\\
+$\circ$ \textit{NAT} ändert Port und IP-Adresse (klappt nicht, wenn die im \textit{Tunnel-Mode} verschlüsselt sind)\\
+\hspace*{2.5mm}$\Rightarrow$ \textit{IPSec NAT Traversal}: UDP Datagram zum Übertragen der IPSec Pakete\\
+
+\vspace{-2.5em}
+\textbf{Internet Key Exchange (IKE):}\\
+\vspace{-2.5em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Automatisiertes Aushandeln der \textit{SA}s (mit Schlüssel)
+	\item Basiert auf \textit{Security Association Key Management Protocol} (\textbf{ISAKMP})
+	\item Variante 1: \textit{Pre-Shared Key} (\textbf{PSK})\\
+	\hspace*{2.5mm}- Beide Seiten sind mit gemeinsamen Geheimnis vorkonfiguriert\\
+	\hspace*{2.5mm}- \textit{IKE} wird genutzt um SAs aufzusetzen
+	\item Variante 2: \textit{Public Key Infrastruktur} (\textbf{PKI})\\
+	\hspace*{2.5mm}- Beiden Seiten haben Public- und Private Key + \textbf{Zertifikat}\\
+	\hspace*{2.5mm}- IKE zur Authentifizierung und Aufsetzen der SAs (ähnlich SSL Handshake)
+	\item Phase 1: Aufbau einer bi-direktionalen \textit{IKE} SA (\textbf{keine} IPSec SA)\\
+	\hspace*{2.5mm}- Verwendet \textit{ISAKMP}, entweder im \textit{Aggressive Mode} (1.5 RTT) oder \textit{Main Mode} (3 RTT)
+	\item Phase 2: Aushandlung von IPSec SA (ebenfalls mit ISAKMP), Teilnehmer signieren ihre Nachrichten
+\end{itemize}
+
+\vspace{-1.5em}
+\subsection{Alternative VPN Protokolle}
+\vspace{-1.5em}
+$\circ$ \textbf{OpenVPN:} per \textit{OpenSSL} verschlüsselte \textit{TLS}-Verbindung (TCP/UDP), \textit{Bridge-Mode:} Layer 2 Tunnel, \textit{Routing-Mode:} IP-Tunnel\\
+$\circ$ \textbf{Port Forwarding / Tunnelling mit SSH:} Tunneln von TCP-Verbindungen über \textit{SSH} (Anwendungsschicht) - kein echtes \textit{VPN}\\
+
+\vspace{-3em}
+\subsection{Sichere WLANs}
+\vspace{-1.5em}
+\textbf{Wired Equivalent Privacy (WEP):}\\
+$\circ$ Schlüsselverteilung nicht Teil von \textit{WEP}, Aufgaben lediglich Authentifizierung und Verschlüsselung
 \end{document}
