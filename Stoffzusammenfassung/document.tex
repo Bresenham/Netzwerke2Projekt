@@ -739,4 +739,27 @@ $\circ$ \textbf{Perfect Forward Secrecy:} Kommunikationspartner generieren nur f
 		\hspace*{7mm}Unternehmensserver erweitert\\}
 \end{tabular}\\
 
+\vspace{-1.5em}
+\subsection{Virtual Private Networks (VPN)}
+\vspace{-1.5em}
+$\circ$ Stellt über ein öffentliches, ggf. unsicheres, Netzwerk eine gesicherte, private Vernetzung zwischen Endgeräten her\\
+$\circ$ Zur Anbindung von auswärtigen Standorten, externen Partnern oder Mitarbeitern (\textit{Remote Access})\\
+$\circ$ Implementierung auf verschiedenen Schichten möglich (Transportschicht: \textit{Cisco-Client}, Netzwerk-Schicht (IP): \textit{IPSec})\\
+
+\vspace{-1.5em}
+\includegraphics[scale=0.24]{images/vpn.png}
+\par
+
+\vspace{-1em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.33]{images/vpn_tunneling.png}} &
+	\makecell[l]{$\circ$ \textbf{Tunneling:} Weiterleitung beliebiger Datenpakete über unsicheres Transitnetz\\$\circ$ VPN nutz eigenen Adressraum\\$\circ$ $A,B,C$ := VPN-Adressraum, $\lambda, \mu$ := Internet-Adressraum\\$\circ$ \textbf{Authentisierung}:\\\hspace*{2.5mm}\textit{Password Authentication Protocol} \textbf{PAP} - unsicher da Klartextaustausch\\\hspace*{2.5mm}\textit{Challenge Handshake Authentication Protocol} \textbf{CHAP} - Challenge-Response\\$\circ$ \textbf{Software:}\\\hspace*{2.5mm}Server (VPN-Gateway) per VPN-Server Software\\\hspace*{2.5mm}Client per VPN-Client (Cisco) / VPN-Adapter\\$\circ$ \textbf{Protokolle:}\\\hspace*{2.5mm}\textit{Point-to-Point Tunnelling Protocol} \textbf{PPTP}\\\hspace*{2.5mm}\textit{Layer Two Tunnelling Protocol} \textbf{L2TP} (\textit{PPTP}-Nachfolger)\\\hspace*{2.5mm}\hspace*{2.5mm}- Tunnelt beliebige Pakete über UDP}
+\end{tabular}\\
+
+\newpage
+
+\subsection{IPSec}
+\vspace{-1.5em}
+
+
 \end{document}
