@@ -825,9 +825,42 @@ $\circ$ \textit{NAT} ändert Port und IP-Adresse (klappt nicht, wenn die im \text
 $\circ$ \textbf{OpenVPN:} per \textit{OpenSSL} verschlüsselte \textit{TLS}-Verbindung (TCP/UDP), \textit{Bridge-Mode:} Layer 2 Tunnel, \textit{Routing-Mode:} IP-Tunnel\\
 $\circ$ \textbf{Port Forwarding / Tunnelling mit SSH:} Tunneln von TCP-Verbindungen über \textit{SSH} (Anwendungsschicht) - kein echtes \textit{VPN}\\
 
-\vspace{-3em}
+\newpage
+
 \subsection{Sichere WLANs}
 \vspace{-1.5em}
-\textbf{Wired Equivalent Privacy (WEP):}\\
-$\circ$ Schlüsselverteilung nicht Teil von \textit{WEP}, Aufgaben lediglich Authentifizierung und Verschlüsselung
+\textbf{Wired Equivalent Privacy (WEP)}\\
+
+\vspace{-1.5em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.495]{images/wep_encryption_decryption.png}} &
+	\makecell[l]{
+		$\circ$ Schlüsselverteilung nicht Teil von \textit{WEP}, Aufgaben lediglich\\\hspace*{2.5mm}Authentifizierung und Verschlüsselung (mit Stromchiffre \textit{RC4})\\
+		$\circ$ \textbf{Schlüssel:}\\
+		\hspace*{2.5mm}- 24-Bit Initialisierungsvektor (\textit{IV}), wechselt von Rahmen zu Rahmen,\\
+		\hspace*{2.5mm}\hspace*{2.5mm}wird im Klartext übertragen\\
+		\hspace*{2.5mm}- 40-Bit (später 104-Bit) symmetrischer Schlüssel (\textit{Root Key})\\
+		$\circ$ $m(i)$:= Nachricht-Byte; $ks(i)$:= Schlüsselstrom-Byte; $c(i)$:= Cipher-Byte\\
+		\hspace*{2.5mm}- Sender: $c(i) = ks(i)$ $XOR$ $m(i)$; Empfänger: $m(i) = ks(i)$ $XOR$ $c(i)$\\
+		$\circ$ \textit{Integrity Check Value} (\textbf{ICV}):\\
+		\hspace*{2.5mm}- \textit{CRC32} über zu verschlüsselnde Daten\\
+		\hspace*{2.5mm}- \textit{Root Key} und \textit{IV} zur Verschlüsselung von Daten und \textit{ICV}\\
+		\hspace*{2.5mm}- schützt vor zufälligen Fehlern, nicht vor Angreifer (kein geeigneter \textit{MAC})\\
+		$\circ$ \textbf{Authentifizierung:}\\
+		\hspace*{2.5mm}- \textbf{Open System:} Alle Authentifizierungsnachrichten w/o Prüfung zulassen\\
+		\hspace*{2.5mm}\hspace*{2.5mm}$\Rightarrow$ Client kann ohne Schlüssel keine korrekten Nachrichten senden\\
+		\hspace*{2.5mm}- \textbf{Shared Key:} Client sendet Request an AccessPoint\\
+		\hspace*{2.5mm}\hspace*{2.5mm}AP sendet 128-Byte \textit{Nonce}, Client verschlüsselt \textit{Nonce} mit \textit{shared key}\\
+		\hspace*{2.5mm}\hspace*{2.5mm}AP entschlüsselt Ciphertext mit \textit{IV} und \textit{shared key} (Ergebnis = \textit{Nonce})
+	}
+\end{tabular}\\
+
+\vspace{-1.5em}
+\textbf{Probleme mit \textit{Shared Key Authentication} bei WEP:}\\
+$\circ$ Angreifer kann \textit{IV}, \textit{Nonce} und \textit{Antwort} beobachten, daraus kann er gültigen Schlüsselstrom und \textit{IV} erzeugen:\\
+\text{\hspace*{2.5mm}$Nonce$ $XOR$ $(Nonce$ $XOR$ $keystream) = keystream$ $\Rightarrow$ Angreifer kann gültige Authentifizierungsnachrichten für beliebige \textit{Nonce} erstellen}\\
+\hspace*{2.5mm}$\Rightarrow$ \textbf{Unsicherer} als \textit{Open System}\\
+\text{$\circ$ \textbf{Problem 1:} Nur $2^{24}$ verschiedene Schlüssel (\textit{IV}-Länge) $\Rightarrow$ \textit{IV} wird aufgrund heutiger Datenraten in weniger als einem Tag erneut verwendet}\\
+\hspace*{2.5mm}Angreifer kann selbst Datenverkehr generieren (z.B. ARP-Requests durch mitschneiden da ARP bekannte Länge bzw. Plaintext fix)\\
+$\circ$ \textbf{Problem 2:} \textit{IV} wird im Klartex übertragen $\Rightarrow$ Angreifer kann Wiederholung leicht erkennen
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.4.24)  20 MAY 2019 21:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.4.24)  21 MAY 2019 10:46
 entering extended mode
 **./document.tex
 (document.tex
@@ -1471,41 +1471,86 @@ Underfull \hbox (badness 10000) in paragraph at lines 825--827
 
  []
 
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 829.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 829.
-
-Package caption Warning: Unused \captionsetup[lstlisting] on input line 147.
-See the caption package documentation for explanation.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 833.
 
 Overfull \vbox (1.79988pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 833.
+(babel)             in language  on input line 828.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 833.
+(babel)             in language  on input line 828.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 833.
+(babel)             in language  on input line 828.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 833.
+(babel)             in language  on input line 828.
 
 [11 <./images/ipsec_transport_tunnel_mode.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 833.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 830.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 830.
+
+Underfull \hbox (badness 10000) in paragraph at lines 832--833
+
+ []
+
+<images/wep_encryption_decryption.png, id=189, 512.66531pt x 555.57562pt>
+File: images/wep_encryption_decryption.png Graphic file (type png)
+
+<use images/wep_encryption_decryption.png>
+Package pdftex.def Info: images/wep_encryption_decryption.png used on input lin
+e 836.
+(pdftex.def)             Requested size: 253.76619pt x 275.00653pt.
+
+Overfull \hbox (64.3817pt too wide) in paragraph at lines 835--857
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 835--857
+
+ []
+
+
+Package caption Warning: Unused \captionsetup[lstlisting] on input line 147.
+See the caption package documentation for explanation.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 866.
+
+Overfull \hbox (25.65602pt too wide) in paragraph at lines 859--866
+[] 
+ []
+
+
+Overfull \hbox (36.05374pt too wide) in paragraph at lines 859--866
+[] 
+ []
+
+
+Overfull \vbox (1.79988pt too high) has occurred while \output is active []
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 866.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 866.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 866.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 866.
+
+[12 <./images/wep_encryption_decryption.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 866.
  (document.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 833.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 833.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 866.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 866.
 Package rerunfilecheck Info: File `document.out' has not changed.
 (rerunfilecheck)             Checksum: CEE3AEF7A038FA086FCEA88478B6A955;1406.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 833.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 866.
  ) 
 Here is how much of TeX's memory you used:
- 13080 strings out of 493333
- 206820 string characters out of 3139197
+ 13086 strings out of 493333
+ 207019 string characters out of 3139197
  432349 words of memory out of 3000000
- 16344 multiletter control sequences out of 15000+200000
+ 16348 multiletter control sequences out of 15000+200000
  42230 words of font info for 34 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,14n,66p,8821b,447s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1524,9 +1569,9 @@ es/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts
 /type1/public/lm/lmri8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/l
 mro8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy6.pfb><C:/Progr
 am Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb>
-Output written on document.pdf (11 pages, 1890091 bytes).
+Output written on document.pdf (12 pages, 2000575 bytes).
 PDF statistics:
- 251 PDF objects out of 1000 (max. 8388607)
- 39 named destinations out of 1000 (max. 500000)
- 258 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 256 PDF objects out of 1000 (max. 8388607)
+ 40 named destinations out of 1000 (max. 500000)
+ 263 words of extra memory for PDF output out of 10000 (max. 10000000)
 
