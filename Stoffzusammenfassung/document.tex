@@ -829,7 +829,7 @@ $\circ$ \textbf{Port Forwarding / Tunnelling mit SSH:} Tunneln von TCP-Verbindun
 
 \subsection{Sichere WLANs}
 \vspace{-1.5em}
-\textbf{Wired Equivalent Privacy (WEP)}\\
+\textbf{802.11: Wired Equivalent Privacy (WEP)}\\
 
 \vspace{-1.5em}
 \begin{tabular}{ll}
@@ -862,5 +862,27 @@ $\circ$ Angreifer kann \textit{IV}, \textit{Nonce} und \textit{Antwort} beobacht
 \hspace*{2.5mm}$\Rightarrow$ \textbf{Unsicherer} als \textit{Open System}\\
 \text{$\circ$ \textbf{Problem 1:} Nur $2^{24}$ verschiedene Schlüssel (\textit{IV}-Länge) $\Rightarrow$ \textit{IV} wird aufgrund heutiger Datenraten in weniger als einem Tag erneut verwendet}\\
 \hspace*{2.5mm}Angreifer kann selbst Datenverkehr generieren (z.B. ARP-Requests durch mitschneiden da ARP bekannte Länge bzw. Plaintext fix)\\
-$\circ$ \textbf{Problem 2:} \textit{IV} wird im Klartex übertragen $\Rightarrow$ Angreifer kann Wiederholung leicht erkennen
+$\circ$ \textbf{Problem 2:} \textit{IV} wird im Klartex übertragen $\Rightarrow$ Angreifer kann Wiederholung leicht erkennen\\
+
+\vspace{-2em}
+\textbf{802.11i: Temporal Key Integrity Protocol (TKIP)}\\
+\text{$\circ$ Ersatz für \textit{WEP}, aber mit selber Hardware funktionsfähig, \textit{IV} erweitert auf 48-Bit, neue Hash-Funktion, \textit{Personal}-Mode mit pre-shared key}\\
+
+\vspace{-2em}
+\textbf{802.11i: Counter Mode with Cipher Block Chaining Message Authentication Code Protocol (CCMP)}\\
+$\circ$ Verwendet \textit{AES} mit 128-Bit Schlüssel und 48Bit \textit{IV} (anstatt RC4)\\
+$\circ$ Teil des \textit{WPA2}-Verfahrens, WPA2 würde alternativ auch \textit{TKIP} erlauben (\textbf{empfohlen ist allerdings WPA2 + CCMP})\\
+
+\vspace{-2em}
+\textbf{802.11i: WPA3}\\
+$\circ$ 128-Bit (\textit{personal} mode) bzw. 192-Bit (\textit{enterprise} mode) + \textit{Forward Secrecy}\\
+
+\vspace{-2em}
+\textbf{Extensible Authentication Protocol (EAP)}\\
+$\circ$ Protokoll für sichere Ende-zu-Ende Authentifizierung zwischen mobilen Clients und Authentifizierungsserver über einen Access Point\\
+$\circ$ \textit{EAP-TLS}: Nutzung von Zertifikaten; \textit{EAP-PEAP:} Verschlüsselter Tunnel für Authentifizierung\\
+
+\vspace{-2em}
+\textbf{802.1X}\\
+$\circ$ Erweitert \textit{802.11} durch \textit{EAP} um Sicherheitsfunktionen wie: Schlüsselmanagement, Nutzeridentifikation, Tokens...
 \end{document}
