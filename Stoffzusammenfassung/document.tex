@@ -108,6 +108,7 @@
 \usepackage{makecell}
 \usepackage{enumitem}
 \usepackage{xcolor}
+\usepackage{multirow}
 % ** - **
 
 %******************************
@@ -885,4 +886,106 @@ $\circ$ \textit{EAP-TLS}: Nutzung von Zertifikaten; \textit{EAP-PEAP:} Verschlüs
 \vspace{-2em}
 \textbf{802.1X}\\
 $\circ$ Erweitert \textit{802.11} durch \textit{EAP} um Sicherheitsfunktionen wie: Schlüsselmanagement, Nutzeridentifikation, Tokens...
+
+\newpage
+
+
+\subsection{DNS Security Extensions (DNSSEC)}
+\vspace{-1.5em}
+$\circ$ Absicherung von Authentizität und Integrität der DNS-Informationen (\textbf{nicht} Vertraulichkeit)\\
+$\Rightarrow$ Verwendung von Signaturen, umgesetzt mit asymmetrischen Kryptosystem (public \& private Key):\\
+\hspace*{2.5mm}\hspace*{2.5mm}- \textit{Resource Record} (RR) wird mit geheimen Schlüssel unterschrieben\\
+\hspace*{2.5mm}\hspace*{2.5mm}- DNS Client prüft mit öffentlichem Schlüssel die Authentizität und Integrität des empfangenen \textit{RR}s\\
+\hspace*{2.5mm}\hspace*{2.5mm}- \textit{Chain-of-Trust:} Höhere Zone im DNS-Baum bestätigt durch Signierung die öffentlichen Schlüssel der unteren Zonen,\\
+\hspace*{2.5mm}\hspace*{2.5mm}\hspace*{2.5mm}$\rightarrow$ der Anfragende muss nur obersten public key kennen (\textit{Key Signing Key})\\
+$\circ$ Realisierung über neue Resource Record Typen:\\
+\vspace{-1.25em}
+\hspace*{2.5mm}\begin{tabular}{l|l|l}
+	\textbf{RR Typ} & \textbf{Erläuterung} & \multirow{2}{*}{\makecell[l]{
+			\includegraphics[scale=0.2]{images/dns_hierarchie.png}
+	}}\\
+	RRSIG & Digitale Signatur eines \textit{Resource Record Sets} (RRset) &\\
+	DNSKEY & \makecell[l]{Public Signing Key, wird vom Resolver zur Prüfung digitaler Signaturen\\verwendet} &\\
+	\hline
+	DS & \makecell[l]{Delegation Signer: Hash des \textit{DNSKEY} um dessen Authentizität\\sicherzustellen,delegiert Vertrauen eine Ebene weiter in Chain-of-Trust} &\\
+	\hline
+	CNSKEY, CDS & Child Zone informiert Parent: Key-Signing-Key ändern, DNSSEC an/aus &\\
+\end{tabular}\\
+
+\begin{enumerate}[label=\textbf{\arabic*}]
+	\setlength\itemsep{-1em}
+	\item \begin{tabular}{ll}
+		\raisebox{-.5\height}{\includegraphics[scale=0.325]{images/rrset.png}} &
+		\makecell[l]{
+			$\circ$ Gruppieren von gleichen RRs (Label, Klasse \& Typ) zu einem \textit{RRset}\\
+			$\circ$ RRset kann später gemeinsam signiert werden
+		}
+	\end{tabular}
+	\item \begin{tabular}{ll}
+		\raisebox{-.5\height}{\includegraphics[scale=0.3125]{images/rrsig.png}} &
+		\makecell[l]{
+			$\circ$ Für Zone zuständiger, authoritativer DNS-Server nutzt privaten Schlüssel\\
+			\hspace*{2.5mm}des \textit{Zone Signing Key Pair} (ZSK) um RRset zu signieren $\rightarrow$ RRSIG
+		}
+	\end{tabular}
+	\item \begin{tabular}{ll}
+		\raisebox{-.5\height}{\includegraphics[scale=0.3]{images/dnskey.png}} &
+		\makecell[l]{
+			$\circ$ DNS Resolver benötigt öffentlichen Schlüssel des \textit{ZSK}\\
+			\hspace*{2.5mm}$\rightarrow$ wird über \textit{DNSKEY} verbreitet\\
+			$\circ$ DNS Server liefert RRSIG mit an den DNS Resolver,\\
+			\hspace*{2.5mm}dieser verifiziert RR durch DNSKEY
+		}
+	\end{tabular}
+	\item \begin{tabular}{ll}
+		\raisebox{-.5\height}{\includegraphics[scale=0.3]{images/kskzsk.png}} &
+		\makecell[l]{
+			$\circ$ Zone erstellt weitere Schlüsselpaar: \textit{Key Signing Key} (KSK)\\
+			$\circ$ Hierarchischer Ansatz: Parent bestätigt KSK und KSK validiert ZSK\\
+			$\circ$ ZSK kann nun unabhängig vom Parent geändert werden\\
+			\hspace*{2.5mm}(falls ZSK kompromittiert)\\
+			$\circ$ RRset bestehend aus $ZSK_{pub}$ \& $KSK_{pub}$ wird mit $KSK_{priv}$ signiert
+		}
+	\end{tabular}
+	\item Chain-of-Trust: Vertrauen muss von Parent auf Child Zone übertragen werden können $\rightarrow$ \textit{Delegation Signer} (DS)-Record\\
+	Zonen-Operator der Child-Zone erstellt Hash von DNSKEY mit $KSK_{pub}$ \& gibt ihn an Parent:\\
+	- Dieser veröffentlicht ihn in \textit{DS}-Record
+\end{enumerate}
+
+\vspace{-2.5em}
+\subsection{DNS over TLS}
+\vspace{-1.5em}
+\begin{enumerate}
+	\setlength\itemsep{-1.25em}
+	\item DNS Client (DNS Stub Resolver) baut TCP-Verbindung zu Resolver auf
+	\item TLS Handshake wird durchgeführt\\
+	- Resolver sendet TLS Zertifikat\\
+	- DNS Stub Resolver prüft Zertifikat mit Hash des öffentlichen Schlüssels des Resolvers
+	\item Ab jetzt sendet DNS Stub Resolver alle DNS Anfragen über mit TLS geschützte TCP-Verbindung\\
+	- Übertragung einer Nachricht: 2-Byte Längenangabe + Nachricht\\
+	\text{\hspace*{2.5mm}beim Zusammensetzen muss man wissen, wie lange die ursprüngliche Nachricht war, wenn sie in einzelne TCP-Pakete zerstückelt wurde}
+	\item Verbindung bleibt offen bis DNS Stub Resolver sie schließt
+	\item Umsetzung: Als Betriebssystem-Dienst (z.B. \textit{systemd-resolved} unter Linux) oder\\
+	lokaler Forwarder der als localhost-DNS-Server im Betriebssystem eingetragen wird und Anfragen über TLS weiterleitet
+\end{enumerate}
+
+\vspace{-2.5em}
+\subsection{DNS over HTTPS}
+\vspace{-1.5em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.4]{images/dns_over_https.png}} &
+	\makecell[l]{
+		$\circ$ Probleme: Genutzter DNS-Server ist Anwendungsspezifisch\\
+		\hspace*{2.5mm}(z.B. Browser), firmeneigene DNS-Server werden umgangen\\
+		$\circ$ Internet Web-/Maildienste funktionieren nicht mehr\\
+		\hspace*{2.5mm}(werden nur vom internen DNS aufgelöst)\\
+		$\circ$ DNS-Filter gegen Malware unwirksam\\
+		$\circ$ Nur wenige Firmen (Cloudfare, Google) bieten DNS-over-HTTPS\\
+		$\rightarrow$ Konzentration auf wenige Anbieter, Privatssphäre Gefärdung\\
+		$\circ$ Viel Overhead (Anwendungsschicht: DNS, HTTP, TLS\\
+		\hspace*{2.5mm}Transportschicht: TCP statt UDP)
+	}
+\end{tabular}
+
+\includegraphics[scale=0.425]{images/dns_over_tls_https.png}
 \end{document}
