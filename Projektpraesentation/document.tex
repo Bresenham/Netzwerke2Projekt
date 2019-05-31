@@ -1,6 +1,8 @@
 % !TeX TS-program = xelatex
 
 \documentclass{beamer}
+
+\usepackage{tabularx}
 \usepackage{xltxtra}
 \usepackage{fontspec}
 \usepackage{polyglossia}
@@ -19,12 +21,10 @@
 \setmonofont{Impact}
 
 
-
-
 \title{Message Queuing Telemetry Transport}
 \subtitle{Implementierung einer IoT-Anwendung auf Basis von MQTT}
 \author{Maximilian Gaul, Lukas Dorner}
-\date{1.07.2019}
+\date{01.07.2019}
 
 %\mode<presentation>
 
@@ -35,6 +35,7 @@
 \end{frame}
 
 \begin{frame}
+
 \frametitle{MQTT}
 \framesubtitle{Control Packet}
 Besteht aus bis zu drei Teilen:
@@ -47,6 +48,7 @@ Besteht aus bis zu drei Teilen:
 \end{frame}
 
 \begin{frame}
+
 \frametitle{MQTT}
 \framesubtitle{Fixed Header}
 \begin{tabular}{c|c|c|c|c|c|c|c|c}
@@ -62,6 +64,7 @@ Besteht aus bis zu drei Teilen:
 \end{frame}
 
 \begin{frame}
+
 \frametitle{MQTT}
 \framesubtitle{Fixed Header - Byte 1}
 \begin{itemize}
@@ -87,12 +90,131 @@ Besteht aus bis zu drei Teilen:
 			\textit{DUP} & \makecell[l]{$0$ := Erster Versuch, ein \textit{PUBLISH} zu senden,\\$1$ := Möglicherweise erneutes Senden eines \textit{PUBLISH}}
 		\end{tabular}
 		\item \begin{tabular}{ll}
-			\textit{QoS} & \makecell[l]{Gibt an, wie oft ein \textit{PUBLISH} maximal bzw. minimal gesendet wird}
+			\textit{QoS} & \makecell[l]{Gibt an, wie oft ein \textit{PUBLISH} maximal bzw. minimal gesendet wird\\$0$ := höchstens einmal versendet}
 		\end{tabular}
 			\item \begin{tabular}{ll}
 		\textit{RETAIN} & \makecell[l]{$1$ := Server \textit{muss} Nachricht speichern \& an \textit{zukünftige}\\\hspace*{2em}Abonnenten senden\\$0$ := Server \textit{darf nicht} $1$}
 	\end{tabular}
 	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{MQTT}
+\framesubtitle{Fixed Header - Byte 2}
+\begin{itemize}
+	\item Gibt die Anzahl der verbleibenden Bytes in diesem Paket an (beinhaltet den \textit{variablen} Header und die \textit{Payload}), maximal 4 Bytes lang
+	\item Das \textit{höchstwertige} Bit eines Bytes gibt an, ob noch ein weiteres Byte für die Kodierung der verbleibenden Länge verwendet wurde\\
+	$\Rightarrow$ Es können \textit{Control} Packets bis zu einer Größe von 256 MB kodiert werden
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{MQTT}
+\framesubtitle{Variable Header}
+\begin{itemize}
+	\item Unterschiedliche Bedeutung je nach \textit{Control Packet Type}
+	\begin{itemize}
+		\item Zuordnung von \textit{PUBLISH} Paketen mit \textit{QoS} $> 0$ z.B. über einen 16 Bit Identifier
+		\item \textit{PUBLISH} mit \textit{QoS} = $0$ darf keinen Packet Identifier enthalten
+		\item Bei einem \textit{CONNECT} Paket definiert er wichtige Verbindungseigenschaften
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{MQTT}
+\framesubtitle{Payload}
+\begin{itemize}
+	\item \textit{CONNECT}, \textit{SUBSCRIBE} und \textit{UNSUBSCRIBE} haben immer eine Payload
+	\item \textit{PUBLISH} Pakete auch ohne Payload
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{MQTT}
+\framesubtitle{Verbindungsaufbau}
+\begin{itemize}
+	\item 
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+
+\frametitle{MQTT}
+\framesubtitle{Netzwerk \& Sicherheit}
+\begin{itemize}
+	\item Als Transportprotokoll kann z.B. \textit{TCP}, \textit{TLS} oder \textit{WebSocket} verwendet werden
+	\begin{itemize}
+		\item \textit{UDP} ist ungeeignet, da \textit{verbindungslos} - keine Garantie für Zustellung der Daten
+	\end{itemize}
+	\item \textit{MQTT} sieht sich selbst nur als Transportprotokoll, für Sicherheit zu sorgen liegt in der Verantwortung des Implementierenden
+	\begin{itemize}
+		\item Empfiehlt \textit{TLS}
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Projekt}
+\framesubtitle{Grundlegender Aufbau}
+\begin{itemize}
+	\item 
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Projekt}
+\framesubtitle{BMP280}
+\begin{tabularx}{\textwidth}{Xr}
+	\begin{itemize}
+		\item Anbindung über den $I^2C$-Bus (\textit{Inter Integrated Circuit})
+		\item Temperatur- und Drucksensor mit einer Auflösung von bis zu 20 Bit
+		\item Ausgelesene Werte verrechnet mit voreingestellten\\Kalibrationsparametern ergeben Temperatur
+	\end{itemize} & \raisebox{-1\height}{\includegraphics[scale=0.075]{images/bmp280.jpg}}
+\end{tabularx}
+
+\end{frame}
+
+
+\begin{frame}
+
+\frametitle{Projekt}
+\framesubtitle{ESP8266}
+\begin{tabularx}{\textwidth}{rX}
+	\raisebox{-1.33\height}{\includegraphics[scale=0.175]{images/esp8266.jpg}} & \begin{itemize}
+		\item Unterstützt 802.11 b/g/n mit bis zu 72.2Mbps
+		\item Antenne als Leiterbahn auf der Platine
+		\item Tensilica L106 32-bit \textit{RISC} mit bis zu 160 MHz (mit \textit{PLL-OC} auch > 300 MHz)
+		\item 96 KByte RAM
+		\item 4 MB Flash Speicher, per \textit{SPI} angebunden
+		\item Ursprünglich als \textit{dummer}, nur per \textit{AT}-Kommandos bedienbarer WiFi-Chip verkauft
+		\item Nach viel \textit{Reverse-Engineering} der Community und schließlich Freigeben eines \textit{SDK} durch den Hersteller heute frei programmierbar (z.B. mit \textit{Arduino} oder in \textit{C} / \textit{Assembler})
+	\end{itemize}
+\end{tabularx}
+
+\end{frame}
+
+
+\begin{frame}
+
+\frametitle{Projekt}
+\framesubtitle{Raspberry Pi}
+\begin{itemize}
+	\item 
 \end{itemize}
 
 \end{frame}

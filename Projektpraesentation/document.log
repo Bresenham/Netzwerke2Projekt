@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (MiKTeX 2.9.7050 64-bit) (preloaded format=xelatex 2019.5.31)  31 MAY 2019 21:08
+This is XeTeX, Version 3.14159265-2.6-0.999991 (MiKTeX 2.9.7050 64-bit) (preloaded format=xelatex 2019.5.31)  31 MAY 2019 22:44
 entering extended mode
 **./document.tex
 (document.tex
@@ -723,7 +723,28 @@ nerthemedefault.sty
 \beamer@dimb=\dimen188
 )
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex/latex/beamer\beamerou
-terthemedefault.sty))) (D:\Programme\MiKTeX\tex/latex/xltxtra\xltxtra.sty
+terthemedefault.sty))) (D:\Programme\MiKTeX\tex/latex/tools\tabularx.sty
+Package: tabularx 2016/02/03 v2.11b `tabularx' package (DPC)
+
+(D:\Programme\MiKTeX\tex/latex/tools\array.sty
+Package: array 2018/12/30 v2.4k Tabular extension package (FMi)
+\col@sep=\dimen189
+\ar@mcellbox=\box55
+\extrarowheight=\dimen190
+\NC@list=\toks43
+\extratabsurround=\skip57
+\backup@length=\skip58
+\ar@cellbox=\box56
+)
+\TX@col@width=\dimen191
+\TX@old@table=\dimen192
+\TX@old@col=\dimen193
+\TX@target=\dimen194
+\TX@delta=\dimen195
+\TX@cols=\count160
+\TX@ftn=\toks44
+)
+(D:\Programme\MiKTeX\tex/latex/xltxtra\xltxtra.sty
 Package: xltxtra 2018/12/31 v0.7 Improvements for the "XeLaTeX" format
 
 (D:\Programme\MiKTeX\tex/latex/fontspec\fontspec.sty
@@ -736,185 +757,185 @@ Package: expl3 2019-05-28 L3 programming layer (loader)
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex/latex/l3kernel\expl3-
 code.tex
 Package: expl3 2019-05-28 L3 programming layer (code)
-\c_max_int=\count160
-\l_tmpa_int=\count161
-\l_tmpb_int=\count162
-\g_tmpa_int=\count163
-\g_tmpb_int=\count164
-\g__kernel_prg_map_int=\count165
-\c__ior_term_ior=\count166
-\c_log_iow=\count167
-\l_iow_line_count_int=\count168
-\l__iow_line_target_int=\count169
-\l__iow_one_indent_int=\count170
-\l__iow_indent_int=\count171
-\c_zero_dim=\dimen189
-\c_max_dim=\dimen190
-\l_tmpa_dim=\dimen191
-\l_tmpb_dim=\dimen192
-\g_tmpa_dim=\dimen193
-\g_tmpb_dim=\dimen194
-\c_zero_skip=\skip57
-\c_max_skip=\skip58
-\l_tmpa_skip=\skip59
-\l_tmpb_skip=\skip60
-\g_tmpa_skip=\skip61
-\g_tmpb_skip=\skip62
+\c_max_int=\count161
+\l_tmpa_int=\count162
+\l_tmpb_int=\count163
+\g_tmpa_int=\count164
+\g_tmpb_int=\count165
+\g__kernel_prg_map_int=\count166
+\c__ior_term_ior=\count167
+\c_log_iow=\count168
+\l_iow_line_count_int=\count169
+\l__iow_line_target_int=\count170
+\l__iow_one_indent_int=\count171
+\l__iow_indent_int=\count172
+\c_zero_dim=\dimen196
+\c_max_dim=\dimen197
+\l_tmpa_dim=\dimen198
+\l_tmpb_dim=\dimen199
+\g_tmpa_dim=\dimen256
+\g_tmpb_dim=\dimen257
+\c_zero_skip=\skip59
+\c_max_skip=\skip60
+\l_tmpa_skip=\skip61
+\l_tmpb_skip=\skip62
+\g_tmpa_skip=\skip63
+\g_tmpb_skip=\skip64
 \c_zero_muskip=\muskip12
 \c_max_muskip=\muskip13
 \l_tmpa_muskip=\muskip14
 \l_tmpb_muskip=\muskip15
 \g_tmpa_muskip=\muskip16
 \g_tmpb_muskip=\muskip17
-\l_keys_choice_int=\count172
-\l__intarray_loop_int=\count173
-\c__intarray_sp_dim=\dimen195
-\g__intarray_font_int=\count174
-\c__fp_leading_shift_int=\count175
-\c__fp_middle_shift_int=\count176
-\c__fp_trailing_shift_int=\count177
-\c__fp_big_leading_shift_int=\count178
-\c__fp_big_middle_shift_int=\count179
-\c__fp_big_trailing_shift_int=\count180
-\c__fp_Bigg_leading_shift_int=\count181
-\c__fp_Bigg_middle_shift_int=\count182
-\c__fp_Bigg_trailing_shift_int=\count183
-\g__fp_array_int=\count184
-\l__fp_array_loop_int=\count185
-\l__sort_length_int=\count186
-\l__sort_min_int=\count187
-\l__sort_top_int=\count188
-\l__sort_max_int=\count189
-\l__sort_true_max_int=\count190
-\l__sort_block_int=\count191
-\l__sort_begin_int=\count192
-\l__sort_end_int=\count193
-\l__sort_A_int=\count194
-\l__sort_B_int=\count195
-\l__sort_C_int=\count196
-\l__tl_analysis_normal_int=\count197
-\l__tl_analysis_index_int=\count198
-\l__tl_analysis_nesting_int=\count199
-\l__tl_analysis_type_int=\count266
-\l__regex_internal_a_int=\count267
-\l__regex_internal_b_int=\count268
-\l__regex_internal_c_int=\count269
-\l__regex_balance_int=\count270
-\l__regex_group_level_int=\count271
-\l__regex_mode_int=\count272
-\c__regex_cs_in_class_mode_int=\count273
-\c__regex_cs_mode_int=\count274
-\l__regex_catcodes_int=\count275
-\l__regex_default_catcodes_int=\count276
-\c__regex_catcode_L_int=\count277
-\c__regex_catcode_O_int=\count278
-\c__regex_catcode_A_int=\count279
-\c__regex_all_catcodes_int=\count280
-\l__regex_show_lines_int=\count281
-\l__regex_min_state_int=\count282
-\l__regex_max_state_int=\count283
-\l__regex_left_state_int=\count284
-\l__regex_right_state_int=\count285
-\l__regex_capturing_group_int=\count286
-\l__regex_min_pos_int=\count287
-\l__regex_max_pos_int=\count288
-\l__regex_curr_pos_int=\count289
-\l__regex_start_pos_int=\count290
-\l__regex_success_pos_int=\count291
-\l__regex_curr_char_int=\count292
-\l__regex_curr_catcode_int=\count293
-\l__regex_last_char_int=\count294
-\l__regex_case_changed_char_int=\count295
-\l__regex_curr_state_int=\count296
-\l__regex_step_int=\count297
-\l__regex_min_active_int=\count298
-\l__regex_max_active_int=\count299
-\l__regex_replacement_csnames_int=\count300
-\l__regex_match_count_int=\count301
-\l__regex_min_submatch_int=\count302
-\l__regex_submatch_int=\count303
-\l__regex_zeroth_submatch_int=\count304
-\g__regex_trace_regex_int=\count305
-\c_empty_box=\box55
-\l_tmpa_box=\box56
-\l_tmpb_box=\box57
-\g_tmpa_box=\box58
-\g_tmpb_box=\box59
-\l__box_top_dim=\dimen196
-\l__box_bottom_dim=\dimen197
-\l__box_left_dim=\dimen198
-\l__box_right_dim=\dimen199
-\l__box_top_new_dim=\dimen256
-\l__box_bottom_new_dim=\dimen257
-\l__box_left_new_dim=\dimen258
-\l__box_right_new_dim=\dimen259
-\l__box_internal_box=\box60
-\l__coffin_internal_box=\box61
-\l__coffin_internal_dim=\dimen260
-\l__coffin_offset_x_dim=\dimen261
-\l__coffin_offset_y_dim=\dimen262
-\l__coffin_x_dim=\dimen263
-\l__coffin_y_dim=\dimen264
-\l__coffin_x_prime_dim=\dimen265
-\l__coffin_y_prime_dim=\dimen266
-\c_empty_coffin=\box62
-\l__coffin_aligned_coffin=\box63
-\l__coffin_aligned_internal_coffin=\box64
-\l_tmpa_coffin=\box65
-\l_tmpb_coffin=\box66
-\g_tmpa_coffin=\box67
-\g_tmpb_coffin=\box68
-\l__coffin_bounding_shift_dim=\dimen267
-\l__coffin_left_corner_dim=\dimen268
-\l__coffin_right_corner_dim=\dimen269
-\l__coffin_bottom_corner_dim=\dimen270
-\l__coffin_top_corner_dim=\dimen271
-\l__coffin_scaled_total_height_dim=\dimen272
-\l__coffin_scaled_width_dim=\dimen273
-\c__coffin_empty_coffin=\box69
-\l__coffin_display_coffin=\box70
-\l__coffin_display_coord_coffin=\box71
-\l__coffin_display_pole_coffin=\box72
-\l__coffin_display_offset_dim=\dimen274
-\l__coffin_display_x_dim=\dimen275
-\l__coffin_display_y_dim=\dimen276
+\l_keys_choice_int=\count173
+\l__intarray_loop_int=\count174
+\c__intarray_sp_dim=\dimen258
+\g__intarray_font_int=\count175
+\c__fp_leading_shift_int=\count176
+\c__fp_middle_shift_int=\count177
+\c__fp_trailing_shift_int=\count178
+\c__fp_big_leading_shift_int=\count179
+\c__fp_big_middle_shift_int=\count180
+\c__fp_big_trailing_shift_int=\count181
+\c__fp_Bigg_leading_shift_int=\count182
+\c__fp_Bigg_middle_shift_int=\count183
+\c__fp_Bigg_trailing_shift_int=\count184
+\g__fp_array_int=\count185
+\l__fp_array_loop_int=\count186
+\l__sort_length_int=\count187
+\l__sort_min_int=\count188
+\l__sort_top_int=\count189
+\l__sort_max_int=\count190
+\l__sort_true_max_int=\count191
+\l__sort_block_int=\count192
+\l__sort_begin_int=\count193
+\l__sort_end_int=\count194
+\l__sort_A_int=\count195
+\l__sort_B_int=\count196
+\l__sort_C_int=\count197
+\l__tl_analysis_normal_int=\count198
+\l__tl_analysis_index_int=\count199
+\l__tl_analysis_nesting_int=\count266
+\l__tl_analysis_type_int=\count267
+\l__regex_internal_a_int=\count268
+\l__regex_internal_b_int=\count269
+\l__regex_internal_c_int=\count270
+\l__regex_balance_int=\count271
+\l__regex_group_level_int=\count272
+\l__regex_mode_int=\count273
+\c__regex_cs_in_class_mode_int=\count274
+\c__regex_cs_mode_int=\count275
+\l__regex_catcodes_int=\count276
+\l__regex_default_catcodes_int=\count277
+\c__regex_catcode_L_int=\count278
+\c__regex_catcode_O_int=\count279
+\c__regex_catcode_A_int=\count280
+\c__regex_all_catcodes_int=\count281
+\l__regex_show_lines_int=\count282
+\l__regex_min_state_int=\count283
+\l__regex_max_state_int=\count284
+\l__regex_left_state_int=\count285
+\l__regex_right_state_int=\count286
+\l__regex_capturing_group_int=\count287
+\l__regex_min_pos_int=\count288
+\l__regex_max_pos_int=\count289
+\l__regex_curr_pos_int=\count290
+\l__regex_start_pos_int=\count291
+\l__regex_success_pos_int=\count292
+\l__regex_curr_char_int=\count293
+\l__regex_curr_catcode_int=\count294
+\l__regex_last_char_int=\count295
+\l__regex_case_changed_char_int=\count296
+\l__regex_curr_state_int=\count297
+\l__regex_step_int=\count298
+\l__regex_min_active_int=\count299
+\l__regex_max_active_int=\count300
+\l__regex_replacement_csnames_int=\count301
+\l__regex_match_count_int=\count302
+\l__regex_min_submatch_int=\count303
+\l__regex_submatch_int=\count304
+\l__regex_zeroth_submatch_int=\count305
+\g__regex_trace_regex_int=\count306
+\c_empty_box=\box57
+\l_tmpa_box=\box58
+\l_tmpb_box=\box59
+\g_tmpa_box=\box60
+\g_tmpb_box=\box61
+\l__box_top_dim=\dimen259
+\l__box_bottom_dim=\dimen260
+\l__box_left_dim=\dimen261
+\l__box_right_dim=\dimen262
+\l__box_top_new_dim=\dimen263
+\l__box_bottom_new_dim=\dimen264
+\l__box_left_new_dim=\dimen265
+\l__box_right_new_dim=\dimen266
+\l__box_internal_box=\box62
+\l__coffin_internal_box=\box63
+\l__coffin_internal_dim=\dimen267
+\l__coffin_offset_x_dim=\dimen268
+\l__coffin_offset_y_dim=\dimen269
+\l__coffin_x_dim=\dimen270
+\l__coffin_y_dim=\dimen271
+\l__coffin_x_prime_dim=\dimen272
+\l__coffin_y_prime_dim=\dimen273
+\c_empty_coffin=\box64
+\l__coffin_aligned_coffin=\box65
+\l__coffin_aligned_internal_coffin=\box66
+\l_tmpa_coffin=\box67
+\l_tmpb_coffin=\box68
+\g_tmpa_coffin=\box69
+\g_tmpb_coffin=\box70
+\l__coffin_bounding_shift_dim=\dimen274
+\l__coffin_left_corner_dim=\dimen275
+\l__coffin_right_corner_dim=\dimen276
+\l__coffin_bottom_corner_dim=\dimen277
+\l__coffin_top_corner_dim=\dimen278
+\l__coffin_scaled_total_height_dim=\dimen279
+\l__coffin_scaled_width_dim=\dimen280
+\c__coffin_empty_coffin=\box71
+\l__coffin_display_coffin=\box72
+\l__coffin_display_coord_coffin=\box73
+\l__coffin_display_pole_coffin=\box74
+\l__coffin_display_offset_dim=\dimen281
+\l__coffin_display_x_dim=\dimen282
+\l__coffin_display_y_dim=\dimen283
 \g__file_internal_ior=\read2
-\l__seq_internal_a_int=\count306
-\l__seq_internal_b_int=\count307
-\c__deprecation_minus_one=\count308
+\l__seq_internal_a_int=\count307
+\l__seq_internal_b_int=\count308
+\c__deprecation_minus_one=\count309
 )
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex/latex/l3kernel\l3xdvi
 pdfmx.def
 File: l3xdvipdfmx.def 2019-04-06 v L3 Experimental driver: xdvipdfmx
-\l__driver_internal_box=\box73
-\g__driver_graphics_int=\count309
-\g__driver_pdf_object_int=\count310
-\g__driver_pdf_annotation_int=\count311
+\l__driver_internal_box=\box75
+\g__driver_graphics_int=\count310
+\g__driver_pdf_object_int=\count311
+\g__driver_pdf_annotation_int=\count312
 ))
 Package: xparse 2019-05-28 L3 Experimental document command parser
-\l__xparse_current_arg_int=\count312
-\g__xparse_grabber_int=\count313
-\l__xparse_m_args_int=\count314
-\l__xparse_v_nesting_int=\count315
+\l__xparse_current_arg_int=\count313
+\g__xparse_grabber_int=\count314
+\l__xparse_m_args_int=\count315
+\l__xparse_v_nesting_int=\count316
 )
 Package: fontspec 2019/03/15 v2.7c Font selection for XeLaTeX and LuaLaTeX
  (D:\Programme\MiKTeX\tex/latex/fontspec\fontspec-xetex.sty
 Package: fontspec-xetex 2019/03/15 v2.7c Font selection for XeLaTeX and LuaLaTe
 X
-\l__fontspec_script_int=\count316
-\l__fontspec_language_int=\count317
-\l__fontspec_strnum_int=\count318
-\l__fontspec_tmp_int=\count319
-\l__fontspec_tmpa_int=\count320
-\l__fontspec_tmpb_int=\count321
-\l__fontspec_tmpc_int=\count322
-\l__fontspec_em_int=\count323
-\l__fontspec_emdef_int=\count324
-\l__fontspec_strong_int=\count325
-\l__fontspec_strongdef_int=\count326
-\l__fontspec_tmpa_dim=\dimen277
-\l__fontspec_tmpb_dim=\dimen278
-\l__fontspec_tmpc_dim=\dimen279
+\l__fontspec_script_int=\count317
+\l__fontspec_language_int=\count318
+\l__fontspec_strnum_int=\count319
+\l__fontspec_tmp_int=\count320
+\l__fontspec_tmpa_int=\count321
+\l__fontspec_tmpb_int=\count322
+\l__fontspec_tmpc_int=\count323
+\l__fontspec_em_int=\count324
+\l__fontspec_emdef_int=\count325
+\l__fontspec_strong_int=\count326
+\l__fontspec_strongdef_int=\count327
+\l__fontspec_tmpa_dim=\dimen284
+\l__fontspec_tmpb_dim=\dimen285
+\l__fontspec_tmpc_dim=\dimen286
 
 (D:\Programme\MiKTeX\tex/latex/base\fontenc.sty
 Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
@@ -938,21 +959,21 @@ LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
 lscripts.sty
 Package: realscripts 2016/02/13 v0.3d Access OpenType subscripts and superscrip
 ts
-\subsupersep=\dimen280
+\subsupersep=\dimen287
 )
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex/latex/metalogo\metalo
 go.sty
 Package: metalogo 2010/05/29 v0.12 Extended TeX logo macros
-\xl@everylogo=\toks43
-\xl@@everylogo=\toks44
+\xl@everylogo=\toks45
+\xl@@everylogo=\toks46
 LaTeX Info: Redefining \TeX on input line 193.
 LaTeX Info: Redefining \LaTeX on input line 202.
 LaTeX Info: Redefining \LaTeXe on input line 219.
 )
-\l__xetex_show_hyphens_wrapping_box=\box74
-\l__xetex_show_hyphens_temp_box=\box75
-\l__xetex_show_hyphens_final_box=\box76
-\g__xetex_show_hyphens_word_box=\box77
+\l__xetex_show_hyphens_wrapping_box=\box76
+\l__xetex_show_hyphens_temp_box=\box77
+\l__xetex_show_hyphens_final_box=\box78
+\g__xetex_show_hyphens_word_box=\box79
 ) (D:\Programme\MiKTeX\tex/latex/polyglossia\polyglossia.sty
 Package: polyglossia 2019/04/04 v1.44 Alternative to Babel for XeLaTeX and LuaL
 aTeX
@@ -965,10 +986,10 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
 (D:\Programme\MiKTeX\tex/generic/xkeyval\xkeyval.tex
 (D:\Programme\MiKTeX\tex/generic/xkeyval\xkvutils.tex
-\XKV@toks=\toks45
-\XKV@tempa@toks=\toks46
+\XKV@toks=\toks47
+\XKV@tempa@toks=\toks48
 )
-\XKV@depth=\count327
+\XKV@depth=\count328
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 \xpg@normalclass=\XeTeXcharclass1
@@ -976,21 +997,10 @@ File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex/latex/makecell\makece
 ll.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
- (D:\Programme\MiKTeX\tex/latex/tools\array.sty
-Package: array 2018/12/30 v2.4k Tabular extension package (FMi)
-\col@sep=\dimen281
-\ar@mcellbox=\box78
-\extrarowheight=\dimen282
-\NC@list=\toks47
-\extratabsurround=\skip63
-\backup@length=\skip64
-\ar@cellbox=\box79
-)
-\rotheadsize=\dimen283
-\c@nlinenum=\count328
-\TeXr@lab=\toks48
-)
-(D:\Programme\MiKTeX\tex/latex/polyglossia\gloss-german.ldf
+\rotheadsize=\dimen288
+\c@nlinenum=\count329
+\TeXr@lab=\toks49
+) (D:\Programme\MiKTeX\tex/latex/polyglossia\gloss-german.ldf
 File: gloss-german.ldf polyglossia: module for german
 
 (D:\Programme\MiKTeX\tex/latex/polyglossia\babelsh.def
@@ -1023,8 +1033,8 @@ File: pgfmoduleplot.code.tex 2019/05/09 v3.1.3 (3.1.3)
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex/latex/pgf/compatibili
 ty\pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2019/05/09 v3.1.3 (3.1.3)
-\pgf@nodesepstart=\dimen284
-\pgf@nodesepend=\dimen285
+\pgf@nodesepstart=\dimen289
+\pgf@nodesepend=\dimen290
 )
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex/latex/pgf/compatibili
 ty\pgfcomp-version-1-18.sty
@@ -1046,10 +1056,10 @@ Package: pgffor 2019/05/09 v3.1.3 (3.1.3)
 
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/math\pgfm
 ath.code.tex)
-\pgffor@iter=\dimen286
-\pgffor@skip=\dimen287
-\pgffor@stack=\toks49
-\pgffor@toks=\toks50
+\pgffor@iter=\dimen291
+\pgffor@skip=\dimen292
+\pgffor@stack=\toks50
+\pgffor@toks=\toks51
 ))
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/frontendl
 ayer/tikz\tikz.code.tex
@@ -1058,32 +1068,32 @@ Package: tikz 2019/05/09 v3.1.3 (3.1.3)
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/libraries
 \pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2019/05/09 v3.1.3 (3.1.3)
-\pgf@plot@mark@count=\count329
-\pgfplotmarksize=\dimen288
+\pgf@plot@mark@count=\count330
+\pgfplotmarksize=\dimen293
 )
-\tikz@lastx=\dimen289
-\tikz@lasty=\dimen290
-\tikz@lastxsaved=\dimen291
-\tikz@lastysaved=\dimen292
-\tikzleveldistance=\dimen293
-\tikzsiblingdistance=\dimen294
+\tikz@lastx=\dimen294
+\tikz@lasty=\dimen295
+\tikz@lastxsaved=\dimen296
+\tikz@lastysaved=\dimen297
+\tikzleveldistance=\dimen298
+\tikzsiblingdistance=\dimen299
 \tikz@figbox=\box81
 \tikz@figbox@bg=\box82
 \tikz@tempbox=\box83
 \tikz@tempbox@bg=\box84
-\tikztreelevel=\count330
-\tikznumberofchildren=\count331
-\tikznumberofcurrentchild=\count332
-\tikz@fig@count=\count333
+\tikztreelevel=\count331
+\tikznumberofchildren=\count332
+\tikznumberofcurrentchild=\count333
+\tikz@fig@count=\count334
 
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/modules\p
 gfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2019/05/09 v3.1.3 (3.1.3)
-\pgfmatrixcurrentrow=\count334
-\pgfmatrixcurrentcolumn=\count335
-\pgf@matrix@numberofcolumns=\count336
+\pgfmatrixcurrentrow=\count335
+\pgfmatrixcurrentcolumn=\count336
+\pgf@matrix@numberofcolumns=\count337
 )
-\tikz@expandcount=\count337
+\tikz@expandcount=\count338
 
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex/generic/pgf/frontendl
 ayer/tikz/libraries\tikzlibrarytopaths.code.tex
@@ -1094,8 +1104,8 @@ rbox.sty
 Package: tcolorbox 2019/03/02 version 4.20 text color boxes
  (D:\Programme\MiKTeX\tex/latex/tools\verbatim.sty
 Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks51
-\verbatim@line=\toks52
+\every@verbatim=\toks52
+\verbatim@line=\toks53
 \verbatim@in@stream=\read3
 )
 (C:\Users\Standardbenutzer\AppData\Roaming\MiKTeX\2.9\tex/latex/environ\environ
@@ -1110,9 +1120,9 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \tcb@upperbox=\box86
 \tcb@lowerbox=\box87
 \tcb@phantombox=\box88
-\c@tcbbreakpart=\count338
-\c@tcblayer=\count339
-\tcolorbox@number=\count340
+\c@tcbbreakpart=\count339
+\c@tcblayer=\count340
+\tcolorbox@number=\count341
 \tcb@temp=\box89
 \tcb@temp=\box90
 \tcb@temp=\box91
@@ -1200,9 +1210,9 @@ ext;"
 (fontspec)             Light/BI/OT:script=latn;language=DFLT;+smcp;mapping=tex-
 text;"
 
-LaTeX Info: Redefining \sffamily on input line 18.
+LaTeX Info: Redefining \sffamily on input line 20.
 LaTeX Font Info:    Font shape `TU/SegoeUILight(0)/m/n' will be
-(Font)              scaled to size 9.43889pt on input line 18.
+(Font)              scaled to size 9.43889pt on input line 20.
 
 Package fontspec Info: Segoe UI scale = 0.8619993868621276.
 
@@ -1267,9 +1277,9 @@ Package fontspec Info: Font family 'SegoeUI(0)' created for font 'Segoe UI'
 (fontspec)             UI/BI/OT:script=latn;language=DFLT;+smcp;mapping=tex-tex
 t;"
 
-LaTeX Info: Redefining \rmfamily on input line 19.
+LaTeX Info: Redefining \rmfamily on input line 21.
 LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 9.43889pt on input line 20.
+(Font)              scaled to size 9.43889pt on input line 22.
 
 Package fontspec Info: Impact scale = 0.6651755663134623.
 
@@ -1307,7 +1317,7 @@ phenChar=None,PunctuationSpace=WordSpace].
 (fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
 (fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
 
-LaTeX Info: Redefining \ttfamily on input line 20.
+LaTeX Info: Redefining \ttfamily on input line 22.
  (document.aux)
 \openout1 = `document.aux'.
 
@@ -1373,7 +1383,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (D:\Programme\MiKTeX\tex/generic/oberdiek\gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count341
+\c@section@level=\count342
 )
 LaTeX Info: Redefining \ref on input line 31.
 LaTeX Info: Redefining \pageref on input line 31.
@@ -1523,11 +1533,11 @@ Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 
 ]
 LaTeX Font Info:    Font shape `TU/SegoeUILight(0)/m/n' will be
-(Font)              scaled to size 12.41278pt on input line 47.
+(Font)              scaled to size 12.41278pt on input line 48.
 LaTeX Font Info:    Font shape `TU/SegoeUILight(0)/bx/n' will be
-(Font)              scaled to size 12.41278pt on input line 47.
+(Font)              scaled to size 12.41278pt on input line 48.
 LaTeX Font Info:    Font shape `TU/SegoeUILight(0)/bx/n' will be
-(Font)              scaled to size 7.758pt on input line 47.
+(Font)              scaled to size 7.758pt on input line 48.
 
 Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [][]  [] 
@@ -1536,7 +1546,7 @@ Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [2
 
 ]
-Overfull \hbox (8.45389pt too wide) in paragraph at lines 62--62
+Overfull \hbox (8.45389pt too wide) in paragraph at lines 64--64
 [][]  
  []
 
@@ -1549,21 +1559,94 @@ Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 
 ]
 LaTeX Font Info:    Font shape `TU/SegoeUILight(0)/m/it' will be
-(Font)              scaled to size 9.43889pt on input line 98.
+(Font)              scaled to size 9.43889pt on input line 101.
 LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 8.62pt on input line 98.
+(Font)              scaled to size 8.62pt on input line 101.
 LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 6.034pt on input line 98.
+(Font)              scaled to size 6.034pt on input line 101.
 LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 4.31pt on input line 98.
+(Font)              scaled to size 4.31pt on input line 101.
 LaTeX Font Info:    Font shape `TU/SegoeUILight(0)/m/it' will be
-(Font)              scaled to size 8.62pt on input line 98.
+(Font)              scaled to size 8.62pt on input line 101.
 
 Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [][]  [] 
  []
 
 [4
+
+]
+Overfull \hbox (0.93892pt too wide) has occurred while \output is active
+[][]  [] 
+ []
+
+[5
+
+]
+Overfull \hbox (0.93892pt too wide) has occurred while \output is active
+[][]  [] 
+ []
+
+[6
+
+]
+Overfull \hbox (0.93892pt too wide) has occurred while \output is active
+[][]  [] 
+ []
+
+[7
+
+]
+Overfull \hbox (0.93892pt too wide) has occurred while \output is active
+[][]  [] 
+ []
+
+[8
+
+]
+Overfull \hbox (0.93892pt too wide) has occurred while \output is active
+[][]  [] 
+ []
+
+[9
+
+]
+Overfull \hbox (0.93892pt too wide) has occurred while \output is active
+[][]  [] 
+ []
+
+[10
+
+]
+File: images/bmp280.jpg Graphic file (type bmp)
+<images/bmp280.jpg>
+
+Overfull \hbox (0.93892pt too wide) has occurred while \output is active
+[][]  [] 
+ []
+
+[11
+
+]
+File: images/esp8266.jpg Graphic file (type bmp)
+<images/esp8266.jpg>
+
+Overfull \vbox (6.35414pt too high) detected at line 209
+ []
+
+
+Overfull \hbox (0.93892pt too wide) has occurred while \output is active
+[][]  [] 
+ []
+
+[12
+
+]
+Overfull \hbox (0.93892pt too wide) has occurred while \output is active
+[][]  [] 
+ []
+
+[13
 
 ]
 \tf@nav=\write8
@@ -1575,11 +1658,11 @@ Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 \tf@snm=\write10
 \openout10 = `document.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 100.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 100.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 222.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 222.
  (document.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 100.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 100.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 222.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 222.
 Package rerunfilecheck Info: File `document.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E.
 
@@ -1588,12 +1671,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 38329 strings out of 427669
- 786156 string characters out of 3150839
- 915930 words of memory out of 3000000
- 41823 multiletter control sequences out of 15000+200000
+ 38404 strings out of 427669
+ 786983 string characters out of 3150839
+ 917241 words of memory out of 3000000
+ 41890 multiletter control sequences out of 15000+200000
  539437 words of font info for 100 fonts, out of 3000000 for 9000
  1348 hyphenation exceptions out of 8191
- 60i,16n,116p,797b,874s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 60i,16n,116p,777b,874s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on document.pdf (4 pages).
+Output written on document.pdf (13 pages).
