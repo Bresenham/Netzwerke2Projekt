@@ -51,13 +51,13 @@ Besteht aus bis zu drei Teilen:
 
 \frametitle{MQTT}
 \framesubtitle{Fixed Header}
-\begin{tabular}{c|c|c|c|c|c|c|c|c}
+\begin{tabular}{|c|*{9}{p{9.27mm}|}}
 	\hline
 	\textbf{Bit $\rightarrow$} & 7 & 6 & 5 & 4 & 3 & 2 & 1 & 0\\
 	\hline
-	Byte 1 & \multicolumn{4}{|c|}{MQTT Control Packet type} & \multicolumn{4}{c}{Flags specific to each MQTT Control Packet type}\\
+	Byte 1 & \multicolumn{4}{c|}{MQTT Control Packet type} & \multicolumn{4}{p{45mm}|}{Flags specific to each MQTT Control Packet type}\\
 	\hline
-	Byte 2 & \multicolumn{8}{c}{Remaining Length}\\
+	Byte 2 & \multicolumn{8}{c|}{Remaining Length}\\
 	\hline
 \end{tabular}
 
