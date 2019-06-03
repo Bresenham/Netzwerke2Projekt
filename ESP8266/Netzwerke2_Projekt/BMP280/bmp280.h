@@ -19,6 +19,6 @@ typedef struct BMP280 {
     int32_t (*getTemperature)(struct BMP280*);
 } BMP280;
 
-void ICACHE_FLASH_ATTR initBMP280();
+void ICACHE_FLASH_ATTR initBMP280(BMP280 *self);
 
 #endif /* BMP280_H */

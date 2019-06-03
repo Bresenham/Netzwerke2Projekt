@@ -36,8 +36,14 @@ void ICACHE_FLASH_ATTR user_send_data(struct espconn *pespconn) {
         char *pbuf = (char*)os_zalloc(sizeof(uint8_t) * pckt_size);
         currentPacket->fillPacket(currentPacket, pbuf);
         espconn_send(pespconn, (uint8_t*)pbuf, pckt_size);
+
+        os_printf("Sending packet:\r\n");
+        os_printf(pbuf);
+        os_printf("\r\n");
+
         os_free(pbuf);
         os_free(currentPacket);
+        pckt_size = 0;
     }
 }
 
@@ -79,10 +85,9 @@ void ICACHE_FLASH_ATTR user_check_ip(void) {
         user_tcp_conn.state = ESPCONN_NONE;
         
         /* Get IP of remote server */
-        /* TODO: HIER STEHT DIE IP-ADRESSE DES RASPI IM LOKALEN NETZWERK 
-           GGF. AUCH DYNAMISCHE IP UEBER NAMEN DES RASPI MOEGLICH (GLAUB ICH)
+        /* TODO: HIER STEHT DIE IP-ADRESSE DES RASPI IM LOKALEN NETZWERK
         */
-        const char esp_tcp_server_ip[4] = {1, 3, 3, 7}; // remote IP of TCP server
+        const char esp_tcp_server_ip[4] = {192, 168, 137, 37}; // remote IP of TCP server
 
         os_memcpy(user_tcp_conn.proto.tcp->remote_ip, esp_tcp_server_ip, 4);
 
@@ -111,6 +116,8 @@ void ICACHE_FLASH_ATTR user_check_ip(void) {
 }
 
 void ICACHE_FLASH_ATTR wifiConnect(Wifi *self, MQTT *packet, uint8_t packet_size) {
+    if(pckt_size != 0)
+        return;
     currentPacket = packet;
     pckt_size = packet_size;
     // Wifi configuration 

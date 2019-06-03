@@ -2,9 +2,14 @@
 #include "ets_sys.h"
 #include "osapi.h"
 
-#include "../MQTT/MQTT.h"
 #include "../BMP280/bmp280.h"
 #include "../WIFI/wifi.h"
+#include "../MQTT/mqtt.h"
+
+LOCAL BMP280 bmp280;
+LOCAL Wifi wifi;
+LOCAL MQTT mqtt;
+LOCAL os_timer_t mqtt_publish_timer;
 
 #if ((SPI_FLASH_SIZE_MAP == 0) || (SPI_FLASH_SIZE_MAP == 1))
 #error "The flash map is not supported"
@@ -55,18 +60,11 @@ void ICACHE_FLASH_ATTR user_pre_init(void) {
 	}
 }
 
-BMP280 bmp280;
-Wifi wifi;
-LOCAL os_timer_t mqtt_publish_timer;
-
 void ICACHE_FLASH_ATTR mqtt_publish_data() {
-    uint8_t data[8];
-
     const int32_t temp = bmp280.getTemperature(&bmp280);
 
     os_printf("Read temperature %d\r\n", temp);
 
-    MQTT mqtt;
     const uint8_t len = mqtt.createPacket(&mqtt, temp);
     wifi.publishData(&wifi, &mqtt, len);
 }
@@ -78,6 +76,8 @@ void ICACHE_FLASH_ATTR user_init(void) {
     initBMP280(&bmp280);
     const uint8_t bmp280_id = bmp280.getID();
 
+    initMQTT(&mqtt);
+
     if(bmp280_id == BMP280_EXPECTED_ID) {
         os_printf("Found BMP280\r\n");
         initWifi(&wifi);
@@ -85,7 +85,7 @@ void ICACHE_FLASH_ATTR user_init(void) {
         /* Veroeffentliche alle 1s neuen Temperaturwert */
         os_timer_disarm(&mqtt_publish_timer);
         os_timer_setfn(&mqtt_publish_timer, (os_timer_func_t*)mqtt_publish_data, NULL);
-        os_timer_arm(&mqtt_publish_timer, 1000, true);
+        os_timer_arm(&mqtt_publish_timer, 10000, false);
     } else {
         os_printf("BMP280-ID GOT %d, expected %d - END.\r\n", bmp280_id, BMP280_EXPECTED_ID);
     }

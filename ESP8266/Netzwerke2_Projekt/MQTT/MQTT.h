@@ -6,9 +6,9 @@
 #ifndef MQTT_H
 #define MQTT_H
 
-#include "MQTT_private.h"
 #include "stdint.h"
-
+#include "ets_sys.h"
+#include "mqtt_private.h"
 
 typedef struct MQTT {
     uint8_t fix_header[FIXED_HEADER_SIZE];
@@ -21,6 +21,6 @@ typedef struct MQTT {
     void (*fillPacket)(struct MQTT*, uint8_t*);
 } MQTT;
 
-extern void initMQTT(MQTT *self);
+void ICACHE_FLASH_ATTR initMQTT(MQTT *s);
 
 #endif /* MQTT_H */

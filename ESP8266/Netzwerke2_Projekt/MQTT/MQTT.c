@@ -3,16 +3,17 @@
  * 
 */
 
-#include "MQTT.h"
 #include "mem.h"
+#include "osapi.h"
+#include "mqtt.h"
 
 /********************/
 /* PRIVATE FUNCTIONS */
 /********************/
-uint8_t mqttCreatePacket(MQTT *self, int32_t tempData) {
+uint8_t ICACHE_FLASH_ATTR mqttCreatePacket(MQTT *self, int32_t tempData) {
     self->fix_header[0] = PACKET_TYPE_PUBLISH | PACKET_PUBLISH_NO_DUP | PACKET_PUBLISH_QOS_AT_MOST_ONCE | PACKET_PUBLISH_RETAIN;
 
-    const char topic[] = "measure/temp";
+    const char topic[] = "test_channel";
     const uint8_t topicStrLen = sizeof(topic) / sizeof(topic[0]);
     self->var_header_size = 1 + 1 + topicStrLen;
 
@@ -48,7 +49,7 @@ uint8_t mqttCreatePacket(MQTT *self, int32_t tempData) {
     return  (1 + 1) + completeLen;
 }
 
-void mqttFillPacket(MQTT *self, uint8_t *packet) {
+void ICACHE_FLASH_ATTR mqttFillPacket(MQTT *self, uint8_t *packet) {
     // Fill Fixed Header
     packet[0] = self->fix_header[0];
     packet[1] = self->fix_header[1];
@@ -72,7 +73,7 @@ void mqttFillPacket(MQTT *self, uint8_t *packet) {
 /********************/
 /* PUBLIC FUNCTIONS */
 /********************/
-void initMQTT(MQTT *self) {
+void ICACHE_FLASH_ATTR initMQTT(MQTT *self) {
     self->createPacket = &mqttCreatePacket;
     self->fillPacket = &mqttFillPacket;
 }

@@ -1,3 +1,7 @@
+/* 
+ * Created @ 20.05.2019
+ * 
+*/
 #ifndef MQTT_PRIVATE_H
 #define MQTT_PRIVATE_H
 

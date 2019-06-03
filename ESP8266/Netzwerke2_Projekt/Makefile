@@ -37,7 +37,7 @@ CCFLAGS += -fno-exceptions
 
 TARGET_LDFLAGS =		\
 	-nostdlib		\
-	-Wl,-EL \
+	-Wl,-EL,-wrap \
 	--longcalls \
 	--text-section-literals
 
@@ -52,7 +52,8 @@ endif
 COMPONENTS_eagle.app.v6 = \
 	user/user.a  \
 	BMP280/BMP280.a  \
-	WIFI/WIFI.a
+	WIFI/WIFI.a  \
+	MQTT/MQTT.a
 
 LINKFLAGS_eagle.app.v6 = \
 	-L../lib        \
