@@ -960,7 +960,7 @@ $\circ$ Absicherung von Vertraulichkeit
 \begin{enumerate}
 	\setlength\itemsep{-1.25em}
 	\item DNS Client (DNS Stub Resolver) baut TCP-Verbindung zu Resolver auf
-	\item TLS Handshake wird durchgeführt\\
+	\item TLS Handshake wird durchgeführt (\textit{DNS Stub Resolver} = DNS Client, \textit{DNS Resolver} = Server)\\
 	- Resolver sendet TLS Zertifikat\\
 	- DNS Stub Resolver prüft Zertifikat mit Hash des öffentlichen Schlüssels des Resolvers
 	\item Ab jetzt sendet DNS Stub Resolver alle DNS Anfragen über mit TLS geschützte TCP-Verbindung\\
@@ -986,9 +986,252 @@ $\circ$ Absicherung von Vertraulichkeit
 		$\circ$ Nur wenige Firmen (Cloudfare, Google) bieten DNS-over-HTTPS\\
 		$\rightarrow$ Konzentration auf wenige Anbieter, Privatssphäre Gefärdung\\
 		$\circ$ Viel Overhead (Anwendungsschicht: DNS, HTTP, TLS\\
-		\hspace*{2.5mm}Transportschicht: TCP statt UDP)
+		\hspace*{2.5mm}Transportschicht: TCP statt UDP)\\
+		$\circ$ Blockieren schwierig da Port \textit{443} HTTPS Standardport
 	}
 \end{tabular}
 
 \includegraphics[scale=0.425]{images/dns_over_tls_https.png}
+
+\vspace{-2.75em}
+\subsection{Firewall}
+\vspace{-2em}
+$\circ$ Pakete mit bestimmten Ziel-Ports dürfen passieren, andere werden geblockt, z.B:
+\vspace{-1.5em}
+\begin{itemize}
+	\setlength\itemsep{-1.33em}
+	\item \textit{Denial of Service} (DoS) Attacken von außen abwehren
+	\item Zugriff auf interne Dienste blockieren
+	\item Zugriff aus Firmennetz auf Internetdienste beschränken
+\end{itemize}
+\vspace{-1.5em}
+$\circ$ Typen:
+\vspace{-1.5em}
+\begin{itemize}
+	\setlength\itemsep{-1.33em}
+	\item \textbf{Stateless Packet Filters:} Entscheidung ob durchlassen oder verwerfen wird pro Paket einzeln getroffen,\\
+	basiert auf Quell- oder Zieladresse, Quell- oder Zielport, Protokolltyp, TCP SYN/ACK
+	\item \textbf{Stateful Packet Filters:} Verfolgt Status der Protokolle (z.B. TCP), nur zum Status passende Pakete werden durchgelassen
+	\item \textbf{Proxy Firewall / Application Layer Firewall / Deep Packet Insepction (DPI):} Filtern Pakete basierend auf Applikationsdaten \& IP/TCP/UDP-Header, ermöglicht Blockieren bestimmter Applikationen für bestimmte Nutzer
+	\item Konkret \textbf{Proxy Firewall:} Tunnelt interne Anfrage über separate Verbindung nach draußen und inspiziert Pakete
+	\item Konkret \textbf{Deep-Packet-Inspection:} Lässt Verbindung laufen und inspiziert gleichzeitig Paketinhalt
+\end{itemize}
+\vspace{-1.5em}
+\begin{tabular}{c|c|c|c|c|c|c}
+	\multicolumn{7}{c}{\textbf{Stateless Firewall}}\\
+	\hline
+	\textbf{Action} & \textbf{Source-Addr} & \textbf{Dest-Addr} & \textbf{Protocol} & \textbf{Source-Port} & \textbf{Dest-Port} & \textbf{Flag}\\
+	\hline
+	allow & 222.22/16 & \textit{outside} 222.22/16 & TCP & >1023 & 80 & any\\
+	allow & outside 222.22/16 & 222.22/16 & TCP & 80 & >1023 & ACK\\
+	\hline
+\end{tabular}\\
+\vspace{-.5em}
+\begin{tabular}{c|c|c|c|c|c|c|c}
+	\multicolumn{8}{c}{\textbf{Stateful Firewall}}\\
+	\hline
+	\textbf{Action} & \textbf{Source-Addr} & \textbf{Dest-Addr} & \textbf{Protocol} & \textbf{Source-Port} & \textbf{Dest-Port} & \textbf{Flag} & \makecell[c]{\textbf{Check Conn.}\\Prüfung Verbindungsstatus\\erforderlich}\\
+	\hline
+	allow & 222.22/16 & outside 222.22/16 & TCP & >1023 & 80 & any & {}\\
+	allow & outside 222.22/16 & 222.22/16 & TCP & 80 & >1023 & ACK & $\times$\\
+	\hline
+\end{tabular}
+
+\newpage
+
+\subsection{Intrusion Detection Systems (\textit{IDS})}
+\vspace{-1.5em}
+$\circ$ Erkennt Angriffe von außen und ermöglicht (automatisierte) Reaktion\\
+$\circ$ Überprüfen des Paketinhalts auf verdächtige Inhalte (z.B. \textit{SQL Injection}) sowie Korrelation zwischen mehreren Paketen erkennen (\textit{DoS}, \textit{Port Scanning})
+
+\vspace{-1.5em}
+\section{Multimedia}
+\vspace{-2.5em}
+\text{$\circ$ Verbreitung von Multimedia-Daten (Video-Streaming, Internet-TV, VoIP) mit hohen Datenmengen so geringer Verzögerungen wie möglich}\\
+\vspace{-2.5em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item \textbf{Streaming aufgezeichneter Inhalte:} Da gespeicherte Daten kann der Nutzer vor- \& zurückspulen\\
+	Kontinuierliche Ausgabe, Vermeidung von Wartezeiten durch Streaming
+	\item \textbf{Streaming von Live-Audio und Video:} Inhalte liegen nicht vorab vor (\textbf{kein} Vorspulen)\\
+	Viele Clients sehen gleiches Programm, eventuell Verteilung per \textit{Multicast}
+	\item \textbf{Interaktives Audio und Video:} Verzögerungen $>150$ms störend $\rightarrow$ kaum Vorpuffern möglich
+\end{itemize}
+
+\vspace{-2.5em}
+\subsection{Grundlagen}
+\vspace{-2em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.35]{images/playout_buffer.png}} &
+	\makecell[l]{
+		$\circ$ Puffern und verzögertes Abspielen (\textbf{playout buffer/delay})\\
+		\hspace*{2.5mm}Kompensation von Verzögerungen (\textit{network delay})\\
+		\hspace*{2.5mm}und Jitter (Schwankungen in der Verzögerung)\\
+		$\circ$ Buffern:\\
+		\hspace*{2.5mm}- Initiales Befüllen des Buffers bis zum Start des Abspielens ($t_p$)\\
+		\hspace*{2.5mm}- Füllstand $Q(t)$ des Buffers ändert sich über Zeit aufgrund\\
+		\hspace*{2.5mm}\hspace*{2.5mm}\textit{variabler} Füllrate $x(t)$\\
+		\hspace*{2.5mm}- \textit{mittlere Füllrate} $\bar{x}$ < $r$: Buffer leer sich\\
+		\hspace*{2.5mm}\hspace*{2.5mm}$\Rightarrow$ Video stockt, Rebuffering\\
+		\hspace*{2.5mm}- \textit{mittlere Füllrate} $\bar{x}$ > $r$: Buffer nie komplett leer\\
+		\hspace*{2.5mm}\hspace*{2.5mm}solange $B$ ausreichend groß für Schwankungen von $x(t)$\\
+		\hspace*{2.5mm}$\Rightarrow$ Großes $B$ bedeutet größere Startverzögerung
+	}
+\end{tabular}
+
+\vspace{-1em}
+\textbf{Streaming über UDP:}\\
+$\circ$ Prinzipiell UDP besser als TCP da geringere Verzögerung und Multicast möglich\\
+\text{$\circ$ \textbf{Sender:} UDP-Pakete mit Datenrate des kodierten Multimedia-Datenstroms, \textbf{Client:} kleiner Buffer (2-5s), App.-Layer Fehlerbehebung}\\
+$\circ$ \textbf{Aber:} UDP oft nicht durch Firewalls/NAT, separate Kontrollverbindung für Stop/Pause über TCP (RTSP),\\
+\hspace*{2.5mm}Reaktion auf Änderung der Bandbreite
+
+\vspace{-1em}
+\textbf{Streaming über HTTP (TCP):}\\
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.35]{images/streaming_tcp.png}} &
+	\makecell[l]{
+		$\circ$ Abruf der Multimedia-Datei per \textit{GET}\\
+		$\circ$ Senderate variiert (TCP \textit{Congestion Control}, \textit{Flow Control},\\
+		\hspace*{2.5mm}\textit{Retransmissions})\\
+		$\circ$ HTTP/TCP passiert Firewalls meist ohne Probleme
+	}
+\end{tabular}
+
+\vspace{-2em}
+\subsection{Dynamic Adaptive Streaming over HTTP (DASH)}
+\vspace{-2em}
+$\circ$ Problem TCP-Streaming: Bandbreite variiert durch TCP, \textit{DASH:}\\
+\vspace{-2.75em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Aufteilen der Multimedia-Datei in \textit{Chunks}
+	\item Mehrfache Kodierung jedes Chunks in unterschiedlichen Versionen mit anderer Bitrate ($\rightarrow$ Qualitätsstufen)
+	\item Manifest-Datei: URLs der unterschiedlichen Versionen
+	\item Client wählt passende Version abhängig von Bandbreite
+\end{itemize}
+
+\vspace{-1.5em}
+$\circ$ Intelligenz beim Client:\\
+\vspace{-2.75em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Misst periodisch Datenrate \& fordert passend kodierten \textit{Chunk} an (Reaktion auf Bandbreiten-Schwankungen)
+	\item Bestimmt, \textit{wann} welcher Chunk angefordert wird (\textit{Buffer-Handling} demnach auch beim Client)
+	\item Bestimmt, von \textit{wo} Chunk angefordert wird (z.B. der am besten erreichbare Server)
+\end{itemize}
+
+\newpage
+
+\subsection{Real-Time Streaming Protocol (RTSP)}
+\vspace{-2em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.45]{images/rtsp.png}} &
+	\makecell[l]{
+		$\circ$ Client-Server Protokoll auf App.-Layer zur Steuerung des Multimedia-Datenstroms\\
+		\hspace*{2.5mm}(\textit{Play}, \textit{Pause}, \textit{Fast-Forward})\\
+		$\circ$ Separate \textit{Kontrollverbindung}, Mediendaten selbst per UDP oder TCP\\
+		$\circ$ \textit{RTSP} spezifiziert \textbf{nicht:} Kompression Audio/Video, \textit{wie} Übertragen wird, Pufferverhalten\\
+		$\circ$ \textit{Präsentationsbeschreibungsdatei:}\\
+		\hspace*{2.5mm}$<title>Twister</title><session><group language=en lipsync>$\\
+		\hspace*{2.5mm}$<switch><track type=audio src='rtsp://audio.example.com/audio.en/lofi'>$\\
+		\hspace*{2.5mm}$<track type=audio src='rts://audio.example.com/audio.en/hifi'></switch>$\\
+		\hspace*{2.5mm}$<track type='video/jpeg' src="rtsp://video.example.com/twister/video>$\\
+		\hspace*{2.5mm}$</group></session>$
+	}
+\end{tabular}
+
+\vspace{-2em}
+\subsection{Content Distribution Networks (CDNs)}
+\vspace{-2em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.35]{images/cdn.png}} &
+	\makecell[l]{
+		$\circ$ \textbf{Enter Deep:}\\
+		\hspace*{2.5mm}- Große Anzahl Cluster innerhalb der Zugangsnetze der \textit{ISPs}\\
+		\hspace*{2.5mm}\hspace*{2.5mm}Nah beim Endnutzer (geringe Latenz, wenig Hops)\\
+		\hspace*{2.5mm}- Verfolgt Akamai (> 1700 Cluster an verschiedenen Orten)\\
+		$\circ$ \textbf{Bring Home:}\\
+		\hspace*{2.5mm}- Geringere Anzahl Cluster, verbunden über privates\\
+		\hspace*{2.5mm}\hspace*{2.5mm}Hochgeschwindigkeitsnetz\\
+		\hspace*{2.5mm}- Nahe der \textit{Points-of-Presence} von \textit{Tier-1} ISPs\\
+		\hspace*{2.5mm}- Leichter zu verwalten aber etwas mehr Hops zum Nutzer
+	}
+\end{tabular}
+
+\vspace{-1em}
+\begin{tabular}{ll}
+	\makecell[l]{
+		$\circ$ $(1)$ Nutzer surft auf $www.netcinema.de$\\
+		$\circ$ $(2)$ Klickt auf Video $video.netcinema.de/4711abc$\\
+		\hspace*{2.5mm}$\rightarrow$ Client sendet \textit{DNS-Request} and $video.netcinema.de$\\
+		$\circ$ $(3)$ Lokaler DNS leitet Anfrage an für $netcinema.de$ zuständigen DNS\\
+		\hspace*{2.5mm}$\rightarrow$ erkennt Video-Anfrage (nutzt \textit{CDN})\\
+		\hspace*{2.5mm}$\rightarrow$ liefert keine IP, sondern Hostname aus CDN\\
+		\hspace*{2.5mm}\hspace*{2.5mm}(z.B. $a42.kingcdn.de$)\\
+		$\circ$ $(4)$ Lokaler DNS sendet Anfrage an $a42.kingcdn.de$ an\\
+		\hspace*{2.5mm}dafür zuständigen DNS-Server (Teil des \textit{CDN})\\
+		\hspace*{2.5mm}$\rightarrow$ Entscheidung, welcher Content-Distribution Server liefern soll\\
+		\hspace*{2.5mm}$\rightarrow$$\rightarrow$ IP des Distribution Server nahe dem User\\
+		$\circ$ $(5)$ Lokaler DNS leitet IP an Client weiter\\
+		$\circ$ $(6)$ Client ruft Video per HTTP GET ab\\
+		$\circ$ mit \textit{DASH} liefert Server \textit{Manifest}-Datei, Client wählt dynamisch
+	} & \raisebox{-.5\height}{\includegraphics[scale=0.35]{images/cdn_2.png}}
+
+\end{tabular}
+$\circ$ \textit{CDNs} auch per \textit{HTTP-Weiterleitung} möglich, bei DNS-Ansatz sieht Client aber die verborgene DNS-Struktur nicht!\\
+$\circ$ Passender \textit{Content Distribution Cluster} bestimmen durch: Geographische Lage, geringste Verzögerung (\textit{Hops}),\\
+\hspace*{2.5mm}\textit{IP-Anycast} (Server mit kürzester Route antwortet), oder Client ermittelt den Besten via \textit{ping}s)\\
+$\circ$ \textit{Kankan} in China wählt Peer-to-Peer (ähnlich \textit{BitTorent}) Ansatz für CDN (Hash-Tabelle zum Auffinden der Inhalte)
+
+\vspace{-2.25em}
+\subsection{Voice over IP (VoIP)}
+\vspace{-2em}
+$\circ$ Digitalisierung der Sprache mit 8000 Bytes/s (64 kbit/s) (\textit{Nyquist-Shannon-Abtasttheorem} $\Rightarrow$ Rekonstruktion von max. 4kHz)\\
+\hspace*{2.5mm}\textit{Abtastung:} Alle 8000Hz eine Messung, \textit{Quantisierung:} Analoger Messwert in 8-bit Digitalwert überführen\\
+$\circ$ Digitalisierte Sprache per UDP von 160Bytes alle 20ms senden\\
+
+
+\newpage
+
+
+$\circ$ Herausforderungen:\\
+\vspace{-2.75em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item \textbf{Paketverluste:} UDP Segmente gehen verloren (1 - 20\% je nach Kodierung vertretbar)
+	\item \textbf{Ende-zu-Ende Verzögerung:} $<150$ms: nicht störend, $>400$ms: sehr störend, Teilnehmer \textit{fallen sich ins Wort}
+	\item \textbf{Jitter:} Pakete haben unterschiedliche Verzögerung (Empfänger kann nicht jedes empfangene sofort abspielen)\\
+	$\rightarrow$ Zeitstempel vor jedem gesendeten Block (zu 160 Bytes) einfügen\\
+	$\rightarrow$ Feste- oder adaptive Verzögerung des Abspielens (\textit{playout delay})\\
+	\hspace*{2.5mm}\textbf{Feste Verzögerung:}\\
+	\includegraphics[scale=0.33]{images/voip_feste_verzoegerung.png}\\
+	Nur geringe Verzögerung $q = p_1 - r$: Aussetzer bei $(1)$\\
+	Bei größerer Verzögerung $q = p_2 - r$: kein Aussetzer bei $(2)$
+\end{itemize}
+\vspace{-1.5em}
+\textbf{Abspielverzögerung $q$}\\
+$\circ$ Empfänger spielt Daten mit Verzögerung $q$ ab (Zeit $t$ $\rightarrow$ Abspielen bei $t + q$)\\
+$\circ$ Paketverlust wenn Paket nach $t + q$ ankommt\\
+$\circ$ \textbf{Tradeoff:} Großes $q$: wenig Paketverlust, Kleines $q$: interaktiver, weniger Verzögerung\\
+
+\vspace{-2.5em}
+\textbf{Adaption der Abspielverzögerung}\\
+$\circ$ Anpassen der Abspielverzögerung bei Perioden der Stille im Gespräch (Schätzung der Verzögerung mit Hilfe der Zeitstempel)\\
+\hspace*{2.5mm}$\rightarrow$ Exponentiell gewichteter, gleitender Mittelwert: $d_i = (1 - \alpha)d_{i-1} + \alpha(r_i - t_i)$ mit\\
+\hspace*{2.5mm}\hspace*{3.5mm}$d_i$ := Schätzung nach Paket $i$, $\alpha$ := Konstante < $1$, $r_i$ := Empfangszeitpunkt Paket $i$, $t_i$ := Zeitstempel Paket $i$ (Sendezeitpunkt)\\
+\hspace*{2.5mm}$\rightarrow$ Standardabweichung $v_i = (1 - \beta)v_{i-1} + \beta|r_i - t_i - d_i|$\\
+\hspace*{2.5mm}$\rightarrow$ \textit{zu Beginn} der Redeperiode Berechnung Abspielzeitpunkt $p_i = t_i + d_i + K\cdot v_i$ mit $K$ := positive Ganzzahl-Konstante\\
+\hspace*{2.5mm}$\Rightarrow$ Nur so lange verzögern, wie nötig
+
+\begin{tabular}{l}
+	\raisebox{-.5\height}{\includegraphics[scale=0.4]{images/voip_paketverlust.png}}
+\end{tabular}\\
+
+$\circ$ \textbf{Forward Error Correction:} Einfügen redundanter Informationen in Nutzdaten, zur Korrektur von Fehlern/Verlusten\\
+$\circ$ \textbf{Interleaving:} Umordnen \& Verzahnen des Datenstroms, Verlust eines Paketes führt zu vielen kleinen (tolerierbaren) Lücken\\
+\hspace*{2.5mm}und nicht zu einer großen (auffälligen) Lücke\\
+$\circ$ \textbf{Verschleierung (Error Concealment):} Empfänger generiert Audio-Daten zum Füllen der Lücke (\textit{Interpolation},\\
+\hspace*{2.5mm}Wiederholung des vorherigen Paketes)
+
 \end{document}
