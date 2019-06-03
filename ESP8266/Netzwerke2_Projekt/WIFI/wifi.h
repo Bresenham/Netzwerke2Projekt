@@ -25,7 +25,7 @@ typedef struct Wifi {
     char *SSID;
     char *PW;
 
-    void (*publishData)(struct Wifi*, MQTT*);
+    void (*publishData)(struct Wifi*, MQTT*, uint8_t);
 } Wifi;
 
 extern void ICACHE_FLASH_ATTR initWifi(Wifi *self);

@@ -63,18 +63,12 @@ void ICACHE_FLASH_ATTR mqtt_publish_data() {
     uint8_t data[8];
 
     const int32_t temp = bmp280.getTemperature(&bmp280);
-    const uint8_t msb = (temp >> 24) & 0xFF;
-    const uint8_t lsb = (temp >> 16) & 0xFF;
-    const uint8_t xlsb = (temp >> 8) & 0xFF;
-    const uint8_t xxlsb = temp & 0xFF;
 
     os_printf("Read temperature %d\r\n", temp);
 
-    /*
-     TODO: MQTT-Header aufbauen, Laenge berechnen, Payload hinzufuegen...
-    */
-   MQTT mqtt;
-   wifi.publishData(&wifi, &mqtt);
+    MQTT mqtt;
+    const uint8_t len = mqtt.createPacket(&mqtt, temp);
+    wifi.publishData(&wifi, &mqtt, len);
 }
 
 void ICACHE_FLASH_ATTR user_init(void) {

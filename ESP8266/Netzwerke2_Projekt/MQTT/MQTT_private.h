@@ -9,4 +9,10 @@
 
 #define PACKET_PUBLISH_RETAIN           0x01
 
+#define VARIABLE_HEADER_TOPIC_START     2
+
+#define FIXED_HEADER_SIZE               2
+
+#define PAYLOAD_SIZE                    4
+
 #endif /* MQTT_PRIVATE_H */

@@ -9,10 +9,16 @@
 #include "MQTT_private.h"
 #include "stdint.h"
 
-typedef struct MQTT {
-    uint8_t fixed_header;
 
-    void (*setHeader)(struct MQTT*);
+typedef struct MQTT {
+    uint8_t fix_header[FIXED_HEADER_SIZE];
+    uint8_t *var_header;
+    uint8_t payload[PAYLOAD_SIZE];
+
+    uint8_t var_header_size;
+
+    uint8_t (*createPacket)(struct MQTT*, int32_t);
+    void (*fillPacket)(struct MQTT*, uint8_t*);
 } MQTT;
 
 extern void initMQTT(MQTT *self);

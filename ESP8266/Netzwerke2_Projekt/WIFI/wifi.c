@@ -12,6 +12,9 @@ LOCAL os_timer_t test_timer;
 LOCAL struct _esp_tcp user_tcp;
 LOCAL struct espconn user_tcp_conn;
 
+MQTT *currentPacket;
+uint8_t pckt_size;
+
 void ICACHE_FLASH_ATTR user_tcp_recv_cb(void *arg, char *pusrdata, unsigned short length) {
     os_printf("Received data string\r\n\t");
     for(uint16_t i = 0; i < length; i++) {
@@ -29,17 +32,13 @@ void ICACHE_FLASH_ATTR user_tcp_discon_cb(void *arg) {
 }
 
 void ICACHE_FLASH_ATTR user_send_data(struct espconn *pespconn) {
-/*     char *pbuf = (char *)os_zalloc(PACKET_SIZE);
-  
-    os_sprintf(pbuf, REQUEST_TEXT, data_to_send);
-
-    os_printf("-------------- HTTP REQUEST CONTENT --------------\r\n");
-    os_printf(pbuf);
-    os_printf("-------------- END --------------\r\n");
-  
-    espconn_send(pespconn, (uint8_t*)pbuf, os_strlen(pbuf));
-     
-    os_free(pbuf); */
+    if(currentPacket != NULL) {
+        char *pbuf = (char*)os_zalloc(sizeof(uint8_t) * pckt_size);
+        currentPacket->fillPacket(currentPacket, pbuf);
+        espconn_send(pespconn, (uint8_t*)pbuf, pckt_size);
+        os_free(pbuf);
+        os_free(currentPacket);
+    }
 }
 
 void ICACHE_FLASH_ATTR user_tcp_connect_cb(void *arg) {
@@ -111,7 +110,9 @@ void ICACHE_FLASH_ATTR user_check_ip(void) {
     }
 }
 
-void ICACHE_FLASH_ATTR wifiConnect(Wifi *self, MQTT *packet) {
+void ICACHE_FLASH_ATTR wifiConnect(Wifi *self, MQTT *packet, uint8_t packet_size) {
+    currentPacket = packet;
+    pckt_size = packet_size;
     // Wifi configuration 
     struct station_config stationConf; 
         
