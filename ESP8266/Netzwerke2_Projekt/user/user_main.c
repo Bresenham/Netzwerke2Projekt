@@ -70,9 +70,6 @@ void ICACHE_FLASH_ATTR mqtt_publish_data() {
 }
 
 void ICACHE_FLASH_ATTR user_init(void) {
-    system_update_cpu_freq(160);
-    while(system_get_cpu_freq() != 160);
-
     initBMP280(&bmp280);
     const uint8_t bmp280_id = bmp280.getID();
 

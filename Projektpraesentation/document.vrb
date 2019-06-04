@@ -1,4 +1,14 @@
-\frametitle{Citation}
-An example of the \verb|\cite| command to cite within the presentation:\\~
 
-This statement requires citation \cite{p1}.
+\frametitle{Projekt}
+\framesubtitle{ESP8266 Firmware}
+\begin{minted}{cpp}
+typedef struct BMP280 {
+^^Iuint16_t dig_T1;
+^^Iint16_t dig_T2;
+^^Iint16_t dig_T3;
+^^I
+^^I
+^^Iuint8_t (*getID)();
+^^Iint32_t (*getTemperature)(struct BMP280*);
+} BMP280;
+\end{minted}
