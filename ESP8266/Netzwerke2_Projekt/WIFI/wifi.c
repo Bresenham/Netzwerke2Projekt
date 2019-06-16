@@ -34,6 +34,7 @@ void ICACHE_FLASH_ATTR user_tcp_discon_cb(void *arg) {
 void ICACHE_FLASH_ATTR user_send_data(struct espconn *pespconn) {
     if(currentPacket != NULL) {
         char *pbuf = (char*)os_zalloc(sizeof(uint8_t) * pckt_size);
+
         currentPacket->fillPacket(currentPacket, pbuf);
         espconn_send(pespconn, (uint8_t*)pbuf, pckt_size);
 
@@ -155,8 +156,8 @@ void ICACHE_FLASH_ATTR initWifi(Wifi *self) {
     wifi_station_set_auto_connect(false);
     wifi_set_opmode(STATION_MODE);
 
-    self->SSID = "";
-    self->PW = "";
+    self->SSID = "dasbessereschubi";
+    self->PW = "ZAST17RA";
 
     self->publishData = &wifiConnect;
     os_printf("Initialized Wifi\r\n");

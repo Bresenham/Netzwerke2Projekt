@@ -46,7 +46,7 @@ uint8_t ICACHE_FLASH_ATTR mqttCreatePacket(MQTT *self, int32_t tempData) {
     while(completeLen > 0);
 
     // Return complete length of packet including fixed header sizes
-    return  (1 + 1) + completeLen;
+    return  (1 + 1) + self->var_header_size + 4;
 }
 
 void ICACHE_FLASH_ATTR mqttFillPacket(MQTT *self, uint8_t *packet) {
