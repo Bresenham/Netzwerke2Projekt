@@ -1237,7 +1237,7 @@ $\circ$ \textbf{Verschleierung (Error Concealment):} Empfänger generiert Audio-D
 \newpage
 
 \subsection{Real-Time Protocol (RPT)}
-\vspace{-2em}
+\vspace{-2.125em}
 \begin{tabular}{ll}
 	\makecell[l]{
 		$\circ$ Standardisiertes Paketformat für Multimedia/VoIP\\
@@ -1267,6 +1267,75 @@ $\circ$ \textbf{Beispiel:} Abtastung Sprachsignal mit 8kHz ($\rightarrow$ alle 1
 \hspace*{2.5mm}- Timestamp startet bei 0 und wird für jedes Paket um 160 erhöht (Einheit ist Sampling-Periode, d.h. im Beispiel 125 $\mu$s)\\
 \hspace*{2.5mm}- Der Header bildet zusammen mit Chunk das RTP-Paket, das als UDP-Segment verpackt und versendet wird.
 
+\vspace{-2.25em}
+\subsection{Session Initiation Protocol (SIP)}
+\vspace{-2.125em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.4125]{images/sip.png}} & \makecell[l]{
+		$\circ$ Mechanismus zum \textbf{Auf-/Abbau von Kommunikationssitzungen}\\
+		\hspace*{2.5mm}- Benachrichtigen des Angerufenen und Aushandeln der Kodierung der\\
+		\hspace*{2.5mm}\hspace*{2.5mm}Multimedia-Inhalte\\
+		$\circ$ Mechanismus zur \textbf{Feststellung der IP-Adresse} des Angerufenen\\
+		\hspace*{2.5mm}- Dynamisch per DHCP oder Anrufer nutzt unterschiedliche Geräte\\
+		\hspace*{2.5mm}\hspace*{2.5mm}mit unterschiedlichen IPs\\
+		$\circ$ Mechanismus zum \textbf{Verbindungsmanagement}\\
+		\hspace*{2.5mm}- Änderungen der Kodierung, Hinzufügen neuer Multimedia-Streams\\
+		\hspace*{2.5mm}\hspace*{2.5mm}und neuer Nutzer, Anrufweiterleitung\\
+		$\circ$ Verbindungsaufbau:\\
+		\hspace*{2.5mm}- \textbf{INVITE-Message} per \textit{well-known} Port 5060 über UDP oder TCP\\
+		\hspace*{2.5mm}\hspace*{2.5mm}- Enthält Informationen des Anrufers und des Angerufenen, zur\\
+		\hspace*{2.5mm}\hspace*{2.5mm}\hspace*{2.5mm}gewünschten Kodierung und zum gewünschten Port\\
+		\hspace*{2.5mm}- \textbf{SIP-Response} enthält Status-Code, Kodierung und Port\\
+		\hspace*{2.5mm}- \textbf{SIP-Acknowledgement}\\
+		\hspace*{2.5mm}- Anschließend Audio-Verbindung über RTP-Protokoll über separate\\
+		\hspace*{2.5mm}\hspace*{2.5mm}Verbindung zwischen ausgehandelten Ports (willkürlich 38060 und 48753)\\
+		$\circ$ Syntax ähnlich HTTP - menschenlesbar, mit Ressource, Version, Methode\\
+		\hspace*{2.5mm} INVITE sip:08413708048@fritz.box:5060 SIP/2.0\\
+		\hspace*{2.5mm} Via: SIP/2.0/UDP 192.168.56.1:52953\\
+		\hspace*{2.5mm} From: sip:623@fritz.box;tag=aab36c6cb0dbbc46898c473859b\\
+		\hspace*{2.5mm} To: sip:08413708048@fritz.box\\
+		\hspace*{2.5mm} Call-ID: c92f5ab1b9ed4a25bc450368f60bd240\\
+		\hspace*{2.5mm} CSeq: 16918 INVITE\\
+		\hspace*{2.5mm} Allow: PRACK, INVITE, ACK, BYE, CANCEL, UPDATE, (...)\\
+		\hspace*{2.5mm} Content-Type: application/sdp\\
+		\hspace*{2.5mm} Content-Length: 459\\
+		\hspace*{2.5mm} ...
+	} 
+\end{tabular}
+
+\newpage
+
+\vspace{-2.5em}
+\textbf{SIP Adressen}\\
+$\circ$ Direkte Angabe der IP-Adresse: \textit{sip:bob@193.64.210.89}\\
+$\circ$ Angabe einer eindeutigen Identifikation, die aufgelöst werden kann z.B. E-Mail: \textit{sip:bob@domain.de} oder Telefonnummer\\
+$\circ$ SIP-Adressen können in Webseiten eingebettet werden
+
+\vspace{-1.5em}
+\textbf{Auffinden der Nutzer}\\
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.325]{images/sip_ablauf.png}} & \makecell[l]{
+		$\circ$ Wie gelangt die \textit{INVITE}-Nachricht zum Nutzer, wenn dessen\\
+		\hspace*{2.5mm}IP nicht bekannt (\textit{jim@umass.edu} $\rightarrow$ \textit{keith@poly.edu})?\\
+		$\circ$ Nachricht geht zuerst an \textbf{SIP Proxy}\\
+		\hspace*{2.5mm}- Lokaler Ansprechpartner, dessen SIP Response aktuelle\\
+		\hspace*{2.5mm}\hspace*{2.5mm}IP-Adresse enthält\\
+		$\circ$ \textit{SIP-Proxy} fragt nach bei \textbf{SIP Registrar}\\
+		\hspace*{2.5mm}- Jede SIP-Applikation meldet sich bei Start über \textit{SIP REGISTER}\\
+		\hspace*{2.5mm}\hspace*{2.5mm}bei seinem Registrar:\\
+		\hspace*{2.5mm}\hspace*{2.5mm}\hspace*{2.5mm}REGISTER sip:fritz.box:5060 SIP/2.0\\
+		\hspace*{2.5mm}\hspace*{2.5mm}\hspace*{2.5mm}...\\
+		\hspace*{2.5mm}\hspace*{2.5mm}\hspace*{2.5mm}From: <sip:623@fritz.box>;tag=c194fd67348a4b8b8b7\\
+		\hspace*{2.5mm}\hspace*{2.5mm}\hspace*{2.5mm}To: <sip:623@fritz.box>\\
+		\hspace*{2.5mm}\hspace*{2.5mm}\hspace*{2.5mm}...\\
+		\hspace*{2.5mm}\hspace*{2.5mm}\hspace*{2.5mm}Expires: 300\\
+		\hspace*{2.5mm}- Registrar kennt daher immer aktuelle IP-Adresse zum Gerät
+	} 
+\end{tabular}
+
+\vspace{-2.25em}
+\subsection{Quality of Service (QoS)}
+\vspace{-2.125em}
 
 
 \end{document}
