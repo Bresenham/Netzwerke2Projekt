@@ -29,24 +29,18 @@ void ICACHE_FLASH_ATTR user_tcp_discon_cb(void *arg) {
 }
 
 void ICACHE_FLASH_ATTR user_send_data(struct espconn *pespconn) {
-    char *pbuf = (char*)os_zalloc(sizeof(uint8_t) * mqttSize);
-
-    mqtt.fillPacket(&mqtt, pbuf);
-    os_printf("MQTT SIZE: %d\r\n", mqttSize);
-    os_printf("FIXED HEADER BYTE 0: 0x%x\r\n", pbuf[0]);
-    os_printf("FIXED HEADER BYTE 1: 0x%x\r\n", pbuf[1]);
-
-    os_printf("VAR HEADER BYTE 1: %d\r\n", pbuf[2]);
-    os_printf("VAR HEADER BYTE 2: %d\r\n", pbuf[3]);
-    os_printf("VAR HEADER BYTE 3: %c\r\n", pbuf[4]);
-    os_printf("VAR HEADER BYTE 4: %c\r\n", pbuf[5]);
-    os_printf("VAR HEADER BYTE 5: %c\r\n", pbuf[6]);
-
-    const uint32_t t = pbuf[7] << 24 | pbuf[8] << 16 | pbuf[9] << 8 | pbuf[10];
-    os_printf("TEMP FROM PAYLOAD: %d\r\n", t);
-    espconn_send(pespconn, (uint8_t*)pbuf, mqttSize);
-
-    os_free(pbuf);
+    if(mqtt.hasSentConnect) {
+        char *pbuf = (char*)os_zalloc(sizeof(uint8_t) * mqttSize);
+        mqtt.fillPublishPacket(&mqtt, pbuf);
+        espconn_send(pespconn, (uint8_t*)pbuf, mqttSize);
+        os_free(pbuf);
+    } else {
+        char *pbuf = (char*)os_zalloc(sizeof(uint8_t) * mqtt.connectPacketLength);
+        mqtt.fillConnectPacket(&mqtt, pbuf);
+        espconn_send(pespconn, (uint8_t*)pbuf, mqtt.connectPacketLength);
+        os_free(pbuf);
+        mqtt.hasSentConnect = true;
+    }
 }
 
 void ICACHE_FLASH_ATTR user_tcp_connect_cb(void *arg) {
@@ -89,7 +83,7 @@ void ICACHE_FLASH_ATTR user_check_ip(void) {
         /* Get IP of remote server */
         /* TODO: HIER STEHT DIE IP-ADRESSE DES RASPI IM LOKALEN NETZWERK
         */
-        const char esp_tcp_server_ip[4] = {192, 168, 137, 37}; // remote IP of TCP server
+        const char esp_tcp_server_ip[4] = {10, 149, 13, 154}; // remote IP of TCP server
 
         os_memcpy(user_tcp_conn.proto.tcp->remote_ip, esp_tcp_server_ip, 4);
 
@@ -153,8 +147,8 @@ void ICACHE_FLASH_ATTR initWifi(Wifi *self) {
     wifi_station_set_auto_connect(false);
     wifi_set_opmode(STATION_MODE);
 
-    self->SSID = "networkap";
-    self->PW = "qwertzuiop";
+    self->SSID = "";
+    self->PW = "";
 
     self->publishData = &wifiConnect;
     os_printf("Initialized Wifi\r\n");

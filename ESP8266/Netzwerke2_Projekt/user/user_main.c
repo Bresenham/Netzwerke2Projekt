@@ -64,20 +64,7 @@ void ICACHE_FLASH_ATTR mqtt_publish_data() {
 
     os_printf("Read temperature %d\r\n", temp);
 
-    mqttSize = mqtt.createPacket(&mqtt, temp);
-    os_printf("Created MQTT-Packet of size: %d\r\n", mqttSize);
-    os_printf("FIXED HEADER:\r\n");
-    os_printf("\t%d\r\n", mqtt.fix_header[0]);
-    os_printf("\t%d\r\n", mqtt.fix_header[1]);
-    os_printf("VARIABLE HEADER:\r\n");
-    os_printf("\t%d\r\n", mqtt.var_header[0]);
-    os_printf("\t%d\r\n", mqtt.var_header[1]);
-    const uint8_t var_header_len = (mqttSize - 2 - 4);
-    for(uint8_t i = 2; i < mqtt.var_header_size; i++)
-        os_printf("\t%c\r\n", mqtt.var_header[i]);
-    os_printf("PAYLOAD AS TEMP\r\n");
-    const uint32_t t = mqtt.payload[0] << 24 | mqtt.payload[1] << 16 | mqtt.payload[2] << 8 | mqtt.payload[3];
-    os_printf("\t%d\r\n", t);
+    mqttSize = mqtt.createPublishPacket(&mqtt, temp);
 
     wifi.publishData(&wifi);
 }
@@ -95,7 +82,7 @@ void ICACHE_FLASH_ATTR user_init(void) {
         /* Veroeffentliche alle 1s neuen Temperaturwert */
         os_timer_disarm(&mqtt_publish_timer);
         os_timer_setfn(&mqtt_publish_timer, (os_timer_func_t*)mqtt_publish_data, NULL);
-        os_timer_arm(&mqtt_publish_timer, 10000, true);
+        os_timer_arm(&mqtt_publish_timer, 10000, false);
     } else {
         os_printf("BMP280-ID GOT %d, expected %d - END.\r\n", bmp280_id, BMP280_EXPECTED_ID);
     }

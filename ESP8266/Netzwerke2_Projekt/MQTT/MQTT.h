@@ -10,15 +10,18 @@
 #include "ets_sys.h"
 #include "mqtt_private.h"
 
+
 typedef struct MQTT {
-    uint8_t fix_header[FIXED_HEADER_SIZE];
-    uint8_t *var_header;
-    uint8_t payload[PAYLOAD_SIZE];
+    uint8_t fix_header[PUBLISH_FIXED_HEADER_SIZE];
+    uint8_t var_header[PUBLISH_VAR_HEADER_SIZE];
+    uint8_t payload[PUBLISH_PAYLOAD_SIZE];
 
-    uint8_t var_header_size;
+    bool hasSentConnect;
+    uint8_t connectPacketLength;
 
-    uint8_t (*createPacket)(struct MQTT*, int32_t);
-    void (*fillPacket)(struct MQTT*, uint8_t*);
+    uint8_t (*createPublishPacket)(struct MQTT*, int32_t);
+    void (*fillPublishPacket)(struct MQTT*, uint8_t*);
+    void (*fillConnectPacket)(struct MQTT*, uint8_t*);
 } MQTT;
 
 MQTT mqtt;

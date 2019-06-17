@@ -1,7 +1,7 @@
 import paho.mqtt.client as mqtt
  
-MQTT_SERVER = "localhost"
-MQTT_PATH = "test_channel"
+MQTT_SERVER = "10.149.13.154"
+MQTT_PATH = "a/b"
  
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -27,3 +27,6 @@ client.connect(MQTT_SERVER, 1883, 60)
 # Other loop*() functions are available that give a threaded interface and a
 # manual interface.
 client.loop_forever()
+
+while(True):
+	print(a)
