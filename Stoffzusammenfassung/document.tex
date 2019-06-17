@@ -1305,7 +1305,7 @@ $\circ$ \textbf{Beispiel:} Abtastung Sprachsignal mit 8kHz ($\rightarrow$ alle 1
 
 \newpage
 
-\vspace{-2.5em}
+\vspace{-3.25em}
 \textbf{SIP Adressen}\\
 $\circ$ Direkte Angabe der IP-Adresse: \textit{sip:bob@193.64.210.89}\\
 $\circ$ Angabe einer eindeutigen Identifikation, die aufgelöst werden kann z.B. E-Mail: \textit{sip:bob@domain.de} oder Telefonnummer\\
@@ -1333,9 +1333,155 @@ $\circ$ SIP-Adressen können in Webseiten eingebettet werden
 	} 
 \end{tabular}
 
-\vspace{-2.25em}
+\vspace{-2.45em}
 \subsection{Quality of Service (QoS)}
 \vspace{-2.125em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.325]{images/qos.png}} & \makecell[l]{
+		$\circ$ Netzwerkunterstützung für Mulimedia, \textbf{Beispielszenario}:\\
+		\hspace*{2.5mm}- starker Traffic von Notebook an Server\\
+		\hspace*{2.5mm}- Datenverkehr über Leitung $R_1 \rightarrow R_2$\\
+		\hspace*{2.5mm}- Output-Queue von $R_1$ füllt sich $\Rightarrow$ Audio-Aussetzer über VoIP-Telefon\\
+		\hspace*{2.5mm}- Markierung von Paketen an den Enden des Netzwerkes\\
+		\hspace*{2.5mm}\hspace*{2.5mm}$\rightarrow$ Router kann unterschiedliche \textit{Traffic Classes} unterscheiden\\
+		\hspace*{2.5mm}\hspace*{2.5mm}$\rightarrow$ Paketbehandlung im Router hängt von Markierung (= Klasse) ab\\
+		\hspace*{2.5mm}- Umgang mit Applikationen, die sich nicht an die Regeln halten\\
+		\hspace*{2.5mm}\hspace*{2.5mm}z.B. VoIP Telefon mit höherer Rate als vorgesehen\\
+		\hspace*{2.5mm}\hspace*{2.5mm}$\rightarrow$ Überwachung (\textit{Policing}) der einzelnen Klassen\\
+		\hspace*{2.5mm}\hspace*{2.5mm}$\rightarrow$ Isolierung und Schutz der einzelnen Traffic-Klassen\\
+		\hspace*{2.5mm}- Feste Zuordnung der Bandbreite wäre ineffizient\\
+		\hspace*{2.5mm}\hspace*{2.5mm}$\rightarrow$ Trotz Isolation der Klassen sollen nicht genutzte\\
+		\hspace*{2.5mm}\hspace*{2.5mm}\hspace*{2.5mm}Ressourcen von anderen Klassen verwendet werden können
+	} 
+\end{tabular}
 
+\vspace{-1.45em}
+\textbf{Scheduling}\\
+$\circ$ Auswahl des nächsten zu sendenen Paketes (z.B. \textit{QoS Scheduler} in $R_1$)
+$\circ$ Möglichkeiten bei voller Queue vorzugehen:\\
+\hspace*{2.5mm}- \textbf{Tail-Drop:} neu angekommendes Paket verwerfen\\
+\hspace*{2.5mm}- \textbf{Priority:} Paket mit geringster Priorität verwerfen\\
+\hspace*{2.5mm}- \textbf{Random:} Zufälliges Paket verwerfen
 
+\vspace{-1.45em}
+\textbf{First-In First-Out} (\textit{FIFO}):\\
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.325]{images/fifo.png}} & \makecell[l]{
+		$\circ$ \textbf{Einfaches FIFO}\\
+		\hspace*{2.5mm}- Pakete in Reihenfolge des Empfangs versenden\\
+		\hspace*{2.5mm}- Zeitlich zuerst Empfangenes Paket wird auch zuerst versendet\\
+		$\circ$ \textbf{Priority Queues}\\
+		\hspace*{2.5mm}- Mehrere Klassen mit unterschiedlichen Prioritäten\\
+		\hspace*{2.5mm}- Separate Warteschlangen (\textit{Queues}) für jede Priorität\\
+		\hspace*{2.5mm}- Paket aus befüllter Queue mit höchster Priorität wird gesendet\\
+		\hspace*{2.5mm}- Pakete gleicher Priorität werden nach FIFO gescheduled
+	}
+\end{tabular}
+
+\newpage
+
+\vspace{-3.5em}
+\textbf{Generalized Processor Sharing} (\textit{GPS}):\\
+\begin{tabular}{ll}
+	\makecell[l]{
+		$\circ$ \textbf{Modell eines idealen Schedulers}\\
+		\hspace*{2.5mm}- Jedem Datenstrom wird Gewicht $w_i$ mit $0 \leq w_i \leq 1$ zugeordnet\\
+		\hspace*{2.5mm}- Summe aller Gewichte ist 1: $\sum_{i}^{}w_i = 1$\\
+		\hspace*{2.5mm}- Jedem Datenstrom wird Ressourcenanteil entsprechend seines Gewichtes zugeordnet\\
+		\hspace*{2.5mm}- Nutzt ein Datenstrom seine Ressourcen nicht, so werden sie auf andere aufgeteilt: \textit{work conserving}\\
+		\hspace*{2.5mm}- Theoretisches Modell - kann in real paketbasierten Netz nur angenähert werden da zu einem\\
+		\hspace*{2.5mm}\hspace*{2.5mm}Zeitpunkt nur ein Paket gesendet werden kann
+	} & \raisebox{-.5\height}{\includegraphics[scale=0.325]{images/gps.png}}
+\end{tabular}
+
+\vspace{-3.75em}
+\textbf{Weighted Round Robing} (\textit{WRR}):\\
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.335]{images/wrr.png}} & \makecell[l]{
+		$\circ$ Vorberechnung einer sich periodisch wiederholenden Zuteilung von Ressourcen\\
+		\hspace*{2.5mm}an die Klassen/Datenströme\\
+		$\circ$ Klassen kommen entsprechend ihrer Gewichte häufiger bzw. weniger häufig in\\
+		\hspace*{2.5mm}WRR Schedule vor\\
+		$\circ$ Zyklisches Prüfen der Klassen nach WRR Schedule $\rightarrow$ kann nun Paket senden\\
+		$\circ$ Klasse, die nichts zu senden hat, wird übersprungen
+	}
+\end{tabular}
+
+\vspace{-1.25em}
+\textbf{Weighted Fair Queuing} (\textit{WFQ}):\\
+\begin{tabular}{ll}
+	\makecell[l]{
+		$\circ$ Verallgemeinerung von \textit{WRR} und paketbasierte Approximation von \textit{GPS}\\
+		$\circ$ Im Gegensatz zu \textit{WRR} keine Vorberechnung der Schedule sondern stellt sicher,\\
+		\hspace*{2.5mm}dass Klasse $i$, die im Intervall senden wollte, mindestens Bruchteil $\frac{w_i}{\sum_{j}^{}w_j}$\\
+		\hspace*{2.5mm}der Ressourcen erhält
+	} & \raisebox{-.5\height}{\includegraphics[scale=0.325]{images/wfq.png}}
+\end{tabular}
+
+\vspace{-2.0em}
+\textbf{Policing Mechanismen}:\\
+$\circ$ Ziel ist Überwachung einer Klasse und Regeln der Raten, mit der diese Pakete einspeist\\
+$\circ$ Kriterien sind\\
+\hspace*{2.5mm}- \textbf{Durchschnittliche Rate}: Pakete pro Zeitintervall\\
+\hspace*{2.5mm}- \textbf{Maximale Rate} als oberes Limit\\
+\hspace*{2.5mm}- \textbf{Burst-Größe}: maximale Anzahl von Paketen, die innerhalb eines sehr kurzen Zeitraumes (ohne Pause) gesendet werden dürfen
+
+\vspace{-1.25em}
+\textbf{Leaky Bucket}:\\
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.375]{images/leaky_bucket.png}} & \makecell[l]{
+		$\circ$ Virtuelle Token werden mit fester Rate $r$ generiert\\
+		\hspace*{2.5mm}$\rightarrow$ Limitiert \textit{Durchschnittliche Rate}\\
+		$\circ$ Jedes Paket benötigt genau einen Token zum Versand\\
+		$\circ$ Token Bucket kann bis zu $b$ Tokens aufnehmen $\rightarrow$ Limitiert \textit{Burst-Größe}\\
+		$\circ$ Insgesamt wird garantiert, dass innerhalb eines Zeitintervalls\\
+		\hspace*{2.5mm}der Länge $t$ die Anzahl der ins Netzwerk eingespeisten Pakete $\leq r\cdot t + b$ ist
+	}
+\end{tabular}
+
+\newpage
+
+\vspace{-3.75em}
+\textbf{Leaky Bucket kombiniert mit WFQ}:\\
+\begin{tabular}{ll}
+	\makecell[l]{
+		$\circ$ \textit{Leaky Bucket} limitiert Anzahl der in Warteschlange eingespeisten Pakete\\
+		$\circ$ \textit{WFQ} garantiert für jede Klasse eine bestimmte Mindestrate\\
+		$\circ$ Ergibt beweisbare Maximalverzögerung $\rightarrow$ \textbf{Quality of Service Garantie}
+	} & \raisebox{-.5\height}{\includegraphics[scale=0.375]{images/leaky_bucket_wfq.png}}
+\end{tabular}
+
+\vspace{-2.75em}
+\subsection{Differentiated Services (DiffServ)}
+\vspace{-1.75em}
+$\circ$ Architektur zur Bereitstellung qualitativer Dienstklassen, ohne Zusage quantitativer Parameter\\
+$\circ$ Skalierbar:\\
+\hspace*{2.5mm}- \textbf{Einfache Funktion im Kernnetz:} per Hop Verhalten (\textit{Per-Hop Behaviour - \textit{PHB}}) des Routers basierend auf Paketmarkierungen\\
+\hspace*{2.5mm}- \textbf{Komplexe Funktionen am Rand des Netzes} (\textit{Edge Router}) mit Paketklassifikation, Markierung und Traffic Policing
+
+\begin{tabular}{ll}
+	\makecell[l]{
+		$\circ$ \textbf{Edge Router} mit \textit{Leaky Bucket}\\
+		\hspace*{2.5mm}- Traffic Management pro Datenstrom (Quelle-Ziel Verbindung)\\
+		\hspace*{2.5mm}- Markiert Pakete (\textit{in-profile}/\textit{out-profile})\\
+		$\circ$ \textbf{Core Router} mit \textit{WFQ}:\\
+		\hspace*{2.5mm}- Traffic Management pro Klasse ($\rightarrow$ Markierung) sowie Buffering/Scheduling\\
+		\hspace*{2.5mm}- Stellt relative \textit{QoS} unter den Klassen sicher\\
+	} & \raisebox{-.5\height}{\includegraphics[scale=0.325]{images/diffserv.png}}
+\end{tabular}\\
+
+$\circ$ Markierung vom Paketen (Klassenzugehörigkeit) erfolgt in \textbf{IP-Header} im \textit{Type of Service} (TOS) Feld (IPv4) bzw.\\
+\hspace*{2.5mm}im \textit{Traffic Class} (TC) Feld (IPv6) mit Eintragung eines \textit{Differentiated Services Code Point} (DSCP) als \textbf{6-Bit Wert}\\
+$\circ$ Zwei Unterschiedliche \textbf{Per Hop Behaviours}:\\
+\hspace*{2.5mm}- \textbf{Expedited Forwarding:} Verkehrsrate einer Klasse entspricht oder übersteigt voreingestellte Rate am Router\\
+\hspace*{2.5mm}- \textbf{Assured Forwarding:} 4 Verkehrsklassen, jeweils 3 Kategorien für Verwerfen bei Überlast, mit garantiert minimaler Bandbreite
+
+\vspace{-2.75em}
+\subsection{Integrated Services (IntServ)}
+\vspace{-1.75em}
+$\circ$ Garantiert Datenrate/Dienstgüte, die erfordern:\\
+\hspace*{2.5mm}- \textbf{Ressourcenreservierung:} Zuteilung der benötigten Ressourcen bei Verbindungsaufbau von Datenstrom\\
+\hspace*{2.5mm}- \textbf{Call Admission:} Abweisung eines Datenstroms bei Anforderung von nicht mehr verfügbaren Ressourcen\\
+\hspace*{2.5mm}- \textbf{Verbindungsaufbausignalisierung} (Call Setup): Ressourcen werden entlang des Pfades (d.h. bei jedem Router)\\
+\hspace*{2.5mm}\hspace*{2.5mm}von Quelle zu Ziel reserviert (per Hop Allokierung) $\rightarrow$ Resource Reservation Protocol (\textit{RSVP})
 \end{document}
