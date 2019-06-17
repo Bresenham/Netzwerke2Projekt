@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.6.1)  3 JUN 2019 19:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.6.1)  17 JUN 2019 18:46
 entering extended mode
 **./document.tex
 (document.tex
@@ -1611,30 +1611,44 @@ Underfull \hbox (badness 10000) in paragraph at lines 1227--1230
  []
 
 
-Package caption Warning: Unused \captionsetup[lstlisting] on input line 148.
-See the caption package documentation for explanation.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1237.
-
 Overfull \vbox (1.79988pt too high) has occurred while \output is active []
 
 
 [17 <./images/voip_feste_verzoegerung.png> <./images/voip_paketverlust.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1237.
+<images/rtp_header.png, id=202, 484.81125pt x 296.60812pt>
+File: images/rtp_header.png Graphic file (type png)
+<use images/rtp_header.png>
+Package pdftex.def Info: images/rtp_header.png  used on input line 1262.
+(pdftex.def)             Requested size: 206.04575pt x 126.05904pt.
 
-(document.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1237.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1237.
+Overfull \hbox (27.20384pt too wide) in paragraph at lines 1241--1269
+[]
+ []
+
+
+Package caption Warning: Unused \captionsetup[lstlisting] on input line 148.
+See the caption package documentation for explanation.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1270.
+
+Overfull \vbox (1.79988pt too high) has occurred while \output is active []
+
+
+[18 <./images/rtp_header.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1270.
+ (document.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1270.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1270.
 
 Package rerunfilecheck Info: File `document.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1237.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1270.
  ) 
 Here is how much of TeX's memory you used:
- 13942 strings out of 492895
- 222670 string characters out of 3133483
+ 13950 strings out of 492895
+ 222816 string characters out of 3133483
  647041 words of memory out of 3000000
- 17527 multiletter control sequences out of 15000+200000
+ 17532 multiletter control sequences out of 15000+200000
  46493 words of font info for 35 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,20n,100p,9089b,467s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1654,9 +1668,9 @@ es/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts
 lmri8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmro8.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy6.pfb><C:/Program Files/MiKTeX 2
 .9/fonts/type1/public/lm/lmsy8.pfb>
-Output written on document.pdf (17 pages, 2448930 bytes).
+Output written on document.pdf (18 pages, 2466003 bytes).
 PDF statistics:
- 361 PDF objects out of 1000 (max. 8388607)
- 66 named destinations out of 1000 (max. 500000)
- 421 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 372 PDF objects out of 1000 (max. 8388607)
+ 68 named destinations out of 1000 (max. 500000)
+ 434 words of extra memory for PDF output out of 10000 (max. 10000000)
 

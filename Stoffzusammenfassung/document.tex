@@ -1101,13 +1101,13 @@ $\circ$ \textbf{Aber:} UDP oft nicht durch Firewalls/NAT, separate Kontrollverbi
 \vspace{-2em}
 \subsection{Dynamic Adaptive Streaming over HTTP (DASH)}
 \vspace{-2em}
-$\circ$ Problem TCP-Streaming: Bandbreite variiert durch TCP, \textit{DASH:}\\
+$\circ$ Problem TCP-Streaming: Bandbreite variiert durch HTTP+TCP, \textit{DASH:}\\
 \vspace{-2.75em}
 \begin{itemize}
 	\setlength\itemsep{-1.25em}
 	\item Aufteilen der Multimedia-Datei in \textit{Chunks}
 	\item Mehrfache Kodierung jedes Chunks in unterschiedlichen Versionen mit anderer Bitrate ($\rightarrow$ Qualitätsstufen)
-	\item Manifest-Datei: URLs der unterschiedlichen Versionen
+	\item Manifest-Datei: URLs der unterschiedlichen Versionen, wird von Media-Server an Client geschickt
 	\item Client wählt passende Version abhängig von Bandbreite
 \end{itemize}
 
@@ -1233,5 +1233,40 @@ $\circ$ \textbf{Interleaving:} Umordnen \& Verzahnen des Datenstroms, Verlust ei
 \hspace*{2.5mm}und nicht zu einer großen (auffälligen) Lücke\\
 $\circ$ \textbf{Verschleierung (Error Concealment):} Empfänger generiert Audio-Daten zum Füllen der Lücke (\textit{Interpolation},\\
 \hspace*{2.5mm}Wiederholung des vorherigen Paketes)
+
+\newpage
+
+\subsection{Real-Time Protocol (RPT)}
+\vspace{-2em}
+\begin{tabular}{ll}
+	\makecell[l]{
+		$\circ$ Standardisiertes Paketformat für Multimedia/VoIP\\
+		$\circ$ Unabhängig von Art der übertragenen Daten (MP3, H.263, etc.)\\
+		$\circ$ RTP Payload wird über UDP Segmente übertragen (Unicast \& Multicast)\\
+		$\circ$ Vorteile als Entwickler sind vorhandene Bibliotheken/Tools und\\
+		\hspace*{2.5mm}Zusammenarbeit unterschiedlicher RTP-Anwendungen\\
+		$\circ$ \textit{Header}\\
+		\hspace*{2.5mm}- \textbf{RTP-Version} mit 2 Bit\\
+		\hspace*{2.5mm}- \textbf{Padding-Bit} gibt an, ob hinter Nutzdaten noch Padding eingefügt ist\\
+		\hspace*{2.5mm}- \textbf{Extension-Bit} gibt an, ob hinter RTP-Header noch Extension-Header folgt\\
+		\hspace*{2.5mm}- \textbf{CSSI-Count}: Anzahl \textit{CSSI}-Werte\\
+		\hspace*{2.5mm}- \textbf{Marker-Bit:} Art des Payloads\\
+		\hspace*{2.5mm}- \textbf{Payload-Type:} PCM = 0; GSM = 3; H.261 = 31; MPEG2 = 33...\\
+		\hspace*{2.5mm}- \textbf{Sequence Number} wird für jedes gesendete RTP-Paket erhöht\\
+		\hspace*{2.5mm}\hspace*{2.5mm}(Empfänger erkennt Reordering/Verluste)\\
+		\hspace*{2.5mm}- \textbf{Timestamp} gibt Zeitpunkt der Aufnahme des 1. Bytes an\\
+		\hspace*{2.5mm}- \textbf{Synch. Source Identifier} ist eindeutiger Zufallswert, der Quelle \\
+		\hspace*{2.5mm}\hspace*{2.5mm}der Daten identifiziert\\
+		\hspace*{2.5mm}- \textbf{Contr. Synch. Source Identifiers} (\textit{CSSI}) ist Angabe der Quellen\\
+		\hspace*{2.5mm}\hspace*{2.5mm}der Multimediadaten
+	} & \raisebox{-.5\height}{\includegraphics[scale=0.425]{images/rtp_header.png}}
+\end{tabular}
+$\circ$ \textbf{Beispiel:} Abtastung Sprachsignal mit 8kHz ($\rightarrow$ alle 125$\mu$s ein 8-Bit Wert), Anwendung sammelt kodierte Audiodaten in \textit{Chunks}\\
+\hspace*{2.5mm}- z.B. alle 20ms einen Chunk zu 160 Bytes\\
+\hspace*{2.5mm}- RTP-Header hat Payload-Type 0\\
+\hspace*{2.5mm}- Timestamp startet bei 0 und wird für jedes Paket um 160 erhöht (Einheit ist Sampling-Periode, d.h. im Beispiel 125 $\mu$s)\\
+\hspace*{2.5mm}- Der Header bildet zusammen mit Chunk das RTP-Paket, das als UDP-Segment verpackt und versendet wird.
+
+
 
 \end{document}
