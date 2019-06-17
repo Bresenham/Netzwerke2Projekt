@@ -49,3 +49,18 @@ Nach der Ausgabe `Leaving...\nHard resetting via RTS pin...` ist das Programm au
 1. Die Arduino-IDE öffnen, `Werkzeuge`-`Port`-entsprechenden COM-Port auswählen.
 1. `Werkzeuge`-`Serieller Monitor`-`74880 Baud` - hier erscheinen nun die Ausgaben, die man mit `os_printf` im Code gemacht hat.
 1. **Achtung:** Während der serielle Monitor geöffnet ist, kann keine neue Firmware geflasht werden, da die Arduino IDE den COM-Port belegt.
+
+# HowTo - Raspberry Pi MQTT Server – Mosquitto installieren und testen
+1. Installation
+```
+sudo apt-get install -y mosquitto mosquitto-clients
+```
+2. Starten eines Test-Subscribers auf einem Test-Channel
+```
+mosquitto_sub -h localhost -v -t test_channel
+```
+3. Starten eines Test-Publishers auf den Test-Channel
+```
+mosquitto_pub -h localhost -t test_channel -m "Hello Raspberry Pi"
+```
+Falls der Publisher auf einem anderen Gerät ist, sollte statt localhost die IP-Adresse des Empfängers stehen
