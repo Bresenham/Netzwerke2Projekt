@@ -21,6 +21,8 @@ typedef struct MQTT {
     void (*fillPacket)(struct MQTT*, uint8_t*);
 } MQTT;
 
+MQTT mqtt;
+uint8_t mqttSize;
 void ICACHE_FLASH_ATTR initMQTT(MQTT *s);
 
 #endif /* MQTT_H */

@@ -13,7 +13,12 @@
 uint8_t ICACHE_FLASH_ATTR mqttCreatePacket(MQTT *self, int32_t tempData) {
     self->fix_header[0] = PACKET_TYPE_PUBLISH | PACKET_PUBLISH_NO_DUP | PACKET_PUBLISH_QOS_AT_MOST_ONCE | PACKET_PUBLISH_RETAIN;
 
-    const char topic[] = "test_channel";
+    char topic[3];
+
+    topic[0] = 0x61;
+    topic[1] = 0x2f;
+    topic[2] = 0x62;
+
     const uint8_t topicStrLen = sizeof(topic) / sizeof(topic[0]);
     self->var_header_size = 1 + 1 + topicStrLen;
 
@@ -31,10 +36,11 @@ uint8_t ICACHE_FLASH_ATTR mqttCreatePacket(MQTT *self, int32_t tempData) {
     self->payload[2] = (tempData >> 8) & 0xFF;
     self->payload[3] = (tempData & 0xFF);
 
-    uint8_t completeLen = (1 + 1) + topicStrLen + PAYLOAD_SIZE;
-
+    uint8_t completeLen = self->var_header_size + PAYLOAD_SIZE;
+    uint8_t encodedByte = 0;
+    os_printf("LENGTH FOR ENCODING: %d\r\n", completeLen);
     do {
-        uint8_t encodedByte = completeLen % 128;
+        encodedByte = completeLen % 128;
         completeLen /= 128;
         if(completeLen > 0)
             encodedByte = encodedByte | 128;
@@ -55,8 +61,8 @@ void ICACHE_FLASH_ATTR mqttFillPacket(MQTT *self, uint8_t *packet) {
     packet[1] = self->fix_header[1];
 
     // Fill Variable Header
-    packet[2] = self->fix_header[1];
-    packet[3] = self->fix_header[2];
+    packet[2] = self->var_header[0];
+    packet[3] = self->var_header[1];
 
     // Fill variable TopicBytes
     for(uint8_t i = 0; i < self->var_header_size - 2; i++) {
@@ -65,7 +71,7 @@ void ICACHE_FLASH_ATTR mqttFillPacket(MQTT *self, uint8_t *packet) {
     
     // Fill payload
     for(uint8_t i = 0; i < PAYLOAD_SIZE; i++) {
-        packet[4 + self->var_header_size] = self->payload[i];
+        packet[2 + self->var_header_size + i] = self->payload[i];
     }
 }
 

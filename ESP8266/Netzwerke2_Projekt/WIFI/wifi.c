@@ -12,9 +12,6 @@ LOCAL os_timer_t test_timer;
 LOCAL struct _esp_tcp user_tcp;
 LOCAL struct espconn user_tcp_conn;
 
-MQTT *currentPacket;
-uint8_t pckt_size;
-
 void ICACHE_FLASH_ATTR user_tcp_recv_cb(void *arg, char *pusrdata, unsigned short length) {
     os_printf("Received data string\r\n\t");
     for(uint16_t i = 0; i < length; i++) {
@@ -32,20 +29,24 @@ void ICACHE_FLASH_ATTR user_tcp_discon_cb(void *arg) {
 }
 
 void ICACHE_FLASH_ATTR user_send_data(struct espconn *pespconn) {
-    if(currentPacket != NULL) {
-        char *pbuf = (char*)os_zalloc(sizeof(uint8_t) * pckt_size);
+    char *pbuf = (char*)os_zalloc(sizeof(uint8_t) * mqttSize);
 
-        currentPacket->fillPacket(currentPacket, pbuf);
-        espconn_send(pespconn, (uint8_t*)pbuf, pckt_size);
+    mqtt.fillPacket(&mqtt, pbuf);
+    os_printf("MQTT SIZE: %d\r\n", mqttSize);
+    os_printf("FIXED HEADER BYTE 0: 0x%x\r\n", pbuf[0]);
+    os_printf("FIXED HEADER BYTE 1: 0x%x\r\n", pbuf[1]);
 
-        os_printf("Sending packet:\r\n");
-        os_printf(pbuf);
-        os_printf("\r\n");
+    os_printf("VAR HEADER BYTE 1: %d\r\n", pbuf[2]);
+    os_printf("VAR HEADER BYTE 2: %d\r\n", pbuf[3]);
+    os_printf("VAR HEADER BYTE 3: %c\r\n", pbuf[4]);
+    os_printf("VAR HEADER BYTE 4: %c\r\n", pbuf[5]);
+    os_printf("VAR HEADER BYTE 5: %c\r\n", pbuf[6]);
 
-        os_free(pbuf);
-        os_free(currentPacket);
-        pckt_size = 0;
-    }
+    const uint32_t t = pbuf[7] << 24 | pbuf[8] << 16 | pbuf[9] << 8 | pbuf[10];
+    os_printf("TEMP FROM PAYLOAD: %d\r\n", t);
+    espconn_send(pespconn, (uint8_t*)pbuf, mqttSize);
+
+    os_free(pbuf);
 }
 
 void ICACHE_FLASH_ATTR user_tcp_connect_cb(void *arg) {
@@ -95,7 +96,7 @@ void ICACHE_FLASH_ATTR user_check_ip(void) {
         /* TODO: HIER STEHT DER PORT, UEBER DEN MIT DEM RASPI KOMMUNIZIERT WIRD.
            AKTUELL NOCH KEINEN PLAN, WELCHEN PORT MOSQUITTO BENUTZT
          */
-        user_tcp_conn.proto.tcp->remote_port = 80;  // remote port
+        user_tcp_conn.proto.tcp->remote_port = 1883;  // remote port
 
         user_tcp_conn.proto.tcp->local_port = espconn_port(); //local port of ESP8266
 
@@ -116,11 +117,7 @@ void ICACHE_FLASH_ATTR user_check_ip(void) {
     }
 }
 
-void ICACHE_FLASH_ATTR wifiConnect(Wifi *self, MQTT *packet, uint8_t packet_size) {
-    if(pckt_size != 0)
-        return;
-    currentPacket = packet;
-    pckt_size = packet_size;
+void ICACHE_FLASH_ATTR wifiConnect(Wifi *self) {
     // Wifi configuration 
     struct station_config stationConf; 
         
@@ -156,8 +153,8 @@ void ICACHE_FLASH_ATTR initWifi(Wifi *self) {
     wifi_station_set_auto_connect(false);
     wifi_set_opmode(STATION_MODE);
 
-    self->SSID = "dasbessereschubi";
-    self->PW = "ZAST17RA";
+    self->SSID = "networkap";
+    self->PW = "qwertzuiop";
 
     self->publishData = &wifiConnect;
     os_printf("Initialized Wifi\r\n");
