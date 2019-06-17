@@ -64,3 +64,24 @@ mosquitto_sub -h localhost -v -t test_channel
 mosquitto_pub -h localhost -t test_channel -m "Hello Raspberry Pi"
 ```
 Falls der Publisher auf einem anderen Gerät ist, sollte statt localhost die IP-Adresse des Empfängers stehen
+
+# HowTo - Raspberry Pi MQTT Datenaustausch mit Python
+```
+sudo pip install paho-mqtt
+```
+oder alternativ, falls Befehl nicht funktioniert:
+```
+git clone https://github.com/eclipse/paho.mqtt.python.git
+cd paho.mqtt.python
+python setup.py install
+```
+
+Imports für Phyton-Programme:
+
+```
+import paho.mqtt.client as mqtt
+
+//oder
+
+import paho.mqtt.publish as publish
+```
