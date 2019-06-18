@@ -65,6 +65,7 @@ void ICACHE_FLASH_ATTR mqtt_publish_data() {
     os_printf("Read temperature %d\r\n", temp);
 
     mqttSize = mqtt.createPublishPacket(&mqtt, temp);
+    mqtt.hasNewTempData = true;
 
     wifi.publishData(&wifi);
 }
@@ -82,7 +83,7 @@ void ICACHE_FLASH_ATTR user_init(void) {
         /* Veroeffentliche alle 1s neuen Temperaturwert */
         os_timer_disarm(&mqtt_publish_timer);
         os_timer_setfn(&mqtt_publish_timer, (os_timer_func_t*)mqtt_publish_data, NULL);
-        os_timer_arm(&mqtt_publish_timer, 10000, false);
+        os_timer_arm(&mqtt_publish_timer, 15000, true);
     } else {
         os_printf("BMP280-ID GOT %d, expected %d - END.\r\n", bmp280_id, BMP280_EXPECTED_ID);
     }

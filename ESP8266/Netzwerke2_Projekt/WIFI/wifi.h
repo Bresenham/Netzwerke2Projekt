@@ -19,12 +19,6 @@
 #include "espconn.h"
 
 typedef struct Wifi {
-    uint8_t *data;
-    uint8_t dataLength;
-    
-    char *SSID;
-    char *PW;
-
     void (*publishData)(struct Wifi*);
 } Wifi;
 

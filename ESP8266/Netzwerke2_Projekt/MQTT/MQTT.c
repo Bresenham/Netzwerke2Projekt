@@ -50,7 +50,7 @@ void ICACHE_FLASH_ATTR mqttFillConnectPacket(MQTT *self, uint8_t *packet) {
 
     /* KEEP ALIVE DURATION IN SEC */
     packet[10] = 0x00;
-    packet[11] = 0x0F;
+    packet[11] = 0xF0;
 
     /* CLIENT ID LENGTH */
     packet[12] = 0x00;
@@ -99,4 +99,5 @@ void ICACHE_FLASH_ATTR initMQTT(MQTT *self) {
     self->fillConnectPacket = &mqttFillConnectPacket;
     self->fillPublishPacket = &mqttFillPacket;
     self->connectPacketLength = CONNECT_FIXED_HEADER_SIZE + CONNECT_VAR_HEADER_SIZE + CONNECT_PAYLOAD_SIZE;
+    self->hasNewTempData = false;
 }

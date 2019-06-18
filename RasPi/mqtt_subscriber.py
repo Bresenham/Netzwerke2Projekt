@@ -1,6 +1,6 @@
 import paho.mqtt.client as mqtt
  
-MQTT_SERVER = "10.149.13.154"
+MQTT_SERVER = "192.168.0.100"
 MQTT_PATH = "a/b"
  
 # The callback for when the client receives a CONNACK response from the server.
@@ -13,7 +13,8 @@ def on_connect(client, userdata, flags, rc):
  
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    print(msg.topic+" "+str(msg.payload))
+	temp = float((msg.payload[0] << 24 | msg.payload[1] << 16 | msg.payload[2] << 8 | msg.payload[3]) / 100.0)
+	print(msg.topic,"Temperatur:",str(temp))
     # more callbacks, etc
  
 client = mqtt.Client()

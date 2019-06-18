@@ -18,6 +18,7 @@ typedef struct MQTT {
 
     bool hasSentConnect;
     uint8_t connectPacketLength;
+    bool hasNewTempData;
 
     uint8_t (*createPublishPacket)(struct MQTT*, int32_t);
     void (*fillPublishPacket)(struct MQTT*, uint8_t*);
