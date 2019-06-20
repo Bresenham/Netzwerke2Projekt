@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (MiKTeX 2.9.7050 64-bit) (preloaded format=xelatex 2019.6.4)  4 JUN 2019 20:15
+This is XeTeX, Version 3.14159265-2.6-0.999991 (MiKTeX 2.9.7050 64-bit) (preloaded format=xelatex 2019.6.4)  20 JUN 2019 11:07
 entering extended mode
 **./document.tex
 (document.tex
@@ -1729,12 +1729,16 @@ Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [1
 
 ]
+LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
+(Font)              scaled to size 8.62pt on input line 76.
+LaTeX Font Info:    Font shape `TU/SegoeUILight(0)/m/it' will be
+(Font)              scaled to size 8.62pt on input line 76.
 LaTeX Font Info:    Font shape `TU/SegoeUILight(0)/m/n' will be
-(Font)              scaled to size 12.41278pt on input line 72.
+(Font)              scaled to size 12.41278pt on input line 76.
 LaTeX Font Info:    Font shape `TU/SegoeUILight(0)/bx/n' will be
-(Font)              scaled to size 12.41278pt on input line 72.
+(Font)              scaled to size 12.41278pt on input line 76.
 LaTeX Font Info:    Font shape `TU/SegoeUILight(0)/bx/n' will be
-(Font)              scaled to size 7.758pt on input line 72.
+(Font)              scaled to size 7.758pt on input line 76.
 
 Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [][]  [] 
@@ -1743,15 +1747,8 @@ Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [2
 
 ]
-Underfull \hbox (badness 4168) in paragraph at lines 88--88
-[]|\TU/SegoeUILight(0)/m/n/10.95 Flags specific to each MQTT
- []
-
-
-Overfull \hbox (1.00403pt too wide) in paragraph at lines 88--88
-[][]  
- []
-
+File: images/iot_element.png Graphic file (type bmp)
+<images/iot_element.png>
 
 Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [][]  [] 
@@ -1760,16 +1757,12 @@ Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [3
 
 ]
-LaTeX Font Info:    Font shape `TU/SegoeUILight(0)/m/it' will be
-(Font)              scaled to size 9.43889pt on input line 125.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 8.62pt on input line 125.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 6.034pt on input line 125.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 4.31pt on input line 125.
-LaTeX Font Info:    Font shape `TU/SegoeUILight(0)/m/it' will be
-(Font)              scaled to size 8.62pt on input line 125.
+File: images/esp8266.jpg Graphic file (type bmp)
+<images/esp8266.jpg>
+File: images/bmp280.png Graphic file (type bmp)
+<images/bmp280.png>
+File: images/raspi.png Graphic file (type bmp)
+<images/raspi.png>
 
 Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [][]  [] 
@@ -1778,6 +1771,17 @@ Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [4
 
 ]
+File: images/esp8266.jpg Graphic file (type bmp)
+<images/esp8266.jpg>
+File: images/bmp280.png Graphic file (type bmp)
+<images/bmp280.png>
+File: images/raspi.png Graphic file (type bmp)
+<images/raspi.png>
+
+Overfull \vbox (7.9706pt too high) detected at line 129
+ []
+
+
 Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [][]  [] 
  []
@@ -1785,6 +1789,9 @@ Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [5
 
 ]
+File: images/wireshark_mqtt_connect.png Graphic file (type bmp)
+<images/wireshark_mqtt_connect.png>
+
 Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [][]  [] 
  []
@@ -1792,6 +1799,9 @@ Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [6
 
 ]
+File: images/wireshark_mqtt_publish.png Graphic file (type bmp)
+<images/wireshark_mqtt_publish.png>
+
 Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [][]  [] 
  []
@@ -1813,73 +1823,14 @@ Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [9
 
 ]
+LaTeX Font Info:    Font shape `TU/SegoeUILight(0)/m/n' will be
+(Font)              scaled to size 21.44655pt on input line 178.
+
 Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [][]  [] 
  []
 
 [10
-
-]
-File: images/esp8266.jpg Graphic file (type bmp)
-<images/esp8266.jpg>
-File: images/bmp280.png Graphic file (type bmp)
-<images/bmp280.png>
-File: images/raspi.png Graphic file (type bmp)
-<images/raspi.png>
-
-Overfull \hbox (0.93892pt too wide) has occurred while \output is active
-[][]  [] 
- []
-
-[11
-
-]
-File: images/bmp280.png Graphic file (type bmp)
-<images/bmp280.png>
-
-Overfull \hbox (0.93892pt too wide) has occurred while \output is active
-[][]  [] 
- []
-
-[12
-
-]
-File: images/esp8266.jpg Graphic file (type bmp)
-<images/esp8266.jpg>
-
-Overfull \vbox (6.35414pt too high) detected at line 248
- []
-
-
-Overfull \hbox (0.93892pt too wide) has occurred while \output is active
-[][]  [] 
- []
-
-[13
-
-]
-Overfull \hbox (0.93892pt too wide) has occurred while \output is active
-[][]  [] 
- []
-
-[14
-
-]
-Overfull \hbox (0.93892pt too wide) has occurred while \output is active
-[][]  [] 
- []
-
-[15
-
-]
-LaTeX Font Info:    Font shape `TU/SegoeUILight(0)/m/n' will be
-(Font)              scaled to size 21.44655pt on input line 278.
-
-Overfull \hbox (0.93892pt too wide) has occurred while \output is active
-[][]  [] 
- []
-
-[16
 
 ]
 \tf@nav=\write8
@@ -1891,11 +1842,11 @@ Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 \tf@snm=\write10
 \openout10 = `document.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 281.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 281.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 181.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 181.
  (document.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 281.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 281.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 181.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 181.
 Package rerunfilecheck Info: File `document.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E.
 
@@ -1904,12 +1855,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 52610 strings out of 427669
- 1193545 string characters out of 3149216
- 1455041 words of memory out of 3000000
- 55946 multiletter control sequences out of 15000+200000
- 539445 words of font info for 101 fonts, out of 3000000 for 9000
+ 52585 strings out of 427669
+ 1193309 string characters out of 3149216
+ 1451142 words of memory out of 3000000
+ 55922 multiletter control sequences out of 15000+200000
+ 537730 words of font info for 91 fonts, out of 3000000 for 9000
  1348 hyphenation exceptions out of 8191
  60i,16n,116p,777b,875s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on document.pdf (16 pages).
+Output written on document.pdf (10 pages).
