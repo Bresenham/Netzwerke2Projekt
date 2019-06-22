@@ -380,7 +380,12 @@ Keine Kollisionserkennung (Collision Detection (CD)) möglich $\Rightarrow$ ACKs 
 \vspace{-.5em}
 \begin{tabular}{ll}
 	\raisebox{-.5\height}{\includegraphics[scale=0.3]{images/wlan_layer_2_acks.png}} &s
-	\makecell[l]{$\circ$ Sender wartet Zeitspanne \textit{DIFS} (Distributed Coordination Function Interframe Spacing)\\während der Medium frei sein muss\\$\circ$ Sender überträgt Daten (kein Collision Detection)\\$\circ$ Empfänger prüft CRC\\$\circ$ Empfänger sendet ACK falls CRC korrekt nach Wartezeit \textit{SIFS} (Short Interframe Spacing) (SIFS < DIFS)\\um Senden eines normalen Frames dazwischen zu verhindern außerdem Umschalten von \textit{Empfangen} auf \textit{Senden}}\\
+	\makecell[l]{$\circ$ Sender wartet Zeitspanne \textit{DIFS} (Distributed Coordination Function Interframe Spacing)\\
+	\hspace*{2.5mm}während der Medium frei sein muss\\$\circ$ Sender überträgt Daten (kein Collision Detection)\\
+	$\circ$ Empfänger prüft CRC\\
+	$\circ$ Empfänger sendet ACK falls CRC korrekt nach Wartezeit \textit{SIFS} (Short Interframe Spacing), SIFS < DIFS\\
+	\hspace*{2.5mm}um Senden eines normalen Frames dazwischen und somit Kollision zu verhindern\\
+	\hspace*{2.5mm}außerdem Zeit benötigt zum Umschalten von \textit{Empfangen} auf \textit{Senden}}
 \end{tabular}
 
 \vspace{-1.0em}
@@ -392,7 +397,7 @@ Keine Kollisionserkennung (Collision Detection (CD)) möglich $\Rightarrow$ ACKs 
 	\item Falls frei: \textit{random backoff} im aktuellen \textit{Contention Window} würfeln, da wenn mehrere Stationen gleiche Zeit abwarten würden\\es sonst zu Kollision käme. Nach Ablauf des random backoffs Daten übertragen
 	\item Falls nicht frei: Warten bis Kanal frei (Ablauf des \textit{Netzbelegungsvektors}), wenn anschließend länger als 1 DIFS frei,\\
 	dann \textit{random backoff} Timer runterzählen \& dann Daten senden
-	\item Falls kein ACK erfolgt: Contention Window verdoppeln und Daten erneut senden
+	\item Falls kein ACK erfolgt: \textbf{Contention Window verdoppeln} und Daten erneut senden
 	\item Empfänger sendet ACK nach Ablauf eines \textbf{SIFS} bei korrekt erhaltenen Daten
 	\item Kollision durch gleichzeitig ablaufenden \textit{backoff timer} führt zu \textit{ACK-Timeout}
 \end{itemize}
@@ -454,8 +459,39 @@ $\circ$ Selbe Anordnung, arbeiten aber nun im \textbf{AdHoc}-Modus - welchen Kan
 
 \newpage
 
-$\circ$ Nun jede Node \textbf{mit zwei WLAN-Adapter} - welchen Kanal jeweils einstellen und welche \textbf{Änderung des Durchsatzes}?\\
-\hspace*{2.5mm}- 
+$\circ$ Nun jede Node \textbf{mit zwei WLAN-Adapter} - welchen Kanal jeweils einstellen und welche \textbf{Änderung des Durchsatzes}?
+\vspace{-2.25em}
+\begin{center}
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+		\multicolumn{2}{c|}{\textbf{A}} & \multicolumn{2}{c|}{\textbf{B}} & \multicolumn{2}{c|}{\textbf{C}} & \multicolumn{2}{c}{\textbf{D}}\\
+		Adapter 1 & Adapter 2 & Adapter 1 & Adapter 2 & Adapter 1 & Adapter 2 & Adapter 1 & Adapter 2\\
+		\hline
+		1 & 11 & 1 & 6 & 6 & 11 & 6 & 11
+	\end{tabular}
+\end{center}
+\vspace{-1.5em}
+\hspace*{2.5mm}- \textbf{Verdreifachung des Durchsatzes} da während A$\rightarrow^1$B gleichzeitig auch B$\rightarrow^6$C und C$\rightarrow^{11}$D senden können
+
+\vspace{-1.5em}
+\textbf{Praktikumsaufgabe 2.2}\\
+$\circ$ ACK-Timeout für Indoor-WLAN abschätzen\\
+\hspace*{2.5mm}- Übertragungszeit (Lichtgeschwindigkeit) + Umschaltzeit der Antenne von Receiver$\leftrightarrow$Transmitter\\
+$\circ$ Selber ACK-Timeout-Wert nun bei 7km Entfernung per Richtantenne - was passiert?\\
+\hspace*{2.5mm}- Optimalfall: ACK kommt verzögert nach Timeout an und nächstes Paket wird erst dann gesendet\\
+\hspace*{2.5mm}- Schlimmer Fall: Datenpaket \& ACK kollidieren und nichts kommt richtig an\\
+$\circ$ A, B \& C befinden sich in einem BSS - AP versendet ARP-Request um MAC-Adresse der Station A zu bestimmen\\
+\hspace*{2.5mm}- Welche Zieladresse hat der Rahmen mit dem ARP-Request? Broadcast MAC\\
+\hspace*{2.5mm}- Welche Station bestätigt den Empfang des Rahmens mit einem ACK? Keine, da Koordination zwischen A, B \& C nicht möglich\\
+\hspace*{2.5mm}- Was passiert, wenn \textit{SIFS}==\textit{DIFS}? Kollision möglich, da Sender immer DIFS abwartet, bis er senden darf
+
+\vspace{-1.5em}
+\textbf{Praktikumsaufgabe 3.1}\\
+$\circ$ WLAN Stick mit 150 Mbit/s\\
+\hspace*{2.5mm}- Welcher maximale Goodput bei direkter Empfangsreichweite ohne Störungen? Üblicherweise die Hälfte - 75 Mbit/s\\
+\hspace*{2.5mm}- Unterschiede im Transportprotokoll? TCP geringfügig langsamer aufgrund Overhead für Header \& ACKs\\
+$\circ$ Zusätzlich mit 802.11b/g/n ältere WLAN-Karte mit ausschließlich 802.11b 11Mbit/s im Netz\\
+\hspace*{2.5mm}- Welche Konsequenzen für Arbeitsweise des AP? RTS/CTS, Beacons \& Broadcasts werden im ältesten Verfahren gesendet\\
+\hspace*{2.5mm}- Welche Auswirkungen auf Goodput? Schlechtere Performance da geringere, maximale Datenrate
 
 \newpage
 
