@@ -1040,7 +1040,7 @@ $\circ$ Statt \textit{Master Secret} direkt als Schlüssel zu verwenden werden au
 \begin{tabular}{ll}
 	\raisebox{-.5\height}{\includegraphics[scale=0.2]{images/ssl_reordering.png}} &
 	\makecell[l]{$\circ$ Aufteilung des TCP-Byte-Stroms in separate Abschnitte (\textit{SSL Records})\\
-		$\circ$ Jeder Record enthält zusätzliche Sequenznummer (beginnend bei 0) um\\\hspace*{5mm}Reordering von Records verhindern\\
+		$\circ$ Jeder Record enthält \textbf{zusätzliche Sequenznummer} (beginnend bei 0) um\\\hspace*{5mm}Reordering von Records verhindern\\
 		$\circ$ \textit{MAC} wird berechnet über Daten + MAC-Schlüssel ($M_A$ oder $M_B$) + Sequenznummer\\
 		$\circ$ Nutzung von \textit{Nonces} verhindert Replay-Angriff (Wiederabspielen einer Datenverbindung)}
 \end{tabular}\\
@@ -1079,8 +1079,26 @@ $\circ$ \textbf{Perfect Forward Secrecy:} Kommunikationspartner generieren nur f
 
 \begin{tabular}{ll}
 	\raisebox{-.5\height}{\includegraphics[scale=0.33]{images/tls_13_zero_rtt.png}} &
-	\makecell[l]{$\circ$ \textit{0-RTT Mode:}\\\hspace*{2.5mm}Client \& Server teilen \textit{Pre-shared Key}\\\hspace*{2.5mm}z.B. aus vorheriger Verbindung, und können\\\hspace*{2.5mm}diesen gleich zur Authentifizierung und\\\hspace*{2.5mm}Verschlüsselung der \textit{Early Data} verwenden\\\hspace*{2.5mm}\textbf{allerdings:} Kein \textit{Forward Secrecy},\\\hspace*{19mm}anfälliger ggü. Replay-Attacken}
+	\makecell[l]{$\circ$ \textbf{0-RTT Mode:}\\\hspace*{2.5mm}Client \& Server teilen \textit{Pre-shared Key}\\\hspace*{2.5mm}z.B. aus vorheriger Verbindung, und können\\\hspace*{2.5mm}diesen gleich zur Authentifizierung und\\\hspace*{2.5mm}Verschlüsselung der \textit{Early Data} verwenden\\\hspace*{2.5mm}\textbf{allerdings:} Kein \textit{Forward Secrecy},\\\hspace*{19mm}anfälliger ggü. Replay-Attacken}
 \end{tabular}\\
+
+\textbf{Praktikumsaufgabe 6.1}\\
+$\circ$ Ist es möglich, dass ein Angreifer, ohne die Shared Keys der Teilnehmer zu kennen, ein gefälschtes TCP Segment\\
+\hspace*{2.5mm}(mit korrekter TCP Checksumme/Sequenznummer, sowie korrekten IP-Adressen und Portnummern) in eine laufende\\
+\hspace*{2.5mm}SSL-Session einschleusen kann?\\
+\hspace*{2.5mm}- Daten wie Quell- und Ziel-IP, Port und TCP-Sequenznummer sind unverschlüsselt und können vom Angreifer ausgelesen werden,\\
+\hspace*{2.5mm}\hspace*{2.5mm}d.h. der Angreifer kann in der Tat solch ein gefälschtes TCP-Segment einschleusen, allerdings hat er keinen Zugriff\\
+\hspace*{2.5mm}\hspace*{2.5mm}auf die verschlüsselte SSL-Sequenznummer\\
+$\circ$ Wird dieses Segment der Anwendung übergeben?\\
+\hspace*{2.5mm}- Da die Sequenznummer nicht stimmen kann bzw. es allgemein schon an der Verschlüsselung mit richtigen Keys scheitert, wird das\\
+\hspace*{2.5mm}\hspace*{2.5mm}TCP-Segment nicht der Anwendung übergeben
+\vspace{-1.5em}
+\begin{center}
+	\includegraphics[scale=0.4]{images/ssl_paket.png}
+\end{center}
+
+\newpage
+
 
 \vspace{-1.5em}
 \subsection{Enterprise Transport Security (ETS)}
@@ -1111,6 +1129,8 @@ $\circ$ Implementierung auf verschiedenen Schichten möglich (Transportschicht: \
 	\raisebox{-.5\height}{\includegraphics[scale=0.33]{images/vpn_tunneling.png}} &
 	\makecell[l]{$\circ$ \textbf{Tunneling:} Weiterleitung beliebiger Datenpakete über unsicheres Transitnetz\\$\circ$ VPN nutz eigenen Adressraum\\$\circ$ $A,B,C$ := VPN-Adressraum, $\lambda, \mu$ := Internet-Adressraum\\$\circ$ \textbf{Authentisierung}:\\\hspace*{2.5mm}\textit{Password Authentication Protocol} \textbf{PAP} - unsicher da Klartextaustausch\\\hspace*{2.5mm}\textit{Challenge Handshake Authentication Protocol} \textbf{CHAP} - Challenge-Response\\$\circ$ \textbf{Software:}\\\hspace*{2.5mm}Server (VPN-Gateway) per VPN-Server Software\\\hspace*{2.5mm}Client per VPN-Client (Cisco) / VPN-Adapter\\$\circ$ \textbf{Protokolle:}\\\hspace*{2.5mm}\textit{Point-to-Point Tunnelling Protocol} \textbf{PPTP}\\\hspace*{2.5mm}\textit{Layer Two Tunnelling Protocol} \textbf{L2TP} (\textit{PPTP}-Nachfolger)\\\hspace*{2.5mm}\hspace*{2.5mm}- Tunnelt beliebige Pakete über UDP}
 \end{tabular}\\
+
+\includegraphics[scale=0.3]{images/vpn_layer.png}
 
 \newpage
 
@@ -1179,6 +1199,33 @@ $\circ$ \textit{NAT} ändert Port und IP-Adresse (klappt nicht, wenn die im \text
 \vspace{-1.5em}
 $\circ$ \textbf{OpenVPN:} per \textit{OpenSSL} verschlüsselte \textit{TLS}-Verbindung (TCP/UDP), \textit{Bridge-Mode:} Layer 2 Tunnel, \textit{Routing-Mode:} IP-Tunnel\\
 $\circ$ \textbf{Port Forwarding / Tunnelling mit SSH:} Tunneln von TCP-Verbindungen über \textit{SSH} (Anwendungsschicht) - kein echtes \textit{VPN}\\
+
+\newpage
+
+\textbf{Praktikumsaufgabe 7.1}\\
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.3]{images/ipsec_praktikumsaufgabe.png}} &
+	\makecell[l]{
+		$\circ$ Firmennetz ist über $R_1$ mit Internet verbunden,\\
+		\hspace*{2.5mm}$H_1$ soll von Unterwegs Zugriff aufs Firmennetz bekommen,\\
+		\hspace*{2.5mm}Absicherung der Vertraulichkeit und Integrität der Daten per \textbf{IPSec}\\
+		$\circ$ Welches Verfahren (\textit{AH} oder \textit{ESP})?\\
+		\hspace*{2.5mm}- ESP, AH dient nur der Authentifizierung,\\
+		\hspace*{2.5mm}\hspace*{2.5mm}danach werden \textbf{keine Daten verschlüsselt}
+	}
+\end{tabular}\\
+$\circ$ Einsetzen des \textit{Tunnel-Modus} - wo beginnt und endet der Tunnel?\\
+\hspace*{2.5mm}- Tunnel geht von $R_1$ bis $H_1$\\
+$\circ$ Ist es möglich, dem Rechner $H_1$ eine IP-Adresse aus dem Firmen-Adressbereich zuzuteilen?\\
+\hspace*{2.5mm}- Ja, im Tunnel-Modus wird vor das IP-Paket, das die tatsächlichen IP-Adressen enthält, ein IPSec-Header mit Quell- und Zieladressen\\
+\hspace*{2.5mm}\hspace*{2.5mm}der Tunnelpunkte, geschaltet. Im Original-IP-Header kann $H_1$ mit einer firmeninternen IP adressiert werden.\\
+$\circ$ Der Server sendet ein IP-Datagramm an $H_1$ - welche IP-Adressen sind im Header des IP-Paketes als Quelle und Ziel eingetragen?\\
+\hspace*{2.5mm}- \textbf{Quelle:} Server-IP, \textbf{Ziel:} IP von $H_1$ intern\\
+$\circ$ Unter welchen Umständen kann man den Inhalt des Paketes im Klartex mitlesen?\\
+\hspace*{2.5mm}- Verschlüsselung + IPSec-Header geschieht erst bei $R_1$, davor ist das Paket unverschlüsselt\\
+$\circ$ IP-Datagramm wird nun bei $R_1$ ins Internet weitergeleitet - ändern sich Quell- und Zieladressen des Datagramms?\\
+\hspace*{2.5mm}- IP-Datagramm wird als Payload in neues IP-Datagramm mit IPSec-Header gepackt. Dieses enthält als Quell-Adresse den\\
+\hspace*{2.5mm}\hspace*{2.5mm}Tunnelpunkt $R_1$ und als Ziel-Adresse den Tunnelpunkt $H_1$
 
 \newpage
 
