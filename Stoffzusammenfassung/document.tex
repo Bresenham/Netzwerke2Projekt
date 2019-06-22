@@ -527,7 +527,7 @@ $\circ$ \textbf{Endgerät:} Reduced Function Device \textit{RFD} - nur Teil des Z
 \newpage
 
 \subsection{Zellulare Netzwerke}
-\vspace{-1em}
+\vspace{-1.75em}
 \text{$\circ$ \textbf{1G:} Analog (A/B/C-Netz) $\circ$ \textbf{2G:} GSM ab '92, 2.5G = GPRS, 2.75G = EDGE $\circ$ \textbf{3G:} UMTS ab '03 $\circ$ \textbf{4G:} ab '14 LTE $\circ$ \textbf{5G} ab '21, Latent < 1ms}\\
 \text{$\circ$ \textbf{Mobilfunkzelle:} Von Base Transceiver Station(BTS) abgedeckter Bereich $\circ$ \textbf{Air-Interface:} Untere 2 Netzwerkschichten Mobile Station $\Leftrightarrow$ BTS}
 \par
@@ -624,6 +624,120 @@ Mobilgerät wechselt bei bestehender Verbindung von einer Basisstation zur andere
 \text{Ersetzen der unteren 2 Schichten (Link- \& Physical-Layer) durch drahtlose Varianten $\Rightarrow$ Auswirkungen auf obere Schichten minimal, aber:}\\
 $\Rightarrow$ Fehlinterpretation von Paketverlusten auf drahtlosem Link von TCP führt zu Congestion Window Veringerrung $\Rightarrow$ Datenrate sinkt\\
 \text{$\Rightarrow$ Verzögerung durch Link-Layer Retransmission (Auswirkungen auf Echtzeitanwendungen), Drahtloser Link meist geringere Datenrate}
+
+\newpage
+
+\section{Ereignisorientierte Systeme}
+\vspace{-1.75em}
+$\circ$ Untersuchung von Netzwerken durch Messungen aufwändig (Hardware/Vielzahl an Messungen/interagierender Komponenten)\\
+$\Rightarrow$ Modellierung und Simulation eines Systems
+
+\vspace{-2em}
+\subsection{Grundlagen}
+\vspace{-2em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.33]{images/diskrete_ereignisse.png}} &
+	\makecell[l]{
+		$\circ$ Modellierung des Systemverhaltens als zeitlich diskrete Abfolge\\
+		\hspace*{2.5mm}einzelner Ereignisse\\
+		$\circ$ Zustandsübergänge werden immer durch Ereignis verursacht\\
+		\hspace*{2.5mm}- Zwischen zwei zeitlich aufeinanderfolgenden Ereignissen\\
+		\hspace*{2.5mm}\hspace*{2.5mm}kann es keine Zustandsänderung geben
+	}
+\end{tabular}
+\vspace{-0.25em}
+\textbf{Komponenten}:
+\vspace{-1.25em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Zustandsmodell
+	\item Ereignisse (mit diskreter Zeit \& Ziel)
+	\item Ereigniswarteschlange
+	\item Ereignisroutinen
+	\item Aktuelle, in der Simulation angenommene Zeit
+\end{itemize}
+\vspace{-1.25em}
+\textbf{Ablauf}:
+\vspace{-1.25em}
+\begin{enumerate}
+	\setlength\itemsep{-1.25em}
+	\item Zeitlich nächstes Event aus \textit{Event Queue} entnehmen
+	\item Simulationszeit auf Zeitpunkt des nächsten Events setzen
+	\item Passenden Event-Handler in Event-Ziel aufrufen (generiert ggf. neueu Events und fügt sie in Event-Queueu ein)
+	\item Falls Bedingung für Simulationsende erreicht: Ende, ansonsten weiter bei 1.
+\end{enumerate}
+
+\vspace{-2em}
+\subsection{Simulationsplattform OMNeT++}
+\vspace{-2em}
+$\circ$ In Industrie und Forschung weit verbreitetes Discrete Event Network Simulation Framework\\
+$\circ$ Zur Modellierung von Kommunikationsnetzwerken, Analyse komplexer Softwaresysteme und Validierung von Hardware-Architekturen\\
+$\circ$ Ist \textbf{kein} Simulator \textbf{sondern} Plattform um Simulationen zu entwickeln\\
+$\circ$ Bietet
+\vspace{-1.25em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item objektorientiertes, modulares Grundgerüst
+	\item Konzepte für einfache und zusammengesetzte Module sowie Kommunikation zwischen Modulen
+	\item Logging, Visualisierung, Auswertung (Text und 2D-Graphisch), Debugging
+	\item Parallele und Verteilte Simulation
+\end{itemize}
+
+\vspace{-1.25em}
+\textbf{Modellierungskonzepte}\\
+\vspace{-1.5em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.367]{images/omnet.png}} &
+	\makecell[l]{
+		$\circ$ \textbf{Modell} besteht aus \textbf{Modulen} die miteinander über \textbf{Messages} kommunizieren\\
+		$\circ$ Einfache Module werden in C++ implementiert\\
+		$\circ$ Module lassen sich zu \textbf{Compound Modules} kombinieren\\
+		$\circ$ Beschreibung der Struktur in \textbf{NED-Language}\\
+		$\circ$ Gesamtmodell wird als \textbf{Network} bezeichnet
+	}
+\end{tabular}\\
+
+\textbf{Bestandteile einer Simulation}
+\vspace{-1.25em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Laufzeitparameter (festgelegt in Datei \textit{omnetpp.ini})
+	\item Simulationsmodell
+	\vspace{-1.25em}
+	\begin{itemize}
+		\setlength\itemsep{-1.25em}
+		\item Struktur der Simulation (festgelegt in Datei \textit{.ned})
+		\item Struktur der Nachrichten (festgelegt in Datei \textit{.msg} (generiert \textit{\_m.cc} und \textit{\_m.h}))
+		\item Verhalten (festgelegt über C++ Code)
+	\end{itemize}
+\end{itemize}
+
+\vspace{-1.25em}
+\textbf{NEtwork Description Language (\textit{NED})}
+\vspace{-1.25em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item \textbf{Festlegung} von Ein- und Ausgängen der Module und \textbf{Deklaration} von Signalen zur Kommunikation
+	\item Einzelne Module zu größeren Modulen (\textit{Compound Modules}) mit \textit{hierarchische Strukturen} verbinden
+	\item Weitere Features: Vererbung, Packages, Innere Typen, Annotations
+\end{itemize}
+
+\vspace{-1.25em}
+\textbf{Nachrichten und Pakete}
+\vspace{-1.25em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item \textbf{Message}: allgemeine Nachricht mit Feldern für Name, Art der Nachricht, \textit{time stamp}, \textit{send- \& arrival time}
+	\item \textbf{Paket}: Felder für Paketlänge, Inneres Paket der darüberliegenden Schicht, \textit{bit error flag}
+\end{itemize}
+
+\vspace{-1.25em}
+\textbf{Statistiken}
+\vspace{-1.25em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Aufzeichnung einzelner (z.B. versendete Datenmenge) oder vieler (z.B. zeitlicher Verlauf der Senderate) Werte pro Simulationslauf
+\end{itemize}
 
 \newpage
 
