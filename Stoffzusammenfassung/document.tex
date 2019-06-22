@@ -432,8 +432,10 @@ als bei langen Datenpaketen $\Rightarrow$ \textbf{RTS/CTS}-Verfahren\\
 
 \underline{Unterschied CSMA/CA$\leftrightarrow$CSMA/CD}:\\
 CSMA/CD bei Ethernet sendet \textit{JAM}-Signal (= kurzes Störsignal damit alle anderen Teilnehmer Kollision ebenfalls erkennen),\\
-CSMA/CA erkennt keine Kollision (versucht nur zu verhindern)\\
-\vspace{-1.0em}
+CSMA/CA erkennt keine Kollision (versucht nur zu verhindern)
+
+\newpage
+
 \textbf{Praktikumsaufgabe 1.1}\\
 \begin{tabular}{ll}
 	\raisebox{-.5\height}{\includegraphics[scale=0.125]{images/aufg_11.png}} &
@@ -452,13 +454,12 @@ $\circ$ D muss nun \textbf{auf Transportschicht} jedes Datenpaket mit \textit{AC
 \hspace*{2.5mm}\textbf{Maximale Datenrate:}\\
 \hspace*{2.5mm}- 6 benötigte Zeitslots für 1 Datenpaket: \textbf{3x Daten senden}: A$\rightarrow$B, B$\rightarrow$C, C$\rightarrow$D und \textbf{3x ACK:} D$\rightarrow$C, C$\rightarrow$B, B$\rightarrow$A,\\
 \hspace*{2.5mm}\hspace*{2.5mm}zu einem Zeitpunkt können gleichzeitig Daten von A$\rightarrow$B und ein ACK von D$\rightarrow$C gesendet werden,\\
-\hspace*{2.5mm}\hspace*{2.5mm}\textbf{Datenrate reduziert sich daher auf $\frac{1}{5}$}\\
+\hspace*{2.5mm}\hspace*{2.5mm}\textbf{Datenrate reduziert sich daher auf $\frac{1}{5}$}
+\par
+
 \textbf{Praktikumsaufgabe 2.1}\\
 $\circ$ Selbe Anordnung, arbeiten aber nun im \textbf{AdHoc}-Modus - welchen Kanal stellt man an jeder Node für optimalen Durchsatz A$\rightarrow$D ein?\\
-\hspace*{2.5mm}- Alle Nodes verwenden den selben Kanal da sich die sonst im \textbf{AdHoc}-Modus gar nicht erreichen können
-
-\newpage
-
+\hspace*{2.5mm}- Alle Nodes verwenden den selben Kanal da sich die sonst im \textbf{AdHoc}-Modus gar nicht erreichen können\\
 $\circ$ Nun jede Node \textbf{mit zwei WLAN-Adapter} - welchen Kanal jeweils einstellen und welche \textbf{Änderung des Durchsatzes}?
 \vspace{-2.25em}
 \begin{center}
@@ -471,8 +472,8 @@ $\circ$ Nun jede Node \textbf{mit zwei WLAN-Adapter} - welchen Kanal jeweils ein
 \end{center}
 \vspace{-1.5em}
 \hspace*{2.5mm}- \textbf{Verdreifachung des Durchsatzes} da während A$\rightarrow^1$B gleichzeitig auch B$\rightarrow^6$C und C$\rightarrow^{11}$D senden können
+\par
 
-\vspace{-1.5em}
 \textbf{Praktikumsaufgabe 2.2}\\
 $\circ$ ACK-Timeout für Indoor-WLAN abschätzen\\
 \hspace*{2.5mm}- Übertragungszeit (Lichtgeschwindigkeit) + Umschaltzeit der Antenne von Receiver$\leftrightarrow$Transmitter\\
@@ -483,8 +484,21 @@ $\circ$ A, B \& C befinden sich in einem BSS - AP versendet ARP-Request um MAC-A
 \hspace*{2.5mm}- Welche Zieladresse hat der Rahmen mit dem ARP-Request? Broadcast MAC\\
 \hspace*{2.5mm}- Welche Station bestätigt den Empfang des Rahmens mit einem ACK? Keine, da Koordination zwischen A, B \& C nicht möglich\\
 \hspace*{2.5mm}- Was passiert, wenn \textit{SIFS}==\textit{DIFS}? Kollision möglich, da Sender immer DIFS abwartet, bis er senden darf
+\par
 
-\vspace{-1.5em}
+\textbf{Praktikumsaufgabe 2.3}\\
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.275]{images/msc_rts_cts.png}} &
+	\makecell[l]{
+		$\circ$ A möchte Paket an B senden, es wird RTS/CTS genutzt,\\
+		\hspace*{2.5mm}welche Rahmen werden ausgetauscht? (blau)\\
+		$\circ$ Während B das \textit{CTS} an A sendet, möchte \textbf{gleichzeitig} D\\
+		\hspace*{2.5mm}ein Paket an C senden - ist dies parallel möglich?\\
+		\hspace*{2.5mm}Welche Rahmen werden ausgetauscht? (orange)\\
+	}
+\end{tabular}
+\par
+
 \textbf{Praktikumsaufgabe 3.1}\\
 $\circ$ WLAN Stick mit 150 Mbit/s\\
 \hspace*{2.5mm}- Welcher maximale Goodput bei direkter Empfangsreichweite ohne Störungen? Üblicherweise die Hälfte - 75 Mbit/s\\
@@ -496,29 +510,32 @@ $\circ$ Zusätzlich mit 802.11b/g/n ältere WLAN-Karte mit ausschließlich 802.11b 
 \newpage
 
 \subsection{Personal Area Networks (PAN)}
-\vspace{-1em}
-Drahtlos oder drahtgebundenes (Ad Hoc) Netzwerk von Kleingeräten, oft nur wenige Meter Reichweite.
-
+\vspace{-2em}
+Drahtlos oder drahtgebundenes (Ad Hoc) Netzwerk von Kleingeräten, oft nur wenige Meter Reichweite.\\
 \textbf{Bluetooth}\\
-\vspace{-0em}
 $\circ$ Mehrfachzugriff mit TDMA, Frequenzsprungverfahren (Kanalwechsel nach jedem Zeitslot $\Rightarrow$ Robustheit gegen Störer)\\
 $\circ$ Class 1: 100mW - 100m Reichweite, $\circ$ Class 2: 2.5mW - 10m Reichweite, $\circ$ Class 3: 1mW - 1m Reichweite\\
 $\circ$ '99: Einführung, 732,2kbit/s $\circ$ '04: v2.0 mit bis 2.1Mbit/s $\circ$ '16: v5.0 mit IoT Erweiterungen\\
-\text{$\circ$ Ad Hoc Netzwerk (keine Infrastruktur nötig) $\circ$ $\leq$ 8 aktive \& $\leq$ 255 geparkte Geräte $\circ$ Master gibt Zeit vor, gewährt Slaves, aktiviert geparkte}
-\par
-Bluetooth Profile\\
-Profil spezifiziert Anwendung von Bluetooth für bestimmten Zweck\\
+$\circ$ Ad Hoc Netzwerk (keine Infrastruktur nötig) $\circ$ $\leq$ 8 aktive \& $\leq$ 255 geparkte Geräte $\circ$ Master gibt Zeit vor,\\
+\hspace*{2.5mm}gewährt Slaves das Recht zu senden, aktiviert geparkte Slaves\\
+$\circ$ Profil spezifiziert Anwendung von Bluetooth für bestimmten Zweck\\
+\hspace*{2.5mm}- \textit{Serial Port Profile} für serielle Datenübertragung\\
+\hspace*{2.5mm}- \textit{Health Device Profile} zur Verbindung medizinischer Geräte
 
 \begin{tabular}{ll}
 	\raisebox{-.4\height}{\includegraphics[scale=0.3]{images/bluetooth_stack.png}} &
 	\makecell[l]{$\circ$ \textbf{AT Kommando:} Kommando zur Modemsteuerung\\$\circ$ \textbf{Baseband:} Basisband, Paketformate\\$\circ$ \textbf{L2CAP:} Logical Link Control and Adaptation Protocl:\\Bietet verbindunsorientierte- und lose Dienste zwischen Baseband\\und höheren Schichten\\$\circ$ \textbf{MCAP:} Multi-Channel Adaptation Protocol\\Stellt Kontrollkanal \textit{MCL} und Datenkanäle \textit{MDL} bereit\\$\circ$ \textbf{RFCOMM:} Virtuelle, serielle Verbindungen, Emulation serieller Ports\\$\circ$ Geräte im HealthCare Bereich ursprünglich per RFCOMM angebunden\\$\Rightarrow$'08 Verabschiedung von standardisiertem \textit{Health Device Profile}\\Zwei Rollen: \textbf{Source} = Datenquelle, \textbf{Sink} = Empfänger (Smartphone)\\Verbindungsauf- und abbau, Wiederaufbau abgebrochener Verbindungen}
 \end{tabular}
-\par
-Sensoren (z.B. Pulsmesser, Thermometer) sollen lange Laufzeit ($\Rightarrow$ geringer Stromverbrauch) aufweisen. Bluetooth 4.0 beinhaltet\\ \textit{Bluetooth Smart} (Low-Energy Profil auf Basis von einem \textit{Generic Attribute Profile} (GATT)).
+
+$\circ$ \textit{Health Device Profile} (HDP)\\
+\hspace*{2.5mm}- Sichert \textit{Interoperabilität durch Standardisierung}\\
+\hspace*{2.5mm}- Zwei Rollen: \textbf{Source} (Datenquelle, z.B. Waage) und \textbf{Sink} (Datensenke, z.B. Smartphone)\\
+\hspace*{2.5mm}- \textbf{Kernfunktion:} Verbindungsauf- und abbau, Wiederaufbau abgebrochener Verbindungen, Synchronisation\\
+$\circ$ Sensoren (z.B. Pulsmesser, Thermometer) sollen lange Laufzeit ($\Rightarrow$ geringer Stromverbrauch) aufweisen\\
+\hspace*{2.5mm}- Bluetooth ab 4.0 beinhaltet \textit{Bluetooth Smart} (Low-Energy Profil auf Basis von einem \textit{Generic Attribute Profile} (GATT)).
 \par
 
 \textbf{ZigBee}\\
-\vspace{-0em}
 $\circ$ Ziel: Drahtlose Übertragung bei geringem Stromverbrauch (geringe Datenraten: 20 - 250kbit/s, selten aktiv (\textit{low duty-cycle})).\\
 $\circ$ Übertragen von Sensordaten, Heim- und Gebäudeautomatisierung\\
 $\circ$ \textbf{Endgerät:} Reduced Function Device \textit{RFD} - nur Teil des ZigBee Protokolls implementiert (geringere Kosten)\\
@@ -527,25 +544,80 @@ $\circ$ \textbf{Endgerät:} Reduced Function Device \textit{RFD} - nur Teil des Z
 \newpage
 
 \subsection{Zellulare Netzwerke}
-\vspace{-1.75em}
-\text{$\circ$ \textbf{1G:} Analog (A/B/C-Netz) $\circ$ \textbf{2G:} GSM ab '92, 2.5G = GPRS, 2.75G = EDGE $\circ$ \textbf{3G:} UMTS ab '03 $\circ$ \textbf{4G:} ab '14 LTE $\circ$ \textbf{5G} ab '21, Latent < 1ms}\\
-\text{$\circ$ \textbf{Mobilfunkzelle:} Von Base Transceiver Station(BTS) abgedeckter Bereich $\circ$ \textbf{Air-Interface:} Untere 2 Netzwerkschichten Mobile Station $\Leftrightarrow$ BTS}
-\par
+\vspace{-2em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.3]{images/zellulare_netzwerke.png}} &
+	\makecell[l]{
+		$\circ$ \textbf{1G:} Analog (A/B/C-Netz) $\circ$ \textbf{2G:} GSM ab '92, 2.5G = GPRS, 2.75G = EDGE\\
+		$\circ$ \textbf{3G:} UMTS ab '03 $\circ$ \textbf{4G:} ab '14 LTE $\circ$ \textbf{5G} ab '21, Latent < 1ms\\
+		$\circ$ \textbf{Mobilfunkzelle:} Von Base Transceiver Station (BTS) abgedeckter Bereich\\
+		$\circ$ \textbf{Air-Interface:} Untere 2 Netzwerkschichten Mobile Station $\Leftrightarrow$ BTS\\
+		$\circ$ \textbf{Mobile Switching Center (MSC):} Anrufauf- \& abbau, Verbindung ins Festnetz
+	}
+\end{tabular}
 
+\vspace{-1.25em}
 \textbf{Ressourcenzuteilung in der Zelle:}\\
-\text{$\circ$ \textbf{GSM:} Kombination aus FDMA \& TDMA, Spektrum wird in einzelne Frequenzkanäle, jeder Kanal wiederum in Zeitschlitze aufgeteilt}\\
-$\circ$ \textbf{UMTS:} CDMA Verfahren - Unterschiedlicher Code für unterschiedliche Nutzer
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.3]{images/ressourcenteilung.png}} &
+	\makecell[l]{
+		$\circ$ \textbf{GSM:} Kombination aus FDMA \& TDMA, Spektrum wird in einzelne Frequenzkanäle,\\
+		\hspace*{2.5mm}jeder Kanal wiederum in Zeitschlitze aufgeteilt\\
+		$\circ$ \textbf{UMTS:} CDMA Verfahren - Unterschiedlicher Code für unterschiedliche Nutzer
+	}
+\end{tabular}
 
+\vspace{-1.25em}
 \textbf{2G Netzwerkarchitektur (GSM):}\\
 \begin{tabular}{ll}
-	\raisebox{-.5\height}{\includegraphics[scale=0.13]{images/gsm_netzaufbau.png}} &
-	\makecell[l]{$\circ$ \textbf{Base Station Controller (BSC):} übernimmt Ressourcenzuweisung und\\Mobilitätsmanagement in einem Base Station Subsystem (BSS)\\$\circ$ \textbf{Mobile Switching Center (MSC):} Anrufauf- und Abbau, Verbindung ins\\ Festnetz, Mobilitätsmanagement\\$\circ$ \textbf{Gateway-MSC:} Vermittlungsfunktionen, Verbindung zu anderen Netzen bzw. Festnetz\\$\circ$ \textbf{PSTN:} Public Switched Telephone Network}
+	\raisebox{-.5\height}{\includegraphics[scale=0.175]{images/gsm_netzaufbau.png}} &
+	\makecell[l]{
+	$\circ$ \textbf{Base Station Controller (BSC):} übernimmt Ressourcenzuweisung und\\
+	\hspace*{2.5mm}Mobilitätsmanagement in einem Base Station Subsystem (BSS)\\
+	$\circ$ \textbf{Mobile Switching Center (MSC):} Anrufauf- und Abbau, Verbindung ins\\
+	\hspace*{2.5mm}Festnetz, Mobilitätsmanagement\\
+	$\circ$ \textbf{Gateway-MSC:} Vermittlungsfunktionen,\\
+	\hspace*{2.5mm}Verbindung zu anderen Netzen bzw. Festnetz\\
+	$\circ$ \textbf{PSTN:} Public Switched Telephone Network}
 \end{tabular}
 
+\vspace{-1.25em}
 \begin{tabular}{ll}
 	\raisebox{-.5\height}{\includegraphics[scale=0.18]{images/gsm_gprs_netzaufbau.png}} &
-	\makecell[l]{$\circ$ Mit GPRS-Komponenten erstmals paketvermittelte Datendienste\\- verwendet bereits bestehende BTS mit\\$\circ$ \textbf{Packet Control Unit (PCU):} Kommuniziert über den BSC mit Endgerät und\\auch mit der SGSN, überwacht und verwaltet Datenpakete, Ressourcenverteilung\\$\circ$ \textbf{Serving GPRS Support Node (SGSN)}: Übernimmt Vermittlung der\\Datenpakete und die Funktion des VLR\\$\circ$ \textbf{Gateway GPRS Support Node (GGSN):} Ist der Router, der das\\Mobilfunknetz mit dem Internet verbindet und die IP-Adresse zur Verfügung stellt\\$\circ$ \textbf{Home Location Register (HLR):} Datenbank mit Informationen zum Nutzer,\\enthält Rufnummer und zuletzt bekannten Aufenthaltsort\\$\circ$ \textbf{Visitor Location Register (VLR):} Datenbank mit Informationen zu allen\\Nutzern, die sich im vom MSC bedienten Bereich befinden\\$\circ$ Sprachdaten laufen über $BTS\Leftrightarrow BSC\Leftrightarrow MSC \Leftrightarrow G-MSC\Leftrightarrow Festnetz$\\$\circ$ Paketdaten laufen über $BTS\Leftrightarrow BSC\Leftrightarrow PCU\Leftrightarrow SGSN\Leftrightarrow GGSN\Leftrightarrow Internet$}
+	\makecell[l]{
+		$\circ$ Mit GPRS-Komponenten erstmals paketvermittelte Datendienste\\
+		\hspace*{2.5mm}- paralleles Datennetzwerk, welches bereits bestehende BTS mitverwendet\\
+		$\circ$ \textbf{Packet Control Unit (PCU):} Kommuniziert über den BSC mit Endgerät und\\
+		\hspace*{2.5mm}auch mit der SGSN, überwacht und verwaltet Datenpakete,\\
+		\hspace*{2.5mm}Ressourcenverteilung in Form von \textit{time slots}\\
+		$\circ$ \textbf{Serving GPRS Support Node (SGSN)}: Übernimmt Vermittlung der\\
+		\hspace*{2.5mm}Datenpakete und die Funktion des VLR\\
+		$\circ$ \textbf{Gateway GPRS Support Node (GGSN):} Ist der Router, der das\\
+		\hspace*{2.5mm}Mobilfunknetz mit dem Internet verbindet und die IP-Adresse zur Verfügung stellt\\
+		$\circ$ \textbf{Home Location Register (HLR):} Datenbank mit Informationen zum Nutzer,\\
+		\hspace*{2.5mm}enthält Rufnummer und zuletzt bekannten Aufenthaltsort\\
+		$\circ$ \textbf{Visitor Location Register (VLR):} Datenbank mit Informationen zu allen\\
+		\hspace*{2.5mm}Nutzern, die sich im vom MSC bedienten Bereich befinden\\
+		$\circ$ Sprachdaten laufen über $BTS\Leftrightarrow BSC\Leftrightarrow MSC \Leftrightarrow GMSC\Leftrightarrow Festnetz$\\$\circ$ Paketdaten laufen über $BTS\Leftrightarrow BSC\Leftrightarrow PCU\Leftrightarrow SGSN\Leftrightarrow GGSN\Leftrightarrow Internet$}
 \end{tabular}
+
+\newpage
+
+\textbf{Praktikumsaufgabe 5.1}\\
+$\circ$ Welche Aufgabe erfüllt die Base Transceiver Station (BTS) im GSM Netz?\\
+\hspace*{2.5mm}- Frequenzmodulation, Kodierungsverfahren (Fehlerschutz), Synchronisation mit dem Endgerät durch Senden von \textit{Bursts}\\
+$\circ$ Warum kann sie beim Übergang von GSM $\rightarrow$ UMTS nicht weiterverwendet werden?\\
+\hspace*{2.5mm}- GMS und UMTS nutzen unterschiedliche Frequenzen \& unterschiedliche Verfahren zur Datenübertragung (TDMA vs CDMA)\\
+$\circ$ Ein mobiler Rechner nutzt GPRS/EDGE zur Verbindung ins Internet - woher bekommt er seine IP?\\
+\hspace*{2.5mm}- Über GGSN, die Überblick über alle BTS \& BSCs hat: keine IP wird doppelt vergeben,\\
+\hspace*{2.5mm}\hspace*{2.5mm}kann bei Bewegung \& Handovers beibehalten werden\\
+$\circ$ Welche Umstände führen \textbf{zur Änderung} seiner IP?\\
+\hspace*{2.5mm}- Wenn Verbindung zum Teilnehmer abreißt, wird die IP-Adresse nach gewisser Zeit wieder durch GGSN freigegeben und\\
+\hspace*{2.5mm}\hspace*{2.5mm}Teilnehmer erhält neue IP\\
+$\circ$ Kunde beschwert sich über träge reagierendes System sobald Kommmunikation über Drahtlosnetzwerk - Ursachen \& Problemanalyse?\\
+\hspace*{2.5mm}- Hohe Latenz bzw. geringe Datenübertragung durch alten Netzstandard (z.B. \textit{EDGE})\\
+\hspace*{2.5mm}- Viele Teilnehmer führen zu Störungen durch Paketkollision (Hinweis darauf ist ein kleiner Wert bei TCP Congestion Window)\\
+\hspace*{2.5mm}- Abfragen des Drahtlosmoduls per AT-Kommandos für weitere Informationen
 
 \newpage
 
