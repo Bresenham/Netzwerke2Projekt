@@ -110,6 +110,7 @@
 \usepackage{xcolor}
 \usepackage{multirow}
 \usepackage[export]{adjustbox}
+\usepackage{tabularx}
 % ** - **
 
 %******************************
@@ -597,7 +598,7 @@ $\circ$ \textbf{Endgerät:} Reduced Function Device \textit{RFD} - nur Teil des Z
 		$\circ$ \textbf{Home Location Register (HLR):} Datenbank mit Informationen zum Nutzer,\\
 		\hspace*{2.5mm}enthält Rufnummer und zuletzt bekannten Aufenthaltsort\\
 		$\circ$ \textbf{Visitor Location Register (VLR):} Datenbank mit Informationen zu allen\\
-		\hspace*{2.5mm}Nutzern, die sich im vom MSC bedienten Bereich befinden\\
+		\hspace*{2.5mm}Nutzern, die sich im vom MSC bedienten Bereich befinden (Kopie aus HLR)\\
 		$\circ$ Sprachdaten laufen über $BTS\Leftrightarrow BSC\Leftrightarrow MSC \Leftrightarrow GMSC\Leftrightarrow Festnetz$\\$\circ$ Paketdaten laufen über $BTS\Leftrightarrow BSC\Leftrightarrow PCU\Leftrightarrow SGSN\Leftrightarrow GGSN\Leftrightarrow Internet$}
 \end{tabular}
 
@@ -624,28 +625,39 @@ $\circ$ Kunde beschwert sich über träge reagierendes System sobald Kommmunikatio
 \textbf{Mobilitätsmanagement:}\\
 \begin{tabular}{ll}
 	\raisebox{-.5\height}{\includegraphics[scale=0.3]{images/mobilitaetsmanagement.png}} &
-	\makecell[l]{$\circ$ Nutzer kann sich zwischen Zellen verschiedener \textit{MSCs}, auch von anderen Providern, bewegen\\$\circ$ Mobilgerät prüft im eingeschalteten Zustand, ob sich aktuelle Location Area ändert\\$\Rightarrow$ sendet Location Update mit neuer Area $\Rightarrow$ Home Location Register (HLR) wird aktualisiert\\$\circ$ Eingehender Anruf: Befragung von \textit{HLR} nach aktuellem Ort des Angerufenen über dessen\\temporäre \textit{Roaming-Nummer}, anschließend Verbindungsaufbau über das \textit{VLR} des MSC\\$\Rightarrow$ Falls gerade keine Verbindung besteht: Broadcast-Nachricht über alle Basisstationen\\des jeweiligen MSC (\textit{Paging}), Mobile meldet sich ggf., damit genaue Basisstation bekannt}
+	\makecell[l]{$\circ$ Nutzer kann sich zwischen Zellen verschiedener \textit{MSCs}, auch von anderen Providern, bewegen\\$\circ$ Mobilgerät prüft im eingeschalteten Zustand, ob sich aktuelle Location Area ändert\\$\Rightarrow$ sendet Location Update mit neuer Area $\Rightarrow$ Home Location Register (HLR) wird aktualisiert\\$\circ$ Eingehender Anruf: Befragung von \textit{HLR} nach aktuellem Ort des Angerufenen über dessen\\temporäre \textit{Roaming-Nummer}, anschließend Verbindungsaufbau über das \textit{VLR} des MSC\\$\Rightarrow$ Falls gerade keine Verbindung besteht: Broadcast-Nachricht über alle Basisstationen\\des jeweiligen MSC (\textit{Paging}), Mobile meldet sich ggf., damit ist genaue Basisstation bekannt\\(\textit{indirektes Routing})}
 \end{tabular}
 
-\textbf{GSM Handover (= MSC/Inter-BSC Handover)}\\
-Mobilgerät wechselt bei bestehender Verbindung von einer Basisstation zur anderen.\\
-\textbf{Ursachen:} Bewegung des Nutzers (stärkeres Signal eines anderen BSS), aktuelle Zelle überlastet\\
-\textbf{Ablauf Inter-BSC Handover:}
+\vspace{-1.25em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.275]{images/gsm_handover.png}} &
+	\makecell[l]{
+		$\circ$ \textbf{GSM Handover (= MSC/Inter-BSC Handover)}\\
+		\hspace*{2.5mm}- Mobilgerät wechselt bei bestehender Verbindung von einer Basisstation zur anderen.\\
+		\hspace*{2.5mm}- \textbf{Ursachen:} Bewegung des Nutzers (stärkeres Signal eines anderen BSS), aktuelle Zelle überlastet
+	}
+\end{tabular}
+
+\vspace{-1.25em}
+\textbf{Ablauf Inter-BSC Handover:}\\
 \vspace{-1em}
-\begin{itemize}
-	\setlength\itemsep{-1.25em}
-	\item Altes BSS informiert MSC über anstehendes Handover
-	\item MSC reserviert Ressourcen zu neuer BSS
-	\item Neue BSS reserviert Zeitslot (TDMA)
-	\item Neue BSS signalisiert an MSC und alte BSS Bereitschaft zum Handover
-	\item Alte BSS weist Mobilgerät an, Handover zu neuer BSS durchzuführen
-	\item Mobilgerät aktiviert Kanal in neuer BSS
-	\item Mobilgerät bestätigt Handover an MSC, diese leitete Daten um
-	\item MSC weist alte BSS an, Ressourcen des Mobilgeräts freizugeben
-\end{itemize}
-\vspace{-1em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.35]{images/inter_bsc_handover.png}} &
+	\makecell[l]{
+		$(1)$ Altes BSS informiert MSC über anstehendes Handover\\
+		$(2)$ MSC reserviert Ressourcen zu neuer BSS\\
+		$(3)$ Neue BSS reserviert Zeitslot (TDMA)\\
+		$(4)$ Neue BSS signalisiert an MSC und alte BSS Bereitschaft zum Handover\\
+		$(5)$ Alte BSS weist Mobilgerät an, Handover zu neuer BSS durchzuführen\\
+		$(6)$ Mobilgerät aktiviert Kanal in neuer BSS\\
+		$(7)$ Mobilgerät bestätigt Handover an MSC, diese leitete Daten um\\
+		$(8)$ MSC weist alte BSS an, Ressourcen des Mobilgeräts freizugeben
+	}
+\end{tabular}
+
+\vspace{-1.25em}
 \textbf{Arten von Handover:}
-\vspace{-1em}
+\vspace{-1.25em}
 \begin{itemize}
 	\setlength\itemsep{-1.25em}
 	\item \textit{Intra BSC:} Aktuelle und neue Zelle gehörten zum selben BSC
@@ -655,47 +667,66 @@ Mobilgerät wechselt bei bestehender Verbindung von einer Basisstation zur andere
 	\item \textit{Subsequent Handback:} Teilnehmer wechselt nach \textit{Inter MSC} zurück in Gebiet des ersten MSC
 \end{itemize}
 
+\vspace{-1.25em}
 \textbf{Ablauf Inter-MSC Handover:}\\
 \begin{tabular}{ll}
 	\raisebox{-.5\height}{\includegraphics[scale=0.3]{images/inter_msc_handover.png}} &
 	\makecell[l]{$\circ$ Anker-MSC = erste MSC während eines Anrufs\\$\circ$ Daten bzw. der Anruf wird zunächst an Anker-MSC geleitet\\$\circ$ Dann Weiterleitung zu aktueller MSC}
-\end{tabular}\\
-\vspace{-0em}
+\end{tabular}
+
+\vspace{-1.25em}
 \textbf{3G Netzarchitektur:}\\
 \begin{tabular}{ll}
-	\raisebox{-.5\height}{\includegraphics[scale=0.225]{images/3g_netzarchitektur.png}} &
+	\raisebox{-.5\height}{\includegraphics[scale=0.25]{images/3g_netzarchitektur.png}} &
 	\makecell[l]{$\circ$ Mit UMTS '99 neues Air-Interface \textit{Universal Terrestrial Radio Access Network} (\textbf{UTRAN})\\$\circ$ basierend auf Wideband-CDMA\\$\circ$ Ab UMTS v4 Umstellung auf IP basierte Kommunikation (Sprache \& Daten)}
 \end{tabular}
 
 \newpage
 
 \textbf{LTE \& LTE Advanced (4G):}\\
-\text{Umstellung auf \textit{Orthogonal Frequency Devision Multiplexing} (\textbf{OFDM}): Übertragungstechnik mit flexibler Bandbreite zwischen 1.25 bis 20 MHz}\\
-\text{LTE-Endgerät muss Mehrantennenverfahren unterstützen (\textit{Multiple Input, Multiple Output} \textbf{MIMO}), LTE-Netz rein paketbasiert (Sprache per VoIP)}
+$\circ$ Umstellung auf \textit{Orthogonal Frequency Devision Multiplexing} (\textbf{OFDM})\\
+\hspace*{2.5mm}- Übertragungstechnik mit flexibler Bandbreite zwischen 1.25 bis 20 MHz\\
+$\circ$ LTE-Endgerät muss Mehrantennenverfahren unterstützen (\textit{Multiple Input, Multiple Output} \textbf{MIMO})\\
+\hspace*{2.5mm}- LTE-Netz rein paketbasiert (Sprache per VoIP)
 
-\vspace{-1em}
+\vspace{-1.5em}
 \subsection{Long Term Evolution (LTE, LTE-A)}
 \vspace{-1.5em}
 \begin{tabular}{ll}
-	\raisebox{-.5\height}{\includegraphics[scale=0.2]{images/long_term_evolution.png}} &
-	\makecell[l]{$\circ$ \textbf{LTE + 2 Releases}: \textit{LTE Advanced} - 3 Gbit/s DL bzw. 1.5 Gbit/s UL, Bündelung bis zu 5 Carrier\\$\circ$ \textbf{LTE + 3/4 Releases:} \textit{LTE Advanced Pro} - Bündelung von bis zu 32 Carriern, QAM-256,\\LTE Narrow Band IoT, \textbf{5G} Standardisierung läuft\\$\circ$ \textbf{Packet Data Network Gateway:} Internetschnittstelle\\$\circ$ \textbf{Mobility Management Entity:} Mobilitätsmanagement\\$\circ$ \textbf{Serving-Gateway:} Weiterleitung von Nutzdaten ins Kernnetz\\$\circ$ \textbf{Home Suscriber Service:} entspricht HLR bei GSM\\$\circ$ \textbf{evolved Node-B (eNode-B):} Basisstation}
+	\raisebox{-.5\height}{\includegraphics[scale=0.2125]{images/long_term_evolution.png}} &
+	\makecell[l]{
+		$\circ$ \textbf{LTE Release 10}: \textit{LTE Advanced} - 3 Gbit/s DL bzw. 1.5 Gbit/s UL, Bündelung bis zu 5 Carrier\\
+		$\circ$ \textbf{LTE Release 13/14}: \textit{LTE Advanced Pro} - Bündelung von bis zu 32 Carriern, QAM-256,\\
+		\hspace*{2.5mm}LTE Narrow Band IoT, \textbf{5G} Standardisierung läuft\\
+		$\circ$ \textbf{LTE Release 14}: 5G Phase 1, 2018 fertiggestellt, New Radio + 5G Standalone\\
+		$\circ$ \textbf{LTE Release 15}: 5G Phase 2, geplant für 20.12.2020\\
+		$\circ$ \textbf{Packet Data Network Gateway:} Internetschnittstelle\\
+		$\circ$ \textbf{Mobility Management Entity:} Mobilitätsmanagement\\
+		$\circ$ \textbf{Serving-Gateway:} Weiterleitung von Nutzdaten ins Kernnetz\\
+		$\circ$ \textbf{Home Suscriber Service:} entspricht HLR bei GSM\\
+		$\circ$ \textbf{evolved Node-B (eNode-B):} Basisstation
+	}
 \end{tabular}\\
 
-\vspace{-1em}
+\vspace{-1.75em}
 \subsection{5G}
-\vspace{-1.5em}
-\text{\textbf{Enhanced Mobile Broadband (eMBB):} Hohe Datenraten, \textbf{Massive Machine Type Communications (mMTC):} IoT Anwendungen}\\
-\textbf{Ultra-Reliable and Low-Latency Communication (uRLLC):} z.B. drahtlose Vernetzung in der Produktion\\
-\textbf{5G New Radio:} Nutzung mehrerer Antennen (\textit{MIMO}), mmWave-Bänder (24 - 30GHz), flexible und kürzere Slotzeiten (<1ms)\\
-\textbf{Ziele:} E2E Latenz < 1ms, 1000x höheres Datenvolumen, 10-100x mehr Geräte, 10-100x mehr typische Nutzerdatenraten\\
-\textbf{Umsetzung:} 5G Zellen mit LTE-Kernnetz (non-standalone), 2-3Gbit/s $\Rightarrow$ 5G mit 5G-Kernnetz (standalone), mmWave Bänder
+\vspace{-1.75em}
+$\circ$ \textbf{Enhanced Mobile Broadband (eMBB):} Hohe Datenraten\\
+$\circ$ \textbf{Massive Machine Type Communications (mMTC):} IoT Anwendungen\\
+$\circ$ \textbf{Ultra-Reliable and Low-Latency Communication (uRLLC):} z.B. drahtlose Vernetzung in der Produktion\\
+$\circ$ \textbf{5G New Radio:} Nutzung mehrerer Antennen (\textit{MIMO}), mmWave-Bänder (24 - 30GHz), flexible und kürzere Slotzeiten (<1ms)\\
+$\circ$ \textbf{Service-Driven 5G Architecture:} Höhere Flexibilität durch \textit{Software-Defined Networking}\\
+$\circ$ \textbf{Ziele:} E2E Latenz < 1ms, 1000x höheres Datenvolumen, 10-100x mehr Geräte, 10-100x mehr typische Nutzerdatenraten\\
+$\circ$ \textbf{Umsetzung:} 5G Zellen mit LTE-Kernnetz (non-standalone), 2-3Gbit/s, dann 5G mit 5G-Kernnetz (standalone), mmWave Bänder
 
-\vspace{-1em}
+\vspace{-1.75em}
 \subsection{Zusammenfassung Drahtlose Netzwerke}
-\vspace{-1.5em}
-\text{Ersetzen der unteren 2 Schichten (Link- \& Physical-Layer) durch drahtlose Varianten $\Rightarrow$ Auswirkungen auf obere Schichten minimal, aber:}\\
-$\Rightarrow$ Fehlinterpretation von Paketverlusten auf drahtlosem Link von TCP führt zu Congestion Window Veringerrung $\Rightarrow$ Datenrate sinkt\\
-\text{$\Rightarrow$ Verzögerung durch Link-Layer Retransmission (Auswirkungen auf Echtzeitanwendungen), Drahtloser Link meist geringere Datenrate}
+\vspace{-1.75em}
+$\circ$ Ersetzen der unteren 2 Schichten (Link- \& Physical-Layer) durch drahtlose Varianten\\
+\hspace*{2.5mm}$\Rightarrow$ Auswirkungen auf obere Schichten minimal, aber:\\
+\hspace*{2.5mm}\hspace*{2.5mm}- Fehlinterpretation von Paketverlusten auf drahtlosem Link von TCP führt zu Congestion Window Veringerrung $\Rightarrow$ Datenrate sinkt\\
+\hspace*{2.5mm}\hspace*{2.5mm}- Verzögerung durch Link-Layer Retransmission (Auswirkungen auf Echtzeitanwendungen)\\
+\hspace*{2.5mm}\hspace*{2.5mm}- Drahtloser Link meist geringere Datenrate
 
 \newpage
 
@@ -814,10 +845,9 @@ $\circ$ Bietet
 \newpage
 
 \section{Security}
-\vspace{-1.5em}
+\vspace{-1.75em}
 \subsection{Grundlagen}
-\vspace{-1.5em}
-
+\vspace{-1.75em}
 $\circ$ \textbf{Vertraulichkeit:} Nur Sender und rechtmäßige Empfänger sollen die Nachricht verstehen können\\
 $\circ$ \textbf{Integrität:} Sicherstellen, dass Nachricht unverändert ist (ob durch Übertragungsfehler oder Angriff)\\
 $\circ$ \textbf{Authentisierung:} Nachweis, dass eine Person diejenige ist, die sie vorgibt zu sein\\
@@ -825,9 +855,9 @@ $\circ$ \textbf{Authentifizierung:} Sicherstellen, dass Kommunikationspartner de
 $\circ$ \textbf{Authorisierung:} Nachweis von speziellen Rechten\\
 $\circ$ \textbf{Betriebssicherheit:} Absicherung des Firmennetzes gegen Eingriffe von außen
 
-\vspace{-1.5em}
+\vspace{-1.75em}
 \subsection{Grundlagen der Kryptographie}
-\vspace{-1.5em}
+\vspace{-1.75em}
 
 \textbf{Arten von Verschlüsselung}\\
 \hspace*{5mm}\text{$K_A$: Schlüssel für Verschlüsselung, $K_B$:  Schlüssel für Entschlüsselung, $m$: Klartext, $K_A(m):$ Ciphertext - Klartext verschlüsselt mit $K_A$}\\
@@ -857,7 +887,7 @@ $\circ$ \textbf{Betriebssicherheit:} Absicherung des Firmennetzes gegen Eingriff
 	\item \textbf{Cesar-Chiffre:} Verschiebung des Alphabets als Schlüssel, Abbildung des Klartextes auf verschobenes Alphabet ergibt Ciphertext
 	\item \textbf{Substitutions-Chiffre:} Schlüssel ist eine Abbildungsvorschrift (Buchstabe $b$ wird abgebildet auf $b'$)
 	\item \textbf{Blockchiffre:} Verarbeitung des Klartextes in $k$-Bit großen Blöcken (d.h. Abbildung eines $k$-Bit Blocks auf $k$-Bit Geheimtext)\\
-	\hspace*{10mm}z.B. $k=3:$ \textcolor{gray!90}{000 $\Rightarrow$ 110}, 001 $\Rightarrow$ 111, \textcolor{gray!90}{010 $\Rightarrow$ 101}, 011 $\Rightarrow$ 100, \textcolor{gray!90}{100 $\Rightarrow$ 011}, 101 $\Rightarrow$ 010, \textcolor{gray!90}{110 $\Rightarrow$ 000}, 111 $\Rightarrow$ 001\\
+	\hspace*{10mm}z.B. für $k=3:$ 000 $\Rightarrow$ 110, 001 $\Rightarrow$ 111, 010 $\Rightarrow$ 101, 011 $\Rightarrow$ 100, 100 $\Rightarrow$ 011, 101 $\Rightarrow$ 010, 110 $\Rightarrow$ 000, 111 $\Rightarrow$ 001\\
 	\text{Der Schlüssel ist die Abbildungstabelle, Anzahl möglicher Abbildungen: $(2^k)!$, d.h. für $k=3$ gibt es $8!$, also 40320, Abbildungsmöglichkeiten}\\
 	\text{$\Rightarrow$ Heutige Blockchiffren (\textit{DES}, \textit{3DES}, \textit{AES}) verwenden Funktionen um Abbildungen zu erzeugen da bereits kleine $k$ riesige Tabellen erzeugen}
 \end{itemize}
@@ -874,10 +904,8 @@ $\circ$ \textbf{Betriebssicherheit:} Absicherung des Firmennetzes gegen Eingriff
 	\item Um nicht doppelt so viele Daten (Geheimtext + Zufallsmuster) versenden zu müssen wird \textit{Cipher Block Chaining} angewandt\\
 	\hspace*{5mm}$\Rightarrow$ Nur das erste zufällige Bitmuster (\textit{Initialization Vector} \textbf{VI}) wird unverschlüsselt an Empfänger gesendet\\
 	\hspace*{5mm}$\Rightarrow$ Danach ist vorhergehender Geheimtext das zufällige Bitmuster für den nächsten Block Klartext
-	\item Für $c=$ Ausgegebener Geheimtext (\textit{Cipher}) $K=$ Schlüssel, $m=$ Klartext ist der Verlauf dann wie folgt:\\
-	\hspace*{5mm}$c(0)=$ Initialisierungsvektor\\
-	\hspace*{10mm}$c(1)=K(m_1$ $XOR$ $c(0))$ \\
-	\hspace*{15mm}$c(2)=K(m_2$ $XOR$ $c(1))$ \\
+	\item Für $c=$ Ausgegebener Geheimtext (\textit{Cipher}), $K=$ Schlüssel, $m=$ Klartext, ist der Verlauf dann wie folgt:\\
+	\hspace*{5mm}$c(0)=$ Initialisierungsvektor $\Rightarrow$ $c(1)=K(m_1$ $XOR$ $c(0))$ $\Rightarrow$ $c(2)=K(m_2$ $XOR$ $c(1))$ \\
 \end{itemize}
 
 \vspace{-2em}
@@ -898,6 +926,11 @@ Nachfolger von \textit{DES}, 128/192 oder 256-Bit symmetrischer Schlüssel mit 12
 	\item Sender überträgt $K_B^+(m)$, Empfänger entschlüsselt mit $K_B^-(K_B^+(m))$, d.h. es muss gelten $K_B^-(K_B^+(m)) = m$
 	\item Man darf nicht vom öffentlichen auf den privaten Schlüssel schließen können
 \end{itemize}
+\vspace{-2.2em}
+\begin{center}
+	\includegraphics[scale=0.3]{images/public_key.png}
+\end{center}
+
 \newpage
 
 \textbf{RSA Algorithmus:}\\
@@ -925,32 +958,52 @@ $\circ$ Gemeinsames Geheimnis besteht aus \textit{Authentication Code} $s$ und N
 \vspace{-2.5em}
 \textbf{Digitale Signaturen}\\
 $\circ$ Unterschrift als Bestätigung der Urheberschaft eines Dokuments, MAC mit \textit{shared key} \textbf{s} ungeeignet, da \textbf{s} sowohl Unterzeichner als auch Prüfer bekannt sein muss $\Rightarrow$ Prüfer kann Unterschrift fälschen\\
-$\circ$ Lösung:\\
-\hspace*{5mm} Berechne $H(m)$, $m$ := zu unterschreibende Nachricht\\
-\hspace*{10mm} Unterzeichner nutzt private key zur Berechnung von $K_B^-(H(m))$, wird zusammen mit $m$ versendet\\
-\hspace*{15mm} Prüfer prüft ob $H(m) = K_B^+(K_B^-(H(m)))$ (entschlüsseln mit öffentlichem Schlüssel), falls ja: Unterschrift gültig\\
+\vspace{-1em}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.25]{images/digitale_signatur.png}} &
+	\makecell[l]{
+		$\circ$ Lösung:\\
+		\hspace*{2.5mm}- Berechne $H(m)$, $m$ := zu unterschreibende Nachricht\\
+		\hspace*{2.5mm}- Unterzeichner nutzt private key zur Berechnung von $K_B^-(H(m))$,\\
+		\hspace*{2.5mm}wird zusammen mit $m$ versendet\\
+		\hspace*{2.5mm}- Prüfer prüft ob $H(m) = K_B^+(K_B^-(H(m)))$ (entschlüsseln mit öffentlichem Schlüssel),\\
+		\hspace*{2.5mm}\hspace*{2.5mm}falls ja: Unterschrift gültig
+	}
+\end{tabular}
 
-\vspace{-2.5em}
 \textbf{Zertifizierung von öffentlichen Schlüsseln}\\
 \text{$\circ$ Angreifer kann behaupten, dass dessen public key gleich dem vom Unterzeichner ist $\Rightarrow$ Öffentlicher Schlüssel muss Person zugeordnet werden}\\
-$\circ$ \textit{Certification Authority} (\textbf{CA}) prüft Identität (z.B. Personalausweis) - erstellt Zertifikat, dass public key zur Person gehört (Angabe der Domain) und unterschreibt das Zertifikat per digitale Signatur\\
-$\circ$ Unterzeichner sendet eigenen public key und Zertifikat an Empfänger, dieser prüft mit öffentlichem \textbf{CA}-Schlüssel, ob Zertifikat gültig (d.h. public key richtig) ist\\
+$\circ$ \textit{Certification Authority} (\textbf{CA}) prüft Identität (z.B. Personalausweis)\\
+\hspace*{2.5mm}- erstellt Zertifikat, dass public key zur Person gehört (Angabe der Domain) und unterschreibt das Zertifikat per digitale Signatur\\
+$\circ$ Unterzeichner sendet eigenen public key und Zertifikat an Empfänger, dieser prüft mit öffentlichem \textbf{CA}-Schlüssel,\\
+\hspace*{2.5mm}ob Zertifikat gültig (d.h. public key richtig) ist\\
 
 \vspace{-2.5em}
 \textbf{Authentifizierungsprotokoll mit Shared Secret}\\
 $\circ$ Kommunikationsteilnehmer prüft, ob ein anderer derjenige ist, für den er sich ausgibt\\
-\hspace*{5mm}IP-Adresse kann gefälscht sein oder Angreifer führt Playback-Angriff durch (Kommunikation aufzeichnen \& wieder abspielen)\\
-\text{Lösungen: \textit{shared secret} oder Verwendung einer nur einmal verwendeten, zufälligen Zahl (\textit{Nonce}) die mit symmetrischem Schlüssel verschlüsselt wird}\\
-\vspace{-2.75em}
-\begin{itemize}
-	\setlength\itemsep{-1.25em}
-	\item Sender sendet eigenen Namen an Empfänger
-	\item Empfänger sendet Nonce $R$ zurück
-	\item Sender sendet mit eigenem privaten Schlüssel verschlüsseltes $R$
-	\item Empfänger fordert publick key an
-	\item Sender sendet public key (ggf. mit Zertifikat einer CA) an Empfänger
-	\item Empfänger prüft ob $K_A^+(K_A^-(R)) = R$
-\end{itemize}
+\hspace*{2.5mm}- IP-Adresse kann gefälscht sein oder Angreifer führt Playback-Angriff durch (Kommunikation aufzeichnen \& wieder abspielen)\\
+$\circ$ Lösungen: \textit{shared secret} oder Verwendung einer nur einmal verwendeten, zufälligen Zahl (\textit{Nonce}),\\
+\hspace*{2.5mm}die mit symmetrischem Schlüssel verschlüsselt wird\\
+
+\vspace{-0em}
+\begin{tabular}{ll}
+	\begin{minipage}{0.6\textwidth}
+		\begin{itemize}
+			\setlength\itemsep{-.33em}
+			\item Sender sendet eigenen Namen an Empfänger
+			\item Empfänger sendet Nonce $R$ zurück
+			\item Sender sendet mit eigenem privaten Schlüssel verschlüsseltes $R$
+			\item Empfänger fordert publick key an
+			\item Sender sendet public key (ggf. mit Zertifikat einer CA) an Empfänger
+			\item Empfänger prüft ob $K_A^+(K_A^-(R)) = R$
+		\end{itemize}
+	\end{minipage} & 
+	\begin{minipage}{0.4\textwidth}
+		\raisebox{-.5\height}{\includegraphics[scale=0.25]{images/public_key_authentifizierung.png}}
+	\end{minipage}
+\end{tabular}
+
+\newpage
 
 \vspace{-1.5em}
 \subsection{Secure Sockets Layer (SSL)}
@@ -959,8 +1012,6 @@ $\circ$ Kommunikationsteilnehmer prüft, ob ein anderer derjenige ist, für den er
 	\raisebox{-.5\height}{\includegraphics[scale=0.25]{images/ssl_layerstack.png}} &
 	\makecell[l]{$\circ$ Viele TCP-basierte Anwendungen benötigen \textbf{Vertraulichkeit}, \textbf{Integrität}, \textbf{Authentifizierung}\\$\circ$ Keines der Internet-Transportprotokolle unterstützt Verschlüsselung übertragener Informationen\\$\circ$ Auf Anwendungsschicht implementiert (z.b. \textit{java.net.ssl} oder \textit{OpenSSL})\\$\circ$ SSL stellt diese Funktionalitäten durch Verschlüsselung, Message Authentication Code und mit Zertifikaten zur Verfügung\\$\circ$ SSL v3.1 von \textit{IETF} als \textbf{Transport Layer Security TLS 1.0} standardisiert\\$\circ$ Drei Phasen: Handshake, Key Derivation (Herleitung von Schlüsseln), Data Transfer (eigentliche Datenübertragung)}
 \end{tabular}
-
-\newpage
 
 \text{\textbf{SSL Handshake:} Webbrowser als Client, Server besitzt public \& private key + Zertifikat für public key zur Identitätsbestätigung (Domainname)}\\
 \begin{tabular}{ll}
