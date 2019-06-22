@@ -109,6 +109,7 @@
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{multirow}
+\usepackage[export]{adjustbox}
 % ** - **
 
 %******************************
@@ -267,28 +268,42 @@ $\Rightarrow$ Funkkanal ist zeit- und ortsvariant!
 Höhere Modulationsarten bieten höhere Übertragungsrate sind aber fehleranfälliger. Bei größerem Signal-Rausch-Abstand\\
 (SNR - Stärke des Nutzsignals bezogen auf Störung) kann höhere Modulation eingesetzt werden da Kanal anscheinend nicht so stark gestört (\textit{QAM-16 = 4Mbps}, \textit{QAM-256 = 8Mbps})\\
 \textbf{Bit-Error-Rate (BER):} Wahrscheinlichkeit, dass ein fehlerhaftes Bit übertragen wird.\\
-\textbf{Hidden Terminal Problem:} Teilnehmer A, B \& C. A und B hören sich, B und C hören sich aber A und C hören sich nicht $\rightarrow$ Bei Übertragung $A\rightarrow B$ und $C\rightarrow B$ stören sie sich unbewusst gegenseitig.\\
-TODO: BEHEBUNG / VERMINDERUNG DURCH?\\
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.1125]{images/hidden_terminal.png}} &
+	\makecell[l]{
+		$\circ$ \textbf{Hidden Terminal Problem:} Teilnehmer A, B \& C. A und B hören sich,\\
+		\hspace*{2.5mm}B und C hören sich aber A und C hören sich nicht $\rightarrow$ Bei Übertragung $A\rightarrow B$\\
+		\hspace*{2.5mm}und $C\rightarrow B$ stören sie sich unbewusst gegenseitig.\\
+		\hspace*{2.5mm}- Beheben durch \textit{RTS/CTS}-Verfahren\\
+		\hspace*{2.5mm}- Beheben mit Sendestärke bei A \& C erhöhen, sodass sie sich \textit{hören} können\\
+		\hspace*{2.5mm}\hspace*{2.5mm}und CSMA/CA funktioniert\\
+		\hspace*{2.5mm}- Teilnehmer bewegen
+	}
+\end{tabular}
+
+\newpage
 
 \textbf{Aufteilen eines Mediums:}
+\vspace{-1.25em}
 \begin{itemize}
-	\setlength\itemsep{-0.5em}
-	\item TDMA (Time Division Multiple Access)
-	\vspace{-1em}
-	\begin{enumerate}[itemsep=-1em]
+	\setlength\itemsep{-1.25em}
+	\item \textbf{TDMA (Time Division Multiple Access)}
+	\vspace{-1.25em}
+	\begin{enumerate}
+		\setlength\itemsep{-1.25em}
 		\item synchron: Jeder Teilnehmer hat festen Zeitslot, nur in diesem kann er senden
 		\item asynchron: keine festen Zeitslot, jeder nutzt aktuellen Zeitslot wenn er Daten hat - Absender wird in Header geschrieben
 	\end{enumerate}
-	\newpage
-	
-	\item FDMA (Frequency Division Multiple Access)
-	\vspace{-1em}
-	\begin{enumerate}[itemsep=-1em]
+	\item \textbf{FDMA (Frequency Division Multiple Access)}
+	\vspace{-1.25em}
+	\begin{enumerate}
+		\setlength\itemsep{-1.25em}
 		\item Teilnehmer nutzen unterschiedliche Frequenzen
 	\end{enumerate}
-	\item CDMA (Code Division Multiple Access)
-	\vspace{-1em}
-	\begin{enumerate}[itemsep=-1em]
+	\item \textbf{CDMA (Code Division Multiple Access)}
+	\vspace{-1.25em}
+	\begin{enumerate}
+		\setlength\itemsep{-1.25em}
 		\item Teilnehmer nutzen unterschiedliche Spreizcodes, \textbf{Vorteil:} Störungsunempfindlicher, \textbf{Nachteil:} Mehr Datenübertragung
 		\item Zu übertragende Daten werden vom Sender mit Spreizcode multipliziert, Ergebnisbits $\Leftrightarrow$ \textbf{Chips}
 		\item Empfänger multipliziert empfangende Daten mit Spreizcode des Senders
@@ -298,13 +313,27 @@ TODO: BEHEBUNG / VERMINDERUNG DURCH?\\
 \end{itemize}
 
 \textbf{CDMA - Beispiel zur Kodierung}\\
-Sender hat Spreizcode $(1, 1, 1, -1, 1, -1, -1, -1)$ und versendet Daten $d_1=-1, d_0=1$. Nach Multiplikation der Daten mit Spreizcode:\\
-$Z_{1,m}=(-1, -1, -1, 1, -1, 1, 1, 1)$, $Z_{0,m}=(1, 1, 1, -1, 1, -1, -1, -1)$. Der Empfänger dekodiert folgendermaßen: $\frac{\sum_{m=1}^{M}Z_{i,m}\cdot c_m}{M}$.\\
-Dabei ist $M$ Länge des Spreizcodes (in diesem Beispiel 8), $c_m$ Spreizfaktor an der Stelle $m$, $Z_{i,m}$ die gespreizten Daten, d.h:\\
-$d_1=\frac{(-1)\cdot 1 + (-1)\cdot 1 + (-1)\cdot 1 + 1\cdot (-1) + (-1)\cdot 1 + 1\cdot (-1) + 1\cdot (-1) + 1\cdot (-1)}{M} = \frac{-8}{8} = -1$\\
-$d_0 = \frac{1\cdot 1 + 1\cdot 1 + 1\cdot 1 + (-1)\cdot (-1) + 1\cdot 1 + (-1)\cdot (-1) + (-1)\cdot (-1) + (-1)\cdot (-1)}{M} = \frac{8}{8} = 1$\\
-Bei mehreren Sendern multipliziert der Empfänger das überlagerte Signal mit dem jeweiligen Spreizcode, da diese orthogonal zueinander sind, kommen die richtigen Daten des jeweiligen Senders wieder raus.
-\par
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.133]{images/cdma.png}} &
+	\makecell[l]{
+		$\circ$ Sender hat Spreizcode $(1, 1, 1, -1, 1, -1, -1, -1)$ und versendet Daten\\
+		\hspace*{2.5mm}$d_1=-1, d_0=1$. Nach Multiplikation der Daten mit Spreizcode:\\
+		\hspace*{2.5mm}$Z_{1,m}=(-1, -1, -1, 1, -1, 1, 1, 1)$, $Z_{0,m}=(1, 1, 1, -1, 1, -1, -1, -1)$.\\
+		$\circ$ Empfänger dekodiert folgendermaßen: $\frac{\sum_{m=1}^{M}Z_{i,m}\cdot c_m}{M}$.\\
+		$\circ$ Dabei ist $M$ Länge des Spreizcodes (in diesem Beispiel 8),\\
+		\hspace*{2.5mm}$c_m$ Spreizfaktor an der Stelle $m$, $Z_{i,m}$ die gespreizten Daten, d.h:\\
+		\hspace*{2.5mm}$d_1=\frac{(-1)\cdot 1 + (-1)\cdot 1 + (-1)\cdot 1 + 1\cdot (-1) + (-1)\cdot 1 + 1\cdot (-1) + 1\cdot (-1) + 1\cdot (-1)}{M} = \frac{-8}{8} = -1$\\
+		\hspace*{2.5mm}	$d_0 = \frac{1\cdot 1 + 1\cdot 1 + 1\cdot 1 + (-1)\cdot (-1) + 1\cdot 1 + (-1)\cdot (-1) + (-1)\cdot (-1) + (-1)\cdot (-1)}{M} = \frac{8}{8} = 1$\\
+		$\circ$ Bei mehreren Sendern multipliziert der Empfänger das überlagerte Signal\\
+		\hspace*{2.5mm}mit dem jeweiligen Spreizcode, da diese orthogonal zueinander sind,\\
+		\hspace*{2.5mm}kommen die richtigen Daten des jeweiligen Senders wieder raus.
+	}
+\end{tabular}
+
+\vspace{-1.5em}
+\raisebox{-.5\height}{\includegraphics[scale=0.145, right]{images/cdma_zwei_sender.png}}
+
+\newpage
 
 \subsection{Wireless Local Area Networks}
 \textbf{Protokollstack:}\\
@@ -337,36 +366,40 @@ Bei mehreren Sendern multipliziert der Empfänger das überlagerte Signal mit dem 
 
 Accesspoint sendet regelmäßig \textbf{Beacon Frames} mit SSID und MAC-Adresse. Wireless Stations scannen Kanäle nach diesen Frames,\\
 \text{wählen verfügbaren AP (Einstellungen \& Signalstärke) aus, führt Authentifizierung durch und erhält anschließend IP-Adresse per DHCP.}
-\newpage
-
+\vspace{-.5em}
 \begin{tabular}{ll}
 	\textbf{Passives Scannen} & \textbf{Aktives Scannen}\\
 	PC ist passiv, hört Kanal ab & PC sendet Probe Request\\
 	APs senden \textit{Beacons} & APs senden Probe Response\\
 	PC sendet Association Request an ausgewählten AP & PC sendet Association Request an ausgewählten AP\\
 	AP sendet Association Response an PC & AP sendet Association Response an PC
-\end{tabular}
+\end{tabular}\\
 
-Keine Kollisionserkennung (Collision Detection (CD)) möglich $\Rightarrow$ ACKs auf Schicht 2\\
+\vspace{-1.4em}
+Keine Kollisionserkennung (Collision Detection (CD)) möglich $\Rightarrow$ ACKs auf Schicht 2 nötig\\
 \vspace{-.5em}
 \begin{tabular}{ll}
-	\raisebox{-.5\height}{\includegraphics[scale=0.3]{images/wlan_layer_2_acks.png}} &
+	\raisebox{-.5\height}{\includegraphics[scale=0.3]{images/wlan_layer_2_acks.png}} &s
 	\makecell[l]{$\circ$ Sender wartet Zeitspanne \textit{DIFS} (Distributed Coordination Function Interframe Spacing)\\während der Medium frei sein muss\\$\circ$ Sender überträgt Daten (kein Collision Detection)\\$\circ$ Empfänger prüft CRC\\$\circ$ Empfänger sendet ACK falls CRC korrekt nach Wartezeit \textit{SIFS} (Short Interframe Spacing) (SIFS < DIFS)\\um Senden eines normalen Frames dazwischen zu verhindern außerdem Umschalten von \textit{Empfangen} auf \textit{Senden}}\\
 \end{tabular}
 
+\vspace{-1.0em}
 \textbf{Carrier Sense Multiple Access / Collision Avoidance (CSMA/CA):}
-\vspace{-1em}
+\vspace{-1.25em}
 \begin{itemize}
-	\setlength\itemsep{-1.25em}
+	\setlength\itemsep{-1.33em}
 	\item Sender lauscht (\textit{Carrier Sense}) ob Medium frei (Dauer: \textbf{1 DIFS})
-	\item Falls frei: \textit{random backoff} im aktuellen \textit{Contention Window} würfeln wenn mehrere Stationen gleiches DIFS abgewartet haben\\und es sonst zu Kollision käme. Nach Ablauf des random backoffs Daten übertragen
-	\item \text{Falls nicht frei: Warten bis Kanal frei, wenn Kanal länger als 1 DIFS frei, dann \textit{random backoff} verringern \& anschließend Daten senden}
+	\item Falls frei: \textit{random backoff} im aktuellen \textit{Contention Window} würfeln, da wenn mehrere Stationen gleiche Zeit abwarten würden\\es sonst zu Kollision käme. Nach Ablauf des random backoffs Daten übertragen
+	\item Falls nicht frei: Warten bis Kanal frei (Ablauf des \textit{Netzbelegungsvektors}), wenn anschließend länger als 1 DIFS frei,\\
+	dann \textit{random backoff} Timer runterzählen \& dann Daten senden
 	\item Falls kein ACK erfolgt: Contention Window verdoppeln und Daten erneut senden
 	\item Empfänger sendet ACK nach Ablauf eines \textbf{SIFS} bei korrekt erhaltenen Daten
+	\item Kollision durch gleichzeitig ablaufenden \textit{backoff timer} führt zu \textit{ACK-Timeout}
 \end{itemize}
-\textbf{Nachteile CSMA/CA:} Senden dauert lange, Kollision wird nicht erkannt - ist sehr zeitaufwändig und sollte daher vermieden werden\\
-Besser eine Kollision bei kurzen Kontrollpaketen als bei langen Datenpaketen $\Rightarrow$ \textbf{RTS/CTS}-Verfahren
-
+\textbf{Nachteile CSMA/CA:} Senden dauert lange, Kollision wird vom Sender beim Senden nicht erkannt\\
+Kollision ist sehr zeitaufwändig und sollte daher vermieden werden $\rightarrow$ besser eine Kollision bei kurzen Kontrollpaketen\\
+als bei langen Datenpaketen $\Rightarrow$ \textbf{RTS/CTS}-Verfahren\\
+\vspace{-1.0em}
 \begin{tabular}{ll}
 	\raisebox{-.5\height}{\includegraphics[scale=0.3]{images/wlan_rts_cts_sequence_chart.png}} &
 	\makecell[l]{\textbf{Ablauf:}\\$\circ$ Sender reserviert Kanal mit kurzem \textbf{Request-To-Send (RTS)}-Paket,\\Kollisionen möglich aber weniger schlimm da nur kleines Paket welches\\günstig erneut gesendet werden kann\\$\circ$ Empfänger antwortet mit \textbf{Clear-To-Send (CTS)}\\$\circ$ Sender sendet Datenpaket\\$\Rightarrow$ Andere Stationen empfangen RTS \& CTS und berücksichtigen belegten Kanal\\$\Rightarrow$ Funktioniert auch bei \textit{Hidden Terminal} da CTS empfangen wird}
@@ -374,11 +407,56 @@ Besser eine Kollision bei kurzen Kontrollpaketen als bei langen Datenpaketen $\R
 
 \textbf{WLAN Rahmenformat}\\
 \begin{tabular}{ll}
-	\raisebox{-.33\height}{\includegraphics[scale=0.33]{images/wlan_rahmen.png}} &
-	\makecell[l]{$\circ$ Max. 2313 Bytes an Nutzdaten\\$\circ$ 3. Adresse erlaubt Umsetzung auf Ethernet-Rahmen\\$\circ$ WLAN-Reichweitenvergrößerung durch\\überlappende BSSs, IP-Adresse bleibt gleich da\\identisches Subnetz - nur AP ändert sich\\$\Rightarrow$ Switch ändert Port$\leftrightarrow$IP-Zuordnung wenn sich\\ Teilnehmer vom neuen AP meldet}
+	\raisebox{-.33\height}{\includegraphics[scale=0.2125]{images/wlan_rahmen.png}} &
+	\makecell[l]{
+		$\circ$ Bedeutung der Adressfelder variiert je nach Funktion,\\
+		\hspace*{2.5mm}angezeigt über \textit{ToDS} und \textit{FromDS} Bits\\
+		\hspace*{2.5mm}(DS=DistributionSystem) in Frame Control\\
+		$\circ$ Max. 2313 Bytes an Nutzdaten\\
+		$\circ$ 3. Adresse erlaubt Umsetzung auf Ethernet-Rahmen\\
+		$\circ$ \textbf{WLAN-Reichweitenvergrößerung} aufgrund auf\\
+		\hspace*{2.5mm}100mW begrenzte Sendeleistung durch überlappende\\
+		\hspace*{2.5mm}BSSs in einem IP-Subnetz:\\
+		\hspace*{2.5mm}- IP-Adresse bleibt gleich da identisches Subnetz,\\
+		\hspace*{2.5mm}\hspace*{2.5mm}nur AP ändert sich\\
+		\hspace*{2.5mm}- Zuständiger, selbstlernender Switch zwischen APs\\
+		\hspace*{2.5mm}\hspace*{2.5mm}ändert Port$\leftrightarrow$IP-Zuordnung wenn sich Teilnehmer\\
+		\hspace*{2.5mm}\hspace*{2.5mm}vom neuen AP meldet
+	}
 \end{tabular}
 
-\text{\underline{Unterschied CSMA/CA$\leftrightarrow$CSMA/CD}: CSMA/CD bei Ethernet sendet \textit{JAM}-Signal, CSMA/CA erkennt keine Kollision (versucht nur zu verhindern)}
+\underline{Unterschied CSMA/CA$\leftrightarrow$CSMA/CD}:\\
+CSMA/CD bei Ethernet sendet \textit{JAM}-Signal (= kurzes Störsignal damit alle anderen Teilnehmer Kollision ebenfalls erkennen),\\
+CSMA/CA erkennt keine Kollision (versucht nur zu verhindern)\\
+\vspace{-1.0em}
+\textbf{Praktikumsaufgabe 1.1}\\
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.125]{images/aufg_11.png}} &
+	\makecell[l]{
+		$\circ$ 1Mbit/s Datenrate mit TDMA Verfahren auf Layer-2, Node A muss Datei an\\
+		\hspace*{2.5mm}Node D übertragen, \textbf{Maximale Datenrate:}\\
+		\hspace*{2.5mm}- A kann nicht direkt an D senden, sondern nur über B und C,\\
+		\hspace*{2.5mm}\hspace*{2.5mm}bei \textit{Synchrones TDMA} hat jeder Sender festen Zeitslot, in der er senden darf\\
+		\hspace*{2.5mm}\hspace*{2.5mm}\textbf{die Datenrate reduziert sich daher bei synchrones TDMA auf $\frac{1}{4}$}\\
+		\hspace*{2.5mm}- Bei \textit{Asynchrones TDMA} werden nicht-verwendete Zeitslots besser ausgenutzt\\
+		\hspace*{2.5mm}\hspace*{2.5mm}so kann z.B. A an B senden während C noch an D sendet\\
+		\hspace*{2.5mm}\hspace*{2.5mm}\textbf{die Datenrate reduziert sich daher bei asynchrones TDMA auf $\frac{1}{3}$}
+	}
+\end{tabular}
+$\circ$ D muss nun \textbf{auf Transportschicht} jedes Datenpaket mit \textit{ACK} bestätigen, A \& D arbeiten mit \textbf{Selective Repeat},\\
+\hspace*{2.5mm}\textbf{Maximale Datenrate:}\\
+\hspace*{2.5mm}- 6 benötigte Zeitslots für 1 Datenpaket: \textbf{3x Daten senden}: A$\rightarrow$B, B$\rightarrow$C, C$\rightarrow$D und \textbf{3x ACK:} D$\rightarrow$C, C$\rightarrow$B, B$\rightarrow$A,\\
+\hspace*{2.5mm}\hspace*{2.5mm}zu einem Zeitpunkt können gleichzeitig Daten von A$\rightarrow$B und ein ACK von D$\rightarrow$C gesendet werden,\\
+\hspace*{2.5mm}\hspace*{2.5mm}\textbf{Datenrate reduziert sich daher auf $\frac{1}{5}$}\\
+\textbf{Praktikumsaufgabe 2.1}\\
+$\circ$ Selbe Anordnung, arbeiten aber nun im \textbf{AdHoc}-Modus - welchen Kanal stellt man an jeder Node für optimalen Durchsatz A$\rightarrow$D ein?\\
+\hspace*{2.5mm}- Alle Nodes verwenden den selben Kanal da sich die sonst im \textbf{AdHoc}-Modus gar nicht erreichen können
+
+\newpage
+
+$\circ$ Nun jede Node \textbf{mit zwei WLAN-Adapter} - welchen Kanal jeweils einstellen und welche \textbf{Änderung des Durchsatzes}?\\
+\hspace*{2.5mm}- 
+
 \newpage
 
 \subsection{Personal Area Networks (PAN)}
@@ -409,7 +487,8 @@ $\circ$ Ziel: Drahtlose Übertragung bei geringem Stromverbrauch (geringe Datenra
 $\circ$ Übertragen von Sensordaten, Heim- und Gebäudeautomatisierung\\
 $\circ$ \textbf{Endgerät:} Reduced Function Device \textit{RFD} - nur Teil des ZigBee Protokolls implementiert (geringere Kosten)\\
 \text{$\circ$ \textbf{Router:} Full Function Device \textit{FDD}, kann Daten weiterleiten $\circ$ \textbf{Koordinator:} Gibt zusätzliche Parameter vor, koordiniert das PAN}
-\par
+
+\newpage
 
 \subsection{Zellulare Netzwerke}
 \vspace{-1em}
@@ -420,7 +499,6 @@ $\circ$ \textbf{Endgerät:} Reduced Function Device \textit{RFD} - nur Teil des Z
 \textbf{Ressourcenzuteilung in der Zelle:}\\
 \text{$\circ$ \textbf{GSM:} Kombination aus FDMA \& TDMA, Spektrum wird in einzelne Frequenzkanäle, jeder Kanal wiederum in Zeitschlitze aufgeteilt}\\
 $\circ$ \textbf{UMTS:} CDMA Verfahren - Unterschiedlicher Code für unterschiedliche Nutzer
-\newpage
 
 \textbf{2G Netzwerkarchitektur (GSM):}\\
 \begin{tabular}{ll}
@@ -432,6 +510,8 @@ $\circ$ \textbf{UMTS:} CDMA Verfahren - Unterschiedlicher Code für unterschiedli
 	\raisebox{-.5\height}{\includegraphics[scale=0.18]{images/gsm_gprs_netzaufbau.png}} &
 	\makecell[l]{$\circ$ Mit GPRS-Komponenten erstmals paketvermittelte Datendienste\\- verwendet bereits bestehende BTS mit\\$\circ$ \textbf{Packet Control Unit (PCU):} Kommuniziert über den BSC mit Endgerät und\\auch mit der SGSN, überwacht und verwaltet Datenpakete, Ressourcenverteilung\\$\circ$ \textbf{Serving GPRS Support Node (SGSN)}: Übernimmt Vermittlung der\\Datenpakete und die Funktion des VLR\\$\circ$ \textbf{Gateway GPRS Support Node (GGSN):} Ist der Router, der das\\Mobilfunknetz mit dem Internet verbindet und die IP-Adresse zur Verfügung stellt\\$\circ$ \textbf{Home Location Register (HLR):} Datenbank mit Informationen zum Nutzer,\\enthält Rufnummer und zuletzt bekannten Aufenthaltsort\\$\circ$ \textbf{Visitor Location Register (VLR):} Datenbank mit Informationen zu allen\\Nutzern, die sich im vom MSC bedienten Bereich befinden\\$\circ$ Sprachdaten laufen über $BTS\Leftrightarrow BSC\Leftrightarrow MSC \Leftrightarrow G-MSC\Leftrightarrow Festnetz$\\$\circ$ Paketdaten laufen über $BTS\Leftrightarrow BSC\Leftrightarrow PCU\Leftrightarrow SGSN\Leftrightarrow GGSN\Leftrightarrow Internet$}
 \end{tabular}
+
+\newpage
 
 \textbf{Mobilitätsmanagement:}\\
 \begin{tabular}{ll}
@@ -466,7 +546,6 @@ Mobilgerät wechselt bei bestehender Verbindung von einer Basisstation zur andere
 	\item \textit{Subsequent Inter MSC:} Teilnehmer wechselt nach \textit{Inter MSC} in Zelle eines dritten MSC
 	\item \textit{Subsequent Handback:} Teilnehmer wechselt nach \textit{Inter MSC} zurück in Gebiet des ersten MSC
 \end{itemize}
-\newpage
 
 \textbf{Ablauf Inter-MSC Handover:}\\
 \begin{tabular}{ll}
@@ -478,8 +557,10 @@ Mobilgerät wechselt bei bestehender Verbindung von einer Basisstation zur andere
 \begin{tabular}{ll}
 	\raisebox{-.5\height}{\includegraphics[scale=0.225]{images/3g_netzarchitektur.png}} &
 	\makecell[l]{$\circ$ Mit UMTS '99 neues Air-Interface \textit{Universal Terrestrial Radio Access Network} (\textbf{UTRAN})\\$\circ$ basierend auf Wideband-CDMA\\$\circ$ Ab UMTS v4 Umstellung auf IP basierte Kommunikation (Sprache \& Daten)}
-\end{tabular}\\
-\vspace{-0em}
+\end{tabular}
+
+\newpage
+
 \textbf{LTE \& LTE Advanced (4G):}\\
 \text{Umstellung auf \textit{Orthogonal Frequency Devision Multiplexing} (\textbf{OFDM}): Übertragungstechnik mit flexibler Bandbreite zwischen 1.25 bis 20 MHz}\\
 \text{LTE-Endgerät muss Mehrantennenverfahren unterstützen (\textit{Multiple Input, Multiple Output} \textbf{MIMO}), LTE-Netz rein paketbasiert (Sprache per VoIP)}
