@@ -1532,7 +1532,7 @@ $\circ$ Überprüfen des Paketinhalts auf verdächtige Inhalte (z.B. \textit{SQL In
 
 \section{Multimedia}
 \vspace{-2.5em}
-\text{$\circ$ Verbreitung von Multimedia-Daten (Video-Streaming, Internet-TV, VoIP) mit hohen Datenmengen so geringer Verzögerungen wie möglich}\\
+\text{$\circ$ Verbreitung von Multimedia-Daten (Video-Streaming, Internet-TV, VoIP) mit hohen Datenmengen \& so geringer Verzögerungen wie möglich}\\
 \vspace{-2.5em}
 \begin{itemize}
 	\setlength\itemsep{-1.25em}
@@ -1556,10 +1556,11 @@ $\circ$ Überprüfen des Paketinhalts auf verdächtige Inhalte (z.B. \textit{SQL In
 		\hspace*{2.5mm}- Initiales Befüllen des Buffers bis zum Start des Abspielens ($t_p$)\\
 		\hspace*{2.5mm}- Füllstand $Q(t)$ des Buffers ändert sich über Zeit aufgrund\\
 		\hspace*{2.5mm}\hspace*{2.5mm}\textit{variabler} Füllrate $x(t)$\\
-		\hspace*{2.5mm}- \textit{mittlere Füllrate} $\bar{x}$ < $r$: Buffer leer sich\\
+		\hspace*{2.5mm}- \textit{mittlere Füllrate} $\bar{x}$ < $r$: Buffer leert sich\\
 		\hspace*{2.5mm}\hspace*{2.5mm}$\Rightarrow$ Video stockt, Rebuffering\\
-		\hspace*{2.5mm}- \textit{mittlere Füllrate} $\bar{x}$ > $r$: Buffer nie komplett leer\\
-		\hspace*{2.5mm}\hspace*{2.5mm}solange $B$ ausreichend groß für Schwankungen von $x(t)$\\
+		\hspace*{2.5mm}- \textit{mittlere Füllrate} $\bar{x}$ > $r$: Buffer wird nie komplett leer\\
+		\hspace*{2.5mm}\hspace*{2.5mm}solange $B$ ausreichend groß um für Schwankungen\\
+		\hspace*{2.5mm}\hspace*{2.5mm}von $x(t)$ abzufangen\\
 		\hspace*{2.5mm}$\Rightarrow$ Großes $B$ bedeutet größere Startverzögerung
 	}
 \end{tabular}
@@ -1567,9 +1568,10 @@ $\circ$ Überprüfen des Paketinhalts auf verdächtige Inhalte (z.B. \textit{SQL In
 \vspace{-1em}
 \textbf{Streaming über UDP:}\\
 $\circ$ Prinzipiell UDP besser als TCP da geringere Verzögerung und Multicast möglich\\
-\text{$\circ$ \textbf{Sender:} UDP-Pakete mit Datenrate des kodierten Multimedia-Datenstroms, \textbf{Client:} kleiner Buffer (2-5s), App.-Layer Fehlerbehebung}\\
-$\circ$ \textbf{Aber:} UDP oft nicht durch Firewalls/NAT, separate Kontrollverbindung für Stop/Pause über TCP (RTSP),\\
-\hspace*{2.5mm}Reaktion auf Änderung der Bandbreite
+$\circ$ \textbf{Sender:} Erzeugt UDP-Pakete mit Datenrate des kodierten Multimedia-Datenstroms\\
+$\circ$ \textbf{Client:} kleiner Buffer (2-5s), Applikationsschicht ist zuständig für Fehlerbehebung\\
+$\circ$ \textbf{Aber:} UDP geht oft nicht durch Firewalls/NAT, separate Kontrollverbindung für Stop/Pause über TCP (z.B. RTSP),\\
+\hspace*{2.5mm}Reaktion auf Änderung der verfügbaren Bandbreite
 
 \vspace{-1em}
 \textbf{Streaming über HTTP (TCP):}\\
@@ -1577,8 +1579,8 @@ $\circ$ \textbf{Aber:} UDP oft nicht durch Firewalls/NAT, separate Kontrollverbi
 	\raisebox{-.5\height}{\includegraphics[scale=0.35]{images/streaming_tcp.png}} &
 	\makecell[l]{
 		$\circ$ Abruf der Multimedia-Datei per \textit{GET}\\
-		$\circ$ Senderate variiert (TCP \textit{Congestion Control}, \textit{Flow Control},\\
-		\hspace*{2.5mm}\textit{Retransmissions})\\
+		$\circ$ Senderate variiert (aufgrund TCP \textit{Congestion Control},\\
+		\hspace*{2.5mm}\textit{Flow Control} und \textit{Retransmissions})\\
 		$\circ$ HTTP/TCP passiert Firewalls meist ohne Probleme
 	}
 \end{tabular}
@@ -1586,17 +1588,18 @@ $\circ$ \textbf{Aber:} UDP oft nicht durch Firewalls/NAT, separate Kontrollverbi
 \vspace{-2em}
 \subsection{Dynamic Adaptive Streaming over HTTP (DASH)}
 \vspace{-2em}
-$\circ$ Problem TCP-Streaming: Bandbreite variiert durch HTTP+TCP, \textit{DASH:}\\
+$\circ$ Problem bei HTTP+TCP-Streaming: Bandbreite variiert abhängig von Netzanbindung\\
+$\circ$ \textbf{DASH:}\\
 \vspace{-2.75em}
 \begin{itemize}
 	\setlength\itemsep{-1.25em}
 	\item Aufteilen der Multimedia-Datei in \textit{Chunks}
 	\item Mehrfache Kodierung jedes Chunks in unterschiedlichen Versionen mit anderer Bitrate ($\rightarrow$ Qualitätsstufen)
 	\item Manifest-Datei: URLs der unterschiedlichen Versionen, wird von Media-Server an Client geschickt
-	\item Client wählt passende Version abhängig von Bandbreite
+	\item Client wählt passende Version in der Manifest-Datei abhängig von Bandbreite aus
 \end{itemize}
 
-\vspace{-1.5em}
+\vspace{-1.25em}
 $\circ$ Intelligenz beim Client:\\
 \vspace{-2.75em}
 \begin{itemize}
@@ -1613,10 +1616,12 @@ $\circ$ Intelligenz beim Client:\\
 \begin{tabular}{ll}
 	\raisebox{-.5\height}{\includegraphics[scale=0.45]{images/rtsp.png}} &
 	\makecell[l]{
-		$\circ$ Client-Server Protokoll auf App.-Layer zur Steuerung des Multimedia-Datenstroms\\
-		\hspace*{2.5mm}(\textit{Play}, \textit{Pause}, \textit{Fast-Forward})\\
-		$\circ$ Separate \textit{Kontrollverbindung}, Mediendaten selbst per UDP oder TCP\\
-		$\circ$ \textit{RTSP} spezifiziert \textbf{nicht:} Kompression Audio/Video, \textit{wie} Übertragen wird, Pufferverhalten\\
+		$\circ$ Client-Server Protokoll auf Applikationsschicht zur Steuerung\\
+		\hspace*{2.5mm}des Multimedia-Datenstroms (\textit{Play}, \textit{Pause}, \textit{Fast-Forward})\\
+		$\circ$ Hat separate Kontrollverbindung (Port 554)\\
+		$\circ$ Mediendaten selbst werden per UDP oder TCP übertragen\\
+		$\circ$ \textbf{RTSP spezifiziert nicht:} Kompression von Audio/Video,\\
+		\hspace*{2.5mm}\textit{wie} Übertragen wird (definiert durch \textit{RTP}), Pufferverhalten des Players\\
 		$\circ$ \textit{Präsentationsbeschreibungsdatei:}\\
 		\hspace*{2.5mm}$<title>Twister</title><session><group language=en lipsync>$\\
 		\hspace*{2.5mm}$<switch><track type=audio src='rtsp://audio.example.com/audio.en/lofi'>$\\
@@ -1649,30 +1654,30 @@ $\circ$ Intelligenz beim Client:\\
 	\makecell[l]{
 		$\circ$ $(1)$ Nutzer surft auf $www.netcinema.de$\\
 		$\circ$ $(2)$ Klickt auf Video $video.netcinema.de/4711abc$\\
-		\hspace*{2.5mm}$\rightarrow$ Client sendet \textit{DNS-Request} and $video.netcinema.de$\\
+		\hspace*{2.5mm}$\rightarrow$ Client sendet \textit{DNS-Request} für $video.netcinema.de$\\
 		$\circ$ $(3)$ Lokaler DNS leitet Anfrage an für $netcinema.de$ zuständigen DNS\\
 		\hspace*{2.5mm}$\rightarrow$ erkennt Video-Anfrage (nutzt \textit{CDN})\\
-		\hspace*{2.5mm}$\rightarrow$ liefert keine IP, sondern Hostname aus CDN\\
+		\hspace*{2.5mm}$\rightarrow$ liefert keine IP, sondern Hostname aus CDN zurück\\
 		\hspace*{2.5mm}\hspace*{2.5mm}(z.B. $a42.kingcdn.de$)\\
-		$\circ$ $(4)$ Lokaler DNS sendet Anfrage an $a42.kingcdn.de$ an\\
-		\hspace*{2.5mm}dafür zuständigen DNS-Server (Teil des \textit{CDN})\\
+		$\circ$ $(4)$ Lokaler DNS sendet Anfrage nach $a42.kingcdn.de$ an\\
+		\hspace*{2.5mm}dafür zuständigen DNS-Server (bereits Teil des \textit{CDN})\\
 		\hspace*{2.5mm}$\rightarrow$ Entscheidung, welcher Content-Distribution Server liefern soll\\
-		\hspace*{2.5mm}$\rightarrow$$\rightarrow$ IP des Distribution Server nahe dem User\\
+		\hspace*{2.5mm}$\rightarrow$$\rightarrow$ liefert IP des Distribution Server nahe dem User\\
 		$\circ$ $(5)$ Lokaler DNS leitet IP an Client weiter\\
 		$\circ$ $(6)$ Client ruft Video per HTTP GET ab\\
-		$\circ$ mit \textit{DASH} liefert Server \textit{Manifest}-Datei, Client wählt dynamisch
+		$\circ$ mit \textit{DASH} liefert Server \textit{Manifest}-Datei, Client wählt dynamisch aus
 	} & \raisebox{-.5\height}{\includegraphics[scale=0.35]{images/cdn_2.png}}
 
 \end{tabular}
-$\circ$ \textit{CDNs} auch per \textit{HTTP-Weiterleitung} möglich, bei DNS-Ansatz sieht Client aber die verborgene DNS-Struktur nicht!\\
+$\circ$ \textit{CDNs} auch per \textit{HTTP-Weiterleitung} möglich, \textbf{bei DNS-Ansatz sieht Client aber die verborgene DNS-Struktur nicht!}\\
 $\circ$ Passender \textit{Content Distribution Cluster} bestimmen durch: Geographische Lage, geringste Verzögerung (\textit{Hops}),\\
-\hspace*{2.5mm}\textit{IP-Anycast} (Server mit kürzester Route antwortet), oder Client ermittelt den Besten via \textit{ping}s)\\
+\hspace*{2.5mm}\textit{IP-Anycast} (Server mit kürzester Route antwortet), oder Client ermittelt den Besten via \textit{ping}-Anfragen\\
 $\circ$ \textit{Kankan} in China wählt Peer-to-Peer (ähnlich \textit{BitTorent}) Ansatz für CDN (Hash-Tabelle zum Auffinden der Inhalte)
 
 \vspace{-2.25em}
 \subsection{Voice over IP (VoIP)}
 \vspace{-2em}
-$\circ$ Digitalisierung der Sprache mit 8000 Bytes/s (64 kbit/s) (\textit{Nyquist-Shannon-Abtasttheorem} $\Rightarrow$ Rekonstruktion von max. 4kHz)\\
+$\circ$ Sprachdigitalisierung mit 8000 Bytes/s (64 kbit/s) (\textit{Nyquist-Shannon-Abtasttheorem} $\Rightarrow$ Rekonstruktion von max. 4kHz Frequenzen)\\
 \hspace*{2.5mm}\textit{Abtastung:} Alle 8000Hz eine Messung, \textit{Quantisierung:} Analoger Messwert in 8-bit Digitalwert überführen\\
 $\circ$ Digitalisierte Sprache per UDP von 160Bytes alle 20ms senden\\
 
@@ -1691,13 +1696,13 @@ $\circ$ Herausforderungen:\\
 	$\rightarrow$ Feste- oder adaptive Verzögerung des Abspielens (\textit{playout delay})\\
 	\hspace*{2.5mm}\textbf{Feste Verzögerung:}\\
 	\includegraphics[scale=0.33]{images/voip_feste_verzoegerung.png}\\
-	Nur geringe Verzögerung $q = p_1 - r$: Aussetzer bei $(1)$\\
-	Bei größerer Verzögerung $q = p_2 - r$: kein Aussetzer bei $(2)$
+	Nur geringe Verzögerung $q = p_1 - r$: kurzer Aussetzer bei $(1)$, langer Aussetzer bei $(2)$\\
+	Bei größerer Verzögerung $q = p_2 - r$: kein Aussetzer
 \end{itemize}
 \vspace{-1.5em}
 \textbf{Abspielverzögerung $q$}\\
 $\circ$ Empfänger spielt Daten mit Verzögerung $q$ ab (Zeit $t$ $\rightarrow$ Abspielen bei $t + q$)\\
-$\circ$ Paketverlust wenn Paket nach $t + q$ ankommt\\
+$\circ$ Paketverlust wenn Paket nach $t + q$ ankommt aufgrund zu großer Verzögerung\\
 $\circ$ \textbf{Tradeoff:} Großes $q$: wenig Paketverlust, Kleines $q$: interaktiver, weniger Verzögerung\\
 
 \vspace{-2.5em}
@@ -1705,9 +1710,9 @@ $\circ$ \textbf{Tradeoff:} Großes $q$: wenig Paketverlust, Kleines $q$: interakt
 $\circ$ Anpassen der Abspielverzögerung bei Perioden der Stille im Gespräch (Schätzung der Verzögerung mit Hilfe der Zeitstempel)\\
 \hspace*{2.5mm}$\rightarrow$ Exponentiell gewichteter, gleitender Mittelwert: $d_i = (1 - \alpha)d_{i-1} + \alpha(r_i - t_i)$ mit\\
 \hspace*{2.5mm}\hspace*{3.5mm}$d_i$ := Schätzung nach Paket $i$, $\alpha$ := Konstante < $1$, $r_i$ := Empfangszeitpunkt Paket $i$, $t_i$ := Zeitstempel Paket $i$ (Sendezeitpunkt)\\
-\hspace*{2.5mm}$\rightarrow$ Standardabweichung $v_i = (1 - \beta)v_{i-1} + \beta|r_i - t_i - d_i|$\\
-\hspace*{2.5mm}$\rightarrow$ \textit{zu Beginn} der Redeperiode Berechnung Abspielzeitpunkt $p_i = t_i + d_i + K\cdot v_i$ mit $K$ := positive Ganzzahl-Konstante\\
-\hspace*{2.5mm}$\Rightarrow$ Nur so lange verzögern, wie nötig
+\hspace*{2.5mm}$\rightarrow$ Standardabweichung $v_i = (1 - \beta)v_{i-1} + \beta\cdot |r_i - t_i - d_i|$\\
+\hspace*{2.5mm}$\rightarrow$ \textit{zu Beginn} der Redeperiode Berechnung des Abspielzeitpunktes $p_i = t_i + d_i + K\cdot v_i$ mit $K$ := positive Ganzzahl\\
+\hspace*{2.5mm}$\Rightarrow$ dynamische Adaption der Verzögerung (nur so lange verzögern, wie nötig)
 
 \begin{tabular}{l}
 	\raisebox{-.5\height}{\includegraphics[scale=0.4]{images/voip_paketverlust.png}}
@@ -1727,10 +1732,10 @@ $\circ$ \textbf{Verschleierung (Error Concealment):} Empfänger generiert Audio-D
 	\makecell[l]{
 		$\circ$ Standardisiertes Paketformat für Multimedia/VoIP\\
 		$\circ$ Unabhängig von Art der übertragenen Daten (MP3, H.263, etc.)\\
-		$\circ$ RTP Payload wird über UDP Segmente übertragen (Unicast \& Multicast)\\
+		$\circ$ RTP Payload wird über UDP-Segmente übertragen (Unicast \& Multicast)\\
 		$\circ$ Vorteile als Entwickler sind vorhandene Bibliotheken/Tools und\\
 		\hspace*{2.5mm}Zusammenarbeit unterschiedlicher RTP-Anwendungen\\
-		$\circ$ \textit{Header}\\
+		$\circ$ \textit{Header} (12-Byte)\\
 		\hspace*{2.5mm}- \textbf{RTP-Version} mit 2 Bit\\
 		\hspace*{2.5mm}- \textbf{Padding-Bit} gibt an, ob hinter Nutzdaten noch Padding eingefügt ist\\
 		\hspace*{2.5mm}- \textbf{Extension-Bit} gibt an, ob hinter RTP-Header noch Extension-Header folgt\\
@@ -1746,10 +1751,10 @@ $\circ$ \textbf{Verschleierung (Error Concealment):} Empfänger generiert Audio-D
 		\hspace*{2.5mm}\hspace*{2.5mm}der Multimediadaten
 	} & \raisebox{-.5\height}{\includegraphics[scale=0.425]{images/rtp_header.png}}
 \end{tabular}
-$\circ$ \textbf{Beispiel:} Abtastung Sprachsignal mit 8kHz ($\rightarrow$ alle 125$\mu$s ein 8-Bit Wert), Anwendung sammelt kodierte Audiodaten in \textit{Chunks}\\
-\hspace*{2.5mm}- z.B. alle 20ms einen Chunk zu 160 Bytes\\
-\hspace*{2.5mm}- RTP-Header hat Payload-Type 0\\
-\hspace*{2.5mm}- Timestamp startet bei 0 und wird für jedes Paket um 160 erhöht (Einheit ist Sampling-Periode, d.h. im Beispiel 125 $\mu$s)\\
+$\circ$ \textbf{Beispiel 64kbit/s PCM-kodierte Sprache:}\\
+\hspace*{2.5mm}- Abtastung Sprachsignal mit 8kHz ($\rightarrow$ alle 125$\mu$s ein 8-Bit Wert), Anwendung sammelt kodierte Audiodaten in \textit{Chunks} (z.B. alle\\
+\hspace*{2.5mm}\hspace*{2.5mm}20ms einen Chunk zu 160 Bytes\\
+\hspace*{2.5mm}- RTP-Header: \textbf{Payload-Type}=0; \textbf{Timestamp}=0 (für jedes Paket um 160 erhöht (Einheit ist Sampling-Periode, hier also 125 $\mu$s))\\
 \hspace*{2.5mm}- Der Header bildet zusammen mit Chunk das RTP-Paket, das als UDP-Segment verpackt und versendet wird.
 
 \vspace{-2.25em}
@@ -1775,6 +1780,7 @@ $\circ$ \textbf{Beispiel:} Abtastung Sprachsignal mit 8kHz ($\rightarrow$ alle 1
 		\hspace*{2.5mm}- Anschließend Audio-Verbindung über RTP-Protokoll über separate\\
 		\hspace*{2.5mm}\hspace*{2.5mm}Verbindung zwischen ausgehandelten Ports (willkürlich 38060 und 48753)\\
 		$\circ$ Syntax ähnlich HTTP - menschenlesbar, mit Ressource, Version, Methode\\
+		$\circ$ Header wird durch Leerzeite beendet, danach folgt Content\\
 		\hspace*{2.5mm} INVITE sip:08413708048@fritz.box:5060 SIP/2.0\\
 		\hspace*{2.5mm} Via: SIP/2.0/UDP 192.168.56.1:52953\\
 		\hspace*{2.5mm} From: sip:623@fritz.box;tag=aab36c6cb0dbbc46898c473859b\\
@@ -1783,8 +1789,7 @@ $\circ$ \textbf{Beispiel:} Abtastung Sprachsignal mit 8kHz ($\rightarrow$ alle 1
 		\hspace*{2.5mm} CSeq: 16918 INVITE\\
 		\hspace*{2.5mm} Allow: PRACK, INVITE, ACK, BYE, CANCEL, UPDATE, (...)\\
 		\hspace*{2.5mm} Content-Type: application/sdp\\
-		\hspace*{2.5mm} Content-Length: 459\\
-		\hspace*{2.5mm} ...
+		\hspace*{2.5mm} Content-Length: 459
 	} 
 \end{tabular}
 
@@ -1792,7 +1797,7 @@ $\circ$ \textbf{Beispiel:} Abtastung Sprachsignal mit 8kHz ($\rightarrow$ alle 1
 
 \vspace{-3.25em}
 \textbf{SIP Adressen}\\
-$\circ$ Direkte Angabe der IP-Adresse: \textit{sip:bob@193.64.210.89}\\
+$\circ$ Direkte Angabe der IP-Adresse: \textit{sip:bob@193.64.210.89}, alternativ\\
 $\circ$ Angabe einer eindeutigen Identifikation, die aufgelöst werden kann z.B. E-Mail: \textit{sip:bob@domain.de} oder Telefonnummer\\
 $\circ$ SIP-Adressen können in Webseiten eingebettet werden
 
@@ -1842,11 +1847,9 @@ $\circ$ SIP-Adressen können in Webseiten eingebettet werden
 
 \vspace{-1.45em}
 \textbf{Scheduling}\\
-$\circ$ Auswahl des nächsten zu sendenen Paketes (z.B. \textit{QoS Scheduler} in $R_1$)
+$\circ$ Auswahl des nächsten zu sendenen Paketes (z.B. \textit{QoS Scheduler} in $R_1$)\\
 $\circ$ Möglichkeiten bei voller Queue vorzugehen:\\
-\hspace*{2.5mm}- \textbf{Tail-Drop:} neu angekommendes Paket verwerfen\\
-\hspace*{2.5mm}- \textbf{Priority:} Paket mit geringster Priorität verwerfen\\
-\hspace*{2.5mm}- \textbf{Random:} Zufälliges Paket verwerfen
+\text{\hspace*{2.5mm}- \textbf{Tail-Drop:} neu angekommendes Paket verwerfen; \textbf{Priority:} Paket mit geringster Priorität verwerfen; \textbf{Random:} Zufälliges Paket verwerfen}
 
 \vspace{-1.45em}
 \textbf{First-In First-Out} (\textit{FIFO}):\\
@@ -1896,7 +1899,8 @@ $\circ$ Möglichkeiten bei voller Queue vorzugehen:\\
 \textbf{Weighted Fair Queuing} (\textit{WFQ}):\\
 \begin{tabular}{ll}
 	\makecell[l]{
-		$\circ$ Verallgemeinerung von \textit{WRR} und paketbasierte Approximation von \textit{GPS}\\
+		$\circ$ Verallgemeinerung des von \textit{WRR} verfolgten Ansatzes sowie\\
+		\hspace*{2.5mm}paketbasierte Approximation von \textit{GPS}\\
 		$\circ$ Im Gegensatz zu \textit{WRR} keine Vorberechnung der Schedule sondern stellt sicher,\\
 		\hspace*{2.5mm}dass Klasse $i$, die im Intervall senden wollte, mindestens Bruchteil $\frac{w_i}{\sum_{j}^{}w_j}$\\
 		\hspace*{2.5mm}der Ressourcen erhält
@@ -1905,7 +1909,7 @@ $\circ$ Möglichkeiten bei voller Queue vorzugehen:\\
 
 \vspace{-2.0em}
 \textbf{Policing Mechanismen}:\\
-$\circ$ Ziel ist Überwachung einer Klasse und Regeln der Raten, mit der diese Pakete einspeist\\
+$\circ$ Ziel ist Überwachung einer Klasse und das Regeln der Rate, mit der diese Pakete einspeist werden\\
 $\circ$ Kriterien sind\\
 \hspace*{2.5mm}- \textbf{Durchschnittliche Rate}: Pakete pro Zeitintervall\\
 \hspace*{2.5mm}- \textbf{Maximale Rate} als oberes Limit\\
@@ -1940,7 +1944,7 @@ $\circ$ Kriterien sind\\
 \subsection{Differentiated Services (DiffServ)}
 \vspace{-1.75em}
 $\circ$ Architektur zur Bereitstellung qualitativer Dienstklassen, ohne Zusage quantitativer Parameter\\
-$\circ$ Skalierbar:\\
+$\circ$ Skalierbare Architektur:\\
 \hspace*{2.5mm}- \textbf{Einfache Funktion im Kernnetz:} per Hop Verhalten (\textit{Per-Hop Behaviour - \textit{PHB}}) des Routers basierend auf Paketmarkierungen\\
 \hspace*{2.5mm}- \textbf{Komplexe Funktionen am Rand des Netzes} (\textit{Edge Router}) mit Paketklassifikation, Markierung und Traffic Policing
 
@@ -1956,17 +1960,20 @@ $\circ$ Skalierbar:\\
 \end{tabular}\\
 
 $\circ$ Markierung vom Paketen (Klassenzugehörigkeit) erfolgt in \textbf{IP-Header} im \textit{Type of Service} (TOS) Feld (IPv4) bzw.\\
-\hspace*{2.5mm}im \textit{Traffic Class} (TC) Feld (IPv6) mit Eintragung eines \textit{Differentiated Services Code Point} (DSCP) als \textbf{6-Bit Wert}\\
+\hspace*{2.5mm}im \textit{Traffic Class} (TC) Feld (IPv6) mit Eintragung eines \textit{Differentiated Services Code Point} (DSCP) als \textbf{6-Bit Wert},\\
+\hspace*{2.5mm}der die Behandlung im \textit{Core-Router} bestimmt\\
 $\circ$ Zwei Unterschiedliche \textbf{Per Hop Behaviours}:\\
 \hspace*{2.5mm}- \textbf{Expedited Forwarding:} Verkehrsrate einer Klasse entspricht oder übersteigt voreingestellte Rate am Router\\
-\hspace*{2.5mm}- \textbf{Assured Forwarding:} 4 Verkehrsklassen, jeweils 3 Kategorien für Verwerfen bei Überlast, mit garantiert minimaler Bandbreite
+\hspace*{2.5mm}- \textbf{Assured Forwarding:} 4 Verkehrsklassen, jede mit garantierter, maximaler Bandbreite\\
+\hspace*{2.5mm}\hspace*{2.5mm}pro Klasse jeweils 3 Kategorien für das Verwerfen bei Überlast
 
 \vspace{-2.75em}
 \subsection{Integrated Services (IntServ)}
 \vspace{-1.75em}
 $\circ$ Garantiert Datenrate/Dienstgüte, die erfordern:\\
-\hspace*{2.5mm}- \textbf{Ressourcenreservierung:} Zuteilung der benötigten Ressourcen bei Verbindungsaufbau von Datenstrom\\
-\hspace*{2.5mm}- \textbf{Call Admission:} Abweisung eines Datenstroms bei Anforderung von nicht mehr verfügbaren Ressourcen\\
+\hspace*{2.5mm}- \textbf{Ressourcenreservierung:} Datenstrom werden bei Verbindungsaufbau die benötigten Ressourcen zugeteilt\\
+\hspace*{2.5mm}- \textbf{Call Admission:} Abweisung eines Datenstroms wenn er nicht mehr verfügbare Ressourcen anfordert\\
 \hspace*{2.5mm}- \textbf{Verbindungsaufbausignalisierung} (Call Setup): Ressourcen werden entlang des Pfades (d.h. bei jedem Router)\\
-\hspace*{2.5mm}\hspace*{2.5mm}von Quelle zu Ziel reserviert (per Hop Allokierung) $\rightarrow$ Resource Reservation Protocol (\textit{RSVP})
+\hspace*{2.5mm}\hspace*{2.5mm}von Quelle zu Ziel reserviert (per Hop Allokierung) $\rightarrow$ Resource Reservation Protocol (\textit{RSVP})\\
+$\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 \end{document}

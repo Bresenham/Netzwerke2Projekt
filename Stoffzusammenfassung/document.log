@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.5.31)  23 JUN 2019 11:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.5.31)  23 JUN 2019 13:21
 entering extended mode
 **./document.tex
 (document.tex
@@ -1748,7 +1748,7 @@ Overfull \vbox (1.79988pt too high) has occurred while \output is active []
 
 
 [24]
-Overfull \hbox (24.02428pt too wide) in paragraph at lines 1535--1538
+Overfull \hbox (33.46864pt too wide) in paragraph at lines 1535--1538
 [] 
  []
 
@@ -1758,22 +1758,17 @@ File: images/playout_buffer.png Graphic file (type png)
 Package pdftex.def Info: images/playout_buffer.png  used on input line 1550.
 (pdftex.def)             Requested size: 288.25623pt x 225.80948pt.
 
-Overfull \hbox (66.47711pt too wide) in paragraph at lines 1549--1566
-[] 
- []
-
-
-Overfull \hbox (10.48563pt too wide) in paragraph at lines 1568--1573
+Overfull \hbox (66.47711pt too wide) in paragraph at lines 1549--1567
 [] 
  []
 
 <images/streaming_tcp.png, id=259, 752.8125pt x 152.82094pt>
 File: images/streaming_tcp.png Graphic file (type png)
 <use images/streaming_tcp.png>
-Package pdftex.def Info: images/streaming_tcp.png  used on input line 1577.
+Package pdftex.def Info: images/streaming_tcp.png  used on input line 1579.
 (pdftex.def)             Requested size: 263.48831pt x 53.48811pt.
 
-Overfull \hbox (24.25613pt too wide) in paragraph at lines 1575--1585
+Overfull \hbox (6.25287pt too wide) in paragraph at lines 1577--1587
 [] 
  []
 
@@ -1785,35 +1780,35 @@ Overfull \vbox (1.79988pt too high) has occurred while \output is active []
 <images/rtsp.png, id=268, 384.6872pt x 438.13687pt>
 File: images/rtsp.png Graphic file (type png)
 <use images/rtsp.png>
-Package pdftex.def Info: images/rtsp.png  used on input line 1614.
+Package pdftex.def Info: images/rtsp.png  used on input line 1617.
 (pdftex.def)             Requested size: 173.10764pt x 197.15976pt.
 
-Overfull \hbox (49.37006pt too wide) in paragraph at lines 1613--1628
+Overfull \hbox (28.72784pt too wide) in paragraph at lines 1616--1633
 [] 
  []
 
 <images/cdn.png, id=269, 697.8572pt x 347.04657pt>
 File: images/cdn.png Graphic file (type png)
 <use images/cdn.png>
-Package pdftex.def Info: images/cdn.png  used on input line 1633.
+Package pdftex.def Info: images/cdn.png  used on input line 1638.
 (pdftex.def)             Requested size: 244.25368pt x 121.46811pt.
 
-Overfull \hbox (10.40814pt too wide) in paragraph at lines 1632--1646
+Overfull \hbox (10.40814pt too wide) in paragraph at lines 1637--1651
 [] 
  []
 
 <images/cdn_2.png, id=270, 779.91376pt x 175.40532pt>
 File: images/cdn_2.png Graphic file (type png)
 <use images/cdn_2.png>
-Package pdftex.def Info: images/cdn_2.png  used on input line 1664.
+Package pdftex.def Info: images/cdn_2.png  used on input line 1669.
 (pdftex.def)             Requested size: 272.9739pt x 61.39278pt.
 
-Overfull \hbox (64.84703pt too wide) in paragraph at lines 1648--1671
+Overfull \hbox (64.84703pt too wide) in paragraph at lines 1653--1676
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1675--1678
+Underfull \hbox (badness 10000) in paragraph at lines 1680--1683
 
  []
 
@@ -1826,21 +1821,21 @@ Overfull \vbox (1.79988pt too high) has occurred while \output is active []
 File: images/voip_feste_verzoegerung.png Graphic file (type png)
 <use images/voip_feste_verzoegerung.png>
 Package pdftex.def Info: images/voip_feste_verzoegerung.png  used on input line
- 1693.
+ 1698.
 (pdftex.def)             Requested size: 269.79378pt x 109.55713pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1698--1702
+Underfull \hbox (badness 10000) in paragraph at lines 1703--1707
 
  []
 
 <images/voip_paketverlust.png, id=280, 1168.365pt x 421.575pt>
 File: images/voip_paketverlust.png Graphic file (type png)
 <use images/voip_paketverlust.png>
-Package pdftex.def Info: images/voip_paketverlust.png  used on input line 1713.
+Package pdftex.def Info: images/voip_paketverlust.png  used on input line 1718.
 
 (pdftex.def)             Requested size: 467.33772pt x 168.627pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1712--1715
+Underfull \hbox (badness 10000) in paragraph at lines 1717--1720
 
  []
 
@@ -1852,20 +1847,20 @@ Overfull \vbox (1.79988pt too high) has occurred while \output is active []
 <images/rtp_header.png, id=286, 484.81125pt x 296.60812pt>
 File: images/rtp_header.png Graphic file (type png)
 <use images/rtp_header.png>
-Package pdftex.def Info: images/rtp_header.png  used on input line 1747.
+Package pdftex.def Info: images/rtp_header.png  used on input line 1752.
 (pdftex.def)             Requested size: 206.04575pt x 126.05904pt.
 
-Overfull \hbox (27.20384pt too wide) in paragraph at lines 1726--1754
+Overfull \hbox (27.20384pt too wide) in paragraph at lines 1731--1759
 []
  []
 
 <images/sip.png, id=287, 590.205pt x 558.58687pt>
 File: images/sip.png Graphic file (type png)
 <use images/sip.png>
-Package pdftex.def Info: images/sip.png  used on input line 1759.
+Package pdftex.def Info: images/sip.png  used on input line 1764.
 (pdftex.def)             Requested size: 243.46255pt x 230.41992pt.
 
-Overfull \hbox (63.11095pt too wide) in paragraph at lines 1758--1790
+Overfull \hbox (63.11095pt too wide) in paragraph at lines 1763--1795
 [] 
  []
 
@@ -1877,27 +1872,32 @@ Overfull \vbox (1.79988pt too high) has occurred while \output is active []
 <images/sip_ablauf.png, id=295, 845.40843pt x 487.06969pt>
 File: images/sip_ablauf.png Graphic file (type png)
 <use images/sip_ablauf.png>
-Package pdftex.def Info: images/sip_ablauf.png  used on input line 1802.
+Package pdftex.def Info: images/sip_ablauf.png  used on input line 1807.
 (pdftex.def)             Requested size: 274.75447pt x 158.29576pt.
 
-Overfull \hbox (64.06577pt too wide) in paragraph at lines 1800--1820
+Overfull \hbox (64.06577pt too wide) in paragraph at lines 1805--1825
 [] 
  []
 
 <images/qos.png, id=296, 721.19438pt x 690.32906pt>
 File: images/qos.png Graphic file (type png)
 <use images/qos.png>
-Package pdftex.def Info: images/qos.png  used on input line 1825.
+Package pdftex.def Info: images/qos.png  used on input line 1830.
 (pdftex.def)             Requested size: 234.38539pt x 224.35428pt.
 
-Overfull \hbox (42.8184pt too wide) in paragraph at lines 1824--1842
+Overfull \hbox (42.8184pt too wide) in paragraph at lines 1829--1847
+[] 
+ []
+
+
+Overfull \hbox (43.88129pt too wide) in paragraph at lines 1849--1853
 [] 
  []
 
 <images/fifo.png, id=297, 347.79938pt x 353.82187pt>
 File: images/fifo.png Graphic file (type png)
 <use images/fifo.png>
-Package pdftex.def Info: images/fifo.png  used on input line 1854.
+Package pdftex.def Info: images/fifo.png  used on input line 1857.
 (pdftex.def)             Requested size: 113.03345pt x 114.99074pt.
 
 Overfull \vbox (1.79988pt too high) has occurred while \output is active []
@@ -1907,30 +1907,30 @@ Overfull \vbox (1.79988pt too high) has occurred while \output is active []
 <images/gps.png, id=305, 346.29375pt x 414.79968pt>
 File: images/gps.png Graphic file (type png)
 <use images/gps.png>
-Package pdftex.def Info: images/gps.png  used on input line 1879.
+Package pdftex.def Info: images/gps.png  used on input line 1882.
 (pdftex.def)             Requested size: 112.54413pt x 134.80829pt.
 
-Overfull \hbox (24.13272pt too wide) in paragraph at lines 1869--1881
+Overfull \hbox (24.13272pt too wide) in paragraph at lines 1872--1884
 [] 
  []
 
 <images/wrr.png, id=306, 370.38374pt x 407.27156pt>
 File: images/wrr.png Graphic file (type png)
 <use images/wrr.png>
-Package pdftex.def Info: images/wrr.png  used on input line 1885.
+Package pdftex.def Info: images/wrr.png  used on input line 1888.
 (pdftex.def)             Requested size: 124.08072pt x 136.43837pt.
 <images/wfq.png, id=307, 355.3275pt x 415.5525pt>
 File: images/wfq.png Graphic file (type png)
 <use images/wfq.png>
-Package pdftex.def Info: images/wfq.png  used on input line 1903.
+Package pdftex.def Info: images/wfq.png  used on input line 1907.
 (pdftex.def)             Requested size: 115.48006pt x 135.05296pt.
 <images/leaky_bucket.png, id=308, 587.94656pt x 306.39468pt>
 File: images/leaky_bucket.png Graphic file (type png)
 <use images/leaky_bucket.png>
-Package pdftex.def Info: images/leaky_bucket.png  used on input line 1917.
+Package pdftex.def Info: images/leaky_bucket.png  used on input line 1921.
 (pdftex.def)             Requested size: 220.47942pt x 114.89772pt.
 
-Overfull \hbox (40.40434pt too wide) in paragraph at lines 1915--1926
+Overfull \hbox (40.40434pt too wide) in paragraph at lines 1919--1930
 [] 
  []
 
@@ -1943,20 +1943,20 @@ cket.png>]
 <images/leaky_bucket_wfq.png, id=316, 554.82281pt x 325.96782pt>
 File: images/leaky_bucket_wfq.png Graphic file (type png)
 <use images/leaky_bucket_wfq.png>
-Package pdftex.def Info: images/leaky_bucket_wfq.png  used on input line 1936.
+Package pdftex.def Info: images/leaky_bucket_wfq.png  used on input line 1940.
 (pdftex.def)             Requested size: 208.05804pt x 122.23763pt.
 
-Overfull \hbox (25.22365pt too wide) in paragraph at lines 1930--1938
+Overfull \hbox (25.22365pt too wide) in paragraph at lines 1934--1942
 [] 
  []
 
 <images/diffserv.png, id=317, 465.99094pt x 523.20468pt>
 File: images/diffserv.png Graphic file (type png)
 <use images/diffserv.png>
-Package pdftex.def Info: images/diffserv.png  used on input line 1955.
+Package pdftex.def Info: images/diffserv.png  used on input line 1959.
 (pdftex.def)             Requested size: 151.44525pt x 170.0395pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1947--1957
+Underfull \hbox (badness 10000) in paragraph at lines 1951--1961
 
  []
 
@@ -1964,20 +1964,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 1947--1957
 Package caption Warning: Unused \captionsetup[lstlisting] on input line 150.
 See the caption package documentation for explanation.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1972.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1979.
 
 Overfull \vbox (1.79988pt too high) has occurred while \output is active []
 
 
 [31 <./images/leaky_bucket_wfq.png> <./images/diffserv.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1972.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1979.
  (document.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1972.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1972.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1979.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1979.
 
 Package rerunfilecheck Info: File `document.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1972.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1979.
  ) 
 Here is how much of TeX's memory you used:
  14994 strings out of 492895
@@ -2001,7 +2001,7 @@ pfb><D:/Programme/MiKTeX/fonts/type1/public/lm/lmri10.pfb><D:/Programme/MiKTeX/
 fonts/type1/public/lm/lmri8.pfb><D:/Programme/MiKTeX/fonts/type1/public/lm/lmro
 8.pfb><D:/Programme/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><D:/Programme/MiKTeX
 /fonts/type1/public/lm/lmsy8.pfb>
-Output written on document.pdf (31 pages, 4294980 bytes).
+Output written on document.pdf (31 pages, 4295529 bytes).
 PDF statistics:
  514 PDF objects out of 1000 (max. 8388607)
  92 named destinations out of 1000 (max. 500000)
