@@ -314,25 +314,20 @@ Höhere Modulationsarten bieten höhere Übertragungsrate sind aber fehleranfällige
 \end{itemize}
 
 \textbf{CDMA - Beispiel zur Kodierung}\\
-\begin{tabular}{ll}
-	\raisebox{-.5\height}{\includegraphics[scale=0.133]{images/cdma.png}} &
-	\makecell[l]{
-		$\circ$ Sender hat Spreizcode $(1, 1, 1, -1, 1, -1, -1, -1)$ und versendet Daten\\
-		\hspace*{2.5mm}$d_1=-1, d_0=1$. Nach Multiplikation der Daten mit Spreizcode:\\
-		\hspace*{2.5mm}$Z_{1,m}=(-1, -1, -1, 1, -1, 1, 1, 1)$, $Z_{0,m}=(1, 1, 1, -1, 1, -1, -1, -1)$.\\
-		$\circ$ Empfänger dekodiert folgendermaßen: $\frac{\sum_{m=1}^{M}Z_{i,m}\cdot c_m}{M}$.\\
-		$\circ$ Dabei ist $M$ Länge des Spreizcodes (in diesem Beispiel 8),\\
-		\hspace*{2.5mm}$c_m$ Spreizfaktor an der Stelle $m$, $Z_{i,m}$ die gespreizten Daten, d.h:\\
-		\hspace*{2.5mm}$d_1=\frac{(-1)\cdot 1 + (-1)\cdot 1 + (-1)\cdot 1 + 1\cdot (-1) + (-1)\cdot 1 + 1\cdot (-1) + 1\cdot (-1) + 1\cdot (-1)}{M} = \frac{-8}{8} = -1$\\
-		\hspace*{2.5mm}	$d_0 = \frac{1\cdot 1 + 1\cdot 1 + 1\cdot 1 + (-1)\cdot (-1) + 1\cdot 1 + (-1)\cdot (-1) + (-1)\cdot (-1) + (-1)\cdot (-1)}{M} = \frac{8}{8} = 1$\\
-		$\circ$ Bei mehreren Sendern multipliziert der Empfänger das überlagerte Signal\\
-		\hspace*{2.5mm}mit dem jeweiligen Spreizcode, da diese orthogonal zueinander sind,\\
-		\hspace*{2.5mm}kommen die richtigen Daten des jeweiligen Senders wieder raus.
-	}
-\end{tabular}
+$\circ$ Sender hat Spreizcode $(1, 1, 1, -1, 1, -1, -1, -1)$ und versendet Daten $d_1=-1, d_0=1$. Nach Multiplikation der Daten mit Spreizcode:\\
+\hspace*{2.5mm}$Z_{1,m}=(-1, -1, -1, 1, -1, 1, 1, 1)$, $Z_{0,m}=(1, 1, 1, -1, 1, -1, -1, -1)$.\\
+$\circ$ Empfänger dekodiert folgendermaßen: $\frac{\sum_{m=1}^{M}Z_{i,m}\cdot c_m}{M}$ mit $M$ = Länge des Spreizcodes (in diesem Beispiel 8),\\
+\hspace*{2.5mm}$c_m$ = Spreizfaktor an der Stelle $m$, $Z_{i,m}$ = die gespreizten Daten, d.h:\\
+\hspace*{2.5mm}\hspace*{2.5mm}$d_1=\frac{(-1)\cdot 1 + (-1)\cdot 1 + (-1)\cdot 1 + 1\cdot (-1) + (-1)\cdot 1 + 1\cdot (-1) + 1\cdot (-1) + 1\cdot (-1)}{M} = \frac{-8}{8} = -1$\\
+\hspace*{2.5mm}\hspace*{2.5mm}$d_0 = \frac{1\cdot 1 + 1\cdot 1 + 1\cdot 1 + (-1)\cdot (-1) + 1\cdot 1 + (-1)\cdot (-1) + (-1)\cdot (-1) + (-1)\cdot (-1)}{M} = \frac{8}{8} = 1$\\
+$\circ$ Bei mehreren Sendern multipliziert der Empfänger das überlagerte Signal mit dem jeweiligen Spreizcode, da diese orthogonal zueinander\\
+\hspace*{2.5mm}sind, kommen die richtigen Daten des jeweiligen Senders wieder raus.
 
 \vspace{-1.5em}
-\raisebox{-.5\height}{\includegraphics[scale=0.145, right]{images/cdma_zwei_sender.png}}
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.155]{images/cdma.png}} & \raisebox{-.5\height}{\includegraphics[scale=0.2]{images/cdma_zwei_sender.png}}
+\end{tabular}
+
 
 \newpage
 
