@@ -1091,7 +1091,7 @@ $\circ$ \textbf{Perfect Forward Secrecy:} Kommunikationspartner generieren nur f
 
 \begin{tabular}{ll}
 	\raisebox{-.5\height}{\includegraphics[scale=0.33]{images/tls_13_zero_rtt.png}} &
-	\makecell[l]{$\circ$ \textbf{0-RTT Mode:}\\\hspace*{2.5mm}Client \& Server teilen \textit{Pre-shared Key}\\\hspace*{2.5mm}z.B. aus vorheriger Verbindung, und können\\\hspace*{2.5mm}diesen gleich zur Authentifizierung und\\\hspace*{2.5mm}Verschlüsselung der \textit{Early Data} verwenden\\\hspace*{2.5mm}\textbf{allerdings:} Kein \textit{Forward Secrecy},\\\hspace*{19mm}anfälliger ggü. Replay-Attacken}
+	\makecell[l]{$\circ$ \textbf{0-RTT Mode:}\\\hspace*{2.5mm}Client \& Server teilen \textit{Pre-shared Key}\\\hspace*{2.5mm}z.B. aus vorheriger Verbindung, und können\\\hspace*{2.5mm}diesen gleich zur Authentifizierung und\\\hspace*{2.5mm}Verschlüsselung der \textit{Early Data} verwenden\\\hspace*{2.5mm}\textbf{allerdings:} Early Data schlechter abgesichert:\\\hspace*{19mm}- Kein \textit{Forward Secrecy},\\\hspace*{19mm}- anfälliger ggü. Replay-Attacken}
 \end{tabular}\\
 
 \textbf{Praktikumsaufgabe 6.1}\\
@@ -1139,9 +1139,10 @@ $\circ$ Implementierung auf verschiedenen Schichten möglich (Transportschicht: \
 \vspace{-1em}
 \begin{tabular}{ll}
 	\raisebox{-.5\height}{\includegraphics[scale=0.33]{images/vpn_tunneling.png}} &
-	\makecell[l]{$\circ$ \textbf{Tunneling:} Weiterleitung beliebiger Datenpakete über unsicheres Transitnetz\\$\circ$ VPN nutz eigenen Adressraum\\$\circ$ $A,B,C$ := VPN-Adressraum, $\lambda, \mu$ := Internet-Adressraum\\$\circ$ \textbf{Authentisierung}:\\\hspace*{2.5mm}\textit{Password Authentication Protocol} \textbf{PAP} - unsicher da Klartextaustausch\\\hspace*{2.5mm}\textit{Challenge Handshake Authentication Protocol} \textbf{CHAP} - Challenge-Response\\$\circ$ \textbf{Software:}\\\hspace*{2.5mm}Server (VPN-Gateway) per VPN-Server Software\\\hspace*{2.5mm}Client per VPN-Client (Cisco) / VPN-Adapter\\$\circ$ \textbf{Protokolle:}\\\hspace*{2.5mm}\textit{Point-to-Point Tunnelling Protocol} \textbf{PPTP}\\\hspace*{2.5mm}\textit{Layer Two Tunnelling Protocol} \textbf{L2TP} (\textit{PPTP}-Nachfolger)\\\hspace*{2.5mm}\hspace*{2.5mm}- Tunnelt beliebige Pakete über UDP}
+	\makecell[l]{$\circ$ \textbf{Tunneling:} Weiterleitung beliebiger Datenpakete über unsicheres Transitnetz\\$\circ$ VPN nutz eigenen, unabhängigen Adressraum\\\hspace*{2.5mm}- $A,B,C$ := VPN-Adressraum; $\lambda, \mu$ := Internet-Adressraum\\$\circ$ Am Anfang und Ende des Tunnels werden die zusätzlichen Header\\\hspace*{2.5mm}hinzugefügt bzw. wieder entfernt\\$\circ$ \textbf{Authentisierung} (Sicherstellen der Identität):\\\hspace*{2.5mm}\textit{Password Authentication Protocol} \textbf{PAP} - unsicher da Klartextaustausch\\\hspace*{2.5mm}\textit{Challenge Handshake Authentication Protocol} \textbf{CHAP}\\\hspace*{2.5mm}- Challenge-Response-Verfahren: Nutzer authentisiert sich mit Hash über\\\hspace*{2.5mm}\hspace*{2.5mm}Passwort und zufällige, vom Server gesendete Challenge\\$\circ$ \textbf{Software:}\\\hspace*{2.5mm}Server (VPN-Gateway) per VPN-Server Software\\\hspace*{2.5mm}Client per VPN-Client (Cisco) / VPN-Adapter\\$\circ$ \textbf{Protokolle:}\\\hspace*{2.5mm}\textit{Point-to-Point Tunnelling Protocol} \textbf{PPTP}\\\hspace*{2.5mm}\textit{Layer Two Tunnelling Protocol} \textbf{L2TP} (\textit{PPTP}-Nachfolger)\\\hspace*{2.5mm}\hspace*{2.5mm}- Tunnelt beliebige Pakete über UDP\\\hspace*{2.5mm}\hspace*{2.5mm}- Authentifizierung über \textit{PAP}/\textit{CHAP}
+	}
 \end{tabular}\\
-
+\vspace{-1em}
 \includegraphics[scale=0.3]{images/vpn_layer.png}
 
 \newpage
@@ -1163,7 +1164,7 @@ $\circ$ Dominierendes Protokoll für \textit{VPN}s auf Netzwerkschicht, verschied
 	\hspace*{2.5mm}\textbf{Header:}\\
 	\hspace*{2.5mm}\hspace*{2.5mm}- Ebenfalls \textit{ICV} (hier wird äußerer IP-Header \textbf{nicht} mit einbezogen), \textit{SPI} und \textit{SN}\\
 	\hspace*{2.5mm}\hspace*{2.5mm}- \textit{Initialization Vector} (\textbf{IV}): Initialisierungsvektor für symmetrische Verschlüsselungsverfahren\\
-	\hspace*{2.5mm}\hspace*{2.5mm}- \textit{Encrypted Payload} (\textbf{Encrypted Payload}): Verschlüsselte Nutzdaten
+	\hspace*{2.5mm}\hspace*{2.5mm}- \textit{Encrypted Payload}: Verschlüsselte Nutzdaten
 \end{itemize}
 
 \vspace{-1em}
@@ -1178,9 +1179,9 @@ $\circ$ Dominierendes Protokoll für \textit{VPN}s auf Netzwerkschicht, verschied
 \begin{itemize}
 	\setlength\itemsep{-1.25em}
 	\item (unidirektionale) Festlegung der für IPSec Kommunikation zwischen zwei IPSec-Hosts verwendeten Parameter:\\Protokoll, Modus, Verschlüsselung
-	\item legen fest, \textbf{was} in \textbf{welcher Art} verschlüsselt wird
+	\item \textit{Security Policies} (\textbf{SP}) legen fest, \textbf{was} in \textbf{welcher Art} verschlüsselt wird $\rightarrow$ \textit{Security Policy Database} (\textbf{SPD})
 	\item Jede \textit{SA} hat eindeutigen \textit{Security Parameter Index} (\textbf{SPI})
-	\item IPSec Einheit erhält die \textit{SPI}s in \textit{Security Association Database} (\textbf{SPD})
+	\item IPSec Einheit erhält die \textit{SPI}s in \textit{Security Association Database} (\textbf{SAD})
 \end{itemize}
 
 \vspace{-1em}
@@ -1190,9 +1191,10 @@ $\circ$ \textit{NAT} ändert Port und IP-Adresse (klappt nicht, wenn die im \text
 
 \vspace{-2.5em}
 \textbf{Internet Key Exchange (IKE):}\\
-\vspace{-2.5em}
+\vspace{-2.75em}
 \begin{itemize}
 	\setlength\itemsep{-1.25em}
+	\item Manuelles Eintragen der Schlüssel für die SAs bei großer Anzahl IPSec-Verbindungen unpraktikabel
 	\item Automatisiertes Aushandeln der \textit{SA}s (mit Schlüssel)
 	\item Basiert auf \textit{Security Association Key Management Protocol} (\textbf{ISAKMP})
 	\item Variante 1: \textit{Pre-Shared Key} (\textbf{PSK})\\
@@ -1202,8 +1204,8 @@ $\circ$ \textit{NAT} ändert Port und IP-Adresse (klappt nicht, wenn die im \text
 	\hspace*{2.5mm}- Beiden Seiten haben Public- und Private Key + \textbf{Zertifikat}\\
 	\hspace*{2.5mm}- IKE zur Authentifizierung und Aufsetzen der SAs (ähnlich SSL Handshake)
 	\item Phase 1: Aufbau einer bi-direktionalen \textit{IKE} SA (\textbf{keine} IPSec SA)\\
-	\hspace*{2.5mm}- Verwendet \textit{ISAKMP}, entweder im \textit{Aggressive Mode} (1.5 RTT) oder \textit{Main Mode} (3 RTT)
-	\item Phase 2: Aushandlung von IPSec SA (ebenfalls mit ISAKMP), Teilnehmer signieren ihre Nachrichten
+	\hspace*{2.5mm}- Verwendet \textit{ISAKMP} zwischen den Routern, entweder im \textit{Aggressive Mode} (1.5 RTT) oder \textit{Main Mode} (3 RTT)
+	\item Phase 2: Nutzen von ISAKMP zur Aushandlung von IPSec SA, IPSec-Teilnehmer signieren ihre Nachrichten
 \end{itemize}
 
 \vspace{-1.5em}
@@ -1249,7 +1251,9 @@ $\circ$ IP-Datagramm wird nun bei $R_1$ ins Internet weitergeleitet - ändern sic
 \begin{tabular}{ll}
 	\raisebox{-.5\height}{\includegraphics[scale=0.495]{images/wep_encryption_decryption.png}} &
 	\makecell[l]{
-		$\circ$ Schlüsselverteilung nicht Teil von \textit{WEP}, Aufgaben lediglich\\\hspace*{2.5mm}Authentifizierung und Verschlüsselung (mit Stromchiffre \textit{RC4})\\
+		$\circ$ Schlüsselverteilung nicht Teil von \textit{WEP}, Aufgaben lediglich\\
+		\hspace*{2.5mm}Authentifizierung und Verschlüsselung (mit Stromchiffre \textit{RC4}),\\
+		\hspace*{2.5mm}setzt also bereits auf Vorhandenseins eines \textit{shared keys} auf\\
 		$\circ$ \textbf{Schlüssel:}\\
 		\hspace*{2.5mm}- 24-Bit Initialisierungsvektor (\textit{IV}), wechselt von Rahmen zu Rahmen,\\
 		\hspace*{2.5mm}\hspace*{2.5mm}wird im Klartext übertragen\\
@@ -1261,11 +1265,13 @@ $\circ$ IP-Datagramm wird nun bei $R_1$ ins Internet weitergeleitet - ändern sic
 		\hspace*{2.5mm}- \textit{Root Key} und \textit{IV} zur Verschlüsselung von Daten und \textit{ICV}\\
 		\hspace*{2.5mm}- schützt vor zufälligen Fehlern, nicht vor Angreifer (kein geeigneter \textit{MAC})\\
 		$\circ$ \textbf{Authentifizierung:}\\
-		\hspace*{2.5mm}- \textbf{Open System:} Alle Authentifizierungsnachrichten w/o Prüfung zulassen\\
-		\hspace*{2.5mm}\hspace*{2.5mm}$\Rightarrow$ Client kann ohne Schlüssel keine korrekten Nachrichten senden\\
+		\hspace*{2.5mm}- \textbf{Open System:} Alle Authentifizierungsnachrichten werden ohne\\
+		\hspace*{2.5mm}\hspace*{2.5mm}Prüfung zulassen $\Rightarrow$ \textbf{Idee}: Client kann ohne Schlüssel keine\\
+		\hspace*{2.5mm}\hspace*{2.5mm}korrekten Nachrichten senden\\
 		\hspace*{2.5mm}- \textbf{Shared Key:} Client sendet Request an AccessPoint\\
 		\hspace*{2.5mm}\hspace*{2.5mm}AP sendet 128-Byte \textit{Nonce}, Client verschlüsselt \textit{Nonce} mit \textit{shared key}\\
-		\hspace*{2.5mm}\hspace*{2.5mm}AP entschlüsselt Ciphertext mit \textit{IV} und \textit{shared key} (Ergebnis = \textit{Nonce})
+		\hspace*{2.5mm}\hspace*{2.5mm}AP entschlüsselt Ciphertext mit \textit{IV} und \textit{shared key}\\
+		\hspace*{2.5mm}\hspace*{2.5mm}Wenn entschlüsselte Ergebnis = \textit{Nonce}, dann Client authentifiziert
 	}
 \end{tabular}\\
 
@@ -1275,13 +1281,20 @@ $\circ$ Angreifer kann \textit{IV}, \textit{Nonce} und \textit{Antwort} beobacht
 \text{\hspace*{2.5mm}$Nonce$ $XOR$ $(Nonce$ $XOR$ $keystream) = keystream$ $\Rightarrow$ Angreifer kann gültige Authentifizierungsnachrichten für beliebige \textit{Nonce} erstellen}\\
 \hspace*{2.5mm}$\Rightarrow$ \textbf{Unsicherer} als \textit{Open System}\\
 \text{$\circ$ \textbf{Problem 1:} Nur $2^{24}$ verschiedene Schlüssel (\textit{IV}-Länge) $\Rightarrow$ \textit{IV} wird aufgrund heutiger Datenraten in weniger als einem Tag erneut verwendet}\\
-\hspace*{2.5mm}Angreifer kann selbst Datenverkehr generieren (z.B. ARP-Requests durch mitschneiden da ARP bekannte Länge bzw. Plaintext fix)\\
+\hspace*{2.5mm}Angreifer kann selbst Datenverkehr generieren (z.B. ARP-Requests, da fixe Länge \& Inhalt bekannt) und Schlüsselstrom mitschneiden\\
 $\circ$ \textbf{Problem 2:} \textit{IV} wird im Klartex übertragen $\Rightarrow$ Angreifer kann Wiederholung leicht erkennen\\
+
+\vspace{-2em}
+\textbf{Beispiel: Known Plaintext Angriff}\\
+$\circ$ Angreifer motiviert AP großteils bekannten Klartext zu verschlüsseln (z.B: ARP-Request oder Übertragung einer im\\
+\hspace*{2.5mm}Klartext bekannten Datei)\\
+$\circ$ Angreifer kennt Klartex $m(i)$ und kann Schlüsselstrom aufzeichnen: $ks(i) = c(i)\text{ XOR }m(i)$\\
+$\circ$ Sobald Wiederholung des IV detektiert wird: Abfolge des Schlüsselstroms bekannt und Entschlüsselung möglich\\
 
 \vspace{-2em}
 \textbf{802.11i: Temporal Key Integrity Protocol (TKIP)}\\
 $\circ$ Ersatz für \textit{WEP}, aber mit selber Hardware funktionsfähig, \textit{IV} erweitert auf 48-Bit, neue Hash-Funktion,\\
-\hspace*{2.5mm}\textit{Personal}-Mode mit pre-shared key\\
+\hspace*{2.5mm}\textit{Personal}-Mode (WPA-PSK) mit pre-shared key, WPA Enterprise auf Basis von \textit{EAP}\\
 $\circ$ Generiert dynamischen, individuellen Schlüssel für jeden Nutzer - wird außerdem periodisch erneuert\\
 
 
@@ -1301,7 +1314,8 @@ $\circ$ 128-Bit (\textit{personal} mode) bzw. 192-Bit (\textit{enterprise} mode)
 	\raisebox{-.5\height}{\includegraphics[scale=0.275]{images/eap.png}} &
 	\makecell[l]{
 		$\circ$ Protokoll für sichere Ende-zu-Ende Authentifizierung zwischen\\
-		\hspace*{2.5mm}mobilen Clients und Authentifizierungsserver über einen Access Point\\
+		\hspace*{2.5mm}mobilen Clients (\textbf{STA}) und Authentifizierungsserver (\textbf{AS})\\
+		\hspace*{2.5mm}über einen Access Point\\
 		$\circ$ \textit{EAP-TLS}: Nutzung von Zertifikaten\\
 		$\circ$ \textit{EAP-PEAP:} Verschlüsselter Tunnel für Authentifizierung
 	}
@@ -1309,7 +1323,16 @@ $\circ$ 128-Bit (\textit{personal} mode) bzw. 192-Bit (\textit{enterprise} mode)
 
 \vspace{-1em}
 \textbf{802.1X}\\
-$\circ$ Basiert auf \textit{EAP}, Erweitert \textit{802.11} um Sicherheitsfunktionen wie: Schlüsselmanagement, Nutzeridentifikation, Tokens...
+$\circ$ Basiert auf \textit{EAP}, Erweitert \textit{802.11} um Sicherheitsfunktionen wie: Schlüsselmanagement, Nutzeridentifikation, Tokens...\\
+$\circ$ Client als \textit{Supplicant}, der Zugriff auf 802.1X-Dienste von \textit{AS} anfordert
+
+\vspace{-1em}
+\textbf{Zusammenfassung}\\
+$\circ$ Zusätzliche Herausforderungen ggü. drahtgebundenen Netzen: Geteiltes Medium (\textit{shared broadcast medium} \& Mobilität der Nutzer\\
+$\circ$ Ursprünglich mit 802.11 definierter Standard WEP hat gravierende Sicherheitsdefizite\\
+$\circ$ 802.11i definiert neue Sicherheitsansätze, WPA2 CCMP wird empfohlen\\
+$\circ$ Heimnetze ohne zentrales Sicherheitskonzept: WPA2-PSK, Firmennetze: 802.1X/EAP bzw. EAP-TLS
+
 
 \newpage
 
