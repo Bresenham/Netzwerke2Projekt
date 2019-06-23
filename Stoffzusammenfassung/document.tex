@@ -952,15 +952,23 @@ $\circ$ Berechnen einer Prüfsumme (\textit{Hash}) über Nachricht + gemeinsames G
 
 \vspace{-2.5em}
 \textbf{Message Authentication Code (MAC)}\\
-$\circ$ Gemeinsames Geheimnis besteht aus \textit{Authentication Code} $s$ und Nachricht $m$, Sender hängt $H(m+s)$ (=MAC) an Nachricht $m$ an\\
-\text{$\circ$ Übertragung von Nachricht + MAC an Empfänger, dieser berechnet ebenfalls Hash aus $m$ + $s$ und prüft, ob gesendeter MAC passt}\\
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.2]{images/MAC.png}} &
+	\makecell[l]{
+		$\circ$ Gemeinsames Geheimnis: \textit{Authentication Code} $s$, Nachricht $m$,\\
+		\hspace*{2.5mm}Sender hängt Hash $H(m+s)$ (= MAC) an Nachricht $m$ an\\
+		$\circ$ Übertragung von Nachricht + MAC an Empfänger, dieser berechnet ebenfalls Hash\\
+		\hspace*{2.5mm}aus $m$ + $s$ und prüft, ob gesendeter MAC passt\\
+		$\circ$ Zur Prüfung der Integrität einer Nachricht\\
+	}
+\end{tabular}
 
-\vspace{-2.5em}
+\vspace{-1em}
 \textbf{Digitale Signaturen}\\
 $\circ$ Unterschrift als Bestätigung der Urheberschaft eines Dokuments, MAC mit \textit{shared key} \textbf{s} ungeeignet, da \textbf{s} sowohl Unterzeichner als auch Prüfer bekannt sein muss $\Rightarrow$ Prüfer kann Unterschrift fälschen\\
 \vspace{-1em}
 \begin{tabular}{ll}
-	\raisebox{-.5\height}{\includegraphics[scale=0.25]{images/digitale_signatur.png}} &
+	\raisebox{-.5\height}{\includegraphics[scale=0.23]{images/digitale_signatur.png}} &
 	\makecell[l]{
 		$\circ$ Lösung:\\
 		\hspace*{2.5mm}- Berechne $H(m)$, $m$ := zu unterschreibende Nachricht\\
@@ -982,10 +990,9 @@ $\circ$ Unterzeichner sendet eigenen public key und Zertifikat an Empfänger, die
 \textbf{Authentifizierungsprotokoll mit Shared Secret}\\
 $\circ$ Kommunikationsteilnehmer prüft, ob ein anderer derjenige ist, für den er sich ausgibt\\
 \hspace*{2.5mm}- IP-Adresse kann gefälscht sein oder Angreifer führt Playback-Angriff durch (Kommunikation aufzeichnen \& wieder abspielen)\\
-$\circ$ Lösungen: \textit{shared secret} oder Verwendung einer nur einmal verwendeten, zufälligen Zahl (\textit{Nonce}),\\
+$\circ$ Lösungen: \textit{shared secret} oder Verwendung einer nur 1x verwendeten, zufälligen Zahl (\textit{Nonce}),\\
 \hspace*{2.5mm}die mit symmetrischem Schlüssel verschlüsselt wird\\
-
-\vspace{-0em}
+\vspace{-2em}
 \begin{tabular}{ll}
 	\begin{minipage}{0.6\textwidth}
 		\begin{itemize}
@@ -1016,12 +1023,12 @@ $\circ$ Lösungen: \textit{shared secret} oder Verwendung einer nur einmal verwen
 \text{\textbf{SSL Handshake:} Webbrowser als Client, Server besitzt public \& private key + Zertifikat für public key zur Identitätsbestätigung (Domainname)}\\
 \begin{tabular}{ll}
 	\raisebox{-.5\height}{\includegraphics[scale=0.25]{images/ssl_handshake.png}} &
-	\makecell[l]{$\circ$ TCP-Verbindung aufbauen\\$\circ$ Client sendet Liste an unterstützten \textit{SSL  Cipher Suites} + Nonce\\$\circ$ Server sendet Wahl der \textit{Cipher Suite}, CA-Zertifikat und Server-Nonce\\$\circ$ Client:\\
+	\makecell[l]{$\circ$ TCP-Verbindung aufbauen\\$\circ$ Client sendet Liste an unterstützten \textit{SSL  Cipher Suites} + Nonce an Server\\$\circ$ Server sendet Wahl der \textit{Cipher Suite}, CA-Zertifikat und Server-Nonce zurück an Client\\$\circ$ Client:\\
 		\hspace*{5mm}- prüft Server-Zertifikat\\
 		\hspace*{5mm}- generiert \textit{Pre-Master Secret} \textbf{(PMS)}\\
 		\hspace*{5mm}- sendet mit Public Key des Servers verschlüsseltes PMS an den Server\\
+		\hspace*{5mm}- Server kann das PMS mit seinem nur ihm bekannten Private Key entschlüsseln\\
 		$\circ$ Client \& Server leiten mit \textit{KDF} aus PMS und Nonces das \textit{Master Secret} (\textbf{MS}) her\\
-		\hspace*{5mm}- Empfänger verschlüsselt \textit{MS} mit public key des Servers =\textbf{EMS}\\
 		$\circ$ Aus \textit{MS} werden die Schlüssel $E_A, E_B, M_A, M_B$ hergeleitet\\\hspace*{5mm}\textbf{$\Rightarrow$ Nun alle Nachrichten verschlüsselt + MAC authentifiziert}\\
 		$\circ$ Client sendet \textit{MAC} aller Handshake-Nachrichten, die vom Server überprüft werden\\
 		$\circ$ Server sendet \textit{MAC} aller Handshake-Nachrichten, die vom Client überprüft werden\\\hspace*{5mm}\textbf{$\Rightarrow$ Verhinderung von z.B. Wahl einer schwächeren Cipher Suite}}
@@ -1029,27 +1036,31 @@ $\circ$ Lösungen: \textit{shared secret} oder Verwendung einer nur einmal verwen
 
 \vspace{-1.5em}
 \textbf{SSL Key Derivation}\\
-$\circ$ Statt \textit{Master Secret} direkt als Schlüssel zu verwenden werden aus Sicherheitsgründen vier unterschiedliche Schlüssel aus einer\\\textit{Key Derivation Function} \textbf{KDF} mit Eingabeparametern Master Secret und Zufallsdaten, abgeleitet (nur für eine Sitzung gültig):\\
+$\circ$ Statt \textit{Master Secret} direkt als Schlüssel zu verwenden werden aus Sicherheitsgründen vier unterschiedliche, \textbf{symmetrische} Schlüssel\\aus einer \textit{Key Derivation Function} \textbf{KDF} mit Eingabeparametern Master Secret + Zufallsdaten, abgeleitet:\\
 \hspace*{5mm}$E_B$: Verschlüsselung Client $\rightarrow$ Server\\
 \hspace*{5mm}$M_B$: MAC zur Integritätsprüfung der Daten von Client $\rightarrow$ Server\\
 \hspace*{5mm}$E_A$: Verschlüsselung Server $\rightarrow$ Client\\
 \hspace*{5mm}$M_A$: MAC zur Integritätsprüfung der Daten von Server $\rightarrow$ Client\\
+$\circ$ Master-Secret und die 4 Schlüssel sind nur für eine Sitzung gültig!\\
 
 \vspace{-2.5em}
 \textbf{SSL Datenübertragung}\\
 \begin{tabular}{ll}
-	\raisebox{-.5\height}{\includegraphics[scale=0.2]{images/ssl_reordering.png}} &
+	\raisebox{-.5\height}{\includegraphics[scale=0.225]{images/ssl_reordering.png}} &
 	\makecell[l]{$\circ$ Aufteilung des TCP-Byte-Stroms in separate Abschnitte (\textit{SSL Records})\\
-		$\circ$ Jeder Record enthält \textbf{zusätzliche Sequenznummer} (beginnend bei 0) um\\\hspace*{5mm}Reordering von Records verhindern\\
-		$\circ$ \textit{MAC} wird berechnet über Daten + MAC-Schlüssel ($M_A$ oder $M_B$) + Sequenznummer\\
-		$\circ$ Nutzung von \textit{Nonces} verhindert Replay-Angriff (Wiederabspielen einer Datenverbindung)}
+		$\circ$ Jeder Record enthält \textbf{zusätzliche Sequenznummer} (beginnend bei 0) um\\\hspace*{5mm}Reordering/Replay/Entfernung von Records verhindern\\
+		$\circ$ \textit{MAC} wird über Daten + MAC-Schlüssel ($M_A$ bzw. $E_B$) + Sequenznummer berechnet\\
+		$\circ$ MAC an Daten anhängen, Verschlüsseln mit $E_A$ bzw. $E_B$\\
+		$\circ$ Nutzung von \textit{Nonces} als Zufallswert verhindert\\
+		\hspace*{2.5mm}Replay-Angriff (Wiederabspielen einer Datenverbindung)}
 \end{tabular}\\
 
 \vspace{-1.5em}
 \textbf{SSL Record}\\
 \begin{tabular}{ll}
 	\raisebox{-.5\height}{\includegraphics[scale=0.11]{images/ssl_record.png}} &
-	\makecell[l]{$\circ$ \textbf{Type:} Unterscheidung von Handshake/Nutzdaten/Beenden\\$\circ$ \textbf{Version:} SSL-Versionsnummer\\$\circ$ \textbf{Length:} Länge der Daten (ohne Header) - Extraktion aus dem TCP-Byte Strom}
+	\makecell[l]{$\circ$ \textbf{Type:} Unterscheidung von Handshake/Nutzdaten/Beenden der Verbindung\\$\circ$ \textbf{Version:} SSL-Versionsnummer\\$\circ$ \textbf{Length:} Länge der Daten (ohne Header) - Zur Extraktion der Records\\
+		\hspace*{2.5mm}aus dem TCP-Byte Strom}
 \end{tabular}\\
 
 \vspace{-1.5em}
@@ -1065,17 +1076,18 @@ $\circ$ Enthält Algorithmus für: \textit{Public Key} Verschlüsselung, \textit{sy
 
 \vspace{-.5em}
 \textbf{Vorzeitiges Schließen einer SSL-Verbindung}\\
-$\circ$ Wird durch zusätzlichen \textit{SSL-Record} zum ordnungsgemäßen Beenden verhindert (Authentifizierung erfolgt über \textit{MAC})
+$\circ$ Wird durch zusätzlichen \textit{SSL-Record} zum ordnungsgemäßen Beenden verhindert (auch \textit{MAC}-Authentifiziert)
 
-\vspace{-1.5em}
+\newpage
+
 \subsection{TLS v1.3}
 \vspace{-1.5em}
 
 $\circ$ Ciphersuite-Konzept geändert: MAC berechnen \& Verschlüsselung erfolgt nun in einem Schritt\\
 $\circ$ Verbindungsaufbau (\textit{full handshake}) von 2 RTT auf 1 RTT verringert, \textit{0-RTT}-Mode: Daten bereits in erster Nachricht enthalten\\
 $\circ$ Verhindern von Downgrades durch Signierung der Liste an Verschlüsselungsverfahren, unsichere kryptographische Verfahren entfallen\\
-$\circ$ \textbf{Perfect Forward Secrecy:} Kommunikationspartner generieren nur für diese Verbindung gültige Kurzzeitschlüssel,\\
-\hspace*{2.5mm}die nach Verbindungsende verworfen werden und nicht aus Langzeitgeheimnis rekonstruiert werden können
+$\circ$ \textbf{Perfect Forward Secrecy:} Kommunikationspartner generieren nur für diese Verbindung gültige, frisch zufällig erzeugte\\
+\hspace*{2.5mm}Kurzzeitschlüssel, die nach Verbindungsende verworfen werden und nicht aus Langzeitgeheimnis rekonstruiert werden können
 
 \begin{tabular}{ll}
 	\raisebox{-.5\height}{\includegraphics[scale=0.33]{images/tls_13_zero_rtt.png}} &
@@ -1268,7 +1280,10 @@ $\circ$ \textbf{Problem 2:} \textit{IV} wird im Klartex übertragen $\Rightarrow$
 
 \vspace{-2em}
 \textbf{802.11i: Temporal Key Integrity Protocol (TKIP)}\\
-\text{$\circ$ Ersatz für \textit{WEP}, aber mit selber Hardware funktionsfähig, \textit{IV} erweitert auf 48-Bit, neue Hash-Funktion, \textit{Personal}-Mode mit pre-shared key}\\
+$\circ$ Ersatz für \textit{WEP}, aber mit selber Hardware funktionsfähig, \textit{IV} erweitert auf 48-Bit, neue Hash-Funktion,\\
+\hspace*{2.5mm}\textit{Personal}-Mode mit pre-shared key\\
+$\circ$ Generiert dynamischen, individuellen Schlüssel für jeden Nutzer - wird außerdem periodisch erneuert\\
+
 
 \vspace{-2em}
 \textbf{802.11i: Counter Mode with Cipher Block Chaining Message Authentication Code Protocol (CCMP)}\\
@@ -1279,14 +1294,22 @@ $\circ$ Teil des \textit{WPA2}-Verfahrens, WPA2 würde alternativ auch \textit{TK
 \textbf{802.11i: WPA3}\\
 $\circ$ 128-Bit (\textit{personal} mode) bzw. 192-Bit (\textit{enterprise} mode) + \textit{Forward Secrecy}\\
 
-\vspace{-2em}
-\textbf{Extensible Authentication Protocol (EAP)}\\
-$\circ$ Protokoll für sichere Ende-zu-Ende Authentifizierung zwischen mobilen Clients und Authentifizierungsserver über einen Access Point\\
-$\circ$ \textit{EAP-TLS}: Nutzung von Zertifikaten; \textit{EAP-PEAP:} Verschlüsselter Tunnel für Authentifizierung\\
+\newpage
 
-\vspace{-2em}
+\textbf{Extensible Authentication Protocol (EAP)}\\
+\begin{tabular}{ll}
+	\raisebox{-.5\height}{\includegraphics[scale=0.275]{images/eap.png}} &
+	\makecell[l]{
+		$\circ$ Protokoll für sichere Ende-zu-Ende Authentifizierung zwischen\\
+		\hspace*{2.5mm}mobilen Clients und Authentifizierungsserver über einen Access Point\\
+		$\circ$ \textit{EAP-TLS}: Nutzung von Zertifikaten\\
+		$\circ$ \textit{EAP-PEAP:} Verschlüsselter Tunnel für Authentifizierung
+	}
+\end{tabular}
+
+\vspace{-1em}
 \textbf{802.1X}\\
-$\circ$ Erweitert \textit{802.11} durch \textit{EAP} um Sicherheitsfunktionen wie: Schlüsselmanagement, Nutzeridentifikation, Tokens...
+$\circ$ Basiert auf \textit{EAP}, Erweitert \textit{802.11} um Sicherheitsfunktionen wie: Schlüsselmanagement, Nutzeridentifikation, Tokens...
 
 \newpage
 
