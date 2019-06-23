@@ -1338,14 +1338,14 @@ $\circ$ Heimnetze ohne zentrales Sicherheitskonzept: WPA2-PSK, Firmennetze: 802.
 
 
 \subsection{DNS Security Extensions (DNSSEC)}
-\vspace{-1.5em}
+\vspace{-1.75em}
 $\circ$ Absicherung von Authentizität und Integrität der DNS-Informationen (\textbf{nicht} Vertraulichkeit)\\
 $\Rightarrow$ Verwendung von Signaturen, umgesetzt mit asymmetrischen Kryptosystem (public \& private Key):\\
 \hspace*{2.5mm}\hspace*{2.5mm}- \textit{Resource Record} (RR) wird mit geheimen Schlüssel unterschrieben\\
 \hspace*{2.5mm}\hspace*{2.5mm}- DNS Client prüft mit öffentlichem Schlüssel die Authentizität und Integrität des empfangenen \textit{RR}s\\
 \hspace*{2.5mm}\hspace*{2.5mm}- \textit{Chain-of-Trust:} Höhere Zone im DNS-Baum bestätigt durch Signierung die öffentlichen Schlüssel der unteren Zonen,\\
-\hspace*{2.5mm}\hspace*{2.5mm}\hspace*{2.5mm}$\rightarrow$ der Anfragende muss nur obersten public key kennen (\textit{Key Signing Key})\\
-$\circ$ Realisierung über neue Resource Record Typen:\\
+\hspace*{2.5mm}\hspace*{2.5mm}\hspace*{2.5mm}$\rightarrow$ der Anfragende muss \textbf{nur} obersten public key kennen (\textit{Key Signing Key})\\
+$\circ$ Realisierung über neue Resource Record Typen auf den DNS-Servern:\\
 \vspace{-1.25em}
 \hspace*{2.5mm}\begin{tabular}{l|l|l}
 	\textbf{RR Typ} & \textbf{Erläuterung} & \multirow{2}{*}{\makecell[l]{
@@ -1356,20 +1356,22 @@ $\circ$ Realisierung über neue Resource Record Typen:\\
 	\hline
 	DS & \makecell[l]{Delegation Signer: Hash des \textit{DNSKEY} um dessen Authentizität\\sicherzustellen,delegiert Vertrauen eine Ebene weiter in Chain-of-Trust} &\\
 	\hline
-	CNSKEY, CDS & Child Zone informiert Parent: Key-Signing-Key ändern, DNSSEC an/aus &\\
+	CDNSKEY, CDS & \makecell[l]{Child Zone informiert Parent: Key-Signing-Key ändern,\\DNSSEC an/aus} &\\
+	\hline
+	NSEC, NSEC3 & \makecell[l]{Ring-Verkettung aller DNS-Einträge einer Zone in alph. Reihenfolge\\Angreifer kann keine Einträge hinzufügen/entfernen (bei NSEC3 als Hash)}
 \end{tabular}\\
 
 \begin{enumerate}[label=\textbf{\arabic*}]
-	\setlength\itemsep{-1em}
+	\setlength\itemsep{-1.25em}
 	\item \begin{tabular}{ll}
-		\raisebox{-.5\height}{\includegraphics[scale=0.325]{images/rrset.png}} &
+		\raisebox{-.5\height}{\includegraphics[scale=0.3125]{images/rrset.png}} &
 		\makecell[l]{
 			$\circ$ Gruppieren von gleichen RRs (Label, Klasse \& Typ) zu einem \textit{RRset}\\
 			$\circ$ RRset kann später gemeinsam signiert werden
 		}
 	\end{tabular}
 	\item \begin{tabular}{ll}
-		\raisebox{-.5\height}{\includegraphics[scale=0.3125]{images/rrsig.png}} &
+		\raisebox{-.5\height}{\includegraphics[scale=0.3]{images/rrsig.png}} &
 		\makecell[l]{
 			$\circ$ Für Zone zuständiger, authoritativer DNS-Server nutzt privaten Schlüssel\\
 			\hspace*{2.5mm}des \textit{Zone Signing Key Pair} (ZSK) um RRset zu signieren $\rightarrow$ RRSIG
@@ -1378,10 +1380,10 @@ $\circ$ Realisierung über neue Resource Record Typen:\\
 	\item \begin{tabular}{ll}
 		\raisebox{-.5\height}{\includegraphics[scale=0.3]{images/dnskey.png}} &
 		\makecell[l]{
-			$\circ$ DNS Resolver benötigt öffentlichen Schlüssel des \textit{ZSK}\\
-			\hspace*{2.5mm}$\rightarrow$ wird über \textit{DNSKEY} verbreitet\\
-			$\circ$ DNS Server liefert RRSIG mit an den DNS Resolver,\\
-			\hspace*{2.5mm}dieser verifiziert RR durch DNSKEY
+			$\circ$ DNS Resolver benötigt zur Prüfung der Signatur öffentlichen Schlüssel\\
+			\hspace*{2.5mm}des \textit{ZSK} (wird über \textit{DNSKEY} verbreitet)\\
+			$\circ$ DNS Server liefert RRSIG bei Anfrage eines DNS-Resolvers mit aus,\\
+			\hspace*{2.5mm}dieser verifiziert RR mit DNSKEY
 		}
 	\end{tabular}
 	\item \begin{tabular}{ll}
@@ -1389,19 +1391,29 @@ $\circ$ Realisierung über neue Resource Record Typen:\\
 		\makecell[l]{
 			$\circ$ Zone erstellt weitere Schlüsselpaar: \textit{Key Signing Key} (KSK)\\
 			$\circ$ Hierarchischer Ansatz: Parent bestätigt KSK und KSK validiert ZSK\\
-			$\circ$ ZSK kann nun unabhängig vom Parent geändert werden\\
+			$\circ$ \textbf{Vorteil:} ZSK kann nun unabhängig vom Parent geändert werden\\
 			\hspace*{2.5mm}(falls ZSK kompromittiert)\\
-			$\circ$ RRset bestehend aus $ZSK_{pub}$ \& $KSK_{pub}$ wird mit $KSK_{priv}$ signiert
+			$\circ$ RRset bestehend aus $ZSK_{pub}$, $KSK_{pub}$ wird mit $KSK_{priv}$ signiert
 		}
 	\end{tabular}
-	\item Chain-of-Trust: Vertrauen muss von Parent auf Child Zone übertragen werden können $\rightarrow$ \textit{Delegation Signer} (DS)-Record\\
-	Zonen-Operator der Child-Zone erstellt Hash von DNSKEY mit $KSK_{pub}$ \& gibt ihn an Parent:\\
-	- Dieser veröffentlicht ihn in \textit{DS}-Record
+	\item \begin{tabular}{ll}
+		\raisebox{-.5\height}{\includegraphics[scale=0.35]{images/dnssec.png}} &
+		\makecell[l]{
+			$\circ$ \textbf{Chain-of-Trust:} Vertrauen muss von Parent auf Child Zone übertragen\\
+			\hspace*{2.5mm}werden können $\rightarrow$ \textit{Delegation Signer} (DS)-Record\\
+			$\circ$ Zonen-Operator der Child-Zone erstellt Hash von DNSKEY mit $KSK_{pub}$ und\\
+			\hspace*{2.5mm}gibt diesen Hash an Parent, der ihn in DS-Record veröffentlicht\\
+			$\rightarrow$ Echtheit des $KSK_{pub}$ ist somit bestätigt
+		}
+	\end{tabular}
 \end{enumerate}
 
-\vspace{-2.5em}
+\newpage
+
 \subsection{DNS over TLS}
 \vspace{-1.5em}
+$\circ$ Konfiguration des DNS-Client (\textit{DNS Stub Resolver}): IP-Adresse/Name + Port des verwendeten Resolvers\\
+\hspace*{2.5mm}und \textbf{Hash des öffentlichen Schlüssels} (\textit{SPKI}) des Resolvers zur Zertifikatsprüfung\\
 $\circ$ Absicherung von Vertraulichkeit
 \vspace{-1.5em}
 \begin{enumerate}
@@ -1409,7 +1421,7 @@ $\circ$ Absicherung von Vertraulichkeit
 	\item DNS Client (DNS Stub Resolver) baut TCP-Verbindung zu Resolver auf
 	\item TLS Handshake wird durchgeführt (\textit{DNS Stub Resolver} = DNS Client, \textit{DNS Resolver} = Server)\\
 	- Resolver sendet TLS Zertifikat\\
-	- DNS Stub Resolver prüft Zertifikat mit Hash des öffentlichen Schlüssels des Resolvers
+	- DNS Stub Resolver prüft Zertifikat mit Hash des öffentlichen Schlüssels (\textit{SPKI}) des Resolvers
 	\item Ab jetzt sendet DNS Stub Resolver alle DNS Anfragen über mit TLS geschützte TCP-Verbindung\\
 	- Übertragung einer Nachricht: 2-Byte Längenangabe + Nachricht\\
 	\text{\hspace*{2.5mm}beim Zusammensetzen muss man wissen, wie lange die ursprüngliche Nachricht war, wenn sie in einzelne TCP-Pakete zerstückelt wurde}
@@ -1425,20 +1437,47 @@ $\circ$ Absicherung von Vertraulichkeit
 	\raisebox{-.5\height}{\includegraphics[scale=0.4]{images/dns_over_https.png}} &
 	\makecell[l]{
 		$\circ$ Absicherung von Vertraulichkeit\\
+		$\circ$ \textbf{Per POST}: Anfrage im HTTP-Body\\
+		$\circ$ \textbf{Per GET}: Anfrage in angegebener Ressource\\
 		$\circ$ Probleme: Genutzter DNS-Server ist Anwendungsspezifisch\\
 		\hspace*{2.5mm}(z.B. Browser), firmeneigene DNS-Server werden umgangen\\
 		$\circ$ Internet Web-/Maildienste funktionieren nicht mehr\\
 		\hspace*{2.5mm}(werden nur vom internen DNS aufgelöst)\\
 		$\circ$ DNS-Filter gegen Malware unwirksam\\
 		$\circ$ Nur wenige Firmen (Cloudfare, Google) bieten DNS-over-HTTPS\\
-		$\rightarrow$ Konzentration auf wenige Anbieter, Privatssphäre Gefärdung\\
+		$\rightarrow$ Konzentration auf wenige Anbieter, Gefärdung Privatssphäre\\
 		$\circ$ Viel Overhead (Anwendungsschicht: DNS, HTTP, TLS\\
 		\hspace*{2.5mm}Transportschicht: TCP statt UDP)\\
 		$\circ$ Blockieren schwierig da Port \textit{443} HTTPS Standardport
 	}
 \end{tabular}
 
+\vspace{-1em}
+\textbf{Discovery des Resolvers}
+\vspace{-1.25em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Special-Use-Domain
+	\vspace{-1.25em}
+	\begin{itemize}
+		\setlength\itemsep{-1.25em}
+		\item Anwendung (z.B. Browser) fragt Standard-Resolver nach TXT-Record
+		\item Resolver liefert Liste der DNS-over-HTTP-Server (vom Netz-Admin zu konfigurieren)
+		\item Anwendung übernimmt (ggf. firmeninternen) DNS-over-HTTP-Server
+	\end{itemize}
+	\item Well-Known-DoH-Server
+	\vspace{-1.25em}
+	\begin{itemize}
+		\setlength\itemsep{-1.25em}
+		\item Unter der IP des Standard-Resolvers läuft Webserver, der Liste an DNS-over-HTTP-Server ausliefert
+		\item Anwendung (z.B. Browser) fragt diese URI per HTTPS an
+		\item Anwendung übernimmt (ggf. firmeninternen) DNS-over-HTTP-Server
+	\end{itemize}
+\end{itemize}
+
 \includegraphics[scale=0.425]{images/dns_over_tls_https.png}
+
+\newpage
 
 \vspace{-2.75em}
 \subsection{Firewall}
@@ -1484,14 +1523,13 @@ $\circ$ Typen:
 	\hline
 \end{tabular}
 
-\newpage
-
 \subsection{Intrusion Detection Systems (\textit{IDS})}
 \vspace{-1.5em}
 $\circ$ Erkennt Angriffe von außen und ermöglicht (automatisierte) Reaktion\\
 $\circ$ Überprüfen des Paketinhalts auf verdächtige Inhalte (z.B. \textit{SQL Injection}) sowie Korrelation zwischen mehreren Paketen erkennen (\textit{DoS}, \textit{Port Scanning})
 
-\vspace{-1.5em}
+\newpage
+
 \section{Multimedia}
 \vspace{-2.5em}
 \text{$\circ$ Verbreitung von Multimedia-Daten (Video-Streaming, Internet-TV, VoIP) mit hohen Datenmengen so geringer Verzögerungen wie möglich}\\
