@@ -1971,4 +1971,202 @@ $\circ$ Garantiert Datenrate/Dienstgüte, die erfordern:\\
 \hspace*{2.5mm}- \textbf{Verbindungsaufbausignalisierung} (Call Setup): Ressourcen werden entlang des Pfades (d.h. bei jedem Router)\\
 \hspace*{2.5mm}\hspace*{2.5mm}von Quelle zu Ziel reserviert (per Hop Allokierung) $\rightarrow$ Resource Reservation Protocol (\textit{RSVP})\\
 $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
+
+\newpage
+
+\section{Neue Technologien im Bereich Web-Traffic}
+\vspace{-2.5em}
+\subsection{HTTP/2}
+\vspace{-1.5em}
+\textbf{Nachteile HTTP 1.1}
+\vspace{-1.25em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Zuerst Hauptseite (\textit{index.html}) abfragen damit alle weiteren Elemente (z.B. CSS, Bilder) bekannt sind und angefragt werden können
+	\item Auf einer TCP-Verbindung kann zu einem Zeitpunkt nur ein Element (z.B. ein Bild) übertragen werden $\rightarrow$ \textbf{Head-of-line Blocking}
+	\item Große, teilweise redundante Header (z.B. wird sich Server bei Anfrage nicht verändern), 500-800 Byte pro Request
+\end{itemize}
+
+\vspace{-1.25em}
+\textbf{Zusätzliche Herausforderungen}
+\vspace{-1.25em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Vielzahl einzelner Requests - Browser nutzt zwar parallele TCP-Verbindungen zum Server, ab 6-8 Verbindungen aber kein Gewinn mehr
+	\item TCP Slow Start Verhalten: Bandbreite wird bei kleinen Dateien nicht ausgenutzt (\textit{Congestion Window} erreicht passende Größe nicht)
+\end{itemize}
+
+\vspace{-1.25em}
+\textbf{Neuerungen HTTP/2 \& HPACK}
+\vspace{-1.25em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item \textbf{Multiplexen mehrere parallele Streams} über \textbf{einer TCP-Verbindung}
+	\vspace{-1.25em}
+	\begin{itemize}
+		\setlength\itemsep{-1.25em}
+		\item Kein Slow Start Problem und auch kein \textit{Head-of-line Blocking} mehr
+	\end{itemize}
+	\item \textbf{Server Push}
+	\vspace{-1.25em}
+	\begin{itemize}
+		\setlength\itemsep{-1.25em}
+		\item Server sendet \textbf{ohne clientseitigen Request} Dateien, bei denen er davon ausgeht, dass sie der Client benötigt (z.B. CSS),\\
+		der Client muss somit nicht erst das HTML parsen und Request erstellen (falls Client die Datei nicht braucht, bricht der den Vorgang ab)
+	\end{itemize}
+	\item \textbf{Komprimierung der Header} (Header Compression - HPACK)
+	\vspace{-1.25em}
+	\begin{itemize}
+		\setlength\itemsep{-1.25em}
+		\item Deutliche Reduktion des Overheads
+	\end{itemize}
+	\item Realisierung als \textbf{binäres Protokoll} - effizienter aber schwerer zu Debuggen
+	\item \textbf{Datenflusskontrolle} (\textit{Flow Control}) und \textbf{Priorisierung} (\textit{Prioritization}) zur Verteilung der Übertragungsbandbreite auf einzelne Stream
+\end{itemize}
+
+\vspace{-1.25em}
+\textbf{Frame Typen und Streams}\\
+\begin{tabular}{ll}
+	\begin{minipage}{0.4\textwidth}
+		\begin{itemize}
+			\setlength\itemsep{-0.32em}
+			\item Jeder Request/Response nutzt unabhängigen, eigenen Stream - gekennzeichnet durch \textit{Stream Identifier} (farbig dargestellt)
+			\item Gleiches URI-Schema und \textbf{Standard-Ports} wie bei HTTP 1.1
+		\end{itemize}
+	\end{minipage} & \begin{minipage}{0.6\textwidth}
+		\raisebox{-.5\height}{\includegraphics[scale=0.33]{images/http_2_frame.png}}
+	\end{minipage}
+\end{tabular}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item \begin{tabular}{llllllll}
+		\textit{HEADERS} & \textit{DATA} & \textit{SETTINGS} & \makecell[l]{\textit{WINDOW}\\\textit{UPDATE}} & \makecell[l]{\textit{PUSH}\\\textit{PROMISE}} & \makecell[l]{\textit{RST}\\\textit{STREAM}} & \textit{PRIORITY} & \textit{CONTINUATION}\\
+		\hline
+		\makecell[l]{Header des\\Requests/der\\Response} & \makecell[l]{Payload} & \makecell[l]{Einstellungen,\\Parameter} & \makecell[l]{Flusskontrolle\\eines Streams} & \makecell[l]{Ankündigungs-\\Stream für\\\textbf{Server Push}} & \makecell[l]{Sofortiges\\Schließen\\eines\\Streams} & \makecell[l]{Festlegung\\Stream Priorität} & \makecell[l]{Fortsetzung\\eines\\\textbf{Header}\\\textbf{Blocks}}
+	\end{tabular}
+\end{itemize}
+
+\vspace{-1.25em}
+\textbf{Verbindungsaufbau \textit{ohne} TLS}\\
+\begin{tabular}{ll}
+	\begin{minipage}{0.4\textwidth}
+		\begin{itemize}
+			\setlength\itemsep{-0.32em}
+			\item Anhand Port nicht erkennbar ob HTTP/2 oder HTTP 1.1 $\rightarrow$ \textbf{Upgrade-Header}
+			\item Client signalisiert Server HTTP/2-Fähigkeit (Protocol Identifier \textit{h2c} = unverschlüsselte Übertragung)
+			\item Server mit HTTP/2 reagiert,\\Server ohne HTTP/2 ignoriert Header
+		\end{itemize}
+	\end{minipage} & \begin{minipage}{0.6\textwidth}
+		\raisebox{-.5\height}{\includegraphics[scale=0.45]{images/http_2_verbindungsaufbau.png}}
+	\end{minipage}
+\end{tabular}
+
+\vspace{-1.25em}
+\textbf{Verbindungsaufbau \textit{mit} TLS}
+\vspace{-1.25em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item TLS unterstützt Aushandlung von Protokollen auf der Anwendungsschicht (\textit{Application-Layer Protocol Negotiation} (ALPN))
+	\item HTTP/2 nutzt diesen Mechanismus um Nutzung von HTTP/2 abzustimmen
+	\item Protocol Identifier \textit{h2} = verschlüsselte Übertragung
+\end{itemize}
+
+\newpage
+
+\textbf{Fortsetzung Verbindungsaufbau}\\
+\begin{tabular}{ll}
+	\begin{minipage}{0.7\textwidth}
+		\begin{itemize}
+			\setlength\itemsep{-0.32em}
+			\item Nach Umschalten auf HTTP/2 wird von Client und Server folgende Sequenz gesendet:
+			\item HTTP 1.X-Server ignorieren alle folgenden Frames da es für die so aussieht, als würde ein Request auf eine Ressource mit Version HTTP/2.0 gesendet werden
+			\item Direkt danach muss (ggf. leerer) \textit{SETTINGS}-Frame folgen
+		\end{itemize}
+	\end{minipage} & \begin{minipage}{0.3\textwidth}
+		\raisebox{-.5\height}{\includegraphics[scale=0.3125]{images/http_2_sequence.png}}
+	\end{minipage}
+\end{tabular}
+
+\vspace{-1.25em}
+\textbf{HTTP/2 Frame}\\
+\begin{tabular}{ll}
+	\begin{minipage}{0.575\textwidth}
+		\begin{itemize}
+			\setlength\itemsep{-0.32em}
+			\item Fester Header mit 9 Byte
+			\item \textbf{Length:} Länge der Payload in Bytes, max. $2^{14}$ wenn nicht über Settings angepasst
+			\item \textbf{Type:} Art des Frames, unbekannter Typ wird ignoriert
+			\item \textbf{Flags} (jeweils 1 Bit): Bedeutung je nach Typ, \textbf{R:} Reserviert
+			\item \textbf{Stream Identifier:} 31-Bit Integer zur Identifizierung eines Streams, Identifier \textbf{0x0} identifiziert Frames, die gesamte Verbindung (d.h. \textbf{nicht} einzelne Streams) betreffen
+		\end{itemize}
+	\end{minipage} & \begin{minipage}{0.425\textwidth}
+		\raisebox{-.5\height}{\includegraphics[scale=0.425]{images/http_2_frame_fields.png}}
+	\end{minipage}
+\end{tabular}
+
+\vspace{-1.25em}
+\textbf{Streams}
+\vspace{-1.35em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Verbindung kann aus Vielzahl gleichzeitig geöffneter Streams bestehen
+	\item Stream kann entweder einseitig oder zwischen Server und Client zusammen gesetzt sein
+	\item Client und Server multiplexen die Frames der Streams über eine TCP-Verbindung
+	\item Empfänger verarbeitet die einzelnen Frames eines Streams entsprechend der Sendereihenfolge
+	\item Streams werden über \textit{Stream Identifier} eindeutig identifiziert (wird vom Endpunkt vergeben, der Stream initiiert)
+	\item Client vergibt immer \textbf{ungerade} Stream identifier, Server immer \textbf{gerade} Stream identifier $\rightarrow$ \textbf{keine Überschneidung}
+	\item Stream kann von anderen Streams abhängig sein ($\rightarrow$ Abhängigkeitsbaum zur Ressourcenverteilung)
+\end{itemize}
+
+\vspace{-1.25em}
+\textbf{Flow Control}
+\vspace{-1.35em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Stream konkurrieren um Bandbreite einer TCP-Verbindung
+	\item Flow Control erlaubt Regelung des Datenflusses einzelner Streams sowie der gesamten Verbindung
+	\item Initiales Fenster von 65.535 für neuen Stream und Gesamtverbindung
+	\item Daten dürfen nur gesendet werden, so lange Platz im Fenster
+	\item Empfänger teilt Sender aktuellen Platz im Empfangsfenster über \textit{WINDOW\_UPDATE} Frame mit (Kredit-basiertes Verfahren)
+	\item \textbf{Flow Control betrifft nur DATA}: Nur \textit{DATA} Frames reduzieren den Platz im Fenster, alle anderen Typen dürfen immer gesendet werden $\rightarrow$ wichtige Control Frames werden nicht blockiert
+\end{itemize}
+
+\vspace{-1.25em}
+\textbf{Request/Response}\\
+\begin{tabular}{ll}
+	\begin{minipage}{0.525\textwidth}
+		\raisebox{-.5\height}{\includegraphics[scale=0.355]{images/http_2_get_request.png}}
+	\end{minipage} & \begin{minipage}{0.475\textwidth}
+		\raisebox{-.5\height}{\includegraphics[scale=0.35]{images/http_2_get_response.png}}
+	\end{minipage}
+\end{tabular}
+
+\vspace{-1.25em}
+\textbf{Server Push}
+\vspace{-1.35em}
+\begin{enumerate}
+	\setlength\itemsep{-1.25em}
+	\item Client sendet regulären Request
+	\item Server erkennt Situation um durch \textit{Server Push} Übertragung zu beschleunigen, z.B. eingebetteter Link auf ein Bild
+	\item Server sendet \textit{PUSH\_PROMISE}-Frames, die Requests für den zu pushenden Inhalt entsprechen
+	\vspace{-1.25em}
+	\begin{itemize}
+		\setlength\itemsep{-1.25em}
+		\item Request Header Feld gesetzt (wie bei regulärem Request)
+		\item Ankündigung des Stream Identifiers (\textit{Promised Stream Identifier}), der für die Response verwendet wird
+	\end{itemize}
+	\item Server liefert sowohl vom Client explizit in Schritt $(1)$ angeforderte Inhalte als auch \textit{Push Response} über \textit{DATA}-Frames mit den entsprechenden Stream Identifiern aus
+	\item Client kann selbst kein Push verwenden und kann \textit{Server Push} per Flag \textit{SETTINGS\_ENABLE\_PUSH 0} deaktivieren
+	\item Falls \textit{Server Push} vom Client unerwünscht, kann er \textit{RST\_STREAM} Frame mit zugehöriger Stream ID senden
+\end{enumerate}
+
+\vspace{-1.25em}
+\textbf{Schwierigkeit bei Dekodierung in \textit{Wireshark}}
+\vspace{-1.35em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Binäres Protokoll, mehrere Streams laufen gleichzeitig über eine TCP Verbindung
+	\item Zur Dekodierung benötigt man die vom Browser verwendeten Schlüssel da praktisch alle HTTP/2-Verbindungen TLS nutzen
+\end{itemize}
+
 \end{document}
