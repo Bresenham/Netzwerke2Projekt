@@ -93,7 +93,7 @@ void ICACHE_FLASH_ATTR user_check_ip(void) {
       user_tcp_conn.type = ESPCONN_TCP;
       user_tcp_conn.state = ESPCONN_NONE;
        
-      const char esp_server_ip[4] = {192, 168, 0, 100}; // remote IP of tcp server
+      const char esp_server_ip[4] = {192, 168, 137, 37}; // remote IP of tcp server
  
       os_memcpy(user_tcp_conn.proto.tcp->remote_ip, esp_server_ip, 4); // remote ip of tcp server 
        
@@ -125,8 +125,8 @@ void ICACHE_FLASH_ATTR user_check_ip(void) {
 
 void ICACHE_FLASH_ATTR wifiConnect(Wifi *self) {
    // Wifi configuration 
-   char ssid[32] = ""; 
-   char password[64] = ""; 
+   char ssid[32] = "networkap"; 
+   char password[64] = "qwertzuiop"; 
    struct station_config stationConf; 
  
    //need not mac address
