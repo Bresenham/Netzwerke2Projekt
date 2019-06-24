@@ -77,7 +77,7 @@
 
 \begin{frame}
 
-\frametitle{Projektidee im IoT-Bereich}
+\frametitle{Paper}
 \framesubtitle{WiFi?, Bluetooth?, MQTT?, Temperatursensor?}
 \begin{itemize}
 	\item Viele verschiedene Hardware- und Protokollkombinationen denkbar \begin{center}
@@ -114,7 +114,8 @@
 	\includegraphics[scale=0.1]{images/esp8266.jpg} & \includegraphics[scale=0.05]{images/bmp280.png} & \includegraphics[scale=0.15]{images/raspi.png} \\
 	\begin{itemize}
 		\item 32-Bit \textit{RISC}- Controller, unterstützt 802.11 b/g/n mit bis zu 72.2Mbps
-		\item 96 KByte RAM, 4 MB Flash
+		\item 96 KByte RAM,\\
+		4 MB Flash
 		\item Soft-I2C Anbindung an BMP280
 	\end{itemize} & \begin{itemize}
 		\item Temperatur- und Drucksensor
@@ -131,12 +132,52 @@
 \begin{frame}
 
 \frametitle{Projektumsetzung}
+\framesubtitle{Raspi \& Mosquitto}
+
+\end{frame}
+
+
+\begin{frame}
+
+\frametitle{Projektumsetzung}
+\framesubtitle{Raspi \& Mosquitto}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{MQTT}
+\framesubtitle{Packet}
+Besteht aus bis zu drei Teilen:	
+\begin{itemize}
+	\item \textbf{Fixed Header} - in allen MQTT Paketen vorhanden
+	\begin{itemize}
+		\item Art des Paketes, ggf. \textit{QoS}-Level
+		\item Verbleibende Länge im Paket (restlicher Variable-Header + Payload)
+	\end{itemize}
+	\item \textbf{Variable Header}
+	\begin{itemize}
+		\item Je nach Art des Paketes unterschiedlicher Inhalt
+		\item z.B. Topic, Verbindungs-Flags, Packet-Identifier
+	\end{itemize}
+	\item \textbf{Payload}
+	\begin{itemize}
+		\item Ebenfalls verschiedener Inhalt je nach Paket möglich
+		\item z.B. Daten oder Topics, auf die man \textit{subscriben} möchte
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Projektumsetzung}
 \framesubtitle{Implementierung von MQTT-CONNECT \& MQTT-PUBLISH auf ESP8266}
 ESP8266 verbindet sich mit MQTT-CONNECT zum Mosquitto-Broker auf Raspi
 \begin{itemize}
 	\item Protokol-Name und Version
 	\item Art der Verbindung
-	\item \textit{Keep-Alive}
+	\item Keep-Alive
 	\item Client ID
 	\item \raisebox{-.5\height}{\includegraphics[scale=0.55]{images/wireshark_mqtt_connect.png}}
 	
@@ -156,21 +197,6 @@ ESP8266 sendet Temperaturdaten mit MQTT-PUBLISH an Mosquitto-Broker auf Raspi
 	\item \raisebox{-.5\height}{\includegraphics[scale=0.55]{images/wireshark_mqtt_publish.png}}
 	
 \end{itemize}
-
-\end{frame}
-
-\begin{frame}
-
-\frametitle{Projektumsetzung}
-\framesubtitle{Raspi \& Mosquitto}
-
-\end{frame}
-
-
-\begin{frame}
-
-\frametitle{Projektumsetzung}
-\framesubtitle{Raspi \& Mosquitto}
 
 \end{frame}
 

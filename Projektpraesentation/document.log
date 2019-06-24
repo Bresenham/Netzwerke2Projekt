@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (MiKTeX 2.9.7050 64-bit) (preloaded format=xelatex 2019.6.4)  20 JUN 2019 11:07
+This is XeTeX, Version 3.14159265-2.6-0.999991 (MiKTeX 2.9.7050 64-bit) (preloaded format=xelatex 2019.6.4)  24 JUN 2019 18:36
 entering extended mode
 **./document.tex
 (document.tex
@@ -1778,7 +1778,7 @@ File: images/bmp280.png Graphic file (type bmp)
 File: images/raspi.png Graphic file (type bmp)
 <images/raspi.png>
 
-Overfull \vbox (7.9706pt too high) detected at line 129
+Overfull \vbox (7.9706pt too high) detected at line 130
  []
 
 
@@ -1789,9 +1789,6 @@ Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [5
 
 ]
-File: images/wireshark_mqtt_connect.png Graphic file (type bmp)
-<images/wireshark_mqtt_connect.png>
-
 Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [][]  [] 
  []
@@ -1799,9 +1796,6 @@ Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [6
 
 ]
-File: images/wireshark_mqtt_publish.png Graphic file (type bmp)
-<images/wireshark_mqtt_publish.png>
-
 Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [][]  [] 
  []
@@ -1816,6 +1810,9 @@ Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [8
 
 ]
+File: images/wireshark_mqtt_connect.png Graphic file (type bmp)
+<images/wireshark_mqtt_connect.png>
+
 Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [][]  [] 
  []
@@ -1823,14 +1820,24 @@ Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [9
 
 ]
-LaTeX Font Info:    Font shape `TU/SegoeUILight(0)/m/n' will be
-(Font)              scaled to size 21.44655pt on input line 178.
+File: images/wireshark_mqtt_publish.png Graphic file (type bmp)
+<images/wireshark_mqtt_publish.png>
 
 Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 [][]  [] 
  []
 
 [10
+
+]
+LaTeX Font Info:    Font shape `TU/SegoeUILight(0)/m/n' will be
+(Font)              scaled to size 21.44655pt on input line 204.
+
+Overfull \hbox (0.93892pt too wide) has occurred while \output is active
+[][]  [] 
+ []
+
+[11
 
 ]
 \tf@nav=\write8
@@ -1842,11 +1849,11 @@ Overfull \hbox (0.93892pt too wide) has occurred while \output is active
 \tf@snm=\write10
 \openout10 = `document.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 181.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 181.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 207.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 207.
  (document.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 181.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 181.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 207.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 207.
 Package rerunfilecheck Info: File `document.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E.
 
@@ -1855,12 +1862,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 52585 strings out of 427669
- 1193309 string characters out of 3149216
- 1451142 words of memory out of 3000000
- 55922 multiletter control sequences out of 15000+200000
+ 52589 strings out of 427669
+ 1193341 string characters out of 3149216
+ 1451247 words of memory out of 3000000
+ 55926 multiletter control sequences out of 15000+200000
  537730 words of font info for 91 fonts, out of 3000000 for 9000
  1348 hyphenation exceptions out of 8191
  60i,16n,116p,777b,875s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on document.pdf (10 pages).
+Output written on document.pdf (11 pages).
