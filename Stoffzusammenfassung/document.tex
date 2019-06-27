@@ -2169,4 +2169,53 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 	\item Zur Dekodierung benötigt man die vom Browser verwendeten Schlüssel da praktisch alle HTTP/2-Verbindungen TLS nutzen
 \end{itemize}
 
+\newpage
+
+\section{Praktikumsprojekt}
+\vspace{-2.5em}
+\subsection{MQTT}
+\vspace{-2em}
+\begin{tabular}{ll}
+	\begin{minipage}{0.575\textwidth}
+		\begin{itemize}
+			\setlength\itemsep{-0.32em}
+			\item Verbindet (ressourcenbeschränkte) \textit{Eingebettete Geräte} und Netzwerke
+			\item \textit{Publish/Subscribe}-Pattern
+			\item Verwendet TCP als Transportprotokoll
+			\item \textbf{Subscriber}
+			\vspace{-.5em}
+			\begin{itemize}
+				\setlength\itemsep{-0.32em}
+				\item Registriert sich beim \textit{Broker} für bestimmte Topics
+				\item Wird von Broker benachrichtigt, wenn neue Nachrichten für Topic verfügbar
+			\end{itemize}
+			\item \textbf{Publisher}
+			\vspace{-.5em}
+			\begin{itemize}
+				\setlength\itemsep{-0.32em}
+				\item Überträgt neue Topic-Nachrichten an den Broker
+			\end{itemize}
+			\item \textbf{Broker}
+			\vspace{-.5em}
+			\begin{itemize}
+				\setlength\itemsep{-0.32em}
+				\item Stellt autorisierte Verbindungen mit \textit{Publisher} \& \textit{Subscriber} und damit die Sicherheitsfunktionalität her
+			\end{itemize}
+		
+			\item \textbf{Header}
+			\vspace{-.5em}
+			\begin{itemize}
+				\setlength\itemsep{-0.32em}
+				\item \textbf{Message Type:} Art der Nachricht (CONNECT, CONNACK, PUBLISH, SUBSCRIBE)
+				\item \textbf{DUP:} Duplikat, Empfänger hat Nachricht vllt. schon empfangen
+				\item \textbf{QoS:} Häufigkeit der Zustellung (höchstens 1x, mindestens 1x)
+				\item \text{\textbf{Retain:} Server soll zuletzt empfangene PUBLISH-Nachricht vorhalten}
+			\end{itemize}
+		\end{itemize}
+	\end{minipage} & \begin{minipage}{0.425\textwidth}
+		\raisebox{-.5\height}{\includegraphics[scale=0.525]{images/mqtt.png}}
+	\end{minipage}
+\end{tabular}
+
+
 \end{document}
