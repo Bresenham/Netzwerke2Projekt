@@ -2211,6 +2211,46 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 				\item \textbf{QoS:} Häufigkeit der Zustellung (höchstens 1x, mindestens 1x)
 				\item \text{\textbf{Retain:} Server soll zuletzt empfangene PUBLISH-Nachricht vorhalten}
 			\end{itemize}
+		
+			\item \textbf{Verbindungsaufbau MQTT Client $\Leftrightarrow$ MQTT Broker}
+			\vspace{-.5em}
+			\begin{itemize}
+				\setlength\itemsep{-0.32em}
+				\item Unter einem MQTT Client versteht man sowohl einen Subscriber als auch einen Publisher
+				\item Client sendet CONNECT an Broker
+				\vspace{-.5em}
+				\begin{itemize}
+					\setlength\itemsep{-0.32em}
+					\item \textbf{Clean Session:} Client möchte persistente Verbindung aufbauen (Clean Session = 0) $\rightarrow$ Broker speichert Nachrichten
+					\item \textbf{Benutzername und Passwort:} im Klartext, sollte nur in Verbindung mit TLS verwendet werden
+					\item \textbf{Keep Alive}
+				\end{itemize}
+				\item Broker bestätigt mit CONNACK
+			\end{itemize}
+		
+			\item \textbf{Publish}
+			\vspace{-.5em}
+			\begin{itemize}
+				\setlength\itemsep{-0.32em}
+				\item Nach Verbindungsaufbau kann der Client eine Nachricht mit\\
+				PUBLISH in einem Topic veröffentlichen
+				\item Enthält Topic-Name und Payload
+				\item Broker sendet neue Nachricht an Clients, die das Topic abonniert haben
+			\end{itemize}
+		
+			\item \textbf{Subscribe}
+			\vspace{-.5em}
+			\begin{itemize}
+				\setlength\itemsep{-0.32em}
+				\item Um ein Topic zu abonnieren, schickt der Client ein SUBSCRIBE an den Broker
+				\vspace{-.5em}
+				\begin{itemize}
+					\setlength\itemsep{-0.32em}
+					\item \textbf{List of Subscriptions:} ggf. mehrere Topics, die der Client abonnieren möchte
+				\end{itemize}
+				\item Broker antwortet mit SUBACK Nachricht, die für jedes abonnierte Topic einen Returncode enthält
+			\end{itemize}
+			\item \textbf{Unsubscribe} wie \textit{Subscribe}, nur das UNSUBSCRIBE alle Topics enthält, die deabonniert werden sollen
 		\end{itemize}
 	\end{minipage} & \begin{minipage}{0.425\textwidth}
 		\raisebox{-.5\height}{\includegraphics[scale=0.525]{images/mqtt.png}}

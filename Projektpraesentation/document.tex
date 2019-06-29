@@ -8,6 +8,7 @@
 \usepackage{polyglossia}
 \usepackage{makecell}
 \usepackage{listings}
+\usepackage{pifont}
 
 \usepackage{circuitikz}
 \usepackage{tikz}
@@ -65,9 +66,9 @@
 \begin{itemize}
 	\item Idee, IoT-Projekte in 5 Layer aufzuteilen
 	\begin{itemize}
-		\item \textbf{Objects Layer}: Physikalischer Sensoren und Aktuatoren, die verschiedene Funktionen übernehmen
-		\item \textbf{Object Abstraction Layer}: Transport der Daten zum nächsten Layer, z.B. über WiFi, Bluetooth
-		\item \textbf{Service Management Layer}: Verarbeitet und abstrahiert empfangene Daten bzw. die Hardwareplattform
+		\item \textbf{Objects Layer}: Physikalischer Sensoren und Aktuatoren, die verschiedene Funktionen übernehmen \textcolor{black!30!green}{\checkmark}
+		\item \textbf{Object Abstraction Layer}: Transport der Daten zum nächsten Layer, z.B. über WiFi, Bluetooth \textcolor{black!30!green}{\checkmark}
+		\item \textbf{Service Management Layer}: Verarbeitet und abstrahiert empfangene Daten bzw. die Hardwareplattform \textcolor{black!30!green}{\checkmark}
 		\item \textbf{Application Layer}: Stellt den Anwendern die Daten zur Verfügung, die sie benötigen (z.B. Temperaturdaten)
 		\item \textbf{Business Layer}: Verwaltung der gesamten IoT-Applikation, Verwendung der Daten für z.B. \textit{Big Data}
 	\end{itemize}
@@ -78,10 +79,10 @@
 \begin{frame}
 
 \frametitle{Paper}
-\framesubtitle{WiFi?, Bluetooth?, MQTT?, Temperatursensor?}
+\framesubtitle{WiFi? Bluetooth? MQTT? Temperatursensor?}
 \begin{itemize}
 	\item Viele verschiedene Hardware- und Protokollkombinationen denkbar \begin{center}
-		\includegraphics[scale=0.45]{images/iot_element.png}
+		\includegraphics[scale=0.25]{images/iot_element.png}
 	\end{center}
 \end{itemize}
 
@@ -113,9 +114,10 @@
 \begin{tabularx}{\textwidth}{XXX}
 	\includegraphics[scale=0.1]{images/esp8266.jpg} & \includegraphics[scale=0.05]{images/bmp280.png} & \includegraphics[scale=0.15]{images/raspi.png} \\
 	\begin{itemize}
-		\item 32-Bit \textit{RISC}- Controller, unterstützt 802.11 b/g/n mit bis zu 72.2Mbps
-		\item 96 KByte RAM,\\
-		4 MB Flash
+		\item 32-Bit \textit{RISC}- Controller
+		\item 802.11 b/g/n mit bis zu 72,2Mbps
+		\item 96 KByte RAM
+		\item 4 MB Flash
 		\item Soft-I2C Anbindung an BMP280
 	\end{itemize} & \begin{itemize}
 		\item Temperatur- und Drucksensor
@@ -124,23 +126,9 @@
 	\end{itemize} & \begin{itemize}
 		\item Raspbian OS
 		\item Mosquitto MQTT Broker \& Subscriber
+		\item Python-Scripts zum Auswerten der empfangenen Daten
 	\end{itemize}
 \end{tabularx}
-
-\end{frame}
-
-\begin{frame}
-
-\frametitle{Projektumsetzung}
-\framesubtitle{Raspi \& Mosquitto}
-
-\end{frame}
-
-
-\begin{frame}
-
-\frametitle{Projektumsetzung}
-\framesubtitle{Raspi \& Mosquitto}
 
 \end{frame}
 
@@ -152,7 +140,8 @@ Besteht aus bis zu drei Teilen:
 \begin{itemize}
 	\item \textbf{Fixed Header} - in allen MQTT Paketen vorhanden
 	\begin{itemize}
-		\item Art des Paketes, ggf. \textit{QoS}-Level
+		\item Art des Paketes (SUBSCRIBE, PUBLISH, CONNECT, etc.)
+		\item ggf. \textit{QoS}-Level
 		\item Verbleibende Länge im Paket (restlicher Variable-Header + Payload)
 	\end{itemize}
 	\item \textbf{Variable Header}
@@ -162,8 +151,8 @@ Besteht aus bis zu drei Teilen:
 	\end{itemize}
 	\item \textbf{Payload}
 	\begin{itemize}
-		\item Ebenfalls verschiedener Inhalt je nach Paket möglich
-		\item z.B. Daten oder Topics, auf die man \textit{subscriben} möchte
+		\item Ebenfalls verschiedener Inhalt je nach Paket-Typ
+		\item z.B. Daten oder Topics, die ein Client \textit{abonnieren} möchte
 	\end{itemize}
 \end{itemize}
 
