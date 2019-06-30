@@ -1982,9 +1982,9 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 \vspace{-1.25em}
 \begin{itemize}
 	\setlength\itemsep{-1.25em}
-	\item Zuerst Hauptseite (\textit{index.html}) abfragen damit alle weiteren Elemente (z.B. CSS, Bilder) bekannt sind und angefragt werden können
+	\item Zuerst muss Hauptseite (\textit{index.html}) angefragt werden damit alle weiteren Elemente (z.B. CSS, Bilder) bekannt sind und ebenfalls angefragt werden können
 	\item Auf einer TCP-Verbindung kann zu einem Zeitpunkt nur ein Element (z.B. ein Bild) übertragen werden $\rightarrow$ \textbf{Head-of-line Blocking}
-	\item Große, teilweise redundante Header (z.B. wird sich Server bei Anfrage nicht verändern), 500-800 Byte pro Request
+	\item Große, teilweise redundante Header (z.B. wird sich Alias bei Anfrage nicht verändern), 500-800 Byte pro Request
 \end{itemize}
 
 \vspace{-1.25em}
@@ -2001,7 +2001,7 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 \vspace{-1.25em}
 \begin{itemize}
 	\setlength\itemsep{-1.25em}
-	\item \textbf{Multiplexen mehrere parallele Streams} über \textbf{einer TCP-Verbindung}
+	\item \textbf{Multiplexen mehrere parallele Streams} \textbf{über einer TCP-Verbindung}
 	\vspace{-1.25em}
 	\begin{itemize}
 		\setlength\itemsep{-1.25em}
@@ -2012,7 +2012,7 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 	\begin{itemize}
 		\setlength\itemsep{-1.25em}
 		\item Server sendet \textbf{ohne clientseitigen Request} Dateien, bei denen er davon ausgeht, dass sie der Client benötigt (z.B. CSS),\\
-		der Client muss somit nicht erst das HTML parsen und Request erstellen (falls Client die Datei nicht braucht, bricht der den Vorgang ab)
+		der Client muss somit nicht erst das HTML parsen und Requests erstellen (falls Client die Datei nicht braucht, bricht er den Vorgang ab)
 	\end{itemize}
 	\item \textbf{Komprimierung der Header} (Header Compression - HPACK)
 	\vspace{-1.25em}
@@ -2021,30 +2021,31 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 		\item Deutliche Reduktion des Overheads
 	\end{itemize}
 	\item Realisierung als \textbf{binäres Protokoll} - effizienter aber schwerer zu Debuggen
-	\item \textbf{Datenflusskontrolle} (\textit{Flow Control}) und \textbf{Priorisierung} (\textit{Prioritization}) zur Verteilung der Übertragungsbandbreite auf einzelne Stream
+	\item \textbf{Datenflusskontrolle} (\textit{Flow Control}) und \textbf{Priorisierung} (\textit{Prioritization}) zur Verteilung der Übertragungsbandbreite auf einzelne Streams
 \end{itemize}
 
 \vspace{-1.25em}
 \textbf{Frame Typen und Streams}\\
 \begin{tabular}{ll}
-	\begin{minipage}{0.4\textwidth}
+	\begin{minipage}{0.45\textwidth}
 		\begin{itemize}
 			\setlength\itemsep{-0.32em}
-			\item Jeder Request/Response nutzt unabhängigen, eigenen Stream - gekennzeichnet durch \textit{Stream Identifier} (farbig dargestellt)
+			\item Jeder Request/Response nutzt unabhängigen, eigenen Stream - gekennzeichnet durch \textit{Stream Identifier}\\
+			(Unterscheidung mit Farben)
 			\item Gleiches URI-Schema und \textbf{Standard-Ports} wie bei HTTP 1.1
+			\item Eine Auswahl an Frame-Typen:
+			\item \begin{tabular}{|llllllll|}
+				\hline
+				\textit{HEADERS} & \textit{DATA} & \textit{SETTINGS} & \makecell[l]{\textit{WINDOW}\\\textit{UPDATE}} & \makecell[l]{\textit{PUSH}\\\textit{PROMISE}} & \makecell[l]{\textit{RST}\\\textit{STREAM}} & \textit{PRIORITY} & \textit{CONTINUATION}\\
+				\hline
+				\makecell[l]{Header des\\Requests/der\\Response} & \makecell[l]{Payload} & \makecell[l]{Einstellungen,\\Parameter} & \makecell[l]{Flusskontrolle\\eines Streams} & \makecell[l]{Ankündigungs-\\Stream für\\\textbf{Server Push}} & \makecell[l]{Sofortiges\\Schließen\\eines\\Streams} & \makecell[l]{Festlegung\\Stream Priorität} & \makecell[l]{Fortsetzung\\eines\\\textbf{Header}\\\textbf{Blocks}}\\
+				\hline
+			\end{tabular}
 		\end{itemize}
-	\end{minipage} & \begin{minipage}{0.6\textwidth}
-		\raisebox{-.5\height}{\includegraphics[scale=0.33]{images/http_2_frame.png}}
+	\end{minipage} & \begin{minipage}{0.5\textwidth}
+		\raisebox{2.5\height}{\includegraphics[scale=0.33]{images/http_2_frame.png}}
 	\end{minipage}
 \end{tabular}
-\begin{itemize}
-	\setlength\itemsep{-1.25em}
-	\item \begin{tabular}{llllllll}
-		\textit{HEADERS} & \textit{DATA} & \textit{SETTINGS} & \makecell[l]{\textit{WINDOW}\\\textit{UPDATE}} & \makecell[l]{\textit{PUSH}\\\textit{PROMISE}} & \makecell[l]{\textit{RST}\\\textit{STREAM}} & \textit{PRIORITY} & \textit{CONTINUATION}\\
-		\hline
-		\makecell[l]{Header des\\Requests/der\\Response} & \makecell[l]{Payload} & \makecell[l]{Einstellungen,\\Parameter} & \makecell[l]{Flusskontrolle\\eines Streams} & \makecell[l]{Ankündigungs-\\Stream für\\\textbf{Server Push}} & \makecell[l]{Sofortiges\\Schließen\\eines\\Streams} & \makecell[l]{Festlegung\\Stream Priorität} & \makecell[l]{Fortsetzung\\eines\\\textbf{Header}\\\textbf{Blocks}}
-	\end{tabular}
-\end{itemize}
 
 \vspace{-1.25em}
 \textbf{Verbindungsaufbau \textit{ohne} TLS}\\
@@ -2053,7 +2054,8 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 		\begin{itemize}
 			\setlength\itemsep{-0.32em}
 			\item Anhand Port nicht erkennbar ob HTTP/2 oder HTTP 1.1 $\rightarrow$ \textbf{Upgrade-Header}
-			\item Client signalisiert Server HTTP/2-Fähigkeit (Protocol Identifier \textit{h2c} = unverschlüsselte Übertragung)
+			\item Client signalisiert Server HTTP/2-Fähigkeit (Protocol Identifier\\
+			\textbf{h2c = unverschlüsselte Übertragung})
 			\item Server mit HTTP/2 reagiert,\\Server ohne HTTP/2 ignoriert Header
 		\end{itemize}
 	\end{minipage} & \begin{minipage}{0.6\textwidth}
@@ -2068,7 +2070,7 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 	\setlength\itemsep{-1.25em}
 	\item TLS unterstützt Aushandlung von Protokollen auf der Anwendungsschicht (\textit{Application-Layer Protocol Negotiation} (ALPN))
 	\item HTTP/2 nutzt diesen Mechanismus um Nutzung von HTTP/2 abzustimmen
-	\item Protocol Identifier \textit{h2} = verschlüsselte Übertragung
+	\item Protocol Identifier \textbf{h2 = verschlüsselte Übertragung}
 \end{itemize}
 
 \newpage
@@ -2083,7 +2085,7 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 			\item Direkt danach muss (ggf. leerer) \textit{SETTINGS}-Frame folgen
 		\end{itemize}
 	\end{minipage} & \begin{minipage}{0.3\textwidth}
-		\raisebox{-.5\height}{\includegraphics[scale=0.3125]{images/http_2_sequence.png}}
+		\raisebox{4.5\height}{\includegraphics[scale=0.3125]{images/http_2_sequence.png}}
 	\end{minipage}
 \end{tabular}
 
@@ -2097,7 +2099,7 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 			\item \textbf{Length:} Länge der Payload in Bytes, max. $2^{14}$ wenn nicht über Settings angepasst
 			\item \textbf{Type:} Art des Frames, unbekannter Typ wird ignoriert
 			\item \textbf{Flags} (jeweils 1 Bit): Bedeutung je nach Typ, \textbf{R:} Reserviert
-			\item \textbf{Stream Identifier:} 31-Bit Integer zur Identifizierung eines Streams, Identifier \textbf{0x0} identifiziert Frames, die gesamte Verbindung (d.h. \textbf{nicht} einzelne Streams) betreffen
+			\item \textbf{Stream Identifier:} 31-Bit Integer zur Identifizierung eines Streams, Identifier \textbf{0x0} identifiziert Frames, die gesamte Verbindung (d.h. \textbf{nicht} nur einzelne Streams) betreffen
 		\end{itemize}
 	\end{minipage} & \begin{minipage}{0.425\textwidth}
 		\raisebox{-.5\height}{\includegraphics[scale=0.425]{images/http_2_frame_fields.png}}
@@ -2110,7 +2112,7 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 \begin{itemize}
 	\setlength\itemsep{-1.25em}
 	\item Verbindung kann aus Vielzahl gleichzeitig geöffneter Streams bestehen
-	\item Stream kann entweder einseitig oder zwischen Server und Client zusammen gesetzt sein
+	\item Stream kann entweder einseitig oder zwischen Server und Client zusammen genutzt sein
 	\item Client und Server multiplexen die Frames der Streams über eine TCP-Verbindung
 	\item Empfänger verarbeitet die einzelnen Frames eines Streams entsprechend der Sendereihenfolge
 	\item Streams werden über \textit{Stream Identifier} eindeutig identifiziert (wird vom Endpunkt vergeben, der Stream initiiert)
@@ -2125,7 +2127,7 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 	\setlength\itemsep{-1.25em}
 	\item Stream konkurrieren um Bandbreite einer TCP-Verbindung
 	\item Flow Control erlaubt Regelung des Datenflusses einzelner Streams sowie der gesamten Verbindung
-	\item Initiales Fenster von 65.535 für neuen Stream und Gesamtverbindung
+	\item Initiales Fenster: 65.535 für neuen Stream und Gesamtverbindung
 	\item Daten dürfen nur gesendet werden, so lange Platz im Fenster
 	\item Empfänger teilt Sender aktuellen Platz im Empfangsfenster über \textit{WINDOW\_UPDATE} Frame mit (Kredit-basiertes Verfahren)
 	\item \textbf{Flow Control betrifft nur DATA}: Nur \textit{DATA} Frames reduzieren den Platz im Fenster, alle anderen Typen dürfen immer gesendet werden $\rightarrow$ wichtige Control Frames werden nicht blockiert
@@ -2179,7 +2181,7 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 	\begin{minipage}{0.575\textwidth}
 		\begin{itemize}
 			\setlength\itemsep{-0.32em}
-			\item Verbindet (ressourcenbeschränkte) \textit{Eingebettete Geräte} und Netzwerke
+			\item Verbindet (ressourcenbeschränkte) \textit{gingebettete Geräte} und Netzwerke
 			\item \textit{Publish/Subscribe}-Pattern
 			\item Verwendet TCP als Transportprotokoll
 			\item \textbf{Subscriber}
@@ -2216,7 +2218,7 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 			\vspace{-.5em}
 			\begin{itemize}
 				\setlength\itemsep{-0.32em}
-				\item Unter einem MQTT Client versteht man sowohl einen Subscriber als auch einen Publisher
+				\item Unter einem MQTT Client versteht man \textbf{sowohl} einen Subscriber \textbf{als auch} einen Publisher
 				\item Client sendet CONNECT an Broker
 				\vspace{-.5em}
 				\begin{itemize}
