@@ -2173,6 +2173,85 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 
 \newpage
 
+\subsection{QUIC UDP Internet Connections (\textit{QUIC})}
+\vspace{-1.5em}
+\textbf{Nachteile TLS + TCP}
+\vspace{-1.25em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Problematisch für Anwendungen, die nur geringe Verzögerungen tolerieren können (HTTP/2 Übertragung mit mehreren Streams)
+	\item In HTTP/2 kann weiterhin \textbf{Head-of-line blocking} auftreten, wenn ein Paket verloren geht und TCP daher die Übertragungsrate drosselt $\rightarrow$ alle anderen Frames der gemultiplexten Streams werden blockiert
+	\item Implementiert als Teil des Betriebssystems, daher schwierig upzudaten
+\end{itemize}
+
+\vspace{-1.5em}
+\textbf{Grundlegender Ansatz}\\
+\begin{tabular}{ll}
+	\begin{minipage}{0.65\textwidth}
+		\begin{itemize}
+			\setlength\itemsep{-0.32em}
+			\item Transportmechanismen werden in der Netzwerkhierarchie oberhalb von UDP im \textit{User-Space} implementiert (Updates einfacher möglich)
+			\item Optimierung auf HTTP/2 Stream Multiplexing\\
+			(kein \textbf{Head-of-line blocking} mehr)\\
+			\item Im erstmaligen Verbindungsaufbau findet Handshake für Kryptographie statt, nachfolgende Verbindungen verwenden \textit{Cryptographic Cookie}
+		\end{itemize}
+	\end{minipage} & \begin{minipage}{0.35\textwidth}
+		\raisebox{-.5\height}{\includegraphics[scale=0.225]{images/quic.png}}
+	\end{minipage}
+\end{tabular}
+
+\vspace{-1.75em}
+\begin{center}
+	\raisebox{-.5\height}{\includegraphics[scale=0.225]{images/quic_verbindungsaufbau.png}}
+\end{center}
+
+\vspace{-2.25em}
+\subsection{Onion Routing / Tor}
+\vspace{-1.5em}
+\textbf{Motivation}
+\vspace{-1.25em}
+\begin{itemize}
+	\setlength\itemsep{-1.25em}
+	\item Trennung von \textbf{Identifikation} und \textbf{Routing}
+	\item Weiterleitende Knoten und angefragter Server sollen die Identität des Anfragenden \textbf{nicht} ermitteln können
+	\item Mehrfache, ineinander geschaltete Verschlüsselung der Daten (wie eine Zwiebel)
+\end{itemize}
+
+\textbf{Implementierung im Tor-Projekt}\\
+\begin{tabular}{ll}
+	\begin{minipage}{0.625\textwidth}
+		\begin{itemize}
+			\setlength\itemsep{-0.32em}
+			\item Kommunikation über \textbf{geographisch verteilte}, von \textbf{unterschiedlichen Betreibern} gemanagte, \textbf{zufällig ausgewählter} Relay-Knoten
+			\item Auswahl wird periodisch geändert (Guard: Erster Knoten nach dem Client)
+			\item Pro Hop wird eigener, symmetrischer Schlüssel ausgehandelt
+			\item Nur \textbf{Entry-Onion-Router} sieht Quell-IP
+			\item Nur \textbf{Exit-Onion-Router} sieht Ziel-IP (Nutzdaten auch sichtbar wenn kein TLS verwendet wird!)
+			\item Andere Onion-Router sehen weder Quelle noch Ziel
+		\end{itemize}
+	\end{minipage} & \begin{minipage}{0.375\textwidth}
+		\raisebox{-.5\height}{\includegraphics[scale=0.19]{images/tor_routing.png}}
+	\end{minipage}
+\end{tabular}
+
+\textbf{Hidden Services}\\
+\vspace{-1.25em}
+\begin{tabular}{ll}
+	\begin{minipage}{0.625\textwidth}
+		\begin{itemize}
+			\setlength\itemsep{-0.32em}
+			\item Dienstanbieter soll ebenfalls anonym bleiben (bisher nur Client)
+			\item Hostname ist halbierter \textbf{SHA-1 Hash} des \textbf{Public Key} des Dienstanbieters
+			\item \textbf{Hidden Service Descriptor} wird in dezentrales Verzeichnis hochgeladen (wird vom Client mit Hilfe der Onion-Adresse des Dienstes angefragt)
+			\item Client verwendet zufällig ausgewählte Onion-Router (Relays) zum Verbindungsaufbau mit Hidden Service
+		\end{itemize}
+	\end{minipage} & \begin{minipage}{0.375\textwidth}
+		\raisebox{-.5\height}{\includegraphics[scale=0.19]{images/tor_hidden_services.png}}
+	\end{minipage}
+\end{tabular}
+
+\newpage
+
 \section{Praktikumsprojekt}
 \vspace{-2.5em}
 \subsection{MQTT}
