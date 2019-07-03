@@ -2191,9 +2191,11 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 		\begin{itemize}
 			\setlength\itemsep{-0.32em}
 			\item Transportmechanismen werden in der Netzwerkhierarchie oberhalb von UDP im \textit{User-Space} implementiert (Updates einfacher möglich)
-			\item Optimierung auf HTTP/2 Stream Multiplexing\\
-			(kein \textbf{Head-of-line blocking} mehr)\\
-			\item Im erstmaligen Verbindungsaufbau findet Handshake für Kryptographie statt, nachfolgende Verbindungen verwenden \textit{Cryptographic Cookie}
+			\item QUIC basiert, wie HTTP/s auch, auf Frames mit unterschiedlichen Frame-Typen
+			\item Optimierung auf HTTP/2 Stream Multiplexing + Datenflusskontrolle\\
+			(kein \textbf{Head-of-line blocking} mehr)
+			\item Im erstmaligen Verbindungsaufbau werden sowohl Parameter für \textbf{QUIC} als auch für \textbf{TLS} übertragen
+			\item Client speichert \textbf{Cryptographic Cookie}, der für nachfolgende Verbindungen verwendet wird (Server authentifiziert Client über Cookie)
 		\end{itemize}
 	\end{minipage} & \begin{minipage}{0.35\textwidth}
 		\raisebox{-.5\height}{\includegraphics[scale=0.225]{images/quic.png}}
@@ -2212,9 +2214,9 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 \vspace{-1.25em}
 \begin{itemize}
 	\setlength\itemsep{-1.25em}
-	\item Trennung von \textbf{Identifikation} und \textbf{Routing}
+	\item Trennung von \textbf{Identifikation} und \textbf{Routing} (Kommunikationspartner können über IP-Adresse identifiziert werden)
 	\item Weiterleitende Knoten und angefragter Server sollen die Identität des Anfragenden \textbf{nicht} ermitteln können
-	\item Mehrfache, ineinander geschaltete Verschlüsselung der Daten (wie eine Zwiebel)
+	\item \textbf{Mehrfache, ineinander geschaltete Verschlüsselung} der Daten (wie eine Zwiebel)
 \end{itemize}
 
 \textbf{Implementierung im Tor-Projekt}\\
@@ -2222,8 +2224,8 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 	\begin{minipage}{0.625\textwidth}
 		\begin{itemize}
 			\setlength\itemsep{-0.32em}
-			\item Kommunikation über \textbf{geographisch verteilte}, von \textbf{unterschiedlichen Betreibern} gemanagte, \textbf{zufällig ausgewählter} Relay-Knoten
-			\item Auswahl wird periodisch geändert (Guard: Erster Knoten nach dem Client)
+			\item Kommunikation über \textbf{geographisch verteilte}, von \textbf{unterschiedlichen Betreibern} gemanagte, \textbf{zufällig ausgewählte} Relay-Knoten
+			\item Auswahl wird periodisch geändert (\textbf{Guard}: Erster Knoten nach dem Client)
 			\item Pro Hop wird eigener, symmetrischer Schlüssel ausgehandelt
 			\item Nur \textbf{Entry-Onion-Router} sieht Quell-IP
 			\item Nur \textbf{Exit-Onion-Router} sieht Ziel-IP (Nutzdaten auch sichtbar wenn kein TLS verwendet wird!)
@@ -2241,9 +2243,12 @@ $\circ$ Am Router \textit{QoS-Scheduling} (z.B. WFQ)
 		\begin{itemize}
 			\setlength\itemsep{-0.32em}
 			\item Dienstanbieter soll ebenfalls anonym bleiben (bisher nur Client)
+			\item Dienstanbieter erzeugt Schlüsselpaar, dass den Dienst langfristig identifiziert
 			\item Hostname ist halbierter \textbf{SHA-1 Hash} des \textbf{Public Key} des Dienstanbieters
 			\item \textbf{Hidden Service Descriptor} wird in dezentrales Verzeichnis hochgeladen (wird vom Client mit Hilfe der Onion-Adresse des Dienstes angefragt)
-			\item Client verwendet zufällig ausgewählte Onion-Router (Relays) zum Verbindungsaufbau mit Hidden Service
+			\item Client verwendet \textbf{zufällig ausgewählte} Onion-Router (Relays) zum Verbindungsaufbau mit Hidden Service\\
+			(Zuordnung erfolgt über \textbf{One-Time-Secret/Cookie})
+			\item \textbf{Schwachstellen:} Hidden Services identifizierbar durch veraltetes SHA-1 Hashverfahren, RSA verwendet nur 1024-Bit
 		\end{itemize}
 	\end{minipage} & \begin{minipage}{0.375\textwidth}
 		\raisebox{-.5\height}{\includegraphics[scale=0.19]{images/tor_hidden_services.png}}
